@@ -1,0 +1,9 @@
+{
+	"Texture":"splash.png",
+	"Rect": {
+		"Top":721,
+		"Left":0,
+		"Right":73,
+		"Bottom":792
+	}
+}
