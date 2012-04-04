@@ -1,12 +1,14 @@
 package net.ark.framework.system;
 
 import net.ark.framework.states.GameState;
+import net.ark.framework.states.StateFactory;
 import net.ark.framework.system.android.AndroidStateManager;
 
 public abstract class StateManager {
     protected StateManager() {
 		//Initialize data
-    	m_First		= -1;
+    	m_System	= null;
+    	m_Factory	= null;
 		m_Running	= true;
     }	
 	public synchronized static StateManager instance() {
@@ -17,9 +19,10 @@ public abstract class StateManager {
 	//Accessors
 	public boolean isRunning()	{	return m_Running;	}
 	
-	public void setFirstState(int state) {
-		//Set first state
-		m_First = state;
+	public void setup(StateFactory factory, System system) {
+		//Set components
+		m_System 	= system;
+		m_Factory 	= factory;
 	}
 
 	//State navigation
@@ -34,6 +37,7 @@ public abstract class StateManager {
 	public abstract void quit();
 	
 	//Data
-	protected int		m_First;
-	protected boolean 	m_Running;
+	protected System		m_System;
+	protected boolean 		m_Running;
+	protected StateFactory	m_Factory;
 }

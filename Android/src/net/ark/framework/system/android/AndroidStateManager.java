@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import net.ark.framework.states.GameState;
 import net.ark.framework.system.Device;
 import net.ark.framework.system.StateManager;
-import net.ark.framework.system.Utilities;
-
-import com.ark.example.states.StateFactory;
 
 public class AndroidStateManager extends StateManager {
     protected AndroidStateManager() {
@@ -38,7 +35,7 @@ public class AndroidStateManager extends StateManager {
         m_Initialized = true;
         
 		//Go to the first state
-        goTo(m_First, null, false);
+        if (m_Factory != null) goTo(m_Factory.getFirstState(), null, false);
 	}
 
 	@Override
@@ -73,8 +70,9 @@ public class AndroidStateManager extends StateManager {
 			if (Exist) returnTo(id, parameters);
 			else {
 				//Create new state
-				GameState NewState = StateFactory.createState(id, parameters);
-				if (NewState == null) return;
+				GameState NewState = null;
+				if (m_Factory != null) 	NewState = m_Factory.createState(id, parameters);
+				if (NewState == null) 	return;
 
 				//If not swapped, add state
 				if (!swap) addState(NewState);
@@ -157,9 +155,9 @@ public class AndroidStateManager extends StateManager {
 		
 		//Sleep if difference less than frame time
 		long Difference = System.currentTimeMillis() - m_CurrentTime;
-		if (Difference < (1000 / Utilities.instance().getFPS())) {
+		if (Difference < (1000 / m_System.getFPS())) {
 			try {
-				Thread.sleep((1000 / Utilities.instance().getFPS()) - Difference);
+				Thread.sleep((1000 / m_System.getFPS()) - Difference);
 			} catch (InterruptedException ex) {}
 		}
 		

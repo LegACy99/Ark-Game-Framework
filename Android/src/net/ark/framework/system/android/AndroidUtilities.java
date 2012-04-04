@@ -15,11 +15,6 @@ public class AndroidUtilities extends Utilities {
 		m_FPS   = 30;
 		m_Wait  = 160;
 		
-		//Gameplay
-		m_MaxRanks		= 5;
-		m_TileWidth		= 32;
-		m_TileHeight	= 32;
-		
 		//Create random
 		m_Random = new Random();
     }

@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import net.ark.framework.system.android.AndroidUtilities;
 
 public abstract class Utilities {
-	//Application constants
-	public static final String APPLICATION 		= "Drag Prototype";
-	public static final int REFERENCE_HEIGHT	= 720;
-	public static final int FLOAT_SIZE			= 4;
-	public static final int SHORT_SIZE			= 2;
-	public static final int MAX_SAVE			= 3;
+	//Constants
+	public static final int FLOAT_SIZE	= 4;
+	public static final int SHORT_SIZE	= 2;
+	public static final int MAX_SAVE	= 3;
 	
 	//Folder constants
 	public static final String DATA_FOLDER			= "data/";
@@ -38,15 +36,9 @@ public abstract class Utilities {
 	public abstract float getHeight();
 	
 	//System constants
-	public int getFPS()			{	return m_FPS;   }	
 	public int getButtonWait()	{	return m_Wait;  }
 	public int getMenuButton()	{	return m_Menu;  }
 	public int getBackButton()	{	return m_Back;	}
-	
-	//Game constants
-	public int getMaxRanks()	{	return m_MaxRanks;		}
-	public int getTileWidth()	{	return m_TileWidth;		}
-	public int getTileHeight()	{	return m_TileHeight;	}
 	
 	//Utility
 	public abstract int getRandom(int from, int to);
@@ -100,9 +92,4 @@ public abstract class Utilities {
 	protected int m_Wait;
     protected int m_Menu;
     protected int m_Back;
-	
-	//Game
-    protected int m_MaxRanks;
-	protected int m_TileWidth;
-	protected int m_TileHeight;
 }

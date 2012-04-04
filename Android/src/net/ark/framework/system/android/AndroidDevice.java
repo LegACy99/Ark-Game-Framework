@@ -5,8 +5,12 @@ import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import com.ark.example.Main;
-
+import net.ark.framework.system.Device;
+import net.ark.framework.system.StateManager;
+import net.ark.framework.system.android.input.AccelerometerInfo;
+import net.ark.framework.system.android.input.TouchInfo;
+import net.ark.framework.system.resource.ResourceManager;
+import android.app.Activity;
 import android.content.res.AssetManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -22,13 +26,6 @@ import android.view.View;
 import android.view.View.OnKeyListener;
 import android.view.View.OnTouchListener;
 
-import net.ark.framework.system.Device;
-import net.ark.framework.system.StateManager;
-import net.ark.framework.system.Utilities;
-import net.ark.framework.system.android.input.AccelerometerInfo;
-import net.ark.framework.system.android.input.TouchInfo;
-import net.ark.framework.system.resource.ResourceManager;
-
 public class AndroidDevice extends Device implements Renderer, OnTouchListener, OnKeyListener, SensorEventListener, OnGestureListener {
 	protected AndroidDevice() {
 		//Super
@@ -36,7 +33,7 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		
 		//Initialize
 		m_OpenGL	= null;
-		m_Assets 	= Main.instance().getAssets();
+		m_Assets 	= s_Activity.getAssets();
 		m_Gesture	= new GestureDetector(this);
 		
 		//Initialize input
@@ -44,6 +41,11 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		m_KeyList		= new ArrayList<Integer>();
 		m_Accelerometer = new AccelerometerInfo();
 		for (int i = 0; i < m_Touches.length; i++) m_Touches[i] = new TouchInfo();
+	}
+	
+	public static void setActivity(Activity activity) {
+		//Set
+		s_Activity = activity;
 	}
 	
 	public synchronized static AndroidDevice instance() {
@@ -101,7 +103,7 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		//Calculate stuff
 		m_Row		= 1;
 		m_Column	= 1;
-		m_Scale 	= m_Height / Utilities.REFERENCE_HEIGHT;
+		m_Scale 	= m_System != null ? ((float)m_Height / (float)m_System.getBaseHeight()) : 1.0f;
 		
 		//Set view port
 		gl.glViewport(0, 0, width, height);
@@ -204,7 +206,8 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 	}
 	
 	//The only instance
-	private static AndroidDevice s_Instance = null;
+	private static Activity 		s_Activity = null;
+	private static AndroidDevice 	s_Instance = null;
 	
 	//Constants
 	protected final int AXIS_X 			= 0;

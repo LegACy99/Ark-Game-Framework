@@ -12,6 +12,7 @@ public abstract class Device {
 		m_Width		= 0;
 		m_Height	= 0;
 		m_Column	= 0;
+		m_System	= null;
 		
 		//Intialize input
 		m_Accelerometer	= null;
@@ -23,6 +24,11 @@ public abstract class Device {
 	public synchronized static AndroidDevice instance() {
 		//Return the correct instance
 		return AndroidDevice.instance();
+	}
+	
+	public void setSystem(System system) {
+		//Set
+		m_System = system;
 	}
 	
     //Accessors
@@ -46,4 +52,5 @@ public abstract class Device {
 	protected int[]				m_Keys;
 	protected TouchInfo[]		m_Touches;
 	protected AccelerometerInfo	m_Accelerometer;
+	protected System			m_System;
 }

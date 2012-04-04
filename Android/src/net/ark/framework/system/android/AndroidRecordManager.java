@@ -1,12 +1,10 @@
 package net.ark.framework.system.android;
 
-import com.ark.example.Main;
-
+import net.ark.framework.system.RecordManager;
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-
-import net.ark.framework.system.RecordManager;
 
 public class AndroidRecordManager extends RecordManager {
 	protected AndroidRecordManager() {
@@ -14,7 +12,12 @@ public class AndroidRecordManager extends RecordManager {
 		super();
 		
 		//Initialize
-		m_Store = Main.instance().getSharedPreferences(STORE_NAME, Context.MODE_WORLD_READABLE);
+		m_Store = s_Activity.getSharedPreferences(STORE_NAME, Context.MODE_WORLD_READABLE);
+	}
+	
+	public static void setActivity(Activity activity) {
+		//Set
+		s_Activity = activity;
 	}
 
 	public synchronized static RecordManager instance() {
@@ -52,7 +55,8 @@ public class AndroidRecordManager extends RecordManager {
 	protected final String STORE_NAME = "Records"; 
 	
 	//The only instance
-	private static RecordManager s_Instance = null;
+	private static Activity 		s_Activity = null;
+	private static RecordManager 	s_Instance = null;
 	
 	//Record system
 	SharedPreferences m_Store;

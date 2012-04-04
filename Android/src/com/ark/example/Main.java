@@ -2,13 +2,13 @@ package com.ark.example;
 
 import java.util.List;
 
-import com.ark.example.states.ExampleState;
-
+import net.ark.framework.R;
 import net.ark.framework.system.Device;
 import net.ark.framework.system.SoundManager;
 import net.ark.framework.system.StateManager;
-import net.ark.framework.system.Utilities;
+import net.ark.framework.system.System;
 import net.ark.framework.system.android.AndroidDevice;
+import net.ark.framework.system.android.AndroidRecordManager;
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
@@ -23,15 +23,20 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class Main extends Activity {
+import com.ark.example.states.ExampleStateFactory;
+
+public class Main extends Activity implements System {
 	 /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	//Super
         super.onCreate(savedInstanceState);
         
-        //Save app
-        s_Instance = this;
+        //Setup
+        AndroidDevice.setActivity(this);
+        AndroidRecordManager.setActivity(this);
+        AndroidDevice.instance().setSystem(this);
+        StateManager.instance().setup(new ExampleStateFactory(), this);
         
         //Go full screen
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -41,7 +46,7 @@ public class Main extends Activity {
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         
         //Get wakelock
-        m_Lock = ((PowerManager)getSystemService(Context.POWER_SERVICE)).newWakeLock(PowerManager.FULL_WAKE_LOCK, Utilities.APPLICATION);
+        m_Lock = ((PowerManager)getSystemService(Context.POWER_SERVICE)).newWakeLock(PowerManager.FULL_WAKE_LOCK, getApplicationName());
         
         //Create surface
         m_Canvas = new GLSurfaceView(this);
@@ -64,17 +69,14 @@ public class Main extends Activity {
         
         //If exist, register listener
         if (!Accelerometers.isEmpty()) Manager.registerListener(AndroidDevice.instance(), Accelerometers.get(0), SensorManager.SENSOR_DELAY_GAME);
-        
-        //Set the first state
-        StateManager.instance().setFirstState(ExampleState.SPLASH);
 
         //Set as activity view
         setContentView(m_Canvas);
     }
     
-    public static Activity instance() {
-    	return s_Instance;
-    }
+	@Override public int getFPS() 					{ return 30;							}
+	@Override public int getBaseHeight() 			{ return 720;							}
+	@Override public String getApplicationName() 	{ return getString(R.string.app_name);	}
     
     @Override
     public void onResume() {
@@ -98,9 +100,6 @@ public class Main extends Activity {
     public void onBackPressed() {
     	//Do nothing
     }
-    
-    //Self
-    protected static Activity s_Instance = null;
 	
 	//Components
 	protected WakeLock 		m_Lock;
