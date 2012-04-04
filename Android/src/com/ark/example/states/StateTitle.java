@@ -5,16 +5,15 @@ import javax.microedition.khronos.opengles.GL10;
 import net.ark.framework.components.Drawable;
 import net.ark.framework.components.buttons.Button;
 import net.ark.framework.components.buttons.ButtonContainer;
-import net.ark.framework.states.GameState;
 import net.ark.framework.system.SoundManager;
 import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.input.AccelerometerInfo;
 import net.ark.framework.system.android.input.TouchInfo;
 
-public class StateTitle extends GameState {
+public class StateTitle extends ExampleState {
 	public StateTitle() {
 		//Super
-		super(GameState.TITLE, Utilities.BACKGROUND_FOLDER + "title.json");
+		super(ExampleState.TITLE, Utilities.BACKGROUND_FOLDER + "title.json");
 
 		//Create containers
 		m_Buttons = new ButtonContainer();

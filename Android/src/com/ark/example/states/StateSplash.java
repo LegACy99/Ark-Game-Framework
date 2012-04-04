@@ -3,7 +3,6 @@ package com.ark.example.states;
 import javax.microedition.khronos.opengles.GL10;
 
 import net.ark.framework.components.Drawable;
-import net.ark.framework.states.GameState;
 import net.ark.framework.system.StateManager;
 import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.input.AccelerometerInfo;
@@ -11,9 +10,9 @@ import net.ark.framework.system.android.input.TouchInfo;
 import net.ark.framework.system.images.Image;
 import net.ark.framework.system.resource.ResourceManager;
 
-public class StateSplash extends GameState {
+public class StateSplash extends ExampleState {
 	public StateSplash() {
-		super(GameState.SPLASH);
+		super(ExampleState.SPLASH);
 		
 		//Load splash resource
 		ResourceManager.instance().addTexture(Utilities.TEXTURE_FOLDER + "splash.png");
@@ -54,7 +53,7 @@ public class StateSplash extends GameState {
 		//Check resource manager
 		if (ResourceManager.instance().isFinished()) {
 			//Check time			
-			if (m_Time >= MIN_TIME)	StateManager.instance().goTo(GameState.TITLE, null, true);
+			if (m_Time >= MIN_TIME)	StateManager.instance().goTo(ExampleState.TITLE, null, true);
 		} else ResourceManager.instance().update();
 		
 		//Set rotation

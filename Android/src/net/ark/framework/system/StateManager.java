@@ -4,6 +4,11 @@ import net.ark.framework.states.GameState;
 import net.ark.framework.system.android.AndroidStateManager;
 
 public abstract class StateManager {
+    protected StateManager() {
+		//Initialize data
+    	m_First		= -1;
+		m_Running	= true;
+    }	
 	public synchronized static StateManager instance() {
 		//Return the corresponding manager
 		return AndroidStateManager.instance();
@@ -11,6 +16,11 @@ public abstract class StateManager {
 
 	//Accessors
 	public boolean isRunning()	{	return m_Running;	}
+	
+	public void setFirstState(int state) {
+		//Set first state
+		m_First = state;
+	}
 
 	//State navigation
 	protected abstract void initialize();
@@ -24,5 +34,6 @@ public abstract class StateManager {
 	public abstract void quit();
 	
 	//Data
-	protected boolean m_Running;
+	protected int		m_First;
+	protected boolean 	m_Running;
 }

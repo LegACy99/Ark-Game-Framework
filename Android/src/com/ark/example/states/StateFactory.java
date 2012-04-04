@@ -1,4 +1,6 @@
-package net.ark.framework.states;
+package com.ark.example.states;
+
+import net.ark.framework.states.GameState;
 
 import com.ark.example.states.StateSplash;
 import com.ark.example.states.StateTitle;
@@ -10,15 +12,15 @@ public class StateFactory {
 
 	public static GameState createState(int id, Object[] parameters) {
 		// Default
-		GameState NewState = null;
+		ExampleState NewState = null;
 
 		// Based on id
 		switch (id) {
-		case GameState.SPLASH:
+		case ExampleState.SPLASH:
 			NewState = new StateSplash();
 			break;
 
-		case GameState.TITLE:
+		case ExampleState.TITLE:
 			NewState = new StateTitle();
 			break;
 		}

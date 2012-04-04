@@ -3,13 +3,17 @@ package net.ark.framework.system.android;
 import java.util.ArrayList;
 
 import net.ark.framework.states.GameState;
-import net.ark.framework.states.StateFactory;
 import net.ark.framework.system.Device;
 import net.ark.framework.system.StateManager;
 import net.ark.framework.system.Utilities;
 
+import com.ark.example.states.StateFactory;
+
 public class AndroidStateManager extends StateManager {
     protected AndroidStateManager() {
+    	//Super
+    	super();
+    	
 		//Initialize data
     	m_Initialized	= false;
 		m_Paused		= false;
@@ -33,8 +37,8 @@ public class AndroidStateManager extends StateManager {
 		if (m_Initialized) return;
         m_Initialized = true;
         
-		//Go to splash screen
-        goTo(GameState.SPLASH, null, false);
+		//Go to the first state
+        goTo(m_First, null, false);
 	}
 
 	@Override

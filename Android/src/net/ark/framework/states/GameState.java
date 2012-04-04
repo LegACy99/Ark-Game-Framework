@@ -7,11 +7,7 @@ import net.ark.framework.system.android.input.TouchInfo;
 import net.ark.framework.system.images.Image;
 import net.ark.framework.system.resource.ResourceManager;
 
-public class GameState {
-	//State ID
-	public static final int SPLASH 	= 1;
-	public static final int TITLE 	= 2;
-	
+public class GameState {	
 	public GameState(int id) {
 		//No background
 		this(id, (String)null);

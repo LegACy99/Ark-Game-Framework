@@ -2,8 +2,11 @@ package com.ark.example;
 
 import java.util.List;
 
+import com.ark.example.states.ExampleState;
+
 import net.ark.framework.system.Device;
 import net.ark.framework.system.SoundManager;
+import net.ark.framework.system.StateManager;
 import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.AndroidDevice;
 import android.app.Activity;
@@ -61,6 +64,9 @@ public class Main extends Activity {
         
         //If exist, register listener
         if (!Accelerometers.isEmpty()) Manager.registerListener(AndroidDevice.instance(), Accelerometers.get(0), SensorManager.SENSOR_DELAY_GAME);
+        
+        //Set the first state
+        StateManager.instance().setFirstState(ExampleState.SPLASH);
 
         //Set as activity view
         setContentView(m_Canvas);
