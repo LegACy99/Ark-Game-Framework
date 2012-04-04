@@ -20,7 +20,6 @@ public abstract class ResourceManager {
 	}
 	
 	//Load resource
-	public abstract void addRecordLoading();
 	public abstract void addNumber(int font);
 	public abstract void addBGM(String file);
 	public abstract void addSFX(String file);

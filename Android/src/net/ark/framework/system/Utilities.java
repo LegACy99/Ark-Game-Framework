@@ -15,8 +15,6 @@ public abstract class Utilities {
 	public static final String AUDIO_FOLDER			= "audio/";
 	public static final String IMAGE_FOLDER			= "images/";
 	public static final String TEXTURE_FOLDER		= "textures/";
-	public static final String INTERFACE_FOLDER		= IMAGE_FOLDER + "interface/";
-	public static final String BACKGROUND_FOLDER	= IMAGE_FOLDER + "background/";
 	public static final String FONT_TEXTURES		= TEXTURE_FOLDER + "fonts/";
 	public static final String STRING_FOLDER		= DATA_FOLDER + "strings/";
 	public static final String FONT_FOLDER			= DATA_FOLDER + "fonts/";

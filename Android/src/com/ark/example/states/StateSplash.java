@@ -2,6 +2,8 @@ package com.ark.example.states;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import com.ark.example.system.ExampleUtilities;
+
 import net.ark.framework.components.Drawable;
 import net.ark.framework.system.StateManager;
 import net.ark.framework.system.Utilities;
@@ -16,8 +18,8 @@ public class StateSplash extends ExampleState {
 		
 		//Load splash resource
 		ResourceManager.instance().addTexture(Utilities.TEXTURE_FOLDER + "splash.png");
-		ResourceManager.instance().addImage(Utilities.BACKGROUND_FOLDER + "splash.json");
-		ResourceManager.instance().addImage(Utilities.INTERFACE_FOLDER + "wheel.json");
+		ResourceManager.instance().addImage(ExampleUtilities.BACKGROUND_FOLDER + "splash.json");
+		ResourceManager.instance().addImage(ExampleUtilities.INTERFACE_FOLDER + "wheel.json");
 		ResourceManager.instance().start();
 		while (!ResourceManager.instance().isFinished()) ResourceManager.instance().update();
 				
@@ -25,11 +27,10 @@ public class StateSplash extends ExampleState {
 		ResourceManager.instance().addSFX(Utilities.SFX_FOLDER + "cursor.wav");
 		ResourceManager.instance().addSFX(Utilities.SFX_FOLDER + "cancel.wav");
 		
-		//Load resource
-		ResourceManager.instance().addRecordLoading();
+		//Load resources
 		ResourceManager.instance().addTexture(Utilities.TEXTURE_FOLDER + "title.png");
-		ResourceManager.instance().addImage(Utilities.BACKGROUND_FOLDER + "title.json");
-		ResourceManager.instance().addImage(Utilities.INTERFACE_FOLDER + "button.json");
+		ResourceManager.instance().addImage(ExampleUtilities.BACKGROUND_FOLDER + "title.json");
+		ResourceManager.instance().addImage(ExampleUtilities.INTERFACE_FOLDER + "button.json");
 		ResourceManager.instance().addTexture(Utilities.FONT_TEXTURES + "font.png");
 		ResourceManager.instance().addFont(Utilities.FONT_FOLDER + "font.json");
 		
@@ -40,8 +41,8 @@ public class StateSplash extends ExampleState {
 		m_Time = 0;
 		
 		//Create images
-		m_Title = new Image(ResourceManager.instance().getJSON(Utilities.BACKGROUND_FOLDER + "splash.json"));
-		m_Wheel	= new Image(ResourceManager.instance().getJSON(Utilities.INTERFACE_FOLDER + "wheel.json"));
+		m_Title = new Image(ResourceManager.instance().getJSON(ExampleUtilities.BACKGROUND_FOLDER + "splash.json"));
+		m_Wheel	= new Image(ResourceManager.instance().getJSON(ExampleUtilities.INTERFACE_FOLDER + "wheel.json"));
 		m_Wheel.setPosition(Utilities.instance().getWidth() / 2f, Utilities.instance().getHeight() / 2f, Drawable.ANCHOR_HCENTER, Drawable.ANCHOR_VCENTER);
 	}
 

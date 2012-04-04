@@ -35,7 +35,6 @@ public class AndroidResourceManager extends ResourceManager {
 	}
 
 	//Resource loader
-	@Override public void addRecordLoading()		{	if (!isLoading()) m_Loadables.add(Loadable.createLoading());		}
 	@Override public void addBGM(String file) 		{	if (!isLoading()) m_Loadables.add(Loadable.createBGM(file));        }
 	@Override public void addSFX(String file) 		{	if (!isLoading()) m_Loadables.add(Loadable.createSFX(file));      	}
 	@Override public void addJSON(String file) 		{	if (!isLoading()) m_Loadables.add(Loadable.createJSON(file));       }

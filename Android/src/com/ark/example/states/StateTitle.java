@@ -2,6 +2,8 @@ package com.ark.example.states;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import com.ark.example.system.ExampleUtilities;
+
 import net.ark.framework.components.Drawable;
 import net.ark.framework.components.buttons.Button;
 import net.ark.framework.components.buttons.ButtonContainer;
@@ -13,11 +15,11 @@ import net.ark.framework.system.android.input.TouchInfo;
 public class StateTitle extends ExampleState {
 	public StateTitle() {
 		//Super
-		super(ExampleState.TITLE, Utilities.BACKGROUND_FOLDER + "title.json");
+		super(ExampleState.TITLE, ExampleUtilities.BACKGROUND_FOLDER + "title.json");
 
 		//Create containers
 		m_Buttons = new ButtonContainer();
-		Button Back = m_Buttons.addButton(BUTTON_BACK, Utilities.INTERFACE_FOLDER + "button.json", null);
+		Button Back = m_Buttons.addButton(BUTTON_BACK, ExampleUtilities.INTERFACE_FOLDER + "button.json", null);
 		Back.setPosition(Utilities.instance().getWidth() - 20, Utilities.instance().getHeight() - 20, Drawable.ANCHOR_RIGHT, Drawable.ANCHOR_BOTTOM);
 	}
 	

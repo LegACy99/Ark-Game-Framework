@@ -8,7 +8,7 @@ import net.ark.framework.system.SoundManager;
 import net.ark.framework.system.StateManager;
 import net.ark.framework.system.System;
 import net.ark.framework.system.android.AndroidDevice;
-import net.ark.framework.system.android.AndroidRecordManager;
+import net.ark.framework.system.android.AndroidRecordWriter;
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
@@ -34,7 +34,7 @@ public class Main extends Activity implements System {
         
         //Setup
         AndroidDevice.setActivity(this);
-        AndroidRecordManager.setActivity(this);
+        AndroidRecordWriter.setActivity(this);
         AndroidDevice.instance().setSystem(this);
         StateManager.instance().setup(new ExampleStateFactory(), this);
         
