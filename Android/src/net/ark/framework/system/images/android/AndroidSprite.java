@@ -24,7 +24,7 @@ public class AndroidSprite extends Sprite {
 		//Create images
 		JSONObject[] Data	= (JSONObject[]) ResourceManager.instance().getTextures(resource);
 		m_Images			= new Image[Data.length];
-		for (int i = 0; i < m_Images.length; i++) m_Images[i] = new Image(Data[i], x, y);
+		for (int i = 0; i < m_Images.length; i++) m_Images[i] = Image.create(Data[i], x, y);
 
 		//Set data
 		m_Total				= m_Images.length;

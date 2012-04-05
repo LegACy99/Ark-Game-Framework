@@ -2,6 +2,7 @@ package net.ark.framework.states;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import net.ark.framework.components.Drawable;
 import net.ark.framework.system.android.input.AccelerometerInfo;
 import net.ark.framework.system.android.input.TouchInfo;
 import net.ark.framework.system.images.Image;
@@ -30,7 +31,7 @@ public class GameState {
         m_Colors        = null;
 
 		//Load background if exist
-		if (background != null) m_Background = new Image(ResourceManager.instance().getJSON(background));
+		if (background != null) m_Background = Image.create(ResourceManager.instance().getJSON(background));
 	}
 	
 
@@ -59,6 +60,6 @@ public class GameState {
 	protected int		m_ID;
 	protected boolean	m_Active;
 	protected boolean	m_Running;
-	protected Image		m_Background;
+	protected Drawable	m_Background;
     protected int[]     m_Colors;
 }

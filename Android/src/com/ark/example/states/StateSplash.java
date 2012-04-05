@@ -41,8 +41,8 @@ public class StateSplash extends ExampleState {
 		m_Time = 0;
 		
 		//Create images
-		m_Title = new Image(ResourceManager.instance().getJSON(ExampleUtilities.BACKGROUND_FOLDER + "splash.json"));
-		m_Wheel	= new Image(ResourceManager.instance().getJSON(ExampleUtilities.INTERFACE_FOLDER + "wheel.json"));
+		m_Title = Image.create(ResourceManager.instance().getJSON(ExampleUtilities.BACKGROUND_FOLDER + "splash.json"));
+		m_Wheel	= Image.create(ResourceManager.instance().getJSON(ExampleUtilities.INTERFACE_FOLDER + "wheel.json"));
 		m_Wheel.setPosition(Utilities.instance().getWidth() / 2f, Utilities.instance().getHeight() / 2f, Drawable.ANCHOR_HCENTER, Drawable.ANCHOR_VCENTER);
 	}
 

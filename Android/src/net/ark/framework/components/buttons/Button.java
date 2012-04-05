@@ -67,7 +67,7 @@ public class Button extends Drawable {
 		//Create image if exist
 		if (images != null) {
 			m_Images = new Image[images.length];
-			for (int i = 0; i < m_Images.length; i++) m_Images[i] = new Image(images[i]);
+			for (int i = 0; i < m_Images.length; i++) m_Images[i] = Image.create(images[i]);
 			
 			//Get data
 			m_Width 			= m_Images[0].getWidth();
@@ -110,7 +110,7 @@ public class Button extends Drawable {
 		Image[] Images 			= new Image[STATE_INACTIVE + 1];
 		Images[STATE_NORMAL]	= m_Images[STATE_NORMAL];
 		Images[STATE_PRESSED]	= m_Images[STATE_PRESSED];
-		Images[STATE_INACTIVE]	= new Image(json);
+		Images[STATE_INACTIVE]	= Image.create(json);
 		m_Images				= Images;
 		
 		//If text exist

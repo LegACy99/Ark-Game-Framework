@@ -47,7 +47,7 @@ public class ScrollingImage extends Drawable {
 		this();
 		
 		//Create image
-		for (int i = 0; i < m_Images.length; i++) m_Images[i] = new Image(json);
+		for (int i = 0; i < m_Images.length; i++) m_Images[i] = Image.create(json);
 		
 		//Save data
 		m_Width				= m_Images[MAIN_IMAGE].getWidth();

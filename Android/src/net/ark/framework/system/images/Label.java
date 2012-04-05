@@ -14,15 +14,11 @@ public abstract class Label extends Drawable {
 		m_Text = text;
 		setPosition(x, y);
 	}
-
 	
-	public static Label create(String text, String font) {
-		return Label.create(text, font, 0, 0);
-	}
-	
-	public static Label create(String text, String font, float x, float y) {
-		return new AndroidLabel(text, font, x, y);
-	}
+	public static Label create(String text, String font) 									{ return Label.create(text, font, 0, 0); 			}
+	public static Label createNumber(int number, String font) 								{ return Label.create("" + number, font);			}
+	public static Label create(String text, String font, float x, float y) 					{ return new AndroidLabel(text, font, x, y);		}
+	public static Label createNumber(int number, String font, float x, float y) 			{ return Label.create("" + number, font, x, y);		}
 	
 	public String getText()	{	return m_Text;	}
 	

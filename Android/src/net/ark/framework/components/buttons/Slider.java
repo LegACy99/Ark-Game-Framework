@@ -45,7 +45,7 @@ public class Slider extends Drawable {
 		this();
 		
 		//Save
-		m_Slider		= new Image(slider);
+		m_Slider		= Image.create(slider);
 		m_Handle 		= new Button(BUTTON_ID, button);
 		m_Orientation	= orientation;
 		

@@ -85,6 +85,28 @@ public abstract class Utilities {
 		return Result;
 	}
 	
+	public String getFloatAsString(float number, int decimal) {		
+		//Get decimal
+		float Number = number;
+		for (int i = 0; i < decimal; i++) Number *= 10;
+		
+		//Get string
+		int Integer = (int)Number;
+		String Text = String.valueOf(Integer);
+		while (Text.length() < decimal + 1) Text = "0" + Text;
+		
+		//For each digit
+		StringBuffer Buffer = new StringBuffer();
+		for (int i = 0; i < Text.length(); i++) {
+			//Add
+			Buffer.append(Text.charAt(i));
+			if (i == Text.length() - decimal - 1) Buffer.append('.');
+		}
+		
+		//Return
+		return Buffer.toString();
+	}
+	
 	//System
 	protected int m_FPS;
 	protected int m_Wait;
