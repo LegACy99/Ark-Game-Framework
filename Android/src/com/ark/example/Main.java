@@ -75,6 +75,7 @@ public class Main extends Activity implements System {
     }
     
 	@Override public int getFPS() 					{ return 30;							}
+	@Override public int getBaseWidth() 			{ return -1;							}
 	@Override public int getBaseHeight() 			{ return 720;							}
 	@Override public String getApplicationName() 	{ return getString(R.string.app_name);	}
     

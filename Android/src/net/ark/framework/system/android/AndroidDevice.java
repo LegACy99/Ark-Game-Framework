@@ -100,10 +100,17 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		m_Width 	= width;
 		m_Height	= height;
 		
-		//Calculate stuff
+		//No column/row
 		m_Row		= 1;
 		m_Column	= 1;
-		m_Scale 	= m_System != null ? ((float)m_Height / (float)m_System.getBaseHeight()) : 1.0f;
+		
+		//Calculate scale
+		m_Scale = 1.0f;
+		if (m_System != null) {
+			//Based on height or width?
+			if (m_System.getBaseHeight() > 0) 		m_Scale = (float)m_Height / (float)m_System.getBaseHeight();
+			else if (m_System.getBaseWidth() > 0) 	m_Scale = (float)m_Width / (float)m_System.getBaseWidth();
+		}
 		
 		//Set view port
 		gl.glViewport(0, 0, width, height);
