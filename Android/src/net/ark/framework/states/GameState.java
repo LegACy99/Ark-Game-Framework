@@ -14,7 +14,7 @@ public class GameState {
 		this(id, (String)null);
 	}
 	
-	public GameState(int id, Image background) {
+	public GameState(int id, Drawable background) {
 		//Default
 		this(id, (String)null);
 		
