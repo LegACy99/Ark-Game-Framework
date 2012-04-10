@@ -93,15 +93,18 @@ public class Slider extends Drawable {
 	public void update(TouchInfo[] touches) {
 		//If no touch
 		if (m_Touch == null) {
-			//For each touch
-			for (int i = 0; i < touches.length; i++) {
-				//If just pressed
-				if (touches[i].isPressed() && !touches[i].wasPressed()  && m_Touch == null) {
-					//Check button
-					if (m_Handle.isInside(touches[i].getCurrentX(), touches[i].getCurrentY())) {
-						//Set button and save
-						m_Touch = touches[i];
-						m_Handle.setState(Button.STATE_PRESSED);
+			//If touch exist
+			if (touches != null) {
+				//For each touch
+				for (int i = 0; i < touches.length; i++) {
+					//If just pressed
+					if (touches[i].isPressed() && !touches[i].wasPressed()  && m_Touch == null) {
+						//Check button
+						if (m_Handle.isInside(touches[i].getCurrentX(), touches[i].getCurrentY())) {
+							//Set button and save
+							m_Touch = touches[i];
+							m_Handle.setState(Button.STATE_PRESSED);
+						}
 					}
 				}
 			}

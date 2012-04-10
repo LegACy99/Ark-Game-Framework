@@ -81,55 +81,58 @@ public class ButtonList extends ButtonContainer {
 		//Super
 		int Result = super.update(keys, touches);
 		
-		//If there's a pressed button
-		if (m_Pressed >= 0) {			
-			//If scrolling
-			if (m_Scrolling) {
-				//Get offset
-				float Offset 	= touches[0].getOffsetY() / Utilities.instance().getScale();
-				m_Speed			= time <= 0 ? 0 : Offset * 1000f / (float)time;
-				m_Slowing		= -m_Speed;
-				
-				//Scroll
-				m_Scroll -= Offset;
-				
-				//Set frame
-				m_Buttons.get(m_Pressed).setState(Button.STATE_NORMAL);
-			}
-			else {
-				//If out of button
-				if (!m_Buttons.get(m_Pressed).isInside(touches[0].getCurrentX(), touches[0].getCurrentY())) {
-					//Start scroll mode
-					m_Scrolling = true;
-					touches[0].getOffsetY();
-				}
-			}
-		} else {
-			//If scrolling
-			if (m_Scrolling) {
-				//No button
-				Result = NO_BUTTON;
-				
-				//If there's speed
-				if (m_Speed != 0) {
+		//If there's touch
+		if (touches != null) {
+			//If there's a pressed button
+			if (m_Pressed >= 0) {			
+				//If scrolling
+				if (m_Scrolling) {
+					//Get offset
+					float Offset 	= touches[0].getOffsetY() / Utilities.instance().getScale();
+					m_Speed			= time <= 0 ? 0 : Offset * 1000f / (float)time;
+					m_Slowing		= -m_Speed;
 					
-					//Save sign
-					float Sign = Math.signum(m_Speed);
-					m_Speed += m_Slowing * (float)time / 1000f;
+					//Scroll
+					m_Scroll -= Offset;
 					
-					//If sign is different, done
-					if (Math.signum(m_Speed) != Sign) m_Speed = 0;
+					//Set frame
+					m_Buttons.get(m_Pressed).setState(Button.STATE_NORMAL);
 				}
-
-				//Scroll
-				m_Scroll -= m_Speed * (float)time / 1000f;
-									
-				//If died
-				if (m_Speed == 0) {
-					//No more scroll
-					m_Speed		= 0;
-					m_Slowing	= 0;
-					m_Scrolling = false;
+				else {
+					//If out of button
+					if (!m_Buttons.get(m_Pressed).isInside(touches[0].getCurrentX(), touches[0].getCurrentY())) {
+						//Start scroll mode
+						m_Scrolling = true;
+						touches[0].getOffsetY();
+					}
+				}
+			} else {
+				//If scrolling
+				if (m_Scrolling) {
+					//No button
+					Result = NO_BUTTON;
+					
+					//If there's speed
+					if (m_Speed != 0) {
+						
+						//Save sign
+						float Sign = Math.signum(m_Speed);
+						m_Speed += m_Slowing * (float)time / 1000f;
+						
+						//If sign is different, done
+						if (Math.signum(m_Speed) != Sign) m_Speed = 0;
+					}
+	
+					//Scroll
+					m_Scroll -= m_Speed * (float)time / 1000f;
+										
+					//If died
+					if (m_Speed == 0) {
+						//No more scroll
+						m_Speed		= 0;
+						m_Slowing	= 0;
+						m_Scrolling = false;
+					}
 				}
 			}
 		}

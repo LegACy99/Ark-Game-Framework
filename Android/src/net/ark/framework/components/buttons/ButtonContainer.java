@@ -66,45 +66,47 @@ public class ButtonContainer {
 		//Initialize
 		int Result = NO_BUTTON;
 		
-		//Check
-		if (m_Buttons.size() <= m_Pressed) m_Pressed = -1;
-
-		//If pressed
-		if (touches[0].isPressed()) {
-			//If no button is pressed
-			if (m_Pressed < 0) {
-				//For each button
-				for (int i = 0; i < m_Buttons.size(); i++) {
-					//If pressed
-					if (m_Buttons.get(i).Visible && m_Buttons.get(i).isActive() && m_Buttons.get(i).isInside(touches[0].getStartX(), touches[0].getStartY())) {
-						//Set pressed button
-						m_Pressed = i;
-						m_Buttons.get(i).setState(Button.STATE_PRESSED);
-						
-						//SFX
-						SoundManager.instance().playSFX(Utilities.SFX_FOLDER + "cursor.wav");
+		//If touch exist
+		if (touches != null) {
+			//Check
+			if (m_Buttons.size() <= m_Pressed) m_Pressed = -1;
+	
+			//If pressed
+			if (touches[0].isPressed()) {
+				//If no button is pressed
+				if (m_Pressed < 0) {
+					//For each button
+					for (int i = 0; i < m_Buttons.size(); i++) {
+						//If pressed
+						if (m_Buttons.get(i).Visible && m_Buttons.get(i).isActive() && m_Buttons.get(i).isInside(touches[0].getStartX(), touches[0].getStartY())) {
+							//Set pressed button
+							m_Pressed = i;
+							m_Buttons.get(i).setState(Button.STATE_PRESSED);
+							
+							//SFX
+							SoundManager.instance().playSFX(Utilities.SFX_FOLDER + "cursor.wav");
+						}
 					}
+				} else {
+					//Set state
+					Button Pressed = m_Buttons.get(m_Pressed);
+					if (Pressed.isInside(touches[0].getCurrentX(), touches[0].getCurrentY())) 	Pressed.setState(Button.STATE_PRESSED);
+					else																		Pressed.setState(Button.STATE_NORMAL);
 				}
 			} else {
-				//Set state
-				Button Pressed = m_Buttons.get(m_Pressed);
-				if (Pressed.isInside(touches[0].getCurrentX(), touches[0].getCurrentY())) 	Pressed.setState(Button.STATE_PRESSED);
-				else																		Pressed.setState(Button.STATE_NORMAL);
-			}
-		} else {
-			//If there's a pressed button
-			if (m_Pressed >= 0) {
-				//If released inside set as result
-				if (m_Buttons.get(m_Pressed).isInside(touches[0].getCurrentX(), touches[0].getCurrentY()))	Result = m_Buttons.get(m_Pressed).getID();
+				//If there's a pressed button
+				if (m_Pressed >= 0) {
+					//If released inside set as result
+					if (m_Buttons.get(m_Pressed).isInside(touches[0].getCurrentX(), touches[0].getCurrentY()))	Result = m_Buttons.get(m_Pressed).getID();
+					
+					//Reset button state
+					m_Buttons.get(m_Pressed).setState(Button.STATE_NORMAL);
+				}
 				
-				//Reset button state
-				m_Buttons.get(m_Pressed).setState(Button.STATE_NORMAL);
+				//Nothing pressed
+				m_Pressed = -1;
 			}
-			
-			//Nothing pressed
-			m_Pressed = -1;
 		}
-		
 		
 		//Return
 		return Result;

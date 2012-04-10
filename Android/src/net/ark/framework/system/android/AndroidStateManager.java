@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import net.ark.framework.states.GameState;
 import net.ark.framework.system.Device;
 import net.ark.framework.system.StateManager;
+import net.ark.framework.system.android.input.AccelerometerInfo;
+import net.ark.framework.system.android.input.TouchInfo;
 
 public class AndroidStateManager extends StateManager {
     protected AndroidStateManager() {
@@ -187,18 +189,47 @@ public class AndroidStateManager extends StateManager {
 
 		//Quit if empty or last state doesn't exist
 		if (m_StateList.isEmpty() || !TopExist) m_Running = false;
-		else {			
-			//Get current state
-			GameState CurrentState = m_StateList.get(m_StateList.size() - 1);
+		else {
+			//Create drawn and updated list
+			ArrayList<GameState> Drawn 	= new ArrayList<GameState>();
+			ArrayList<GameState> Updated = new ArrayList<GameState>();
+			Updated.add(m_StateList.get(m_StateList.size() - 1));
+			Drawn.add(m_StateList.get(m_StateList.size() - 1));
+			
+			//While update previous
+			int Index = m_StateList.size() - 1;
+			while (Updated.get(Updated.size() - 1).updatePrevious()) {
+				//Next
+				Index--;
+				if (Index >= 0 && m_StateList.get(Index) != null) Updated.add(m_StateList.get(Index));
+			}
+			
+			//While draw previous
+			Index = m_StateList.size() - 1;
+			while (Drawn.get(Drawn.size() - 1).drawPrevious()) {
+				//Next
+				Index--;
+				if (Index >= 0 && m_StateList.get(Index) != null) Drawn.add(m_StateList.get(Index));
+			}
 			
 			//If paused
 			if (m_Paused) {					
 				//Update if state should run in background
 				//(CurrentState.runsInBackground()) CurrentState.update(Difference, 0, null);
 			} else {
-				//Update and draw state
-				CurrentState.update(Difference, Device.instance().getKeys(), Device.instance().getTouches(), Device.instance().getAccelerometer());
-				CurrentState.draw(((AndroidDevice)Device.instance()).getGL());
+				//For each updated
+				for (int i = Updated.size() - 1; i >= 0; i--) {
+					//Get data
+					int Keys[] 				= i == 0 ? Device.instance().getKeys() : new int[] {};
+					AccelerometerInfo Accel	= i == 0 ? Device.instance().getAccelerometer() : null;
+					TouchInfo[] Touches 	= i == 0 ? Device.instance().getTouches() : null;
+					
+					//Update
+					Updated.get(i).update(Difference, Keys, Touches, Accel);
+				}
+				
+				//Draw all
+				for (int i = Drawn.size() - 1; i >= 0; i--) Drawn.get(i).draw(((AndroidDevice)Device.instance()).getGL());
 			}
 		}
 	}

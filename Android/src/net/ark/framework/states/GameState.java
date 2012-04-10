@@ -24,11 +24,12 @@ public class GameState {
 
 	public GameState(int id, String background) {
 		//Initialize variable
-		m_ID			= id;
-		m_Active		= false;
-		m_Running		= false;
-		m_Background	= null;
-        m_Colors        = null;
+		m_ID				= id;
+		m_Active			= false;
+		m_Running			= false;
+		m_DrawPrevious		= false;
+		m_UpdatePrevious	= false;
+		m_Background		= null;
 
 		//Load background if exist
 		if (background != null) m_Background = Image.create(ResourceManager.instance().getJSON(background));
@@ -41,9 +42,11 @@ public class GameState {
 	}
 
 	//Accessors
-	public int getID()					{	return m_ID;		}
-	public boolean isActive()			{	return m_Active;	}
-	public boolean runsInBackground()	{	return m_Running;	}
+	public int getID()					{	return m_ID;				}
+	public boolean isActive()			{	return m_Active;			}
+	public boolean runsInBackground()	{	return m_Running;			}
+	public boolean drawPrevious()		{	return m_DrawPrevious;		}
+	public boolean updatePrevious()		{	return m_UpdatePrevious;	}
 
 	public void onEnter()			{}
 	public void onRemove()			{}
@@ -60,6 +63,7 @@ public class GameState {
 	protected int		m_ID;
 	protected boolean	m_Active;
 	protected boolean	m_Running;
+	protected boolean	m_UpdatePrevious;
+	protected boolean	m_DrawPrevious;
 	protected Drawable	m_Background;
-    protected int[]     m_Colors;
 }
