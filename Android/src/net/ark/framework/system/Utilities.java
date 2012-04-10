@@ -40,6 +40,8 @@ public abstract class Utilities {
 	
 	//Utility
 	public abstract int getRandom(int from, int to);
+	public abstract String writeVersion(int[] version);
+	public abstract String writeVersion(int[] version, int[] digits);
 	
 	public int getEuclidean(int x1, int y1, int x2, int y2) {
 		return Math.abs(x2 - x1) + Math.abs(y2 - y1);
