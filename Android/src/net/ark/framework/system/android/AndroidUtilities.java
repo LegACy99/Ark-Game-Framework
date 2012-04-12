@@ -69,6 +69,29 @@ public class AndroidUtilities extends Utilities {
 		//Return
 		return Builder.toString();
 	}
+	
+	@Override
+	public String writeFloat(float number, int decimal) {		
+		//Get decimal
+		float Number = number;
+		for (int i = 0; i < decimal; i++) Number *= 10;
+		
+		//Get string
+		int Integer = (int)Number;
+		String Text = String.valueOf(Integer);
+		while (Text.length() < decimal + 1) Text = "0" + Text;
+		
+		//For each digit
+		StringBuilder Builder = new StringBuilder();
+		for (int i = 0; i < Text.length(); i++) {
+			//Add
+			Builder.append(Text.charAt(i));
+			if (i == Text.length() - decimal - 1) Builder.append('.');
+		}
+		
+		//Return
+		return Builder.toString();
+	}
     
 	//The only instance
 	private static AndroidUtilities s_Instance = null;

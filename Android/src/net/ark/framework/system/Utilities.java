@@ -42,6 +42,7 @@ public abstract class Utilities {
 	public abstract int getRandom(int from, int to);
 	public abstract String writeVersion(int[] version);
 	public abstract String writeVersion(int[] version, int[] digits);
+	public abstract String writeFloat(float number, int decimal);
 	
 	public int getEuclidean(int x1, int y1, int x2, int y2) {
 		return Math.abs(x2 - x1) + Math.abs(y2 - y1);
@@ -85,28 +86,6 @@ public abstract class Utilities {
 		
 		//Return
 		return Result;
-	}
-	
-	public String getFloatAsString(float number, int decimal) {		
-		//Get decimal
-		float Number = number;
-		for (int i = 0; i < decimal; i++) Number *= 10;
-		
-		//Get string
-		int Integer = (int)Number;
-		String Text = String.valueOf(Integer);
-		while (Text.length() < decimal + 1) Text = "0" + Text;
-		
-		//For each digit
-		StringBuffer Buffer = new StringBuffer();
-		for (int i = 0; i < Text.length(); i++) {
-			//Add
-			Buffer.append(Text.charAt(i));
-			if (i == Text.length() - decimal - 1) Buffer.append('.');
-		}
-		
-		//Return
-		return Buffer.toString();
 	}
 	
 	//System

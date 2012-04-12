@@ -77,7 +77,7 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		m_OpenGL = gl;
 		
 		//Initialize OpenGL
-		gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+		gl.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 
 		//Set OpenGL states
 		gl.glEnable(GL10.GL_BLEND);
