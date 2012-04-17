@@ -30,7 +30,7 @@ public class Button extends Drawable {
 	}
 	
 	public Button(int id, String images) {
-		this(id, images, "", 0f, 0f);
+		this(id, images, null, 0f, 0f);
 	}
 	
 	public Button(int id, JSONObject[] images) {
