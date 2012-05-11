@@ -6,9 +6,9 @@ import net.ark.framework.system.android.AndroidUtilities;
 
 public abstract class Utilities {
 	//Constants
-	public static final int FLOAT_SIZE	= 4;
-	public static final int SHORT_SIZE	= 2;
-	public static final int MAX_SAVE	= 3;
+	public static final int FLOAT_SIZE		= 4;
+	public static final int SHORT_SIZE		= 2;
+	public static final long SCROLL_WAIT	= 160;
 	
 	//Folder constants
 	public static final String DATA_FOLDER			= "data/";
@@ -21,9 +21,31 @@ public abstract class Utilities {
 	public static final String BGM_FOLDER			= AUDIO_FOLDER + "bgm/";
 	public static final String SFX_FOLDER			= AUDIO_FOLDER + "sfx/";
 	
+	protected Utilities() {
+		//Initialize
+		m_FPS			= 1;
+		m_Font			= null;
+		m_FontTexture	= null;
+		m_ReleaseSFX	= null;
+		m_PressSFX		= null;
+	}
+	
 	public static Utilities instance() {
 		//Return blackberry
 		return AndroidUtilities.instance();
+	}
+	
+	public void setSystem(System system) {
+		//If exist
+		if (system != null) {
+			//Save
+			m_FPS			= system.getFPS();
+			m_Font			= system.getFont();
+			m_FontSmooth	= system.isFontSmooth();
+			m_FontTexture	= system.getFontTexture();
+			m_ReleaseSFX	= system.getReleaseSFX();
+			m_PressSFX		= system.getPressSFX();
+		}
 	}
 	
 	//Display abstracts
@@ -33,10 +55,13 @@ public abstract class Utilities {
 	public abstract float getWidth();
 	public abstract float getHeight();
 	
-	//System constants
-	public int getButtonWait()	{	return m_Wait;  }
-	public int getMenuButton()	{	return m_Menu;  }
-	public int getBackButton()	{	return m_Back;	}
+	//Game data
+	public int getSystemFPS()				{ return m_FPS;			}
+	public String getSystemFont()			{ return m_Font;		}
+	public boolean isSystemFontSmooth()		{ return m_FontSmooth;	}
+	public String getSystemFontTexture()	{ return m_FontTexture;	}
+	public String getSystemReleaseSFX()		{ return m_ReleaseSFX;	}
+	public String getSystemPressSFX()		{ return m_PressSFX;	}
 	
 	//Utility
 	public abstract int getRandom(int from, int to);
@@ -89,8 +114,10 @@ public abstract class Utilities {
 	}
 	
 	//System
-	protected int m_FPS;
-	protected int m_Wait;
-    protected int m_Menu;
-    protected int m_Back;
+	protected int		m_FPS;
+    protected String	m_Font;
+    protected boolean	m_FontSmooth;
+    protected String	m_FontTexture;
+    protected String	m_ReleaseSFX;
+    protected String	m_PressSFX;
 }

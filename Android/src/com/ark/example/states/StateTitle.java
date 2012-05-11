@@ -7,6 +7,7 @@ import com.ark.example.system.ExampleUtilities;
 import net.ark.framework.components.Drawable;
 import net.ark.framework.components.buttons.Button;
 import net.ark.framework.components.buttons.ButtonContainer;
+import net.ark.framework.system.Device;
 import net.ark.framework.system.SoundManager;
 import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.input.AccelerometerInfo;
@@ -34,7 +35,7 @@ public class StateTitle extends ExampleState {
 	public void update(long time, int[] keys, TouchInfo[] touches, AccelerometerInfo accel) {
 		//Check back
 		boolean Back = false;
-		for (int i = 0; i < keys.length; i++) if (keys[i] == Utilities.instance().getBackButton()) Back = true;
+		for (int i = 0; i < keys.length; i++) if (keys[i] == Device.instance().getBackButton()) Back = true;
 		
 		//If back
 		if (Back) {

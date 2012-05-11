@@ -20,62 +20,65 @@ public class AndroidLabel extends Label {
 	}
 	
 	public AndroidLabel(String text, String font, float x, float y) {
-		//Initialize
+		//Super
 		super(text, x, y);
-		m_Colors		= null;
-		m_Texture 		= null;
-		m_Indices		= null;
-		m_Vertices		= null;
-		m_Coordinates	= null;
 		
-		//Get font
-		BitmapFont Font = ResourceManager.instance().getFont(font);
-		m_Texture 		= (Texture) ResourceManager.instance().getTexture(Font.getTexture());
-		
-		//Initialize variables
+		//Initialize
+		m_Colors			= null;
+		m_Texture 			= null;
+		m_Indices			= null;
+		m_Vertices			= null;
+		m_Coordinates		= null;
 		float[] Colors		= new float[m_Text.length() * QUAD_COLORS];
 		short[] Indices 	= new short[m_Text.length() * QUAD_INDICES];
 		float[] Vertices 	= new float[m_Text.length() * QUAD_VERTICES];
 		float[] Coordinates = new float[m_Text.length() * QUAD_COORDINATES];
-		float Cursor		= 0;
 		
-		//For each character
-		for (int i = 0; i < m_Text.length(); i++) {
-			//Get bitmap character
-			BitmapChar Char = Font.getChar(m_Text.charAt(i));
-			
-			//If exist
-			if (Char != null) {
-				//Get character vertices
-				float[] CharVertices = Char.getVertices();
-				for (int j = 0; j < CharVertices.length; j++) {
-					//Set vertex
-					int Index = (i * QUAD_VERTICES) + j;
-					Vertices[Index] = CharVertices[j];
+		//if font exist
+		if (font != null) {
+			//Get font
+			BitmapFont Font = ResourceManager.instance().getFont(font);
+			m_Texture 		= (Texture) ResourceManager.instance().getTexture(Font.getTexture());
+
+			//For each character
+			float Cursor = 0;
+			for (int i = 0; i < m_Text.length(); i++) {
+				//Get bitmap character
+				BitmapChar Char = Font.getChar(m_Text.charAt(i));
+				
+				//If exist
+				if (Char != null) {
+					//Get character vertices
+					float[] CharVertices = Char.getVertices();
+					for (int j = 0; j < CharVertices.length; j++) {
+						//Set vertex
+						int Index = (i * QUAD_VERTICES) + j;
+						Vertices[Index] = CharVertices[j];
+						
+						//Add the X
+						if (Index % 2 == 0) Vertices[Index] += Cursor;
+					}
 					
-					//Add the X
-					if (Index % 2 == 0) Vertices[Index] += Cursor;
+					//Set texture coordinates
+					float[] CharCoordinates = Char.getTextureCoordinates();
+					for (int j = 0; j < CharCoordinates.length; j++) Coordinates[(i * QUAD_COORDINATES) + j] = CharCoordinates[j];
+					
+					//Set colors and indices
+					for (int j = 0; j < QUAD_COLORS; j++)	Colors[(i * QUAD_COLORS) + j] = 1f;
+					for (int j = 0; j < QUAD_INDICES; j++) 	Indices[(i * QUAD_INDICES) + j] = (short) ((i * 4) + BASE_INDICES[j]);
+					
+					//Next if more
+					if (i + 1 < m_Text.length()) 	Cursor += Char.getAdvance(m_Text.charAt(i + 1));
+					else							Cursor += Char.getAdvance();
 				}
-				
-				//Set texture coordinates
-				float[] CharCoordinates = Char.getTextureCoordinates();
-				for (int j = 0; j < CharCoordinates.length; j++) Coordinates[(i * QUAD_COORDINATES) + j] = CharCoordinates[j];
-				
-				//Set colors and indices
-				for (int j = 0; j < QUAD_COLORS; j++)	Colors[(i * QUAD_COLORS) + j] = 1f;
-				for (int j = 0; j < QUAD_INDICES; j++) 	Indices[(i * QUAD_INDICES) + j] = (short) ((i * 4) + BASE_INDICES[j]);
-				
-				//Next if more
-				if (i + 1 < m_Text.length()) 	Cursor += Char.getAdvance(m_Text.charAt(i + 1));
-				else						Cursor += Char.getAdvance();
 			}
+			
+			//Set size
+			m_Width 			= Cursor;
+			m_OriginalHeight	= Font.getHeight();
+			m_OriginalWidth		= m_Width / Utilities.instance().getScale();
+			m_Height			= m_OriginalHeight * Utilities.instance().getScale();
 		}
-		
-		//Set size
-		m_Width 			= Cursor;
-		m_OriginalHeight	= Font.getHeight();
-		m_OriginalWidth		= m_Width / Utilities.instance().getScale();
-		m_Height			= m_OriginalHeight * Utilities.instance().getScale();
 		
 		//Create vertex buffer
 		ByteBuffer VertexBuffer = ByteBuffer.allocateDirect(Vertices.length * Utilities.FLOAT_SIZE);
@@ -108,6 +111,9 @@ public class AndroidLabel extends Label {
 	
 	@Override
 	public void draw(GL10 gl) {
+		//Skip if no texture
+		if (m_Texture == null) return;
+		
 		//Save matrix
 		gl.glPushMatrix();
 		

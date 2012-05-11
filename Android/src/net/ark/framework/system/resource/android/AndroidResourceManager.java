@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import net.ark.framework.system.Device;
+import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.AndroidDevice;
 import net.ark.framework.system.images.BitmapFont;
 import net.ark.framework.system.images.Image;
@@ -26,6 +27,12 @@ public class AndroidResourceManager extends ResourceManager {
 		m_Textures	= new ArrayList<Texture>();
 		m_Loadables	= new ArrayList<Loadable>();
 		m_Resources	= new HashMap<String, Object>();
+		
+		//Load system resources
+		if (Utilities.instance().getSystemFont() != null) 			addFont(Utilities.instance().getSystemFont());
+		if (Utilities.instance().getSystemPressSFX() != null) 		addSFX(Utilities.instance().getSystemPressSFX());
+		if (Utilities.instance().getSystemReleaseSFX() != null) 	addSFX(Utilities.instance().getSystemReleaseSFX());
+		if (Utilities.instance().getSystemFontTexture() != null)	addTexture(Utilities.instance().getSystemFontTexture(), Utilities.instance().isSystemFontSmooth());
     }
 	
 	public synchronized static ResourceManager instance() {

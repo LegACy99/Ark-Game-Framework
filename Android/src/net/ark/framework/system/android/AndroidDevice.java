@@ -33,19 +33,16 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		
 		//Initialize
 		m_OpenGL	= null;
-		m_Assets 	= s_Activity.getAssets();
 		m_Gesture	= new GestureDetector(this);
+		if (GameActivity != null) m_Assets = GameActivity.getAssets();
 		
 		//Initialize input
+        m_Menu  		= -1;
 		m_Keys			= null;
+        m_Back  		= KeyEvent.KEYCODE_BACK;
 		m_KeyList		= new ArrayList<Integer>();
 		m_Accelerometer = new AccelerometerInfo();
 		for (int i = 0; i < m_Touches.length; i++) m_Touches[i] = new TouchInfo();
-	}
-	
-	public static void setActivity(Activity activity) {
-		//Set
-		s_Activity = activity;
 	}
 	
 	public synchronized static AndroidDevice instance() {
@@ -212,8 +209,8 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		m_Accelerometer.setAcceleration(event.values[AXIS_X], event.values[AXIS_Y], event.values[AXIS_Z]);
 	}
 	
-	//The only instance
-	private static Activity 		s_Activity = null;
+	//Single instances
+	public static Activity 			GameActivity = null;
 	private static AndroidDevice 	s_Instance = null;
 	
 	//Constants

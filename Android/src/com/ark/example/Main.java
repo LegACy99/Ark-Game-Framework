@@ -7,19 +7,22 @@ import net.ark.framework.system.Device;
 import net.ark.framework.system.SoundManager;
 import net.ark.framework.system.StateManager;
 import net.ark.framework.system.System;
+import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.AndroidDevice;
-import net.ark.framework.system.android.AndroidRecordWriter;
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.opengl.GLSurfaceView;
+import android.opengl.GLSurfaceView.Renderer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.view.View;
+import android.view.View.OnKeyListener;
+import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -33,10 +36,10 @@ public class Main extends Activity implements System {
         super.onCreate(savedInstanceState);
         
         //Setup
-        AndroidDevice.setActivity(this);
-        AndroidRecordWriter.setActivity(this);
+        AndroidDevice.GameActivity = this;
+        Utilities.instance().setSystem(this);
         AndroidDevice.instance().setSystem(this);
-        StateManager.instance().setup(new ExampleStateFactory(), this);
+        StateManager.instance().setup(new ExampleStateFactory());
         
         //Go full screen
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -52,9 +55,9 @@ public class Main extends Activity implements System {
         m_Canvas = new GLSurfaceView(this);
         
         //Register listeners
-        m_Canvas.setRenderer(Device.instance());
-        m_Canvas.setOnKeyListener(Device.instance());
-        m_Canvas.setOnTouchListener(Device.instance());
+        m_Canvas.setRenderer((Renderer) Device.instance());
+        m_Canvas.setOnKeyListener((OnKeyListener) Device.instance());
+        m_Canvas.setOnTouchListener((OnTouchListener) Device.instance());
         
         //If honeycomb or more, dim bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) m_Canvas.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
@@ -74,10 +77,15 @@ public class Main extends Activity implements System {
         setContentView(m_Canvas);
     }
     
-	@Override public int getFPS() 					{ return 30;							}
-	@Override public int getBaseWidth() 			{ return -1;							}
-	@Override public int getBaseHeight() 			{ return 720;							}
-	@Override public String getApplicationName() 	{ return getString(R.string.app_name);	}
+	@Override public int getFPS() 					{ return 30;									}
+	@Override public int getBaseWidth() 			{ return -1;									}
+	@Override public int getBaseHeight() 			{ return 720;									}
+	@Override public boolean isFontSmooth()			{ return true;									}
+	@Override public String getReleaseSFX() 		{ return null;									}
+	@Override public String getApplicationName() 	{ return getString(R.string.app_name);			}
+	@Override public String getFontTexture() 		{ return Utilities.FONT_TEXTURES + "font.png";	}
+	@Override public String getPressSFX() 			{ return Utilities.SFX_FOLDER + "cursor.wav";	}
+	@Override public String getFont() 				{ return Utilities.FONT_FOLDER + "font.json";	}
     
     @Override
     public void onResume() {

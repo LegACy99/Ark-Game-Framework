@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import net.ark.framework.states.GameState;
 import net.ark.framework.system.Device;
 import net.ark.framework.system.StateManager;
+import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.input.AccelerometerInfo;
 import net.ark.framework.system.android.input.TouchInfo;
 
@@ -157,9 +158,9 @@ public class AndroidStateManager extends StateManager {
 		
 		//Sleep if difference less than frame time
 		long Difference = System.currentTimeMillis() - m_CurrentTime;
-		if (Difference < (1000 / m_System.getFPS())) {
+		if (Difference < (1000 / Utilities.instance().getSystemFPS())) {
 			try {
-				Thread.sleep((1000 / m_System.getFPS()) - Difference);
+				Thread.sleep((1000 /Utilities.instance().getSystemFPS()) - Difference);
 			} catch (InterruptedException ex) {}
 		}
 		

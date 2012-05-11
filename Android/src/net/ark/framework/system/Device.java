@@ -8,6 +8,8 @@ public abstract class Device {
 	protected Device() {
 		//Initialize;
 		m_Row		= 0;
+		m_Back		= 1;
+		m_Menu		= 1;
 		m_Scale		= 1;
 		m_Width		= 0;
 		m_Height	= 0;
@@ -21,7 +23,7 @@ public abstract class Device {
 		for (int i = 0; i < m_Touches.length; i++) m_Touches[i] = null;
 	}
 
-	public synchronized static AndroidDevice instance() {
+	public synchronized static Device instance() {
 		//Return the correct instance
 		return AndroidDevice.instance();
 	}
@@ -38,6 +40,8 @@ public abstract class Device {
 	public float getScale()						{	return m_Scale;			}
 	public float getWidth() 					{	return m_Width;			}
 	public float getHeight()					{	return m_Height;		}
+	public int getMenuButton()					{	return m_Menu;  		}
+	public int getBackButton()					{	return m_Back;			}
 	public TouchInfo[] getTouches()				{	return m_Touches;		}
 	public AccelerometerInfo getAccelerometer()	{	return m_Accelerometer;	}
 	
@@ -47,6 +51,10 @@ public abstract class Device {
 	protected float m_Height;
 	protected int 	m_Column;
 	protected int 	m_Row;
+	
+	//Constants
+	protected int m_Back;
+	protected int m_Menu; 
 	
 	//Input
 	protected int[]				m_Keys;

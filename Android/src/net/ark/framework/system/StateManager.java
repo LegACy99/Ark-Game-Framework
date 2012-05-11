@@ -7,7 +7,6 @@ import net.ark.framework.system.android.AndroidStateManager;
 public abstract class StateManager {
     protected StateManager() {
 		//Initialize data
-    	m_System	= null;
     	m_Factory	= null;
 		m_Running	= true;
     }	
@@ -19,10 +18,9 @@ public abstract class StateManager {
 	//Accessors
 	public boolean isRunning()	{	return m_Running;	}
 	
-	public void setup(StateFactory factory, System system) {
+	public void setup(StateFactory factory) {
 		//Set components
-		m_System 	= system;
-		m_Factory 	= factory;
+		m_Factory = factory;
 	}
 
 	//State navigation
@@ -37,7 +35,6 @@ public abstract class StateManager {
 	public abstract void quit();
 	
 	//Data
-	protected System		m_System;
 	protected boolean 		m_Running;
 	protected StateFactory	m_Factory;
 }

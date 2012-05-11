@@ -24,15 +24,12 @@ public class StateSplash extends ExampleState {
 		while (!ResourceManager.instance().isFinished()) ResourceManager.instance().update();
 				
 		//Load musics
-		ResourceManager.instance().addSFX(Utilities.SFX_FOLDER + "cursor.wav");
 		ResourceManager.instance().addSFX(Utilities.SFX_FOLDER + "cancel.wav");
 		
 		//Load resources
 		ResourceManager.instance().addTexture(Utilities.TEXTURE_FOLDER + "title.png");
 		ResourceManager.instance().addImage(ExampleUtilities.BACKGROUND_FOLDER + "title.json");
 		ResourceManager.instance().addImage(ExampleUtilities.INTERFACE_FOLDER + "button.json");
-		ResourceManager.instance().addTexture(Utilities.FONT_TEXTURES + "font.png");
-		ResourceManager.instance().addFont(Utilities.FONT_FOLDER + "font.json");
 		
 		//Start
 		ResourceManager.instance().start();

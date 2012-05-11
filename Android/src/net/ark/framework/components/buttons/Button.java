@@ -27,6 +27,9 @@ public class Button extends Drawable {
 		m_Active		= true;
 		Visible			= true;
 		m_State			= STATE_NORMAL;
+		m_FontNormal	= Utilities.instance().getSystemFont();
+		m_FontPressed	= Utilities.instance().getSystemFont();
+		m_FontInactive	= Utilities.instance().getSystemFont();
 	}
 	
 	public Button(int id, String images) {
@@ -80,9 +83,9 @@ public class Button extends Drawable {
 		if (text != null) {
 			//Create label
 			m_Labels 				= new Label[m_Images.length];
-			m_Labels[STATE_NORMAL] 	= Label.create(text, FONT_NORMAL);
-			m_Labels[STATE_PRESSED] = Label.create(text, FONT_PRESSED); 
-			if (m_Labels.length > STATE_INACTIVE) m_Labels[STATE_INACTIVE] = Label.create(text, FONT_INACTIVE);
+			m_Labels[STATE_NORMAL] 	= Label.create(text, m_FontNormal);
+			m_Labels[STATE_PRESSED] = Label.create(text, m_FontPressed); 
+			if (m_Labels.length > STATE_INACTIVE) m_Labels[STATE_INACTIVE] = Label.create(text, m_FontInactive);
 		}
 		
 		//Set position and size
@@ -105,6 +108,28 @@ public class Button extends Drawable {
 				m_Labels[i].setPosition((m_X + (m_Width / 2f)) / Utilities.instance().getScale(), (m_Y + (m_Height / 2f)) / Utilities.instance().getScale(), Drawable.ANCHOR_HCENTER, Drawable.ANCHOR_VCENTER);
 	}
 	
+	public void setFont(int state, String font) {
+		//Set based on state
+		if (state == STATE_NORMAL)			m_FontNormal = font;
+		else if (state == STATE_PRESSED)	m_FontPressed = font;
+		else if (state == STATE_INACTIVE)	m_FontInactive = font;
+	}
+	
+	public void setFont(String font) {
+		setFont(font, font, font);
+	}
+	
+	public void setFont(String fontNormal, String fontPressed) {
+		setFont(fontNormal, fontPressed, fontNormal);
+	}
+	
+	public void setFont(String fontNormal, String fontPressed, String fontInactive) {
+		//Set
+		setFont(STATE_NORMAL, fontNormal);
+		setFont(STATE_PRESSED, fontPressed);
+		setFont(STATE_INACTIVE, fontInactive);
+	}
+	
 	public void setInactiveImage(JSONObject json) {				
 		//Create new images
 		Image[] Images 			= new Image[STATE_INACTIVE + 1];
@@ -117,7 +142,7 @@ public class Button extends Drawable {
 		if (m_Labels != null) {
 			//Create label
 			Label[] Labels 				= new Label[m_Images.length];
-			m_Labels[STATE_INACTIVE] 	= Label.create(m_Labels[0].getText(), FONT_INACTIVE);
+			m_Labels[STATE_INACTIVE] 	= Label.create(m_Labels[0].getText(), m_FontInactive);
 			Labels[STATE_PRESSED] 		= m_Labels[STATE_PRESSED];
 			Labels[STATE_NORMAL] 		= m_Labels[STATE_NORMAL];
 			m_Labels 					= Labels;
@@ -184,12 +209,9 @@ public class Button extends Drawable {
 	}
 	
 	//Constants
-	public static final int STATE_NORMAL		= 0;
-	public static final int STATE_PRESSED		= 1;
-	protected static final int STATE_INACTIVE	= 2;
-	protected static final String FONT_NORMAL	= Utilities.FONT_FOLDER + "font.json";
-	protected static final String FONT_PRESSED	= Utilities.FONT_FOLDER + "font.json";
-	protected static final String FONT_INACTIVE	= Utilities.FONT_FOLDER + "font.json";
+	public static final int STATE_NORMAL	= 0;
+	public static final int STATE_PRESSED	= 1;
+	public static final int STATE_INACTIVE	= 2;
 	
 	//Size
 	protected float m_InputX;
@@ -203,5 +225,8 @@ public class Button extends Drawable {
 	protected Label[]	m_Labels;
 	protected Image[] 	m_Images;
 	protected boolean	m_Active;
+	protected String	m_FontNormal;
+	protected String	m_FontPressed;
+	protected String	m_FontInactive;
 	public boolean		Visible;
 }

@@ -84,7 +84,7 @@ public class ButtonContainer {
 							m_Buttons.get(i).setState(Button.STATE_PRESSED);
 							
 							//SFX
-							SoundManager.instance().playSFX(Utilities.SFX_FOLDER + "cursor.wav");
+							if (Utilities.instance().getSystemPressSFX() != null) SoundManager.instance().playSFX(Utilities.instance().getSystemPressSFX());
 						}
 					}
 				} else {
@@ -96,8 +96,14 @@ public class ButtonContainer {
 			} else {
 				//If there's a pressed button
 				if (m_Pressed >= 0) {
-					//If released inside set as result
-					if (m_Buttons.get(m_Pressed).isInside(touches[0].getCurrentX(), touches[0].getCurrentY()))	Result = m_Buttons.get(m_Pressed).getID();
+					//If released inside
+					if (m_Buttons.get(m_Pressed).isInside(touches[0].getCurrentX(), touches[0].getCurrentY()))	{
+						//Set as result
+						Result = m_Buttons.get(m_Pressed).getID();
+						
+						//SFX
+						if (Utilities.instance().getSystemReleaseSFX() != null) SoundManager.instance().playSFX(Utilities.instance().getSystemReleaseSFX());
+					}
 					
 					//Reset button state
 					m_Buttons.get(m_Pressed).setState(Button.STATE_NORMAL);

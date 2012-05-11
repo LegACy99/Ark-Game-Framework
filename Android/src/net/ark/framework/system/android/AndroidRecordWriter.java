@@ -1,28 +1,29 @@
 package net.ark.framework.system.android;
 
+import net.ark.framework.system.RecordWriter;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import net.ark.framework.system.RecordWriter;
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 public class AndroidRecordWriter extends RecordWriter {
 	public AndroidRecordWriter() {
-		//Create store
-		m_Store = s_Activity.getSharedPreferences(STORE_NAME, Context.MODE_WORLD_READABLE);
+		//Initialize
+		m_Store = null;
+		initialize();
 	}
 	
-	public static void setActivity(Activity activity) {
-		//Set activity
-		s_Activity = activity;
+	protected void initialize() {
+		if (AndroidDevice.GameActivity != null) m_Store = AndroidDevice.GameActivity.getSharedPreferences(STORE_NAME, Context.MODE_WORLD_READABLE);
 	}
 
 	@Override
 	public void save(JSONObject json) {
 		//Skip if no store or object
+		if (m_Store == null) initialize();
 		if (m_Store == null || json == null) return;
 		
 		//Save
@@ -38,6 +39,7 @@ public class AndroidRecordWriter extends RecordWriter {
 		
 		try {
 			//If store exist
+			if (m_Store == null) initialize();
 			if (m_Store != null && m_Store.contains(STORE_NAME)) {
 				//Get string
 				JSONObject Loaded 	= new JSONObject(m_Store.getString(STORE_NAME, null));
@@ -50,10 +52,7 @@ public class AndroidRecordWriter extends RecordWriter {
 	}
 	
 	//Constants
-	protected final String STORE_NAME = "Records"; 
-	
-	//Activity
-	protected static Activity s_Activity;
+	protected final String STORE_NAME = "Records";
 	
 	//Record system
 	SharedPreferences m_Store;
