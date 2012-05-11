@@ -25,25 +25,26 @@ public class AndroidBitmapFont extends BitmapFont {
 			
 			//Create kerning map
 			HashMap<Integer, HashMap<Integer, Long>> Kernings = new HashMap<Integer, HashMap<Integer,Long>>();
-			
-			//Get kerning data
-			JSONObject JSONKernings = JSONFont.getJSONObject(KEY_KERNINGS);
-			JSONArray KerningsArray	= JSONKernings.getJSONArray(KEY_KERNING);
-			
-			//For each kerning
-			for (int i = 0; i < KerningsArray.length(); i++) {
-				//Get data
-				JSONObject JSONKerning 	= KerningsArray.getJSONObject(i);
-				Integer SecondChar		= new Integer(JSONKerning.getInt(KEY_KERNING_FIRST));
-				Integer FirstChar		= new Integer(JSONKerning.getInt(KEY_KERNING_SECOND));
-				Long Offset				= new Long(JSONKerning.getLong(KEY_KERNING_OFFSET));			
+			if (JSONFont.has(KEY_KERNINGS)) {
+				//Get kerning data
+				JSONObject JSONKernings = JSONFont.getJSONObject(KEY_KERNINGS);
+				JSONArray KerningsArray	= JSONKernings.getJSONArray(KEY_KERNING);
 				
-				//Get map
-				HashMap<Integer, Long> Kerning = Kernings.get(FirstChar);
-				if (Kerning == null) Kerning = new HashMap<Integer, Long>();
-				
-				//Add to map
-				Kerning.put(SecondChar, Offset);
+				//For each kerning
+				for (int i = 0; i < KerningsArray.length(); i++) {
+					//Get data
+					JSONObject JSONKerning 	= KerningsArray.getJSONObject(i);
+					Integer SecondChar		= new Integer(JSONKerning.getInt(KEY_KERNING_FIRST));
+					Integer FirstChar		= new Integer(JSONKerning.getInt(KEY_KERNING_SECOND));
+					Long Offset				= new Long(JSONKerning.getLong(KEY_KERNING_OFFSET));			
+					
+					//Get map
+					HashMap<Integer, Long> Kerning = Kernings.get(FirstChar);
+					if (Kerning == null) Kerning = new HashMap<Integer, Long>();
+					
+					//Add to map
+					Kerning.put(SecondChar, Offset);
+				}				
 			}
 			
 			//Get font data

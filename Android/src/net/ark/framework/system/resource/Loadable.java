@@ -30,13 +30,14 @@ public class Loadable {
 		m_Resource	= resource;
 	}
 
-	public static Loadable createBGM(String file)		{	return new Loadable(file, Resource.BGM);					}
-	public static Loadable createSFX(String file)		{	return new Loadable(file, Resource.SFX);					}
-	public static Loadable createJSON(String file)		{	return new Loadable(file, Resource.JSON);					}
-	public static Loadable createFont(String file)		{	return new Loadable(file, Resource.FONT);					}
-	public static Loadable createTexture(String file)	{	return new Loadable(file, Resource.TEXTURE);				}
-	public static Loadable createLanguage(int lang) 	{	return new Loadable(String.valueOf(lang), Resource.STRING);	}
-	public static Loadable createNumber(int font)		{	return new Loadable(String.valueOf(font), Resource.NUMBER);	}
+	public static Loadable createBGM(String file)							{	return new Loadable(file, Resource.BGM);					}
+	public static Loadable createSFX(String file)							{	return new Loadable(file, Resource.SFX);					}
+	public static Loadable createJSON(String file)							{	return new Loadable(file, Resource.JSON);					}
+	public static Loadable createFont(String file)							{	return new Loadable(file, Resource.FONT);					}
+	public static Loadable createNumber(int font)							{	return new Loadable(String.valueOf(font), Resource.NUMBER);	}
+	public static Loadable createLanguage(int lang) 						{	return new Loadable(String.valueOf(lang), Resource.STRING);	}
+	public static Loadable createTexture(String file, boolean antialias)	{	return new LoadableTexture(file, antialias);				}
+	public static Loadable createTexture(String file)						{	return new LoadableTexture(file);							}
     
     public String getName() {
         return m_Name;
@@ -49,7 +50,7 @@ public class Loadable {
 		//Check resource type
 		if (m_Resource == Resource.TEXTURE) {
 			//Create texture
-			Result = new Texture(m_Name);
+			Result = Texture.create(m_Name);
 		} else if (m_Resource == Resource.JSON) {
 			//Store json object
 			Result = ResourceManager.instance().readJSON(m_Name);

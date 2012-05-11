@@ -21,7 +21,7 @@ public class Line extends Drawable {
 		m_StartY 	= 0;
 		m_OffsetX	= 0;
 		m_OffsetY	= 0;
-		m_Thickness	= 2f * Utilities.instance().getScale();
+		m_Thickness	= 1f * Utilities.instance().getScale();
 		m_Color		= new float[] { 0.5f, 0.4f, 0.15f, 1f };
 	}
 	
@@ -43,6 +43,11 @@ public class Line extends Drawable {
 	public void setColor(float r, float g, float b, float a) {
 		//Set color
 		m_Color = new float[] {	r, g, b, a };
+	}
+	
+	public void setThickness(float thickness) {
+		//Set thickness
+		m_Thickness = thickness * Utilities.instance().getScale();
 	}
 	
 	public void setStart(float startX, float startY) {
@@ -100,6 +105,10 @@ public class Line extends Drawable {
 		//Save matrix
 		gl.glPushMatrix();
 		
+		//Disable texture
+		gl.glDisable(GL10.GL_TEXTURE_2D);
+		gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
+		
 		//Set data
 		gl.glLineWidth(m_Thickness);
 		gl.glVertexPointer(2, GL10.GL_FLOAT, 0, m_Vertices);
@@ -108,6 +117,10 @@ public class Line extends Drawable {
 		//Translate and draw
 		gl.glTranslatef(m_OffsetX, m_OffsetY, 0);
 		gl.glDrawArrays(GL10.GL_LINES, 0, m_Vertices.capacity() / 2);
+		
+		//Enable texture
+		gl.glEnable(GL10.GL_TEXTURE_2D);
+		gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
 		
 		//Restore matrix
 		gl.glPopMatrix();

@@ -26,8 +26,9 @@ public abstract class ResourceManager {
 	public abstract void addJSON(String file);
 	public abstract void addFont(String file);
 	public abstract void addImage(String file);
-	public abstract void addTexture(String file);
 	public abstract void addLanguage(int lang);
+	public abstract void addTexture(String file);
+	public abstract void addTexture(String file, boolean antialias);
 	
 	//Progress
 	public boolean isFinished() { 	return m_Finished;					}

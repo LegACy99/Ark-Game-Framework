@@ -35,14 +35,15 @@ public class AndroidResourceManager extends ResourceManager {
 	}
 
 	//Resource loader
-	@Override public void addBGM(String file) 		{	if (!isLoading()) m_Loadables.add(Loadable.createBGM(file));        }
-	@Override public void addSFX(String file) 		{	if (!isLoading()) m_Loadables.add(Loadable.createSFX(file));      	}
-	@Override public void addJSON(String file) 		{	if (!isLoading()) m_Loadables.add(Loadable.createJSON(file));       }
-	@Override public void addImage(String file) 	{	if (!isLoading()) m_Loadables.add(Loadable.createJSON(file));		}
-	@Override public void addFont(String file)		{	if (!isLoading()) m_Loadables.add(Loadable.createFont(file));		}
-	@Override public void addTexture(String file) 	{	if (!isLoading()) m_Loadables.add(Loadable.createTexture(file));	}
-	@Override public void addLanguage(int lang)		{	if (!isLoading()) m_Loadables.add(Loadable.createLanguage(lang));	}
-	@Override public void addNumber(int font)		{	if (!isLoading()) m_Loadables.add(Loadable.createNumber(font));		}
+	@Override public void addBGM(String file) 							{	if (!isLoading()) m_Loadables.add(Loadable.createBGM(file));     		  	}
+	@Override public void addSFX(String file) 							{	if (!isLoading()) m_Loadables.add(Loadable.createSFX(file));      			}
+	@Override public void addJSON(String file) 							{	if (!isLoading()) m_Loadables.add(Loadable.createJSON(file));    			}
+	@Override public void addImage(String file) 						{	if (!isLoading()) m_Loadables.add(Loadable.createJSON(file));				}
+	@Override public void addFont(String file)							{	if (!isLoading()) m_Loadables.add(Loadable.createFont(file));				}
+	@Override public void addNumber(int font)							{	if (!isLoading()) m_Loadables.add(Loadable.createNumber(font));				}
+	@Override public void addLanguage(int lang)							{	if (!isLoading()) m_Loadables.add(Loadable.createLanguage(lang));			}
+	@Override public void addTexture(String file, boolean antialias) 	{	if (!isLoading()) m_Loadables.add(Loadable.createTexture(file, antialias));	}
+	@Override public void addTexture(String file) 						{	if (!isLoading()) m_Loadables.add(Loadable.createTexture(file));			}
 	
 	
 	//Resources
