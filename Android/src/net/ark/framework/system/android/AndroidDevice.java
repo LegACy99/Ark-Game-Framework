@@ -11,10 +11,12 @@ import net.ark.framework.system.android.input.AccelerometerInfo;
 import net.ark.framework.system.android.input.TouchInfo;
 import net.ark.framework.system.resource.ResourceManager;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.net.Uri;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.GLU;
 import android.os.Process;
@@ -209,6 +211,29 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		m_Accelerometer.setAcceleration(event.values[AXIS_X], event.values[AXIS_Y], event.values[AXIS_Z]);
 	}
 	
+	@Override
+	public void openURL(String url) {
+		openURL(url, true);
+	}
+
+	@Override
+	public void openURL(String url, boolean browser) {
+		//Skip if no activity
+		if (GameActivity == null) return;
+		
+		//Initialize intent
+		Intent URLIntent = null;
+		if (browser) URLIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+		else {
+			//Create intent
+			URLIntent = new Intent(GameActivity, GameActivity.getClass());
+			URLIntent.putExtra(EXTRA_URL, url);
+		}
+		
+		//Start intent if exist
+		if (URLIntent != null) GameActivity.startActivity(URLIntent);
+	}
+	
 	//Single instances
 	public static Activity 			GameActivity = null;
 	private static AndroidDevice 	s_Instance = null;
@@ -217,7 +242,8 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 	protected final int AXIS_X 			= 0;
 	protected final int AXIS_Y 			= 1;
 	protected final int AXIS_Z 			= 2;
-	protected final int[] IGNORED_KEYS 	=  { KeyEvent.KEYCODE_VOLUME_DOWN, KeyEvent.KEYCODE_VOLUME_UP, KeyEvent.KEYCODE_VOLUME_MUTE };
+	public final String	EXTRA_URL		= "url";
+	protected final int[] IGNORED_KEYS 	= { KeyEvent.KEYCODE_VOLUME_DOWN, KeyEvent.KEYCODE_VOLUME_UP, KeyEvent.KEYCODE_VOLUME_MUTE };
 	
 	//Android stuff
 	protected GL10					m_OpenGL;
