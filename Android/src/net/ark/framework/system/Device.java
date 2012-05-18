@@ -45,6 +45,10 @@ public abstract class Device {
 	public TouchInfo[] getTouches()				{	return m_Touches;		}
 	public AccelerometerInfo getAccelerometer()	{	return m_Accelerometer;	}
 	
+	//Urls
+	public abstract void openURL(String url);
+	public abstract void openURL(String url, boolean browser);
+	
 	//Display
 	protected float m_Scale;
 	protected float m_Width;

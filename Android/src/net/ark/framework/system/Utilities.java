@@ -63,11 +63,11 @@ public abstract class Utilities {
 	public String getSystemReleaseSFX()		{ return m_ReleaseSFX;	}
 	public String getSystemPressSFX()		{ return m_PressSFX;	}
 	
-	//Utility
-	public abstract int getRandom(int from, int to);
-	public abstract String writeVersion(int[] version);
-	public abstract String writeVersion(int[] version, int[] digits);
-	public abstract String writeFloat(float number, int decimal);
+	//Utilities
+	public abstract int 	getRandom(int from, int to);
+	public abstract String 	writeVersion(int[] version);
+	public abstract String	writeVersion(int[] version, int[] digits);
+	public abstract String 	writeFloat(float number, int decimal);
 	
 	public int getEuclidean(int x1, int y1, int x2, int y2) {
 		return Math.abs(x2 - x1) + Math.abs(y2 - y1);
