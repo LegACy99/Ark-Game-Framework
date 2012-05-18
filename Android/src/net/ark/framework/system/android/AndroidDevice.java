@@ -210,14 +210,9 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		//Set acceleration value
 		m_Accelerometer.setAcceleration(event.values[AXIS_X], event.values[AXIS_Y], event.values[AXIS_Z]);
 	}
-	
-	@Override
-	public void openURL(String url) {
-		openURL(url, true);
-	}
 
 	@Override
-	public void openURL(String url, boolean browser) {
+	public void openURL(String url, boolean browser, String title, String loading) {
 		//Skip if no activity
 		if (GameActivity == null) return;
 		
@@ -228,6 +223,10 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 			//Create intent
 			URLIntent = new Intent(GameActivity, GameActivity.getClass());
 			URLIntent.putExtra(EXTRA_URL, url);
+			
+			//Add loading and title
+			if (title != null) 		URLIntent.putExtra(EXTRA_TITLE, title);
+			if (loading != null) 	URLIntent.putExtra(EXTRA_LOADING, loading);
 		}
 		
 		//Start intent if exist
@@ -239,11 +238,13 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 	private static AndroidDevice 	s_Instance = null;
 	
 	//Constants
-	protected final int AXIS_X 			= 0;
-	protected final int AXIS_Y 			= 1;
-	protected final int AXIS_Z 			= 2;
-	public final String	EXTRA_URL		= "url";
-	protected final int[] IGNORED_KEYS 	= { KeyEvent.KEYCODE_VOLUME_DOWN, KeyEvent.KEYCODE_VOLUME_UP, KeyEvent.KEYCODE_VOLUME_MUTE };
+	protected static final int AXIS_X 			= 0;
+	protected static final int AXIS_Y 			= 1;
+	protected static final int AXIS_Z 			= 2;
+	protected static final int[] IGNORED_KEYS 	= { KeyEvent.KEYCODE_VOLUME_DOWN, KeyEvent.KEYCODE_VOLUME_UP, KeyEvent.KEYCODE_VOLUME_MUTE };
+    public static final String EXTRA_LOADING 	= "loading";
+    public static final String EXTRA_TITLE 		= "title";
+	public static final String EXTRA_URL		= "url";
 	
 	//Android stuff
 	protected GL10					m_OpenGL;

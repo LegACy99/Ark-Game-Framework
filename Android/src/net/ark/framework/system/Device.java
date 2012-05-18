@@ -46,8 +46,7 @@ public abstract class Device {
 	public AccelerometerInfo getAccelerometer()	{	return m_Accelerometer;	}
 	
 	//Urls
-	public abstract void openURL(String url);
-	public abstract void openURL(String url, boolean browser);
+	public abstract void openURL(String url, boolean browser, String title, String loading);
 	
 	//Display
 	protected float m_Scale;

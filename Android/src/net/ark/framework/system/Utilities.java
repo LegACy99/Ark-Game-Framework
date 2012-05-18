@@ -24,6 +24,7 @@ public abstract class Utilities {
 	protected Utilities() {
 		//Initialize
 		m_FPS			= 1;
+		m_Name			= "";
 		m_Font			= null;
 		m_FontTexture	= null;
 		m_ReleaseSFX	= null;
@@ -41,9 +42,10 @@ public abstract class Utilities {
 			//Save
 			m_FPS			= system.getFPS();
 			m_Font			= system.getFont();
-			m_FontSmooth	= system.isFontSmooth();
+			m_Name			= system.getApplicationName();
 			m_FontTexture	= system.getFontTexture();
 			m_ReleaseSFX	= system.getReleaseSFX();
+			m_FontSmooth	= system.isFontSmooth();
 			m_PressSFX		= system.getPressSFX();
 		}
 	}
@@ -58,16 +60,25 @@ public abstract class Utilities {
 	//Game data
 	public int getSystemFPS()				{ return m_FPS;			}
 	public String getSystemFont()			{ return m_Font;		}
-	public boolean isSystemFontSmooth()		{ return m_FontSmooth;	}
-	public String getSystemFontTexture()	{ return m_FontTexture;	}
-	public String getSystemReleaseSFX()		{ return m_ReleaseSFX;	}
 	public String getSystemPressSFX()		{ return m_PressSFX;	}
+	public String getSystemReleaseSFX()		{ return m_ReleaseSFX;	}
+	public String getSystemFontTexture()	{ return m_FontTexture;	}
+	public boolean isSystemFontSmooth()		{ return m_FontSmooth;	}
+	public String getApplicationName()		{ return m_Name;		}
 	
 	//Utilities
 	public abstract int 	getRandom(int from, int to);
 	public abstract String 	writeVersion(int[] version);
 	public abstract String	writeVersion(int[] version, int[] digits);
 	public abstract String 	writeFloat(float number, int decimal);
+	
+	public void openURL(String url) 								{ openURL(url, true); 					}
+	public void openURL(String url, boolean browser) 				{ openURL(url, browser, null);			}
+	public void openURL(String url, boolean browser, String title) 	{ openURL(url, browser, null, null);	}
+	
+	public void openURL(String url, boolean browser, String title, String loading) {
+		Device.instance().openURL(url, browser, title, loading);
+	}
 	
 	public int getEuclidean(int x1, int y1, int x2, int y2) {
 		return Math.abs(x2 - x1) + Math.abs(y2 - y1);
@@ -116,6 +127,7 @@ public abstract class Utilities {
 	//System
 	protected int		m_FPS;
     protected String	m_Font;
+    protected String	m_Name;
     protected boolean	m_FontSmooth;
     protected String	m_FontTexture;
     protected String	m_ReleaseSFX;

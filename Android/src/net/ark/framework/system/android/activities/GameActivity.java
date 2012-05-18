@@ -1,10 +1,11 @@
-package net.ark.framework.system.android;
+package net.ark.framework.system.android.activities;
 
 import java.util.List;
 
 import net.ark.framework.R;
 import net.ark.framework.system.Device;
 import net.ark.framework.system.SoundManager;
+import net.ark.framework.system.android.AndroidDevice;
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
