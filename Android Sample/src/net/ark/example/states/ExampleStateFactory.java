@@ -1,10 +1,10 @@
-package com.ark.example.states;
+package net.ark.example.states;
 
 import net.ark.framework.states.GameState;
 import net.ark.framework.states.StateFactory;
 
-import com.ark.example.states.StateSplash;
-import com.ark.example.states.StateTitle;
+import net.ark.example.states.StateSplash;
+import net.ark.example.states.StateTitle;
 
 public class ExampleStateFactory implements StateFactory {
 	@Override

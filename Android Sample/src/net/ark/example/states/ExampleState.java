@@ -1,4 +1,4 @@
-package com.ark.example.states;
+package net.ark.example.states;
 
 import net.ark.framework.components.Drawable;
 import net.ark.framework.states.GameState;

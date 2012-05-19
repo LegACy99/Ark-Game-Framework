@@ -1,16 +1,14 @@
-package com.ark.example;
+package net.ark.example;
 
-import net.ark.framework.R;
+import net.ark.example.states.ExampleStateFactory;
 import net.ark.framework.system.StateManager;
 import net.ark.framework.system.System;
 import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.AndroidDevice;
 import net.ark.framework.system.android.activities.GameActivity;
 import net.ark.framework.system.android.activities.WebActivity;
-
+import net.ark.sample.R;
 import android.content.Intent;
-
-import com.ark.example.states.ExampleStateFactory;
 
 public class Main extends GameActivity implements System {
 	@Override

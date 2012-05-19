@@ -2,9 +2,9 @@ package net.ark.framework.system.android.activities;
 
 import java.util.List;
 
-import net.ark.framework.R;
 import net.ark.framework.system.Device;
 import net.ark.framework.system.SoundManager;
+import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.AndroidDevice;
 import android.app.Activity;
 import android.content.Context;
@@ -41,7 +41,7 @@ public abstract class GameActivity extends Activity {
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         
         //Get wakelock
-        m_Lock = ((PowerManager)getSystemService(Context.POWER_SERVICE)).newWakeLock(PowerManager.FULL_WAKE_LOCK, getString(R.string.app_name));
+        m_Lock = ((PowerManager)getSystemService(Context.POWER_SERVICE)).newWakeLock(PowerManager.FULL_WAKE_LOCK, Utilities.instance().getApplicationName());
         
         //Create surface
         m_Canvas = new GLSurfaceView(this);
