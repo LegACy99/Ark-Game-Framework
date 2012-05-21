@@ -7,6 +7,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import net.ark.framework.system.Device;
 import net.ark.framework.system.StateManager;
+import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.input.AccelerometerInfo;
 import net.ark.framework.system.android.input.TouchInfo;
 import net.ark.framework.system.resource.ResourceManager;
@@ -104,12 +105,8 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		m_Column	= 1;
 		
 		//Calculate scale
-		m_Scale = 1.0f;
-		if (m_System != null) {
-			//Based on height or width?
-			if (m_System.getBaseHeight() > 0) 		m_Scale = (float)m_Height / (float)m_System.getBaseHeight();
-			else if (m_System.getBaseWidth() > 0) 	m_Scale = (float)m_Width / (float)m_System.getBaseWidth();
-		}
+		if (Utilities.instance().isSystemBasedOnHeight()) 	m_Scale = (float)m_Height / (float)Utilities.instance().getBaseHeight();
+		else 											 	m_Scale = (float)m_Width / (float)Utilities.instance().getBaseWidth();
 		
 		//Set view port
 		gl.glViewport(0, 0, width, height);

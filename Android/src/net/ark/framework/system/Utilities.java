@@ -24,11 +24,15 @@ public abstract class Utilities {
 	protected Utilities() {
 		//Initialize
 		m_FPS			= 1;
-		m_Name			= "";
-		m_Font			= null;
+		m_BaseWidth		= 1;
+		m_BaseHeight	= 1;
+		m_FontSmooth	= true;
+		m_HeightAsBase	= false;
 		m_FontTexture	= null;
 		m_ReleaseSFX	= null;
 		m_PressSFX		= null;
+		m_Font			= null;
+		m_Name			= "";
 	}
 	
 	public static Utilities instance() {
@@ -39,7 +43,7 @@ public abstract class Utilities {
 	public void setSystem(System system) {
 		//If exist
 		if (system != null) {
-			//Save
+			//Save data
 			m_FPS			= system.getFPS();
 			m_Font			= system.getFont();
 			m_Name			= system.getApplicationName();
@@ -47,6 +51,13 @@ public abstract class Utilities {
 			m_ReleaseSFX	= system.getReleaseSFX();
 			m_FontSmooth	= system.isFontSmooth();
 			m_PressSFX		= system.getPressSFX();
+			
+			//Get base size
+			m_BaseWidth		= system.getBaseWidth();
+			m_BaseHeight	= system.getBaseHeight();
+			if (m_BaseWidth < 0) 			m_BaseWidth *= -1;
+			if (m_BaseHeight < 0) 			m_BaseHeight *= -1;
+			if (system.getBaseHeight() > 0) m_HeightAsBase = true;
 		}
 	}
 	
@@ -58,13 +69,16 @@ public abstract class Utilities {
 	public abstract float getHeight();
 	
 	//Game data
-	public int getSystemFPS()				{ return m_FPS;			}
-	public String getSystemFont()			{ return m_Font;		}
-	public String getSystemPressSFX()		{ return m_PressSFX;	}
-	public String getSystemReleaseSFX()		{ return m_ReleaseSFX;	}
-	public String getSystemFontTexture()	{ return m_FontTexture;	}
-	public boolean isSystemFontSmooth()		{ return m_FontSmooth;	}
-	public String getApplicationName()		{ return m_Name;		}
+	public String getSystemFont()			{ return m_Font;			}
+	public String getApplicationName()		{ return m_Name;			}
+	public String getSystemPressSFX()		{ return m_PressSFX;		}
+	public String getSystemReleaseSFX()		{ return m_ReleaseSFX;		}
+	public String getSystemFontTexture()	{ return m_FontTexture;		}
+	public boolean isSystemBasedOnHeight()	{ return m_HeightAsBase;	}
+	public boolean isSystemFontSmooth()		{ return m_FontSmooth;		}
+	public int getBaseHeight()				{ return m_BaseHeight;		}
+	public int getBaseWidth()				{ return m_BaseWidth;		}
+	public int getSystemFPS()				{ return m_FPS;				}
 	
 	//Utilities
 	public abstract int 	getRandom(int from, int to);
@@ -125,11 +139,14 @@ public abstract class Utilities {
 	}
 	
 	//System
-	protected int		m_FPS;
-    protected String	m_Font;
     protected String	m_Name;
+    protected String	m_Font;
+    protected String	m_PressSFX;
+    protected String	m_ReleaseSFX;
     protected boolean	m_FontSmooth;
     protected String	m_FontTexture;
-    protected String	m_ReleaseSFX;
-    protected String	m_PressSFX;
+    protected boolean	m_HeightAsBase;
+    protected int		m_BaseHeight;
+    protected int		m_BaseWidth;
+	protected int		m_FPS;
 }
