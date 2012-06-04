@@ -11,14 +11,6 @@ public class GameState {
 	//State ID
 	public static final int SPLASH		= 0;
 	public static final int TITLE		= 1;
-	public static final int HELP		= 2;
-	public static final int CREDIT		= 3;
-	public static final int UPGRADE		= 4;
-	public static final int ACHIEVEMENT	= 5;
-	public static final int GAME		= 6;
-	public static final int RESULT		= 7;
-	public static final int PAUSE		= 8;
-	public static final int STORY		= 9;
 	
 	public GameState(int id) {
 		//No background

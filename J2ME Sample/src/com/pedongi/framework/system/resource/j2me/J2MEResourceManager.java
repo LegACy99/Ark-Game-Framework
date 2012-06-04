@@ -28,7 +28,7 @@ public class J2MEResourceManager extends ResourceManager {
 		m_Resources	= new Hashtable();
 		
 		//Add default resources
-		addImage(Utilities.INTERFACE_FOLDER + "developer.png");
+		addImage(Utilities.BACKGROUND_FOLDER + "splash.png");
 		
 		//Load
 		start();
