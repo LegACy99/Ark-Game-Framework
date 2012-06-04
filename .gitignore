@@ -1,3 +1,7 @@
-# Ignore generated files
-bin/
-gen/
+#Android
+Android/bin/
+Android/gen/
+Android Sample/bin/
+Android Sample/gen/
+J2ME Sample/build/
+J2ME Sample/dist/
