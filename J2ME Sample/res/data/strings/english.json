@@ -1,0 +1,13 @@
+{
+   "Tag":"en",
+   "Strings":[
+      {
+         "Key":"present",
+         "String":"presents"
+      },
+	  {
+         "Key":"loading",
+         "String":"Loading..."
+      }
+   ]
+}
