@@ -1,6 +1,5 @@
 package net.ark.framework.system.resource;
 
-import net.ark.framework.system.RecordManager;
 import net.ark.framework.system.SoundManager;
 import net.ark.framework.system.StringManager;
 import net.ark.framework.system.images.j2me.BitmapFont;
@@ -17,7 +16,6 @@ public class Loadable {
 		public static final Resource IMAGE	= new Resource();
 		public static final Resource NUMBER	= new Resource();
 		public static final Resource STRING	= new Resource();
-		public static final Resource RECORD	= new Resource();
 
 		//Protected constructor
 		protected Resource() {}
@@ -33,7 +31,6 @@ public class Loadable {
 		m_Resource	= resource;
 	}
 
-	public static Loadable createLoading()			{	return new Loadable(Resource.RECORD);						}
 	public static Loadable createBGM(String file)	{	return new Loadable(file, Resource.BGM);					}
 	public static Loadable createSFX(String file)	{	return new Loadable(file, Resource.SFX);					}
 	public static Loadable createJSON(String file)	{	return new Loadable(file, Resource.JSON);					}
@@ -65,9 +62,6 @@ public class Loadable {
 		} else if (m_Resource == Resource.BGM) {
 			//Load BGM
 			SoundManager.instance().loadBGM(m_Name);
-		} else if (m_Resource == Resource.RECORD) {
-			//Load record
-			RecordManager.instance().load();
 		} else if (m_Resource == Resource.FONT) {
 			//Get font
 			BitmapFont.createFont(Integer.parseInt(m_Name));

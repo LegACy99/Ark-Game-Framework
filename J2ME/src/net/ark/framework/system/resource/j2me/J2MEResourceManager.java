@@ -42,7 +42,6 @@ public class J2MEResourceManager extends ResourceManager {
 	}
 
 	//Resource
-	public void addRecordLoading()							{	if (!isLoading()) m_Loadables.addElement(Loadable.createLoading());						}
 	public void addBGM(String file) 						{	if (!isLoading()) m_Loadables.addElement(Loadable.createBGM(file));              		}
 	public void addSFX(String file) 						{	if (!isLoading()) m_Loadables.addElement(Loadable.createSFX(file));      				}
 	public void addJSON(String file) 						{	if (!isLoading()) m_Loadables.addElement(Loadable.createJSON(file));                    }

@@ -232,7 +232,6 @@ public class J2MEStateManager extends StateManager {
 		
 		//Destroy managers
 		SoundManager.instance().destroy();
-		RecordManager.instance().destroy();
 		
 		//Terminate thread
 		//Main.Midlet.notifyDestroyed();
