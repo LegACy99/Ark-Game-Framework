@@ -2,7 +2,7 @@ package net.ark.example.states;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import net.ark.exampe.system.ExampleUtilities;
+import net.ark.example.system.ExampleUtilities;
 import net.ark.framework.components.Drawable;
 import net.ark.framework.system.StateManager;
 import net.ark.framework.system.Utilities;

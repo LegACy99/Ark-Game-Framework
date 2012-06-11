@@ -1,4 +1,4 @@
-package net.ark.exampe.system;
+package net.ark.example.system;
 
 import net.ark.framework.system.android.AndroidUtilities;
 
