@@ -15,6 +15,8 @@ import net.ark.framework.system.Utilities;
 import net.ark.framework.system.input.AccelerometerInfo;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.game.GameCanvas;
+import net.ark.example.system.ExampleUtilities;
+import net.ark.framework.system.Device;
 
 /**
  *
@@ -23,11 +25,11 @@ import javax.microedition.lcdui.game.GameCanvas;
 public class StateTitle extends GameState {
 	public StateTitle() {
 		//Super
-		super(ExampleState.TITLE, Utilities.BACKGROUND_FOLDER + "title.png");
+		super(ExampleState.TITLE, ExampleUtilities.BACKGROUND_FOLDER + "title.png");
 
 		//Create components
 		m_Buttons			= new ButtonContainer();
-		Button ExitButton	= m_Buttons.addButton(BUTTON_EXIT, Utilities.BUTTON_FOLDER + "exit.png", null);
+		Button ExitButton	= m_Buttons.addButton(BUTTON_EXIT, ExampleUtilities.BUTTON_FOLDER + "exit.png", null);
 		ExitButton.setPosition(Utilities.instance().getWidth() - 2, Utilities.instance().getHeight() - 2, Drawable.ANCHOR_RIGHT, Drawable.ANCHOR_BOTTOM);
 		
 		
@@ -54,8 +56,8 @@ public class StateTitle extends GameState {
 		boolean Back = false;
 		boolean Left = false;
 		for (int i = 0; i < keys.length; i++) {
-			if (keys[i] == Utilities.instance().getBackButton())		Back = true;
-			else if (keys[i] == Utilities.instance().getMenuButton())	Left = true;
+			if (keys[i] == Device.instance().getBackButton())		Back = true;
+			else if (keys[i] == Device.instance().getMenuButton())	Left = true;
 			else if (keys[i] == GameCanvas.FIRE_PRESSED)				Fire = true;			
 		}
 		

@@ -34,10 +34,10 @@ public class Loadable {
 	public static Loadable createBGM(String file)	{	return new Loadable(file, Resource.BGM);					}
 	public static Loadable createSFX(String file)	{	return new Loadable(file, Resource.SFX);					}
 	public static Loadable createJSON(String file)	{	return new Loadable(file, Resource.JSON);					}
+	public static Loadable createFont(String file)	{	return new Loadable(file, Resource.FONT);					}
 	public static Loadable createImage(String file)	{	return new Loadable(file, Resource.IMAGE);					}
 	public static Loadable createNumber(int font)	{	return new Loadable(String.valueOf(font), Resource.NUMBER);	}
 	public static Loadable createLanguage(int lang) {	return new Loadable(String.valueOf(lang), Resource.STRING);	}
-	public static Loadable createFont(int font)		{	return new Loadable(String.valueOf(font), Resource.FONT);	}
     
     public String getName() {
         return m_Name;
@@ -64,9 +64,9 @@ public class Loadable {
 			SoundManager.instance().loadBGM(m_Name);
 		} else if (m_Resource == Resource.FONT) {
 			//Get font
-			BitmapFont.createFont(Integer.parseInt(m_Name));
+			BitmapFont.create(m_Name);
 		} else if (m_Resource == Resource.NUMBER) {
-			BitmapFont.getFont(Integer.parseInt(m_Name)).createNumber();
+			BitmapFont.getFont(m_Name).createNumber();
 		} else if (m_Resource == Resource.STRING) {
 			//Get and load language
 			StringManager.Language Lang = StringManager.Language.getLanguage(Integer.parseInt(m_Name));

@@ -14,11 +14,11 @@ import javax.microedition.lcdui.Image;
  * @author LegACy
  */
 public class J2MELabel extends Label {
-	public J2MELabel(String text, int font) {
+	public J2MELabel(String text, String font) {
 		this(text, font, 0, 0);
 	}
 
-	public J2MELabel(String text, int font, float x, float y) {
+	public J2MELabel(String text, String font, float x, float y) {
 		//Initialize
 		super(text, x, y);
 

@@ -42,7 +42,7 @@ public class Number extends Label {
 		//Create number
 		int[] Digits 	= Utilities.instance().getDigits(number);
 		m_Number		= new Image[Digits.length];
-		for (int i = 0; i < m_Number.length; i++) m_Number[i] = BitmapFont.getFont(font).getNumber(Digits[Digits.length - 1 - i]);
+		for (int i = 0; i < m_Number.length; i++) m_Number[i] = BitmapFont.getFont(String.valueOf(font)).getNumber(Digits[Digits.length - 1 - i]);
 		
 		//Calculate size
 		m_Width = m_Offset * (m_Number.length - 1);

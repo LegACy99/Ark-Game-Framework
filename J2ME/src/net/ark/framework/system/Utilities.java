@@ -5,63 +5,94 @@ import java.util.Vector;
 import net.ark.framework.system.j2me.J2MEUtilities;
 
 public abstract class Utilities {
-	//Application constants
-	public static final String APPLICATION 		= "Kite Knight";
-	public static final int REFERENCE_HEIGHT	= 320;
+	//Constants
+	public static final int FLOAT_SIZE		= 4;
+	public static final int SHORT_SIZE		= 2;
+	public static final long SCROLL_WAIT	= 160;
 
 	//Folder constants
 	public static final String DATA_FOLDER			= "/data/";
-	public static final String FONT_FOLDER			= "/fonts/";
 	public static final String AUDIO_FOLDER			= "/audio/";
 	public static final String IMAGE_FOLDER			= "/images/";
-	public static final String GAME_FOLDER			= IMAGE_FOLDER + "game/";
-	public static final String STORY_FOLDER			= IMAGE_FOLDER + "story/";
-	public static final String INTERFACE_FOLDER		= IMAGE_FOLDER + "interfaces/";
-	public static final String BACKGROUND_FOLDER	= IMAGE_FOLDER + "backgrounds/";
-	public static final String BUTTON_FOLDER		= INTERFACE_FOLDER + "buttons/";
-	public static final String TUTORIAL_FOLDER		= INTERFACE_FOLDER + "tutorial/";
-	public static final String ACHIEVEMENT_FOLDER	= GAME_FOLDER + "achiements/";
-	public static final String UPGRADE_FOLDER		= GAME_FOLDER + "upgrades/";
-	public static final String PICKUP_FOLDER		= GAME_FOLDER + "pickups/";
-	public static final String KITE_FOLDER			= GAME_FOLDER + "kites/";
+	public static final String TEXTURE_FOLDER		= "/textures/";
+	public static final String FONT_TEXTURES		= TEXTURE_FOLDER + "fonts/";
 	public static final String STRING_FOLDER		= DATA_FOLDER + "strings/";
+	public static final String FONT_FOLDER			= DATA_FOLDER + "fonts/";
 	public static final String BGM_FOLDER			= AUDIO_FOLDER + "bgm/";
 	public static final String SFX_FOLDER			= AUDIO_FOLDER + "sfx/";
 
 	//Fonts constants
-	public static final String HUGE_FONT		= FONT_FOLDER + "huge.font";
+	/*public static final String HUGE_FONT		= FONT_FOLDER + "huge.font";
 	public static final String TINY_FONT		= FONT_FOLDER + "tiny.font";
 	public static final String TITLE_FONT		= FONT_FOLDER + "thick.font";
 	public static final String MAIN_FONT		= FONT_FOLDER + "normal.font";
 	public static final String SMALL_FONT		= FONT_FOLDER + "smaller.font";
-	public static final String SMALL_BOLD_FONT	= FONT_FOLDER + "smaller-bold.font";
+	public static final String SMALL_BOLD_FONT	= FONT_FOLDER + "smaller-bold.font";*/
+		
+	protected Utilities() {
+		//Initialize
+		m_FPS			= 1;
+		m_BaseWidth		= 1;
+		m_BaseHeight	= 1;
+		m_FontSmooth	= true;
+		m_HeightAsBase	= false;
+		m_FontTexture	= null;
+		m_ReleaseSFX	= null;
+		m_PressSFX		= null;
+		m_Font			= null;
+		m_Name			= "";
+	}
 	
 	public static Utilities instance() {
 		//Return J2ME
 		return J2MEUtilities.instance();
 	}
 	
+	public void setSystem(System system) {
+		//If exist
+		if (system != null) {
+			//Save data
+			m_FPS			= system.getFPS();
+			m_Font			= system.getFont();
+			m_Name			= system.getApplicationName();
+			m_FontTexture	= system.getFontTexture();
+			m_ReleaseSFX	= system.getReleaseSFX();
+			m_FontSmooth	= system.isFontSmooth();
+			m_PressSFX		= system.getPressSFX();
+			
+			//Get base size
+			m_BaseWidth		= system.getBaseWidth();
+			m_BaseHeight	= system.getBaseHeight();
+			if (m_BaseWidth < 0) 			m_BaseWidth *= -1;
+			if (m_BaseHeight < 0) 			m_BaseHeight *= -1;
+			if (system.getBaseHeight() > 0) m_HeightAsBase = true;
+		}
+	}
+	
 	//Display abstracts
-	public abstract float	getScale();
-	public abstract float	getWidth();
-	public abstract float	getHeight();
-	public abstract int		getColumn();
-	public abstract int		getRow();
+	public abstract int getRow();
+	public abstract int getColumn();
+	public abstract float getScale();
+	public abstract float getWidth();
+	public abstract float getHeight();
 	
-	//System constants
-	public int getFPS()			{	return m_FPS;   }	
-	public int getButtonWait()	{	return m_Wait;  }
-	public int getMenuButton()	{	return m_Menu;  }
-	public int getBackButton()	{	return m_Back;	}
-	
-	//Game constants
-	public int getRepeatX()		{	return m_RepeatX;		}
-	public int getRepeatY()		{	return m_RepeatY;		}
-	public int getTileWidth()	{	return m_TileWidth;		}
-	public int getTileHeight()	{	return m_TileHeight;	}
+	//Game data
+	public String getSystemFont()			{ return m_Font;			}
+	public String getApplicationName()		{ return m_Name;			}
+	public String getSystemPressSFX()		{ return m_PressSFX;		}
+	public String getSystemReleaseSFX()		{ return m_ReleaseSFX;		}
+	public String getSystemFontTexture()	{ return m_FontTexture;		}
+	public boolean isSystemBasedOnHeight()	{ return m_HeightAsBase;	}
+	public boolean isSystemFontSmooth()		{ return m_FontSmooth;		}
+	public int getBaseHeight()				{ return m_BaseHeight;		}
+	public int getBaseWidth()				{ return m_BaseWidth;		}
+	public int getSystemFPS()				{ return m_FPS;				}
 	
 	//Utility
-	public abstract int getRandom(int from, int to);
+	public abstract int		getRandom(int from, int to);
+	public abstract String 	writeVersion(int[] version);
+	public abstract String	writeVersion(int[] version, int[] digits);
+	public abstract String 	writeFloat(float number, int decimal);
 	
 	public int getEuclidean(int x1, int y1, int x2, int y2) {
 		return Math.abs(x2 - x1) + Math.abs(y2 - y1);
@@ -107,61 +138,15 @@ public abstract class Utilities {
 		return Result;
 	}
 	
-	public int getExperienceNeeded(int level) {
-		//Calculate
-		float Experience = INITIAL_EXP;
-		for (int i = 1; i < level; i++) Experience *= EXP_MULTIPLIER;
-		
-		//Return
-		return (int)Experience;
-	}
-	
-	public int getExperience(int[] stars, float height) {
-		//Initialize
-		float Stars = 0;
-		for (int i = 0; i < stars.length; i++) Stars += stars[i];
-		
-		//Return
-		return (int)((Stars / STARS_DIVIDER) + (height / HEIGHT_DIVIDER));
-	}
-	
-	public String getFloatAsString(float number, int decimal) {		
-		//Get decimal
-		float Number = number;
-		for (int i = 0; i < decimal; i++) Number *= 10;
-		
-		//Get string
-		int Integer = (int)Number;
-		String Text = String.valueOf(Integer);
-		while (Text.length() < decimal + 1) Text = "0" + Text;
-		
-		//For each digit
-		StringBuffer Buffer = new StringBuffer();
-		for (int i = 0; i < Text.length(); i++) {
-			//Add
-			Buffer.append(Text.charAt(i));
-			if (i == Text.length() - decimal - 1) Buffer.append('.');
-		}
-		
-		//Return
-		return Buffer.toString();
-	}
-	
-	//Constants
-	protected static final int INITIAL_EXP		= 15;
-	protected static final float EXP_MULTIPLIER = 1.25f;
-	protected static final float HEIGHT_DIVIDER = 20f;
-	protected static final float STARS_DIVIDER	= 5f;
-	
 	//System
-	protected int m_FPS;
-	protected int m_Wait;
-    protected int m_Menu;
-    protected int m_Back;
-	
-	//Gameplay
-	protected int m_RepeatX;
-	protected int m_RepeatY;
-	protected int m_TileWidth;
-	protected int m_TileHeight;
+    protected String	m_Name;
+    protected String	m_Font;
+    protected String	m_PressSFX;
+    protected String	m_ReleaseSFX;
+    protected boolean	m_FontSmooth;
+    protected String	m_FontTexture;
+    protected boolean	m_HeightAsBase;
+    protected int		m_BaseHeight;
+    protected int		m_BaseWidth;
+	protected int		m_FPS;
 }

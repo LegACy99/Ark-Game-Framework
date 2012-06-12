@@ -4,7 +4,6 @@
  */
 package net.ark.framework.system.resource.j2me;
 
-import net.ark.framework.system.Utilities;
 import net.ark.framework.system.resource.Loadable;
 import net.ark.framework.system.resource.ResourceManager;
 import java.io.IOException;
@@ -27,9 +26,6 @@ public class J2MEResourceManager extends ResourceManager {
 		m_Loadables	= new Vector();
 		m_Resources	= new Hashtable();
 		
-		//Add default resources
-		addImage(Utilities.BACKGROUND_FOLDER + "splash.png");
-		
 		//Load
 		start();
 		update();
@@ -45,13 +41,13 @@ public class J2MEResourceManager extends ResourceManager {
 	public void addBGM(String file) 						{	if (!isLoading()) m_Loadables.addElement(Loadable.createBGM(file));              		}
 	public void addSFX(String file) 						{	if (!isLoading()) m_Loadables.addElement(Loadable.createSFX(file));      				}
 	public void addJSON(String file) 						{	if (!isLoading()) m_Loadables.addElement(Loadable.createJSON(file));                    }
+	public void addFont(String file)						{	if (!isLoading()) m_Loadables.addElement(Loadable.createFont(file));					}
 	public void addImage(String file) 						{	if (!isLoading()) m_Loadables.addElement(Loadable.createImage(file));					}
 	public void addImages(String file, int column, int row)	{	if (!isLoading()) m_Loadables.addElement(J2MELoadableImages.create(file, column, row));	}
 	public void addDarkBackground()							{	if (!isLoading()) m_Loadables.addElement(J2MELoadableDark.createDarkBackground());		}
 	public void addShadow()									{	if (!isLoading()) m_Loadables.addElement(J2MELoadableDark.createShadow());				}
-	public void addString(int lang)							{	if (!isLoading()) m_Loadables.addElement(Loadable.createLanguage(lang));			}
+	public void addString(int lang)							{	if (!isLoading()) m_Loadables.addElement(Loadable.createLanguage(lang));				}
 	public void addNumber(int font)							{	if (!isLoading()) m_Loadables.addElement(Loadable.createNumber(font));					}
-	public void addFont(int font)							{	if (!isLoading()) m_Loadables.addElement(Loadable.createFont(font));					}
 
 	//Remove resource
 	public void destroyResource(String name) {

@@ -20,12 +20,12 @@ public abstract class ResourceManager {
 	
 	//Load resource
 	public abstract void addShadow();
-	public abstract void addFont(int font);
 	public abstract void addNumber(int font);
 	public abstract void addBGM(String file);
 	public abstract void addSFX(String file);
 	public abstract void addDarkBackground();
 	public abstract void addJSON(String file);
+	public abstract void addFont(String file);
 	public abstract void addImage(String file);
 	public abstract void addImages(String file, int column, int row);
 	public abstract void addString(int lang);

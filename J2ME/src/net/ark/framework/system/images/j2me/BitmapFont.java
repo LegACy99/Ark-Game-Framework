@@ -15,111 +15,77 @@
 
 package net.ark.framework.system.images.j2me;
 
-import net.ark.framework.system.Utilities;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Hashtable;
 
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
 
 public class BitmapFont {
-	//Font enumeration
-	public static final int MAIN			= 0;
-	public static final int THICK			= 1;
-	public static final int SMALL			= 2;
-	public static final int SMALL_BOLD		= 3;
-	public static final int TINY			= 4;
-	public static final int HUGE			= 5;
-	protected static final int FONT_COUNT	= 6;
-
 	//The only instance
-	private static BitmapFont[] s_Fonts = null;
+	private static Hashtable s_Fonts = new Hashtable();
 	
 	/**
 	 * Crate instance of class
 	 */
 	private BitmapFont() {}
 
-	public static void createFont(int font) {
-		//If empty
-		if (s_Fonts == null) {
-			//Create array
-			s_Fonts = new BitmapFont[FONT_COUNT];
-			for (int i = 0; i < s_Fonts.length; i++) s_Fonts[i] = null;
-		}
-		
-		//If font is null
-		if (s_Fonts[font] == null) {
-			//Create based on index
-			try {
-				if (font == BitmapFont.HUGE)			s_Fonts[font] = BitmapFont.createFont(Utilities.HUGE_FONT);
-				else if (font == BitmapFont.TINY)		s_Fonts[font] = BitmapFont.createFont(Utilities.TINY_FONT);
-				else if (font == BitmapFont.MAIN)		s_Fonts[font] = BitmapFont.createFont(Utilities.MAIN_FONT);
-				else if (font == BitmapFont.THICK)		s_Fonts[font] = BitmapFont.createFont(Utilities.TITLE_FONT);
-				else if (font == BitmapFont.SMALL)		s_Fonts[font] = BitmapFont.createFont(Utilities.SMALL_FONT);
-				else if (font == BitmapFont.SMALL_BOLD)	s_Fonts[font] = BitmapFont.createFont(Utilities.SMALL_BOLD_FONT);
-			} catch (IOException ex) {}
-		}
-	}
-
-	public static BitmapFont createFont(String font) throws IOException {
-		//Create bitmap font
-		BitmapFont Font = new BitmapFont();
-		Image img = null;
-		InputStream is = Font.getClass().getResourceAsStream(font);
-		DataInputStream dis = new DataInputStream(is);
-		int len = dis.readInt();
-		Font.chars = new char[len];
-		Font.charImage = new Image[len];
-		Font.charsWidth = new byte[len];
-		for ( int i = 0; i<len; i++ ) {
-			Font.chars[i] = dis.readChar();
-			Font.charsWidth[i] = dis.readByte();
-		}
-		int imgSize = dis.readInt();
-		byte[] tmpBuffer = new byte[imgSize];
-		dis.read(tmpBuffer, 0, imgSize);
-
-		img = Image.createImage(tmpBuffer, 0, imgSize);
-		if ( img != null ) {
-			Font.imgHeight = img.getHeight();
-			int x = 0;
-			for (int i = 0; i<len; i++) {
-				Font.charImage[i] = Image.createImage(Font.charsWidth[i], Font.imgHeight);
-				Graphics g = Font.charImage[i].getGraphics();
-				g.setClip(0, 0, Font.charsWidth[i], Font.imgHeight);
-				g.drawImage(img, -x, 0, Graphics.TOP|Graphics.LEFT);
-				x += Font.charsWidth[i];
-				g=null;
+	public static void create(String font) {		
+		try {
+			//Create bitmap font
+			BitmapFont Font = new BitmapFont();
+			Image img = null;
+			InputStream is = Font.getClass().getResourceAsStream(font);
+			DataInputStream dis = new DataInputStream(is);
+			int len = dis.readInt();
+			Font.chars = new char[len];
+			Font.charImage = new Image[len];
+			Font.charsWidth = new byte[len];
+			for ( int i = 0; i<len; i++ ) {
+				Font.chars[i] = dis.readChar();
+				Font.charsWidth[i] = dis.readByte();
 			}
-		}
-		tmpBuffer=null;
-		img=null;
-		
-		//If okay
-		if (Font != null) {
-			//Create numbers
-			Font.m_Numbers = new Image[10];
-			for (int i = 0; i < Font.m_Numbers.length; i++)
-				Font.m_Numbers[i] = Font.renderTransparentText(String.valueOf(i), 0x00000000);
-		}
+			int imgSize = dis.readInt();
+			byte[] tmpBuffer = new byte[imgSize];
+			dis.read(tmpBuffer, 0, imgSize);
 
-		//Return the font
-		return Font;
+			img = Image.createImage(tmpBuffer, 0, imgSize);
+			if ( img != null ) {
+				Font.imgHeight = img.getHeight();
+				int x = 0;
+				for (int i = 0; i<len; i++) {
+					Font.charImage[i] = Image.createImage(Font.charsWidth[i], Font.imgHeight);
+					Graphics g = Font.charImage[i].getGraphics();
+					g.setClip(0, 0, Font.charsWidth[i], Font.imgHeight);
+					g.drawImage(img, -x, 0, Graphics.TOP|Graphics.LEFT);
+					x += Font.charsWidth[i];
+					g=null;
+				}
+			}
+			tmpBuffer=null;
+			img=null;
+
+			//If okay
+			if (Font != null) {
+				//Create numbers
+				Font.m_Numbers = new Image[10];
+				for (int i = 0; i < Font.m_Numbers.length; i++)
+					Font.m_Numbers[i] = Font.renderTransparentText(String.valueOf(i), 0x00000000);
+			}
+			
+			//Save font
+			s_Fonts.put(font, Font);
+		} catch (IOException ex) {
+		}
 	}
 
-	public static BitmapFont getFont(int index) {
-		//If empty
-		if (s_Fonts == null) {
-			//Create array
-			s_Fonts = new BitmapFont[FONT_COUNT];
-			for (int i = 0; i < s_Fonts.length; i++) s_Fonts[i] = null;
-		}
+	public static BitmapFont getFont(String font) {
 		
 		//Return the font
-		return s_Fonts[index];
+		return (BitmapFont) s_Fonts.get(font);
 	}
 	
 	public void createNumber() {

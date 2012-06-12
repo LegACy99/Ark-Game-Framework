@@ -1,8 +1,8 @@
 package net.ark.example.states;
 
 import net.ark.framework.components.Drawable;
-import net.ark.framework.states.GameState;
 import javax.microedition.lcdui.Graphics;
+import net.ark.example.system.ExampleUtilities;
 
 import net.ark.framework.system.StateManager;
 import net.ark.framework.system.StringManager;
@@ -13,6 +13,7 @@ import net.ark.framework.system.images.Label;
 import net.ark.framework.system.input.AccelerometerInfo;
 import net.ark.framework.system.images.j2me.BitmapFont;
 import net.ark.framework.system.resource.ResourceManager;
+import net.ark.framework.system.resource.j2me.J2MELoadableDark;
 
 public class StateSplash extends ExampleState {
 	public StateSplash() {
@@ -24,34 +25,40 @@ public class StateSplash extends ExampleState {
 		m_Loading	= null;
 		m_DrawnOnce	= false;
 		m_Drawn		= false;
+		
+		//Load splash resource
+		ResourceManager.instance().addImage(ExampleUtilities.BACKGROUND_FOLDER + "splash.png");
+		ResourceManager.instance().start();
+		while (!ResourceManager.instance().isFinished()) ResourceManager.instance().update();
 
 		//Create background
-		m_Background = Image.create(Utilities.BACKGROUND_FOLDER + "splash.png");
+		m_Background = Image.create(ExampleUtilities.BACKGROUND_FOLDER + "splash.png");
 		
 		//Load language
 		ResourceManager.instance().addString(StringManager.Language.ENGLISH.getID());
 		
 		//Load main font
-		ResourceManager.instance().addFont(BitmapFont.THICK);
-		ResourceManager.instance().addFont(BitmapFont.MAIN);
+		ResourceManager.instance().addFont(ExampleUtilities.THICK_FONT);
+		ResourceManager.instance().addFont(ExampleUtilities.MAIN_FONT);
 		
 		//Load sound resources
 		ResourceManager.instance().addSFX("cancel.wav");
 		ResourceManager.instance().addSFX("cursor.wav");
 		
 		//Load title resources
-		ResourceManager.instance().addImage(Utilities.BACKGROUND_FOLDER + "title.png");
-		ResourceManager.instance().addImages(Utilities.BUTTON_FOLDER + "exit.png", 2, 1);
+		ResourceManager.instance().addImage(ExampleUtilities.BACKGROUND_FOLDER + "title.png");
+		ResourceManager.instance().addImages(ExampleUtilities.BUTTON_FOLDER + "exit.png", 2, 1);
 		
 		//Load more fonts
-		ResourceManager.instance().addFont(BitmapFont.SMALL);		
-		ResourceManager.instance().addFont(BitmapFont.SMALL_BOLD);		
-		ResourceManager.instance().addFont(BitmapFont.HUGE);
-		ResourceManager.instance().addFont(BitmapFont.TINY);
+		ResourceManager.instance().addFont(ExampleUtilities.SMALL_FONT);		
+		ResourceManager.instance().addFont(ExampleUtilities.SMALL_BOLD_FONT);		
+		ResourceManager.instance().addFont(ExampleUtilities.HUGE_FONT);
+		ResourceManager.instance().addFont(ExampleUtilities.TINY_FONT);
 		
 		//Load shadow
 		ResourceManager.instance().addShadow();
 		ResourceManager.instance().addDarkBackground();	
+		J2MELoadableDark.setBackground(ExampleUtilities.BACKGROUND_FOLDER + "splash.png");
 		
 		//Start loading
 		ResourceManager.instance().start();
@@ -68,9 +75,9 @@ public class StateSplash extends ExampleState {
 		if (m_Loading == null) {		
 			//Get string
 			String Loading = StringManager.instance().getString("loading");
-			if (Loading != null && BitmapFont.getFont(BitmapFont.THICK) != null) {
+			if (Loading != null && BitmapFont.getFont(ExampleUtilities.THICK_FONT) != null) {
 				//Create label
-				m_Loading = Label.create(Loading.toUpperCase(), BitmapFont.THICK);
+				m_Loading = Label.create(Loading.toUpperCase(), ExampleUtilities.THICK_FONT);
 				m_Loading.setPosition(BAR_OFFSETX * 2, Utilities.instance().getHeight() - BAR_OFFSETY, Drawable.ANCHOR_LEFT, Drawable.ANCHOR_BOTTOM);
 			}
 		}

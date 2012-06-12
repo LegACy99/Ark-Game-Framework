@@ -162,9 +162,9 @@ public class J2MEStateManager extends StateManager {
 		while (m_Running) {
 			//Sleep if difference less than frame time
 			Difference = System.currentTimeMillis() - Current;
-			if (Difference < (1000 / Utilities.instance().getFPS())) {
+			if (Difference < (1000 / Utilities.instance().getSystemFPS())) {
 				try {
-					Thread.sleep((1000 / Utilities.instance().getFPS()) - Difference);
+					Thread.sleep((1000 / Utilities.instance().getSystemFPS()) - Difference);
 				} catch (InterruptedException ex) {}
 			}
 			

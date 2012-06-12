@@ -8,7 +8,6 @@ package net.ark.framework.components.buttons;
 import net.ark.framework.system.Utilities;
 import net.ark.framework.system.images.Label;
 import net.ark.framework.system.images.Sprite;
-import net.ark.framework.system.images.j2me.BitmapFont;
 import javax.microedition.lcdui.Graphics;
 import net.ark.framework.components.Drawable;
 
@@ -69,9 +68,9 @@ public class Button extends Drawable {
 		if (text != null) {
 			//Create label
 			m_Labels 				= new Label[m_Images.getMaxFrame()];
-			m_Labels[STATE_NORMAL] 	= Label.create(text, BitmapFont.MAIN);
-			m_Labels[STATE_PRESSED] = Label.create(text, BitmapFont.MAIN);
-			if (m_Labels.length > STATE_INACTIVE) m_Labels[STATE_INACTIVE] = Label.create(text, BitmapFont.MAIN);
+			m_Labels[STATE_NORMAL] 	= Label.create(text, Utilities.instance().getSystemFont());
+			m_Labels[STATE_PRESSED] = Label.create(text, Utilities.instance().getSystemFont());
+			if (m_Labels.length > STATE_INACTIVE) m_Labels[STATE_INACTIVE] = Label.create(text, Utilities.instance().getSystemFont());
 		}
 
 		//Set position and size
