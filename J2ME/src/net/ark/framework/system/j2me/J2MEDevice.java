@@ -6,10 +6,9 @@ package net.ark.framework.system.j2me;
 
 import net.ark.framework.system.Device;
 import net.ark.framework.system.input.TouchInfo;
-import net.ark.framework.system.Utilities;
 import net.ark.framework.system.input.AccelerometerInfo;
 import javax.microedition.lcdui.Graphics;
-import javax.microedition.lcdui.game.GameCanvas;
+import net.ark.framework.system.j2me.midlets.GameMidlet;
 
 /**
  *
@@ -19,19 +18,30 @@ public class J2MEDevice extends Device {
     protected J2MEDevice() {
         //Super
         super();
-
-		//Full screen
-		setFullScreenMode(true);
-    	
-    	//Initialize
-		m_Keys			= new int[0];
-		m_Touches 		= new TouchInfo[10];
-		m_Accelerometer	= new AccelerometerInfo();
-		for (int i = 0; i < m_Touches.length; i++) m_Touches[i] = new TouchInfo();
 		
-		//Calculate column
-		m_Column	= (getWidth()  + Utilities.instance().getTileWidth()  - 1) / Utilities.instance().getTileWidth();
-		m_Row		= (getHeight() + Utilities.instance().getTileHeight() - 1) / Utilities.instance().getTileHeight();
+		//If midlet exist
+		if (Midlet != null) {			
+			//Get size
+			m_Width		= Midlet.getCanvas().getWidth();
+			m_Height	= Midlet.getCanvas().getHeight();
+		
+			//No column/row
+			m_Row		= 1;
+			m_Column	= 1;
+			
+			//Calculate column
+			//m_Column	= (getWidth()  + Utilities.instance().getTileWidth()  - 1) / Utilities.instance().getTileWidth();
+			//m_Row		= (getHeight() + Utilities.instance().getTileHeight() - 1) / Utilities.instance().getTileHeight();
+		}
+		
+		
+		//Initialize input
+        m_Back			= -7;
+        m_Menu			= -6;
+		m_Keys			= null;
+		m_Touches 		= new TouchInfo[10];
+		m_Accelerometer = new AccelerometerInfo();
+		for (int i = 0; i < m_Touches.length; i++) m_Touches[i] = new TouchInfo();
     }
 	
 	public synchronized static Device instance() {
@@ -39,63 +49,56 @@ public class J2MEDevice extends Device {
 		if (s_Instance == null) s_Instance = new J2MEDevice();
 		return s_Instance;
 	}
-
-    //Accessor
-	public Graphics getGraphic() {	return getGraphics();	};
+	
+	//Accessors
+	public Graphics getGraphic() { 
+		return Midlet.getCanvas().getGraphics();
+	}
 
 	public int[] getKeys() {
-		//Get key state
-		int CanvasKeys = getKeyStates();
-
-		//Check
-		if ((CanvasKeys & GameCanvas.UP_PRESSED) != 0)		keyPressed(GameCanvas.UP_PRESSED);
-		if ((CanvasKeys & GameCanvas.DOWN_PRESSED) != 0)	keyPressed(GameCanvas.DOWN_PRESSED);
-		if ((CanvasKeys & GameCanvas.LEFT_PRESSED) != 0)	keyPressed(GameCanvas.LEFT_PRESSED);
-		if ((CanvasKeys & GameCanvas.RIGHT_PRESSED) != 0)	keyPressed(GameCanvas.RIGHT_PRESSED);
-		if ((CanvasKeys & GameCanvas.FIRE_PRESSED) != 0)	keyPressed(GameCanvas.FIRE_PRESSED);
+		//Initialize
+		m_Keys = new int[] {};
+		
+		//If midlet exist
+		if (Midlet != null) {
+			//Copy keys
+			int[] CanvasKeys	= Midlet.getCanvas().getKeys();
+			m_Keys				= new int[CanvasKeys.length];
+			System.arraycopy(CanvasKeys, 0, m_Keys, 0, m_Keys.length);
+		}
 
 		//Return
 		return super.getKeys();
 	}
-
-	public void keyPressed(int keyCode) {
-		//Super
-		super.keyPressed(keyCode);
-
-		//Check key
-		boolean Ignore = false;
-		for (int i = 0; i < IGNORED_KEYS.length; i++) if (keyCode == IGNORED_KEYS[i]) Ignore = true;
-
-		//If not ignored
-		if (!Ignore) {
-			//Add
-			int[] Keys = new int[m_Keys.length + 1];
-			System.arraycopy(m_Keys, 0, Keys, 0, m_Keys.length);
-			Keys[m_Keys.length]	= keyCode;
-			m_Keys				= Keys;
+	
+	public TouchInfo[] getTouches()	{
+		//If midlet exist
+		if (Midlet != null) {
+			//Set touch
+			m_Touches[0] = Midlet.getCanvas().getTouch();
 		}
-	}
-
-	public synchronized void pointerPressed(int x, int y) {
-		if (m_Touches != null) m_Touches[0].pressed(x, y);
-	}
-
-	public synchronized void pointerDragged(int x, int y) {
-		if (m_Touches != null) m_Touches[0].dragged(x, y);
-	}
-
-	public synchronized void pointerReleased(int x, int y) {
-		if (m_Touches != null) m_Touches[0].released(x, y);
+		
+		//Return super
+		return super.getTouches();
 	}
 	
-	//The only instance
-	private static J2MEDevice s_Instance = null;
+	public void openURL(String url, boolean browser, String title, String loading) {
+		//Open URL if midlet and url exist
+		if (Midlet != null && url != null) Midlet.openURL(url);
+	}
+	
+	//Single instances
+	public static GameMidlet	Midlet = null;
+	private static J2MEDevice	s_Instance = null;
 
 	//Constants
-	protected final int AXIS_X 			= 0;
-	protected final int AXIS_Y 			= 1;
-	protected final int AXIS_Z 			= 2;
-	protected final int[] IGNORED_KEYS 	=  {  };
+	protected final int AXIS_X					= 0;
+	protected final int AXIS_Y					= 1;
+	protected final int AXIS_Z					= 2;
+	public static final int[] IGNORED_KEYS		=  {};
+    public static final String EXTRA_LOADING 	= "loading";
+    public static final String EXTRA_TITLE 		= "title";
+	public static final String EXTRA_URL		= "url";
 	
 	//Data
 	/*protected long				m_TimerUp;

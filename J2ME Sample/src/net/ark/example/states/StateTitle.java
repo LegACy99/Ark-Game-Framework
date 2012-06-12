@@ -8,7 +8,6 @@ import net.ark.framework.components.Drawable;
 import net.ark.framework.components.buttons.Button;
 import net.ark.framework.components.buttons.ButtonContainer;
 import net.ark.framework.states.GameState;
-import net.ark.framework.system.RecordManager;
 import net.ark.framework.system.SoundManager;
 import net.ark.framework.system.StateManager;
 import net.ark.framework.system.input.TouchInfo;
@@ -24,15 +23,16 @@ import javax.microedition.lcdui.game.GameCanvas;
 public class StateTitle extends GameState {
 	public StateTitle() {
 		//Super
-		super(GameState.TITLE, Utilities.BACKGROUND_FOLDER + "title.png");
+		super(ExampleState.TITLE, Utilities.BACKGROUND_FOLDER + "title.png");
 
 		//Create components
 		m_Buttons			= new ButtonContainer();
 		Button ExitButton	= m_Buttons.addButton(BUTTON_EXIT, Utilities.BUTTON_FOLDER + "exit.png", null);
 		ExitButton.setPosition(Utilities.instance().getWidth() - 2, Utilities.instance().getHeight() - 2, Drawable.ANCHOR_RIGHT, Drawable.ANCHOR_BOTTOM);
 		
+		
 		//Set sound visibility
-		SoundManager.instance().setMute(RecordManager.instance().isMute());
+		//SoundManager.instance().setMute(RecordManager.instance().isMute());
 	}
 
 	public void onEnter() {

@@ -12,8 +12,8 @@ public class J2MELoadableDark extends Loadable {
         super(type, null);
     }
     
-    public static Loadable createShadow()           {   return new J2MELoadableDark(KEY_SHADOW);   }
-    public static Loadable createDarkBackground()   {   return new J2MELoadableDark(KEY_BACKGROUND);   }
+    public static Loadable createShadow()           {   return new J2MELoadableDark(KEY_SHADOW);		}
+    public static Loadable createDarkBackground()   {   return new J2MELoadableDark(KEY_BACKGROUND);	}
 
 	public Object load() {
 		//Initialize

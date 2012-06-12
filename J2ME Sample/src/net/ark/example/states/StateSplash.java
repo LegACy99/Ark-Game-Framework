@@ -14,10 +14,10 @@ import net.ark.framework.system.input.AccelerometerInfo;
 import net.ark.framework.system.images.j2me.BitmapFont;
 import net.ark.framework.system.resource.ResourceManager;
 
-public class StateSplash extends GameState {
+public class StateSplash extends ExampleState {
 	public StateSplash() {
 		//Super
-		super(GameState.SPLASH);
+		super(ExampleState.SPLASH);
 				
 		//Initialize
 		m_Timer 	= 0;
@@ -34,9 +34,6 @@ public class StateSplash extends GameState {
 		//Load main font
 		ResourceManager.instance().addFont(BitmapFont.THICK);
 		ResourceManager.instance().addFont(BitmapFont.MAIN);
-		
-		//Load data
-		ResourceManager.instance().addRecordLoading();
 		
 		//Load sound resources
 		ResourceManager.instance().addSFX("cancel.wav");
@@ -86,7 +83,7 @@ public class StateSplash extends GameState {
 			//If time limit passed
 			if (m_Timer >= MIN_TIMER) {
 				//go to title
-				StateManager.instance().goTo(GameState.TITLE, null, true);
+				StateManager.instance().goTo(ExampleState.TITLE, null, true);
 			}
 		} else ResourceManager.instance().update();
 	}

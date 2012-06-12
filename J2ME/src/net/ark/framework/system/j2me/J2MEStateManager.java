@@ -5,13 +5,13 @@
 package net.ark.framework.system.j2me;
 
 import net.ark.framework.states.GameState;
-import net.ark.framework.system.RecordManager;
 import net.ark.framework.system.SoundManager;
 import net.ark.framework.system.StateManager;
 import net.ark.framework.system.input.TouchInfo;
 import net.ark.framework.system.Utilities;
 import net.ark.framework.system.input.AccelerometerInfo;
 import java.util.Vector;
+import net.ark.framework.system.Device;
 
 /**
  *
@@ -196,9 +196,9 @@ public class J2MEStateManager extends StateManager {
 			if (m_StateList.isEmpty() || !TopExist) m_Running = false;
 			else {
 				//Get input
-				int[] Keys						= J2MEDevice.instance().getKeys();
-				AccelerometerInfo Accelerometer	= J2MEDevice.instance().getAccelerometer();
-				TouchInfo[] Touches				= J2MEDevice.instance().getTouches();
+				int[] Keys						= Device.instance().getKeys();
+				TouchInfo[] Touches				= Device.instance().getTouches();
+				AccelerometerInfo Accelerometer	= Device.instance().getAccelerometer();
 				
 				//Get current state
 				GameState CurrentState = (GameState)m_StateList.lastElement();
@@ -209,7 +209,7 @@ public class J2MEStateManager extends StateManager {
 					if (CurrentState.runsInBackground()) CurrentState.update(Difference, null, null, null);
 					
 					//If now canvas is shown
-					if (J2MEDevice.instance().isShown()) {
+					if (J2MEDevice.Midlet.getCanvas().isShown()) {
 						//Resume
 						m_Paused = false;
 						SoundManager.instance().resume();
@@ -217,11 +217,11 @@ public class J2MEStateManager extends StateManager {
 				} else {
 					//Update and draw state
 					CurrentState.update(Difference, Keys, Touches, Accelerometer);
-					CurrentState.draw(((J2MEDevice)J2MEDevice.instance()).getGraphic());
-					J2MEDevice.instance().flushGraphics();
+					CurrentState.draw(((J2MEDevice)Device.instance()).getGraphic());
+					J2MEDevice.Midlet.getCanvas().flushGraphics();
 					
 					//If canvas no longer shown
-					if (!J2MEDevice.instance().isShown()) {
+					if (!J2MEDevice.Midlet.getCanvas().isShown()) {
 						//Pause
 						m_Paused = true;
 						SoundManager.instance().pause();
@@ -234,7 +234,7 @@ public class J2MEStateManager extends StateManager {
 		SoundManager.instance().destroy();
 		
 		//Terminate thread
-		//Main.Midlet.notifyDestroyed();
+		J2MEDevice.Midlet.notifyDestroyed();
     }
 	
 	//The only instance
