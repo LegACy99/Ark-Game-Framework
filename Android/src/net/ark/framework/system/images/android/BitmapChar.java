@@ -59,9 +59,13 @@ public class BitmapChar {
 	}
 
 	//Accessors
-	public float[] getTextureCoordinates() 	{	return m_Coordinates;	}
-	public float[] getVertices() 			{	return m_Vertices;		}
-	public float getAdvance()				{	return m_Advance;		}
+	public float[] getTextureCoordinates() 	{	return m_Coordinates;					}
+	public float[] getVertices() 			{	return m_Vertices;						}
+	public float getAdvance()				{	return m_Advance;						}
+	public float getBottom()				{	return m_Vertices[3]; 					}
+	public float getHeight()				{	return m_Vertices[1] - m_Vertices[3]; 	}
+	public float getWidth()					{	return m_Vertices[4] - m_Vertices[0]; 	}
+	public float getTop()					{	return m_Vertices[1]; 					}
 	
 	public float getAdvance(char character) {
 		//Get advance
