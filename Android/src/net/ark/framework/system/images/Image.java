@@ -1,22 +1,20 @@
 package net.ark.framework.system.images;
 
-import net.ark.framework.components.Drawable;
+import net.ark.framework.components.Croppable;
 import net.ark.framework.system.images.android.AndroidImage;
 import net.ark.framework.system.resource.ResourceManager;
 
 import org.json.JSONObject;
 
-public abstract class Image extends Drawable {
+public abstract class Image extends Croppable {
 	protected Image() {
 		//Super
 		super();
 		
 		//Initialize variables
-		m_Top	 		= 0;
-		m_Left			= 0;	
-		m_Flip			= 0;
-		m_Rotation		= 0;
-		m_Mirror		= MIRROR_NONE;
+		m_Flip		= 0;
+		m_Rotation	= 0;
+		m_Mirror	= MIRROR_NONE;
 	}
 	
 	protected Image(String file, int x, int y) {
@@ -83,10 +81,8 @@ public abstract class Image extends Drawable {
 		else 								m_Mirror = MIRROR_BOTH;
 		
 		//Reset rect
-		setRect(0, 0, m_OriginalWidth, m_OriginalHeight);
+		setRegion(0, 0, m_OriginalWidth, m_OriginalHeight);
 	}
-	
-	public abstract void setRect(float x, float y, float width, float height);
 	
 	//Constants
 	public final static String KEY_RECT			= "Rect";
@@ -102,10 +98,4 @@ public abstract class Image extends Drawable {
 	protected float m_Flip;
 	protected float m_Rotation;
 	protected int	m_Mirror;
-	
-	//Rect
-	protected float		m_Top;
-	protected float		m_Left;
-	protected float		m_OriginalTop;
-	protected float		m_OriginalLeft;
 }

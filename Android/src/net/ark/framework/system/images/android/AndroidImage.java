@@ -21,6 +21,8 @@ public class AndroidImage extends Image {
 		super();
 		
 		//Initialize variables
+		m_Top			= 0;
+		m_Left			= 0;
 		m_Colors		= null;
 		m_Vertices		= null;
 		m_Coordinates	= null;
@@ -49,42 +51,40 @@ public class AndroidImage extends Image {
 				//Get horizontal size
 				if (!RectJSON.isNull(KEY_RECT_LEFT)) {
 					//Get left
-					m_OriginalLeft = RectJSON.getLong(KEY_RECT_LEFT);
+					m_Left = RectJSON.getLong(KEY_RECT_LEFT);
 					
 					//Get width
-					if (!RectJSON.isNull(KEY_RECT_RIGHT)) 	m_OriginalWidth = RectJSON.getLong(KEY_RECT_RIGHT) - m_OriginalLeft;
+					if (!RectJSON.isNull(KEY_RECT_RIGHT)) 	m_OriginalWidth = RectJSON.getLong(KEY_RECT_RIGHT) - m_Left;
 					else									m_OriginalWidth = RectJSON.getLong(KEY_RECT_WIDTH);
 				}
 				else {
 					//Get width
 					m_OriginalWidth = RectJSON.getLong(KEY_RECT_WIDTH);
-					m_OriginalLeft	= RectJSON.getLong(KEY_RECT_RIGHT) - m_Width;
+					m_Left	= RectJSON.getLong(KEY_RECT_RIGHT) - m_Width;
 				}
 				
 				//Get vertical size
 				if (!RectJSON.isNull(KEY_RECT_TOP)) {
 					//Get top
-					m_OriginalTop = RectJSON.getLong(KEY_RECT_TOP);
+					m_Top = RectJSON.getLong(KEY_RECT_TOP);
 					
 					//Get height
-					if (!RectJSON.isNull(KEY_RECT_BOTTOM)) 	m_OriginalHeight = RectJSON.getLong(KEY_RECT_BOTTOM) - m_OriginalTop;
+					if (!RectJSON.isNull(KEY_RECT_BOTTOM)) 	m_OriginalHeight = RectJSON.getLong(KEY_RECT_BOTTOM) - m_Top;
 					else									m_OriginalHeight = RectJSON.getLong(KEY_RECT_HEIGHT);
 				}
 				else {
 					//Get height
 					m_OriginalHeight	= RectJSON.getLong(KEY_RECT_HEIGHT);
-					m_OriginalTop		= RectJSON.getLong(KEY_RECT_BOTTOM) - m_OriginalHeight;
+					m_Top		= RectJSON.getLong(KEY_RECT_BOTTOM) - m_OriginalHeight;
 				}
 			}
 			
 			//Scale
-			m_Top 		= m_OriginalTop * Utilities.instance().getScale();
-			m_Left 		= m_OriginalLeft * Utilities.instance().getScale();
 			m_Width		= m_OriginalWidth * Utilities.instance().getScale();
 			m_Height	= m_OriginalHeight * Utilities.instance().getScale();
 
 			//Create drawing rect
-			setRect(0, 0, m_OriginalWidth, m_OriginalHeight);
+			setRegion(0, 0, m_OriginalWidth, m_OriginalHeight);
 			m_Colors = getWhiteColors();
 		} catch (JSONException e) {}
 	}
@@ -113,10 +113,13 @@ public class AndroidImage extends Image {
 	}
 	
 	@Override
-	public void setRect(float x, float y, float width, float height) {		
+	public void setRegion(float x, float y, float width, float height) {
+		//Super
+		super.setRegion(x, y, width, height);
+		
 		//Get vertex and coordinates
-		float[] Coordinates = createCoordinates(x, y, width, height);
-		float[] Vertices	= createVertices(width * Device.instance().getScale(), height * Device.instance().getScale());
+		float[] Coordinates = createCoordinates();
+		float[] Vertices	= createVertices();
 		
 		//Create buffers
 		ByteBuffer VertexBuffer 	= ByteBuffer.allocateDirect(Vertices.length * Utilities.FLOAT_SIZE);
@@ -135,19 +138,19 @@ public class AndroidImage extends Image {
 		m_Coordinates.position(0);
 	}
 	
-	protected float[] createVertices(float width, float height) {
+	protected float[] createVertices() {		
 		//Create vertices
 		return new float[] {
-			width - (m_Width / 2f), m_Height / 2f,
-			-m_Width / 2f,			m_Height / 2f,
-			width - (m_Width / 2f),	(m_Height / 2f) - height,
-			-m_Width / 2f,			(m_Height / 2f) - height
+			-(m_Width / 2f) + m_RegionX + m_RegionWidth, 	(m_Height / 2f) - m_RegionY,					//Top right
+			-(m_Width / 2f) + m_RegionX,					(m_Height / 2f) - m_RegionY,					//Top left
+			-(m_Width / 2f) + m_RegionX + m_RegionWidth,	(m_Height / 2f) - m_RegionY - m_RegionHeight,	//Bottom right
+			-(m_Width / 2f) + m_RegionX,					(m_Height / 2f) - m_RegionY - m_RegionHeight 	//Bottom left
 		};
 	}
 	
-	protected float[] createCoordinates(float x, float y, float width, float height) {
+	protected float[] createCoordinates() {
 		//Initialize
-		float[] Edges 	= getEdges(x, y, width, height);
+		float[] Edges 	= getEdges();
 		int[] Template 	= getTemplate(m_Mirror);
 
 		//Set coordinates
@@ -158,13 +161,13 @@ public class AndroidImage extends Image {
 		return Coordinates;
 	}
 	
-	protected float[] getEdges(float x, float y, float width, float height) {
+	protected float[] getEdges() {
 		//Calculate
 		float[] Edges		= new float[4];
-		Edges[EDGE_TOP] 	= (m_OriginalTop + y) / m_Texture.getHeight();
-		Edges[EDGE_LEFT]	= (m_OriginalLeft + x) / m_Texture.getWidth();
-		Edges[EDGE_RIGHT]	= (m_OriginalLeft + x + width) / m_Texture.getWidth();
-		Edges[EDGE_BOTTOM] 	= (m_OriginalTop + y + height) / m_Texture.getHeight();
+		Edges[EDGE_TOP] 	= (m_Top + m_OriginalRegionY) / m_Texture.getHeight();
+		Edges[EDGE_LEFT]	= (m_Left + m_OriginalRegionX) / m_Texture.getWidth();
+		Edges[EDGE_RIGHT]	= (m_Left + m_OriginalRegionX + m_OriginalRegionWidth) / m_Texture.getWidth();
+		Edges[EDGE_BOTTOM] 	= (m_Top + m_OriginalRegionY + m_OriginalRegionHeight) / m_Texture.getHeight();
 		
 		//Return
 		return Edges;
@@ -231,6 +234,10 @@ public class AndroidImage extends Image {
 	
 	//Color
 	protected static FloatBuffer s_White = null;
+	
+	//Data
+	protected float	m_Top;
+	protected float	m_Left;
 	
 	//GL stuff
 	protected FloatBuffer 	m_Colors;
