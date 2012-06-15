@@ -5,35 +5,32 @@
 
 package net.ark.framework.components.buttons;
 
+import java.util.Vector;
 import net.ark.framework.system.SoundManager;
 import net.ark.framework.system.Utilities;
 import net.ark.framework.system.input.TouchInfo;
 import javax.microedition.lcdui.Graphics;
+import net.ark.framework.components.Drawable;
 
 /**
  *
  * @author LegACy
  */
-public class ButtonContainer {
+public class ButtonContainer extends Drawable {
 	public ButtonContainer() {
 		//Initialize
-		m_Pressed = -1;
-		m_Buttons = new Button[0];
-	}
-
-	public Button addButton(int id, String images, String text) {
-		//Create and add button
-		return addButton(new Button(id, images, text));
-	}
-
+		m_Pressed	= -1;
+		m_Buttons	= new Vector();
+	}	
+	
+	public Button addButton(int id, String images, String text) 	{ return addButton(new Button(id, images, text)/*id, (JSONObject[]) ResourceManager.instance().getTextures(images), text*/); 	}	
+	//public Button addButton(int id, JSONObject[] json, String text) { return addButton(new Button(id, json, text)); 												}	
 	public Button addButton(Button button) {
-		//Add
-		Button[] Buttons = new Button[m_Buttons.length + 1];
-		System.arraycopy(m_Buttons, 0, Buttons, 0, m_Buttons.length);
-		Buttons[m_Buttons.length]	= button;
-		m_Buttons					= Buttons;
-
-		//Return the button
+		//Add a button
+		m_Buttons.addElement(button);
+		calculateSize();
+		
+		//Return
 		return button;
 	}
 
@@ -41,6 +38,7 @@ public class ButtonContainer {
 		//Add buttons
 		for (int i = 0; i < buttons.length; i++) addButton(buttons[i]);
 	}
+	
 
 	public Button getButton(int index) {
 		return getButton(index, NO_BUTTON);
@@ -51,11 +49,14 @@ public class ButtonContainer {
 		Button Result = null;
 
 		//If index valid
-		if (index >= 0 && index < m_Buttons.length) Result = m_Buttons[index];
-		else {
-			//Find from id
-			for (int i = 0; i < m_Buttons.length; i++)
-				if (m_Buttons[i].getID() == id) Result = m_Buttons[i];
+		if (index >= 0 && index < m_Buttons.size()) Result = (Button) m_Buttons.elementAt(index);
+		else { 
+			//For each button
+			for (int i = 0; i < m_Buttons.size(); i++) {
+				//Get result
+				Button Current = (Button) m_Buttons.elementAt(i);
+				if (Current.getID() == id) Result = Current;
+			}
 		}
 
 		//Return
@@ -64,7 +65,48 @@ public class ButtonContainer {
 
 	public void removeButtons() {
 		//Destroy buttons
-		m_Buttons = new Button[0];
+		m_Buttons.removeAllElements();
+	}
+	
+	public void setPosition(float x, float y, int horizontal, int vertical) {
+		//Super
+		super.setPosition(x, y, horizontal, vertical);
+		reposition();
+	}
+	
+	public void reposition() {		
+		//For each buttons
+		for (int i = 0; i < m_Buttons.size(); i++) {
+			//Calculate
+			Button Current	= (Button) m_Buttons.elementAt(i);
+			float NewX		= (m_X + Current.getX()) / Utilities.instance().getScale();
+			float NewY		= (m_Y + Current.getY()) / Utilities.instance().getScale();
+			
+			//Set new position
+			Current.setPosition(NewX, NewY);
+		}
+	}
+	
+	public void calculateSize() {
+		//Initialize
+		m_Width		= 0;
+		m_Height	= 0;
+		
+		//For each buttons
+		for (int i = 0; i < m_Buttons.size(); i++) {
+			//Calculate right and bottom
+			Button Current	= (Button) m_Buttons.elementAt(i);
+			float Bottom	= Current.getY() + Current.getHeight() - m_Y;
+			float Right		= Current.getX() + Current.getWidth() - m_X;
+			
+			//Compare with width and height
+			if (Right > m_Width)	m_Width = Right;
+			if (Bottom > m_Height)	m_Height = Bottom;
+		}
+		
+		//Scale
+		m_OriginalWidth		= m_Width / Utilities.instance().getScale();
+		m_OriginalHeight	= m_Width / Utilities.instance().getScale();
 	}
 
 	public int update(int[] keys, TouchInfo[] touches) {
@@ -72,38 +114,46 @@ public class ButtonContainer {
 		int Result = NO_BUTTON;
 
 		//Check
-		if (m_Buttons.length <= m_Pressed) m_Pressed = -1;
-
+		if (m_Buttons.size() <= m_Pressed) m_Pressed = -1;
+		
 		//If pressed
 		if (touches[0].isPressed()) {
 			//If no button is pressed
 			if (m_Pressed < 0) {
 				//For each button
-				for (int i = 0; i < m_Buttons.length; i++) {
+				for (int i = 0; i < m_Buttons.size(); i++) {
 					//If pressed
-					if (m_Buttons[i].Visible && m_Buttons[i].isActive() && m_Buttons[i].isInside(touches[0].getStartX(), touches[0].getStartY())) {
+					Button Current = (Button)m_Buttons.elementAt(i);
+					if (Current.Visible && Current.isActive() && Current.isInside(touches[0].getStartX(), touches[0].getStartY())) {
 						//Set pressed button
 						m_Pressed = i;
-						m_Buttons[i].setState(Button.STATE_PRESSED);
+						Current.setState(Button.STATE_PRESSED);
 
 						//SFX
-						SoundManager.instance().playSFX(Utilities.SFX_FOLDER + "cursor.wav");
+						if (Utilities.instance().getSystemPressSFX() != null) SoundManager.instance().playSFX(Utilities.instance().getSystemPressSFX());
 					}
 				}
 			} else {
 				//Set state
-				Button Pressed = m_Buttons[m_Pressed];
+				Button Pressed = getButton(m_Pressed);
 				if (Pressed.isInside(touches[0].getCurrentX(), touches[0].getCurrentY())) 	Pressed.setState(Button.STATE_PRESSED);
 				else																		Pressed.setState(Button.STATE_NORMAL);
 			}
 		} else {
 			//If there's a pressed button
 			if (m_Pressed >= 0) {
-				//If released inside set as result
-				if (m_Buttons[m_Pressed].isInside(touches[0].getCurrentX(), touches[0].getCurrentY()))	Result = m_Buttons[m_Pressed].getID();
+				//If released inside
+				Button PressedButton = (Button) m_Buttons.elementAt(m_Pressed);
+				if (PressedButton.isInside(touches[0].getCurrentX(), touches[0].getCurrentY())){
+					//Set as result
+					Result = PressedButton.getID();
+
+					//SFX
+					if (Utilities.instance().getSystemReleaseSFX() != null) SoundManager.instance().playSFX(Utilities.instance().getSystemReleaseSFX());
+				}
 
 				//Reset button state
-				m_Buttons[m_Pressed].setState(Button.STATE_NORMAL);
+				PressedButton.setState(Button.STATE_NORMAL);
 			}
 
 			//Nothing pressed
@@ -116,7 +166,7 @@ public class ButtonContainer {
 
 	public void draw(Graphics g) {
 		//Draw all buttons
-		for (int i = 0; i < m_Buttons.length; i++) m_Buttons[i].draw(g);
+		for (int i = 0; i < m_Buttons.size(); i++) ((Button)m_Buttons.elementAt(i)).draw(g);
 	}
 
 	//Constants
@@ -124,5 +174,5 @@ public class ButtonContainer {
 
 	//Data
 	protected int		m_Pressed;
-	protected Button[]	m_Buttons;
+	protected Vector	m_Buttons;
 }

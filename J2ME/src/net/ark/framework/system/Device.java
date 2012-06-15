@@ -16,13 +16,19 @@ import net.ark.framework.system.j2me.J2MEDevice;
 public abstract class Device {
 	protected Device() {
 		//Initialize;
-		m_Row		= 0;
-		m_Back		= 1;
-		m_Menu		= 1;
+		m_Up		= -1;
+		m_Down		= -1;
+		m_Left		= -1;
+		m_Fire		= -1;
+		m_Menu		= -1;
+		m_Back		= -1;
+		m_Menu		= -1;
+		m_Right		= -1;
 		m_Scale		= 1;
 		m_Width		= 0;
 		m_Height	= 0;
 		m_Column	= 0;
+		m_Row		= 0;
 		
 		//Intialize input
 		m_Accelerometer	= null;
@@ -43,8 +49,13 @@ public abstract class Device {
 	public float getScale()						{	return m_Scale;			}
 	public float getWidth() 					{	return m_Width;			}
 	public float getHeight()					{	return m_Height;		}
+	public int getUpButton()					{	return m_Up;			}
+	public int getDownButton()					{	return m_Down;			}
 	public int getMenuButton()					{	return m_Menu;  		}
 	public int getBackButton()					{	return m_Back;			}
+	public int getFireButton()					{	return m_Fire;			}
+	public int getLeftButton()					{	return m_Left;			}
+	public int getRightButton()					{	return m_Right;			}
 	public TouchInfo[] getTouches()				{	return m_Touches;		}
 	public AccelerometerInfo getAccelerometer()	{	return m_Accelerometer;	}
 	
@@ -60,7 +71,12 @@ public abstract class Device {
 	
 	//Constants
 	protected int m_Back;
-	protected int m_Menu; 
+	protected int m_Menu;
+	protected int m_Fire;
+	protected int m_Right;
+	protected int m_Left;
+	protected int m_Down;
+	protected int m_Up;
 	
 	//Input
 	protected int[]				m_Keys;

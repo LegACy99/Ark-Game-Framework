@@ -5,7 +5,6 @@
 package net.ark.framework.system.j2me;
 
 import net.ark.framework.system.SoundManager;
-import net.ark.framework.system.Utilities;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -98,7 +97,7 @@ public class J2MESoundManager extends SoundManager {
 		
 		try {
 			//Create player
-			m_BGMPlayer = Manager.createPlayer(getClass().getResourceAsStream(Utilities.BGM_FOLDER + m_BGM), TYPE_MIDI);
+			m_BGMPlayer = Manager.createPlayer(getClass().getResourceAsStream(m_BGM), TYPE_MIDI);
 
 			//Initialize player
 			m_BGMPlayer.realize();
@@ -126,7 +125,7 @@ public class J2MESoundManager extends SoundManager {
 
 		try {
 			//Create player
-			Player SFXPlayer = Manager.createPlayer(getClass().getResourceAsStream(Utilities.SFX_FOLDER + sfx), TYPE_WAV);
+			Player SFXPlayer = Manager.createPlayer(getClass().getResourceAsStream(sfx), TYPE_WAV);
 			
 			//Initialize player
 			SFXPlayer.realize();
@@ -135,7 +134,7 @@ public class J2MESoundManager extends SoundManager {
 			SFXPlayer.prefetch();
 			
 			//Add to player list
-			m_SFXPlayers.put(Utilities.SFX_FOLDER + sfx, SFXPlayer);
+			m_SFXPlayers.put(sfx, SFXPlayer);
 		} catch (IOException e) {
 		} catch (MediaException e) {}
 	}

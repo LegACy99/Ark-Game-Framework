@@ -12,6 +12,7 @@ import net.ark.framework.system.Utilities;
 import net.ark.framework.system.input.AccelerometerInfo;
 import java.util.Vector;
 import net.ark.framework.system.Device;
+import net.ark.framework.system.j2me.canvas.ArkCanvas;
 
 /**
  *
@@ -196,6 +197,7 @@ public class J2MEStateManager extends StateManager {
 			if (m_StateList.isEmpty() || !TopExist) m_Running = false;
 			else {
 				//Get input
+				J2MEDevice.Midlet.getCanvas().updateTime(Difference);
 				int[] Keys						= Device.instance().getKeys();
 				TouchInfo[] Touches				= Device.instance().getTouches();
 				AccelerometerInfo Accelerometer	= Device.instance().getAccelerometer();

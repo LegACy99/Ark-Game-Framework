@@ -4,10 +4,12 @@
  */
 package net.ark.framework.system.j2me;
 
+import java.util.Hashtable;
 import net.ark.framework.system.Device;
 import net.ark.framework.system.input.TouchInfo;
 import net.ark.framework.system.input.AccelerometerInfo;
 import javax.microedition.lcdui.Graphics;
+import javax.microedition.lcdui.game.GameCanvas;
 import net.ark.framework.system.j2me.midlets.GameMidlet;
 
 /**
@@ -34,10 +36,16 @@ public class J2MEDevice extends Device {
 			//m_Row		= (getHeight() + Utilities.instance().getTileHeight() - 1) / Utilities.instance().getTileHeight();
 		}
 		
+		//Set constant
+		m_Up	= GameCanvas.UP_PRESSED;
+		m_Down	= GameCanvas.DOWN_PRESSED;
+		m_Left	= GameCanvas.LEFT_PRESSED;
+		m_Right	= GameCanvas.RIGHT_PRESSED;
+		m_Fire	= GameCanvas.FIRE_PRESSED;
+        m_Back	= -7;
+        m_Menu	= -6;
 		
 		//Initialize input
-        m_Back			= -7;
-        m_Menu			= -6;
 		m_Keys			= null;
 		m_Touches 		= new TouchInfo[10];
 		m_Accelerometer = new AccelerometerInfo();
@@ -99,16 +107,4 @@ public class J2MEDevice extends Device {
     public static final String EXTRA_LOADING 	= "loading";
     public static final String EXTRA_TITLE 		= "title";
 	public static final String EXTRA_URL		= "url";
-	
-	//Data
-	/*protected long				m_TimerUp;
-	protected long				m_TimerDown;
-	protected long				m_TimerLeft;
-	protected long				m_TimerRight;
-	protected boolean			m_Suppressed;
-	protected boolean			m_HoldRight;
-	protected boolean			m_HoldLeft;
-	protected boolean			m_HoldFire;
-	protected boolean			m_HoldDown;
-	protected boolean			m_HoldUp;*/
 }

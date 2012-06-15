@@ -59,10 +59,13 @@ public class ButtonList extends ButtonContainer {
 	}
 
 	@Override
-	public void addButton(Button button) {
+	public Button addButton(Button button) {
 		//Add a button
-		super.addButton(button);
+		Button Added = super.addButton(button);
 		updateButtons();
+		
+		//Return
+		return Added;
 	}
 
 	@Override

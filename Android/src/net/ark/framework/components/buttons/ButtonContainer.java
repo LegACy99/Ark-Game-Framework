@@ -18,22 +18,14 @@ public class ButtonContainer {
 		m_Buttons = new ArrayList<Button>();
 	}
 	
-	public Button addButton(int id, String images, String text) {
-		return addButton(id, (JSONObject[]) ResourceManager.instance().getTextures(images), text);
-	}
-	
-	public Button addButton(int id, JSONObject[] json, String text) {
-		//Create button
-		Button NewButton = new Button(id, json, text);
-		m_Buttons.add(NewButton);
-		
-		//Return
-		return NewButton;
-	}
-	
-	public void addButton(Button button) {
+	public Button addButton(int id, String images, String text) 	{ return addButton(id, (JSONObject[]) ResourceManager.instance().getTextures(images), text); 	}	
+	public Button addButton(int id, JSONObject[] json, String text) { return addButton(new Button(id, json, text)); 												}	
+	public Button addButton(Button button) {
 		//Add a button
 		m_Buttons.add(button);
+		
+		//Return
+		return button;
 	}
 	
 	public void addButtons(Button[] buttons) {

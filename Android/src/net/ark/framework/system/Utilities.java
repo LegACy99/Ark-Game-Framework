@@ -30,6 +30,7 @@ public abstract class Utilities {
 		m_HeightAsBase	= false;
 		m_FontTexture	= null;
 		m_ReleaseSFX	= null;
+		m_CursorSFX		= null;
 		m_PressSFX		= null;
 		m_Font			= null;
 		m_Name			= "";
@@ -50,6 +51,7 @@ public abstract class Utilities {
 			m_FontTexture	= system.getFontTexture();
 			m_ReleaseSFX	= system.getReleaseSFX();
 			m_FontSmooth	= system.isFontSmooth();
+			m_CursorSFX		= system.getCursorSFX();
 			m_PressSFX		= system.getPressSFX();
 			
 			//Get base size
@@ -72,6 +74,7 @@ public abstract class Utilities {
 	public String getSystemFont()			{ return m_Font;			}
 	public String getApplicationName()		{ return m_Name;			}
 	public String getSystemPressSFX()		{ return m_PressSFX;		}
+	public String getSystemCursorSFX()		{ return m_CursorSFX;		}
 	public String getSystemReleaseSFX()		{ return m_ReleaseSFX;		}
 	public String getSystemFontTexture()	{ return m_FontTexture;		}
 	public boolean isSystemBasedOnHeight()	{ return m_HeightAsBase;	}
@@ -142,6 +145,7 @@ public abstract class Utilities {
     protected String	m_Name;
     protected String	m_Font;
     protected String	m_PressSFX;
+    protected String	m_CursorSFX;
     protected String	m_ReleaseSFX;
     protected boolean	m_FontSmooth;
     protected String	m_FontTexture;

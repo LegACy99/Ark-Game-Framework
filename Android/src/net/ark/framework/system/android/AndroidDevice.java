@@ -39,10 +39,11 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		m_Gesture	= new GestureDetector(this);
 		if (GameActivity != null) m_Assets = GameActivity.getAssets();
 		
+		//Set constant
+        m_Back  = KeyEvent.KEYCODE_BACK;
+		
 		//Initialize input
-        m_Menu  		= -1;
 		m_Keys			= null;
-        m_Back  		= KeyEvent.KEYCODE_BACK;
 		m_KeyList		= new ArrayList<Integer>();
 		m_Accelerometer = new AccelerometerInfo();
 		for (int i = 0; i < m_Touches.length; i++) m_Touches[i] = new TouchInfo();

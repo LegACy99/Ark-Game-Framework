@@ -8,7 +8,7 @@ public abstract class Utilities {
 	//Constants
 	public static final int FLOAT_SIZE		= 4;
 	public static final int SHORT_SIZE		= 2;
-	public static final long SCROLL_WAIT	= 160;
+	public static final long BUTTON_DELAY	= 160;
 
 	//Folder constants
 	public static final String DATA_FOLDER			= "/data/";
@@ -20,14 +20,6 @@ public abstract class Utilities {
 	public static final String FONT_FOLDER			= DATA_FOLDER + "fonts/";
 	public static final String BGM_FOLDER			= AUDIO_FOLDER + "bgm/";
 	public static final String SFX_FOLDER			= AUDIO_FOLDER + "sfx/";
-
-	//Fonts constants
-	/*public static final String HUGE_FONT		= FONT_FOLDER + "huge.font";
-	public static final String TINY_FONT		= FONT_FOLDER + "tiny.font";
-	public static final String TITLE_FONT		= FONT_FOLDER + "thick.font";
-	public static final String MAIN_FONT		= FONT_FOLDER + "normal.font";
-	public static final String SMALL_FONT		= FONT_FOLDER + "smaller.font";
-	public static final String SMALL_BOLD_FONT	= FONT_FOLDER + "smaller-bold.font";*/
 		
 	protected Utilities() {
 		//Initialize
@@ -38,6 +30,7 @@ public abstract class Utilities {
 		m_HeightAsBase	= false;
 		m_FontTexture	= null;
 		m_ReleaseSFX	= null;
+		m_CursorSFX		= null;
 		m_PressSFX		= null;
 		m_Font			= null;
 		m_Name			= "";
@@ -58,6 +51,7 @@ public abstract class Utilities {
 			m_FontTexture	= system.getFontTexture();
 			m_ReleaseSFX	= system.getReleaseSFX();
 			m_FontSmooth	= system.isFontSmooth();
+			m_CursorSFX		= system.getCursorSFX();
 			m_PressSFX		= system.getPressSFX();
 			
 			//Get base size
@@ -80,6 +74,7 @@ public abstract class Utilities {
 	public String getSystemFont()			{ return m_Font;			}
 	public String getApplicationName()		{ return m_Name;			}
 	public String getSystemPressSFX()		{ return m_PressSFX;		}
+	public String getSystemCursorSFX()		{ return m_CursorSFX;		}
 	public String getSystemReleaseSFX()		{ return m_ReleaseSFX;		}
 	public String getSystemFontTexture()	{ return m_FontTexture;		}
 	public boolean isSystemBasedOnHeight()	{ return m_HeightAsBase;	}
@@ -142,6 +137,7 @@ public abstract class Utilities {
     protected String	m_Name;
     protected String	m_Font;
     protected String	m_PressSFX;
+    protected String	m_CursorSFX;
     protected String	m_ReleaseSFX;
     protected boolean	m_FontSmooth;
     protected String	m_FontTexture;

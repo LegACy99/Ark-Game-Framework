@@ -9,6 +9,7 @@ public interface System {
 	
 	//Game default resources
 	public String 	getPressSFX();
+	public String 	getCursorSFX();
 	public String 	getReleaseSFX();
 	public String 	getFontTexture();
 	public boolean 	isFontSmooth();
