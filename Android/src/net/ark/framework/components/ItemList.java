@@ -11,76 +11,76 @@ public class ItemList extends Drawable {
 		super();
 		
 		//Initialize
-		m_X				= 0;
-		m_Y				= 0;
-		m_Speed			= 0;
-		m_Scroll		= 0;
-		m_Slowing		= 0;
-		m_Bottom		= false;
-		m_Pressed		= false;
-		m_Scrolling		= false;
-		m_Horizontal	= Drawable.ANCHOR_LEFT;
-		m_Vertical		= Drawable.ANCHOR_TOP;
-		m_Items			= new Drawable[0];
+		m_Gap		= 0;
+		m_Speed		= 0;
+		m_Total		= 0;
+		m_Window	= 0;
+		m_Scroll	= 0;
+		m_Slowing	= 0;
+		m_Pressed	= false;
+		m_Scrolling	= false;
+		m_Items		= new Croppable[0];
 	}
+
+	public ItemList(float window) 					{ this(window, 0, 0);		}
+	public ItemList(float window, float x, float y) { this(window, x, y, 0); 	}
 	
-	protected ItemList(float x, float y) {
-		//Init
+	/**
+	 * Instantiates a new item list.
+	 *
+	 * @param window the window
+	 * @param x the x
+	 * @param y the y
+	 * @param gap the gap
+	 */
+	public ItemList(float window, float x, float y, float gap) {
+		//Default
 		this();
 		
-		//Save position
-		setPosition(x, y);
-	}
-
-	public ItemList(float width, float height, float x, float y) {
-		this(width, height, x, y, 0);
-	}
-
-	public ItemList(float width, float height, float x, float y, float gap) {
-		this(width, height, x, y, gap, Drawable.ANCHOR_LEFT);
-	}
-
-	public ItemList(float width, float height, float x, float y, float gap, int horizontal) {
-		this(width, height, x, y, gap, horizontal, Drawable.ANCHOR_TOP);
-	}
-	
-	public ItemList(float width, float height, float x, float y, float gap, int horizontal, int vertical) {
-		//Default
-		this(x, y);
-		
-		//Set size
+		//Save data
 		m_Gap				= gap;
-		m_OriginalWidth		= width;
-		m_OriginalHeight	= height;
-		m_Vertical			= vertical;
-		m_Horizontal		= horizontal;
-		m_Height			= m_OriginalHeight * Utilities.instance().getScale();
-		m_Width				= m_OriginalWidth * Utilities.instance().getScale();
+		m_Window 			= window;
+		m_Height			= m_Window * Utilities.instance().getScale();
+		m_OriginalHeight	= m_Window; 
+		
+		//Set position
+		setPosition(x, y);
 		
 	}
 
-	public Drawable addItem(Drawable item) {
+	public Croppable addItem(Croppable item) {
+		//Skip if null
+		if (item == null) return null;
+		
 		//Add
-		Drawable[] Items = new Drawable[m_Items.length + 1];
+		Croppable[] Items = new Croppable[m_Items.length + 1];
 		System.arraycopy(m_Items, 0, Items, 0, m_Items.length);
 		Items[m_Items.length]	= item;
 		m_Items					= Items;
 		
-		//Update
-		updateItems();
+		//Set position
+		item.setPosition(m_X / Utilities.instance().getScale(), (m_Y / Utilities.instance().getScale()) + m_Total + (m_Items.length > 1 ? m_Gap : 0));
+		
+		//Calculate vertical size
+		float Old	 = m_Total;
+		m_Total 	+= item.getOriginalHeight() + (m_Items.length > 1 ? m_Gap : 0);
+		if (m_Total > m_Window) item.setRegion(0, 0, item.getOriginalWidth(), m_Window - Old - (m_Items.length > 1 ? m_Gap : 0));
+		
+		//if width is more than current
+		if (item.getOriginalWidth() > m_OriginalWidth) {
+			//Save width
+			m_Width			= item.getWidth();
+			m_OriginalWidth = item.getOriginalWidth();
+		}
 
-		//Return the button
+		//Return the item
 		return item;
 	}
-	
-	public boolean isTop()		{	return m_Scroll == 0;	}
-	public boolean isBottom()		{	return m_Bottom;	}
-	public boolean isPressed()	{	return m_Pressed;		}
+
+	//Accessor
+	public boolean isPressed()	{ return m_Pressed;	}
 	
 	public void update(int[] keys, TouchInfo[] touches, long time) {		
-		//Super
-		//int Result = super.update(keys, touches);
-		
 		//If touched
 		if (touches[0].isPressed()) {
 			//If was pressed
@@ -89,7 +89,7 @@ public class ItemList extends Drawable {
 				if (m_Scrolling) {
 					//Get offset
 					float Offset 	= touches[0].getOffsetY() / Utilities.instance().getScale();
-					m_Speed			= time <= 0 ? 0 : Offset * 1000f / (float)time;
+					m_Speed			= time <= 0 ? 0 : Offset / (float)time * 1000f;
 					m_Slowing		= -m_Speed;
 
 					//Scroll
@@ -110,42 +110,41 @@ public class ItemList extends Drawable {
 				}
 			}
 		} else {
-			//if pressed
-			//if (m_Pressed) {
-				//If scrolling
-				if (m_Scrolling) {
-					//If there's speed
-					if (m_Speed != 0) {
-
-						//Save sign
-						boolean Minus = m_Speed < 0;
-						m_Speed += m_Slowing * (float)time / 1000f;
-
-						//If sign is different, done
-						if (m_Speed < 0 != Minus) m_Speed = 0;
-					}
-
-					//Scroll
-					m_Scroll -= m_Speed * (float)time / 1000f;
-
-					//If died
-					if (m_Speed == 0) {
-						//No more scroll
-						m_Speed		= 0;
-						m_Slowing	= 0;
-						m_Scrolling = false;
-					}
-				}
-			//}
-				
-			//Not pressed
+			//Not pressed anymore
 			m_Pressed = false;
+			
+			//If scrolling
+			if (m_Scrolling) {
+				//If there's speed
+				if (m_Speed != 0) {
+					//Save sign
+					boolean Minus = m_Speed < 0;
+					m_Speed += m_Slowing * (float)time / 1000f;
+
+					//If sign is different, done
+					if (m_Speed < 0 != Minus) m_Speed = 0;
+				}
+
+				//Scroll
+				m_Scroll -= m_Speed * (float)time / 1000f;
+
+				//If died
+				if (m_Speed == 0) {
+					//No more scroll
+					m_Speed		= 0;
+					m_Slowing	= 0;
+					m_Scrolling = false;
+				}
+			}
 		}
 		
 		//If scrolling
 		if (m_Scrolling) {
+			//Correct scroll
+			if (m_Scroll + m_Window > m_Total) 	m_Scroll = m_Total - m_Window;
+			if (m_Scroll < 0) 					m_Scroll = 0;
+			
 			//Update items
-			updateScroll();
 			updateItems();
 		}
 	}
@@ -161,70 +160,24 @@ public class ItemList extends Drawable {
 		return true;
 	}
 	
-	protected float getItemsHeight() {
-		//Get total height
-		float Total = 0;
-		if (m_Items.length > 1) Total += m_Gap * (m_Items.length - 1);
-		for (int i = 0; i < m_Items.length; i++) Total += m_Items[i].getOriginalHeight();
-		
-		//Return
-		return Total;
-	}
-	
-	protected void updateScroll() {
-		//Get total height
-		float Total = getItemsHeight();
-		
-		//If using window
-		if (m_OriginalHeight > 0) {
-			//Correct scroll
-			if (m_Scroll + m_OriginalHeight > Total) 	m_Scroll = Total - m_OriginalHeight;
-			if (m_Scroll < 0) 							m_Scroll = 0;
-			
-			//Is on bottom?
-			m_Bottom = m_Scroll == Total - m_OriginalHeight;
-		}
-	}
-	
 	protected void updateItems() {
-		//Get X
-		float X	= m_X / Utilities.instance().getScale();
-		if (m_Horizontal == ANCHOR_RIGHT)	X += m_OriginalWidth;
-		if (m_Horizontal == ANCHOR_HCENTER)	X += (m_OriginalWidth / 2f);
+		//Calculate
+		float X			= m_X / Utilities.instance().getScale();
+		float Y 		= (m_Y / Utilities.instance().getScale()) - m_Scroll;
+		float Window	= m_Window * Utilities.instance().getScale();
 		
-		//Get Y
-		float Total	= getItemsHeight();
-		float Top 	= (m_Y / Utilities.instance().getScale()) - m_Scroll;
-		if (m_OriginalHeight > Total) {
-			//Calculate alignment
-			if (m_Vertical == ANCHOR_BOTTOM)	Top += m_OriginalHeight - Total;	
-			if (m_Vertical == ANCHOR_VCENTER)	Top += (m_OriginalHeight - Total) / 2f;
-		}
-		
-		//For each button
+		//For each item
 		for (int i = 0; i < m_Items.length; i++) {			
 			//Set position
-			m_Items[i].setPosition(X, Top, m_Horizontal);
-			Top += m_Items[i].getOriginalHeight() + m_Gap;
+			float OldY = Y;
+			m_Items[i].setPosition(X, Y);
+			Y += m_Items[i].getOriginalHeight() + m_Gap;
 			
-			//Hide
-			//m_Items[i].Visible = false;
+			//Calculate
+			float RegionY 		= m_Y - m_Items[i].getY();
+			float RegionHeight 	= m_Y + Window - (OldY * Utilities.instance().getScale());
+			m_Items[i].setRegion(0, RegionY / Utilities.instance().getScale(), m_Items[i].getOriginalWidth(), RegionHeight / Utilities.instance().getScale());
 		}
-		
-		//Window?
-		/*if (m_WindowHeight > 0) {	
-			//For each button
-			for (int i = 0; i < m_Buttons.size(); i++) {
-				//Get position
-				float Y = m_Buttons.get(i).getY() / Utilities.instance().getScale();
-				
-				//Visible if inside window
-				if (Y + m_Buttons.get(i).getOriginalHeight() > m_Y && Y < m_Y + m_WindowHeight) m_Buttons.get(i).Visible = true; 
-			}
-		} else if (m_MaxItems > 0) {
-			//Visible buttons
-			for (int i = m_TopItem; i < m_TopItem + m_MaxItems; i++) m_Buttons.get(i).Visible = true;
-		}*/
 	}
 
 	@Override
@@ -241,14 +194,12 @@ public class ItemList extends Drawable {
 	protected float		m_Slowing;
 	protected boolean	m_Pressed;
 	protected boolean	m_Scrolling;
-	protected int		m_Horizontal;
-	protected int		m_Vertical;
-	protected int		m_Cursor;
 	
 	//Items
 	protected float			m_Gap;
+	protected float			m_Total;
+	protected float			m_Window;
 	protected float			m_Scroll;
-	protected boolean		m_Bottom;
-	protected Drawable[]	m_Items;
+	protected Croppable[]	m_Items;
 
 }

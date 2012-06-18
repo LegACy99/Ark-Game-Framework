@@ -62,6 +62,7 @@ public class Button extends Croppable {
 	
 	/**
 	 * Constructs a new Button.
+	 * 
 	 * @param id an ID for the button to differentiate between buttons
 	 * @param images an array of JSONObject containing image data for the button
 	 * @param text A text that will be shown on the button
