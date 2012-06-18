@@ -1,17 +1,17 @@
-package net.ark.framework.components.buttons;
+ package net.ark.framework.components.buttons;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import org.json.JSONObject;
-
+import net.ark.framework.components.Croppable;
 import net.ark.framework.components.Drawable;
-import net.ark.framework.system.Device;
 import net.ark.framework.system.Utilities;
 import net.ark.framework.system.images.Image;
 import net.ark.framework.system.images.Label;
 import net.ark.framework.system.resource.ResourceManager;
 
-public class Button extends Drawable {
+import org.json.JSONObject;
+
+public class Button extends Croppable {
 	protected Button() {
 		//Super
 		super();
@@ -60,6 +60,14 @@ public class Button extends Drawable {
 		this(id, (JSONObject[]) ResourceManager.instance().getTextures(images), text, x, y);
 	}
 	
+	/**
+	 * Constructs a new Button.
+	 * @param id an ID for the button to differentiate between buttons
+	 * @param images an array of JSONObject containing image data for the button
+	 * @param text A text that will be shown on the button
+	 * @param x Horizontal position of the button, unscaled
+	 * @param y Vertical position of the button, unscaled
+	 */
 	public Button(int id, JSONObject[] images, String text, float x, float y) {
 		//Default
 		this();
@@ -90,13 +98,14 @@ public class Button extends Drawable {
 		
 		//Set position and size
 		setPosition(x, y);
-		setSize(m_X, m_Y, m_Width, m_Height, false, false);
+		setRegion(0, 0, m_OriginalWidth, m_OriginalHeight);
 	}
 	
 	//Accessors
 	public int getID()			{	return m_ID;		}
 	public boolean isActive()	{	return m_Active;	}
 	
+	@Override
 	public void setPosition(float x, float y, int horizontal, int vertical) {
 		//Super
 		super.setPosition(x, y, horizontal, vertical);
@@ -106,6 +115,30 @@ public class Button extends Drawable {
 		if (m_Labels != null)
 			for (int i = 0; i < m_Labels.length; i++) 
 				m_Labels[i].setPosition((m_X + (m_Width / 2f)) / Utilities.instance().getScale(), (m_Y + (m_Height / 2f)) / Utilities.instance().getScale(), Drawable.ANCHOR_HCENTER, Drawable.ANCHOR_VCENTER);
+	}
+
+	@Override
+	public void setRegion(float x, float y, float width, float height) {
+		//Super
+		super.setRegion(x, y, width, height);
+		
+		//Set size
+		setSize(m_RegionX, m_RegionY, m_RegionWidth, m_RegionHeight, false, false);
+		
+		//Set images region
+		if (m_Images != null) for (int i = 0; i < m_Images.length; i++) m_Images[i].setRegion(x, y, width, height);
+		
+		//If label exist
+		if (m_Labels != null) for (int i = 0; i < m_Labels.length; i++) {
+			//Calculate region
+			float Top 		= m_Y + m_RegionY > m_Labels[i].getY() ? (m_Y + m_RegionY) - m_Labels[i].getY() : 0;
+			float Left 		= m_X + m_RegionX > m_Labels[i].getX() ? (m_X + m_RegionX) - m_Labels[i].getX() : 0;
+			float Width		= m_Labels[i].getX() + m_Labels[i].getWidth() > m_X + m_RegionX + m_RegionWidth ? m_X + m_RegionX + m_RegionWidth - Left - m_Labels[i].getX() : m_Labels[i].getWidth() - Left;
+			float Height	= m_Labels[i].getY() + m_Labels[i].getHeight() > m_Y + m_RegionY + m_RegionHeight ? m_Y + m_RegionY + m_RegionHeight - Top - m_Labels[i].getY() : m_Labels[i].getHeight() - Top;
+			
+			//Set region
+			m_Labels[i].setRegion(Left / Utilities.instance().getScale(), Top / Utilities.instance().getScale(), Width / Utilities.instance().getScale(), Height / Utilities.instance().getScale());
+		}
 	}
 	
 	public void setFont(int state, String font) {
@@ -158,14 +191,14 @@ public class Button extends Drawable {
 		//Set offset
 		m_InputX = x;
 		m_InputY = y;
-		if (scaleOffset) m_InputX *= Device.instance().getScale();
-		if (scaleOffset) m_InputY *= Device.instance().getScale();
+		if (scaleOffset) m_InputX *= Utilities.instance().getScale();
+		if (scaleOffset) m_InputY *= Utilities.instance().getScale();
 		
 		//Set size
 		m_InputWidth 	= width;
 		m_InputHeight	= height;
-		if (scaleSize) m_InputWidth		*= Device.instance().getScale();
-		if (scaleSize) m_InputHeight	*= Device.instance().getScale();
+		if (scaleSize) m_InputWidth		*= Utilities.instance().getScale();
+		if (scaleSize) m_InputHeight	*= Utilities.instance().getScale();
 	}
 	
 	public void setActive(boolean active) {
@@ -181,9 +214,9 @@ public class Button extends Drawable {
 	
 	public boolean isInside(float x, float y) {
 		//Init variables
-		float Top 	= m_Y + m_InputY;
-		float Left	= m_X + m_InputX;		
-		
+		float Top = m_Y + m_InputY;
+		float Left	= m_X + m_InputX;	
+
 		//Check for false
 		if (y < Top) 					return false;
 		if (x < Left)					return false;
