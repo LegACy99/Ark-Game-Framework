@@ -18,7 +18,6 @@ public class Main extends GameActivity implements System {
 		
 		//Initialize
         Utilities.instance().setSystem(this);
-        AndroidDevice.instance().setSystem(this);
         StateManager.instance().setup(new ExampleStateFactory());
 	}
 	
@@ -29,7 +28,8 @@ public class Main extends GameActivity implements System {
 	@Override public String getReleaseSFX() 		{ return null;									}
 	@Override public String getApplicationName() 	{ return getString(R.string.app_name);			}
 	@Override public String getFontTexture() 		{ return Utilities.FONT_TEXTURES + "font.png";	}
-	@Override public String getPressSFX() 			{ return Utilities.SFX_FOLDER + "cursor.wav";	}
+	@Override public String getCursorSFX() 			{ return Utilities.SFX_FOLDER + "cursor.ogg";	}
+	@Override public String getPressSFX() 			{ return Utilities.SFX_FOLDER + "cursor.ogg";	}
 	@Override public String getFont() 				{ return Utilities.FONT_FOLDER + "font.json";	}
 	
 	@Override

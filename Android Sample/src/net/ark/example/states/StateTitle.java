@@ -16,9 +16,9 @@ public class StateTitle extends ExampleState {
 	public StateTitle() {
 		//Super
 		super(ExampleState.TITLE, ExampleUtilities.BACKGROUND_FOLDER + "title.json");
-
-		//Create containers
-		m_Buttons = new ButtonContainer();
+		
+		//Add back button
+		m_Buttons 	= new ButtonContainer();
 		Button Back = m_Buttons.addButton(BUTTON_BACK, ExampleUtilities.INTERFACE_FOLDER + "button.json", null);
 		Back.setPosition(Utilities.instance().getWidth() - 20, Utilities.instance().getHeight() - 20, Drawable.ANCHOR_RIGHT, Drawable.ANCHOR_BOTTOM);
 	}
@@ -39,7 +39,7 @@ public class StateTitle extends ExampleState {
 		//If back
 		if (Back) {
 			//Done
-			SoundManager.instance().playSFX(Utilities.SFX_FOLDER + "cancel.wav");
+			SoundManager.instance().playSFX(Utilities.SFX_FOLDER + "cancel.ogg");
 			m_Active = false;
 		} else {	
 			//Check buttons
@@ -52,6 +52,8 @@ public class StateTitle extends ExampleState {
 	public void draw(GL10 gl) {
 		//Super
 		super.draw(gl);
+		
+		//Draw components
 		m_Buttons.draw(gl);
 	}
 	
