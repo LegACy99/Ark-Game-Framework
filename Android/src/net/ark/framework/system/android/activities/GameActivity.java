@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.ark.framework.system.Device;
 import net.ark.framework.system.SoundManager;
+import net.ark.framework.system.StateManager;
 import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.AndroidDevice;
 import android.app.Activity;
@@ -80,7 +81,8 @@ public abstract class GameActivity extends Activity {
     	super.onResume();
     	m_Lock.acquire();
     	m_Canvas.onResume();
-    	SoundManager.instance().resume();
+    	StateManager.instance().resume();
+    	if (m_Focus) SoundManager.instance().resume();
     }
     
     @Override
@@ -89,7 +91,18 @@ public abstract class GameActivity extends Activity {
     	super.onPause();
     	m_Lock.release();
     	m_Canvas.onPause();
+    	StateManager.instance().pause();
     	SoundManager.instance().pause();
+    }
+    
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+    	//Super
+    	super.onWindowFocusChanged(hasFocus);
+    	
+    	//Set focus
+        m_Focus = hasFocus;
+        if (m_Focus) SoundManager.instance().resume();
     }
     
     @Override
@@ -97,7 +110,8 @@ public abstract class GameActivity extends Activity {
     	//Do nothing
     }
 	
-	//Components
+	//Members
 	protected WakeLock 		m_Lock;
 	protected GLSurfaceView m_Canvas;
+    protected boolean		m_Focus;
 }

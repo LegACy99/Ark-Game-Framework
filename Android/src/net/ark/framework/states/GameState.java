@@ -48,10 +48,10 @@ public class GameState {
 	public boolean drawPrevious()		{	return m_DrawPrevious;		}
 	public boolean updatePrevious()		{	return m_UpdatePrevious;	}
 
-	public void onEnter()			{}
-	public void onRemove()			{}
-	public void onExit()			{}
-	public void keyPressed(int key)	{}
+	public void onEnter()	{}
+	public void onRemove()	{}
+	public void onExit()	{}
+	public void onResume()	{}
 	public void update(long time, int[] keys, TouchInfo[] touches, AccelerometerInfo accel) {}
 	
 	public void draw(GL10 gl) {

@@ -31,9 +31,11 @@ public abstract class StateManager {
 	protected abstract void returnTo(int id, Object[] parameters);
 	public abstract void    goTo(int id, Object[] parameters, boolean swap);
 	
-	//Update
+	//Updating
 	public abstract void run();
 	public abstract void quit();
+	public abstract void pause();
+	public abstract void resume();
 	
 	//Data
 	protected boolean 		m_Running;

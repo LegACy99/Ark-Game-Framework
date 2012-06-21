@@ -17,6 +17,7 @@ public class AndroidStateManager extends StateManager {
 		//Initialize data
     	m_Initialized	= false;
 		m_Paused		= false;
+		m_Resumed		= false;
 		m_Running		= true;
 		m_RemovalDepth	= 0;
 		m_CurrentTime	= System.currentTimeMillis();
@@ -49,6 +50,20 @@ public class AndroidStateManager extends StateManager {
 		
 		//No longer running
 		m_Running = false;
+	}
+
+	@Override
+	public void pause() {
+		//Pause
+		m_Paused 	= true;
+		m_Resumed	= false;
+	}
+
+	@Override
+	public void resume() {
+		//Resume
+		if (m_Paused) m_Resumed	= true;
+		m_Paused = false;
 	}
 
 	@Override
@@ -218,19 +233,28 @@ public class AndroidStateManager extends StateManager {
 				//Update if state should run in background
 				//(CurrentState.runsInBackground()) CurrentState.update(Difference, 0, null);
 			} else {
-				//For each updated
-				for (int i = Updated.size() - 1; i >= 0; i--) {
-					//Get data
-					int Keys[] 				= i == 0 ? Device.instance().getKeys() : new int[] {};
-					AccelerometerInfo Accel	= i == 0 ? Device.instance().getAccelerometer() : null;
-					TouchInfo[] Touches 	= i == 0 ? Device.instance().getTouches() : null;
+				//If resumed
+				if (m_Resumed) {
+					//Resume top state
+					if (Updated.size() > 0 && Updated.get(0) != null) Updated.get(0).onResume();
 					
-					//Update
-					Updated.get(i).update(Difference, Keys, Touches, Accel);
-				}
+					//No longer resumed
+					m_Resumed = false;
+				} else {				
+					//For each updated
+					for (int i = Updated.size() - 1; i >= 0; i--) {
+						//Get data
+						int Keys[] 				= i == 0 ? Device.instance().getKeys() : new int[] {};
+						AccelerometerInfo Accel	= i == 0 ? Device.instance().getAccelerometer() : null;
+						TouchInfo[] Touches 	= i == 0 ? Device.instance().getTouches() : null;
+						
+						//Update
+						Updated.get(i).update(Difference, Keys, Touches, Accel);
+					}
 				
-				//Draw all
-				for (int i = Drawn.size() - 1; i >= 0; i--) Drawn.get(i).draw(((AndroidDevice)Device.instance()).getGL());
+					//Draw all
+					for (int i = Drawn.size() - 1; i >= 0; i--) Drawn.get(i).draw(((AndroidDevice)Device.instance()).getGL());
+				}
 			}
 		}
 	}
@@ -240,6 +264,7 @@ public class AndroidStateManager extends StateManager {
 	
 	//State data
 	protected boolean				m_Paused;
+	protected boolean				m_Resumed;
 	protected boolean				m_Initialized;
 	protected ArrayList<GameState>	m_StateList;
 	protected long					m_CurrentTime;
