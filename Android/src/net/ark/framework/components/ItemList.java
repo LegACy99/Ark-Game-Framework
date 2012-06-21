@@ -151,10 +151,10 @@ public class ItemList extends Drawable {
 	
 	protected boolean isInside(float x, float y) {
 		//Check for false
-		if (y < m_X)			return false;
-		if (x < m_Y)			return false;
-		if (y > m_Y + m_Height)	return false;
+		if (x < m_X)			return false;
+		if (y < m_Y)			return false;
 		if (x > m_X + m_Width)	return false;
+		if (y > m_Y + m_Height)	return false;
 
 		//If passed, inside
 		return true;

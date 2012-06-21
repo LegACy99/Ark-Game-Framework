@@ -95,42 +95,47 @@ public class AndroidLabel extends Label {
 		
 		//For each character
 		for (int i = 0; i < m_Text.length(); i++) {
-			//Get char
-			Chars[i] = m_Font.getChar(m_Text.charAt(i));
-			
-			//Calculate vertical region
+			//Initialize
 			OffsetTops[i] 		= 0;
 			OffsetBottoms[i]	= 0;
-			if (m_RegionY > -Chars[i].getTop()) 					OffsetTops[i] = m_RegionY - (-Chars[i].getTop());
-			if (m_RegionY + m_RegionHeight < -Chars[i].getBottom()) OffsetBottoms[i] = (-Chars[i].getBottom()) - m_RegionY - m_RegionHeight;
+			Drawns[i]			= false;
+			Chars[i] 			= m_Font.getChar(m_Text.charAt(i));
 			
-			//Check start if nothing
-			if (Start < 0) {
-				//If in region
-				if (Cursor + Chars[i].getWidth() >= m_RegionX) {
-					//Set start
-					Start 		= i;
-					OffsetStart = m_RegionX - Cursor;
+			//If character exist
+			if (Chars[i] != null) {				
+				//Calculate vertical region
+				if (m_RegionY > -Chars[i].getTop()) 					OffsetTops[i] = m_RegionY - (-Chars[i].getTop());
+				if (m_RegionY + m_RegionHeight < -Chars[i].getBottom()) OffsetBottoms[i] = (-Chars[i].getBottom()) - m_RegionY - m_RegionHeight;
+				
+				//Check start if nothing
+				if (Start < 0) {
+					//If in region
+					if (Cursor + Chars[i].getWidth() >= m_RegionX) {
+						//Set start
+						Start 		= i;
+						OffsetStart = m_RegionX - Cursor;
+					}
 				}
-			}
-			
-			//Drawn?
-			Drawns[i] = Start >= 0 && End < 0;
-			if (Drawns[i]) if (m_RegionY > -Chars[i].getBottom() || m_RegionY + m_RegionHeight < -Chars[i].getTop()) Drawns[i] = false;
-			
-			//If no end yet
-			if (Start >= 0 && End < 0) {
-				//If in region
-				if (Cursor + Chars[i].getWidth() >= m_RegionX + m_RegionWidth) {
-					//Set end
-					End 		= i;
-					OffsetEnd 	= Cursor + Chars[i].getWidth() - m_RegionX - m_RegionWidth;
+				
+				//Drawn?
+				Drawns[i] = Start >= 0 && End < 0;
+				if (Drawns[i]) if (m_RegionY > -Chars[i].getBottom() || m_RegionY + m_RegionHeight < -Chars[i].getTop()) Drawns[i] = false;
+				
+				//If no end yet
+				if (Start >= 0 && End < 0) {
+					//If in region
+					if (Cursor + Chars[i].getWidth() >= m_RegionX + m_RegionWidth) {
+						//Set end
+						End 		= i;
+						OffsetEnd 	= Cursor + Chars[i].getWidth() - m_RegionX - m_RegionWidth;
+					}
 				}
+				
+				//Move cursor
+				if (i + 1 < m_Text.length()) 	Cursor += Chars[i].getAdvance(m_Text.charAt(i + 1));
+				else							Cursor += Chars[i].getAdvance();
+				
 			}
-			
-			//Move cursor
-			if (i + 1 < m_Text.length()) 	Cursor += Chars[i].getAdvance(m_Text.charAt(i + 1));
-			else							Cursor += Chars[i].getAdvance();
 		}
 		
 		//Calculate size
@@ -216,9 +221,12 @@ public class AndroidLabel extends Label {
 				Index++;
 			}
 			
-			//Next if more
-			if (i + 1 < m_Text.length()) 	Cursor += Chars[i].getAdvance(m_Text.charAt(i + 1));
-			else							Cursor += Chars[i].getAdvance();
+			//If char exist
+			if (Chars[i] != null) {
+				//Next if more
+				if (i + 1 < m_Text.length()) 	Cursor += Chars[i].getAdvance(m_Text.charAt(i + 1));
+				else							Cursor += Chars[i].getAdvance();
+			}
 		}
 		
 		//Create vertex buffer
