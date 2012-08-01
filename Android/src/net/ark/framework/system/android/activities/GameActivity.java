@@ -7,6 +7,7 @@ import net.ark.framework.system.SoundManager;
 import net.ark.framework.system.StateManager;
 import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.AndroidDevice;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
@@ -24,6 +25,7 @@ import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
 
+@TargetApi(11)
 public abstract class GameActivity extends Activity {
 	 /** Called when the activity is first created. */
     @Override
@@ -72,7 +74,11 @@ public abstract class GameActivity extends Activity {
     
     protected void initialize() {        
         //Save activity
-        AndroidDevice.GameActivity = this;
+        AndroidDevice.MainActivity = this;
+    }
+    
+    public boolean isFocused() {
+    	return m_Focus;
     }
     
     @Override
@@ -82,6 +88,7 @@ public abstract class GameActivity extends Activity {
     	m_Lock.acquire();
     	m_Canvas.onResume();
     	StateManager.instance().resume();
+		AndroidDevice.instance().allowResize(m_Focus);
     	if (m_Focus) SoundManager.instance().resume();
     }
     
@@ -103,6 +110,7 @@ public abstract class GameActivity extends Activity {
     	//Set focus
         m_Focus = hasFocus;
         if (m_Focus) SoundManager.instance().resume();
+		AndroidDevice.instance().allowResize(m_Focus);
     }
     
     @Override

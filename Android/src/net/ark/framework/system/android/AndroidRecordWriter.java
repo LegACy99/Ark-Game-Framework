@@ -17,7 +17,7 @@ public class AndroidRecordWriter extends RecordWriter {
 	}
 	
 	protected void initialize() {
-		if (AndroidDevice.GameActivity != null) m_Store = AndroidDevice.GameActivity.getSharedPreferences(STORE_NAME, Context.MODE_WORLD_READABLE);
+		if (AndroidDevice.MainActivity != null) m_Store = AndroidDevice.MainActivity.getSharedPreferences(STORE_NAME, Context.MODE_WORLD_READABLE);
 	}
 
 	@Override

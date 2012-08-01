@@ -40,9 +40,10 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		
 		//Initialize
 		m_OpenGL	= null;
-		if (GameActivity != null) {
-			m_Assets 	= GameActivity.getAssets();
-			m_Gesture	= new GestureDetector(GameActivity, this);
+		m_Resize	= false;
+		if (MainActivity != null) {
+			m_Assets 	= MainActivity.getAssets();
+			m_Gesture	= new GestureDetector(MainActivity, this);
 		}
 		
 		//Set constant
@@ -64,6 +65,11 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
     //Accessors
 	public GL10 getGL()				{	return m_OpenGL;	}
 	public AssetManager getAssets()	{	return m_Assets;	}
+	
+	public void allowResize(boolean resize) {
+		//Change
+		m_Resize = resize;
+	}
 	
 	@Override
 	public int[] getKeys() {
@@ -103,9 +109,12 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		//Save
 		m_OpenGL = gl;
 		
-		//Save screen size
-		m_Width 	= width;
-		m_Height	= height;
+		//If resize or no value
+		if (m_Resize || m_Width == 0 || m_Height == 0) {
+			//Save screen size 
+			m_Width 	= width;
+			m_Height	= height;
+		}
 		
 		//No column/row
 		m_Row		= 1;
@@ -227,14 +236,14 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 	@Override
 	public void openURL(String url, boolean browser, String title, String loading) {
 		//Skip if no activity
-		if (GameActivity == null) return;
+		if (MainActivity == null) return;
 		
 		//Initialize intent
 		Intent URLIntent = null;
 		if (browser) URLIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 		else {
 			//Create intent
-			URLIntent = new Intent(GameActivity, GameActivity.getClass());
+			URLIntent = new Intent(MainActivity, MainActivity.getClass());
 			URLIntent.putExtra(EXTRA_URL, url);
 			
 			//Add loading and title
@@ -243,11 +252,11 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		}
 		
 		//Start intent if exist
-		if (URLIntent != null) GameActivity.startActivity(URLIntent);
+		if (URLIntent != null) MainActivity.startActivity(URLIntent);
 	}
 	
 	//Single instances
-	public static Activity 			GameActivity = null;
+	public static Activity 			MainActivity = null;
 	private static AndroidDevice 	s_Instance = null;
 	
 	//Constants
@@ -264,4 +273,5 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 	protected AssetManager			m_Assets;
 	protected GestureDetector		m_Gesture;
 	protected ArrayList<Integer>	m_KeyList;
+	protected boolean				m_Resize;
 }
