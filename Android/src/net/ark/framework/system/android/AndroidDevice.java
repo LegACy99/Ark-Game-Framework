@@ -11,6 +11,7 @@ import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.input.AccelerometerInfo;
 import net.ark.framework.system.android.input.TouchInfo;
 import net.ark.framework.system.resource.ResourceManager;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -20,7 +21,9 @@ import android.hardware.SensorEventListener;
 import android.net.Uri;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.GLU;
+import android.os.Build;
 import android.os.Process;
+import android.support.v4.view.MotionEventCompat;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.KeyEvent;
@@ -29,6 +32,7 @@ import android.view.View;
 import android.view.View.OnKeyListener;
 import android.view.View.OnTouchListener;
 
+@TargetApi(4)
 public class AndroidDevice extends Device implements Renderer, OnTouchListener, OnKeyListener, SensorEventListener, OnGestureListener {
 	protected AndroidDevice() {
 		//Super
@@ -36,8 +40,10 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		
 		//Initialize
 		m_OpenGL	= null;
-		m_Gesture	= new GestureDetector(this);
-		if (GameActivity != null) m_Assets = GameActivity.getAssets();
+		if (GameActivity != null) {
+			m_Assets 	= GameActivity.getAssets();
+			m_Gesture	= new GestureDetector(GameActivity, this);
+		}
 		
 		//Set constant
         m_Back  = KeyEvent.KEYCODE_BACK;
@@ -141,7 +147,8 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		StateManager.instance().run();
 		if (!StateManager.instance().isRunning()) Process.killProcess(Process.myPid());
 	}
-	
+
+	@TargetApi(5)
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		try {
@@ -149,17 +156,25 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 			Thread.sleep(20);
 		} catch (InterruptedException e) {}
 		
+		//Get count
+		int Count = 1;
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) Count = event.getPointerCount();
+		
 		//For each pointer
-		for (int i = 0; i < event.getPointerCount(); i++) {			
+		for (int i = 0; i < Count; i++) {			
 			//Get pointer ID
-			int Index 	= (event.getAction() & MotionEvent.ACTION_POINTER_ID_MASK) >> MotionEvent.ACTION_POINTER_ID_SHIFT;
-			int ID		= event.getPointerId(Index);
+			int Index 	= MotionEventCompat.getActionIndex(event);
+			int ID		= MotionEventCompat.getPointerId(event, Index);
+			
+			//Get coordinate
+			float X = MotionEventCompat.getX(event, Index);
+			float Y = MotionEventCompat.getY(event, Index);
 			
 			//Check action type
 			int Action = event.getAction() & MotionEvent.ACTION_MASK;
-			if (Action == MotionEvent.ACTION_DOWN || Action == MotionEvent.ACTION_POINTER_DOWN) 										m_Touches[ID].pressed(event.getX(Index), event.getY(Index));
-			else if (Action == MotionEvent.ACTION_UP || Action == MotionEvent.ACTION_POINTER_UP || Action == MotionEvent.ACTION_CANCEL)	m_Touches[ID].released(event.getX(Index), event.getY(Index));
-			else if (Action == MotionEvent.ACTION_MOVE)																					m_Touches[event.getPointerId(i)].dragged(event.getX(i), event.getY(i));
+			if (Action == MotionEvent.ACTION_DOWN || Action == MotionEvent.ACTION_POINTER_DOWN) 										m_Touches[ID].pressed(X, Y);
+			else if (Action == MotionEvent.ACTION_UP || Action == MotionEvent.ACTION_POINTER_UP || Action == MotionEvent.ACTION_CANCEL)	m_Touches[ID].released(X, Y);
+			else if (Action == MotionEvent.ACTION_MOVE)																					m_Touches[ID].dragged(X, Y);
 		}
 		
 		//Detect gesture
@@ -192,7 +207,7 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		for (int i = 0; i < IGNORED_KEYS.length; i++) if (event.getKeyCode() == IGNORED_KEYS[i]) Ignore = true;
 		
 		//Check key if not ignored
-		if (!Ignore) if (event.getAction() == KeyEvent.ACTION_UP) m_KeyList.add(new Integer(event.getKeyCode()));
+		if (!Ignore) if (event.getAction() == KeyEvent.ACTION_UP) m_KeyList.add(Integer.valueOf(event.getKeyCode()));
 		
 		//Consume or no?
 		return !Ignore;

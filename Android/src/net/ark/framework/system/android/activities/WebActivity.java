@@ -2,6 +2,8 @@ package net.ark.framework.system.android.activities;
 
 import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.AndroidDevice;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.net.http.SslError;
 import android.os.Bundle;
@@ -13,7 +15,9 @@ import android.webkit.WebViewClient;
 
 public class WebActivity extends Activity {
     /** Called when the activity is first created. */
-    @Override
+    @SuppressLint("SetJavaScriptEnabled")
+	@TargetApi(3)
+	@Override
     public void onCreate(Bundle savedInstanceState) {
     	//Super
     	super.onCreate(savedInstanceState);
@@ -66,21 +70,22 @@ public class WebActivity extends Activity {
     		}
     	});
     }
-  
-    protected class WebClient extends WebViewClient {
-    	@Override
-    	public boolean shouldOverrideUrlLoading(WebView view, String url) {
-    		//Load URL in webview (not browser)    		
-            view.loadUrl(url);
-            return true;
-        }
+    
+  	protected class WebClient extends WebViewClient {
+      	@Override
+      	public boolean shouldOverrideUrlLoading(WebView view, String url) {
+      		//Load URL in webview (not browser)    		
+              view.loadUrl(url);
+              return true;
+          }
 
-    	@Override
-    	public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-    		//Ignore HTTPS error
-    	    handler.proceed();
-    	}
-    }
+      	@SuppressLint("NewApi")
+		@Override
+      	public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+      		//Ignore HTTPS error
+      	    handler.proceed();
+      	}
+      }
     
     //Constants
     protected static final int 		PROGRESS_FULL = 100;
