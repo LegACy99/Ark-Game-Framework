@@ -24,6 +24,7 @@ import android.view.View.OnKeyListener;
 import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 
 @TargetApi(11)
 public abstract class GameActivity extends Activity {
@@ -46,8 +47,13 @@ public abstract class GameActivity extends Activity {
         //Get wakelock
         m_Lock = ((PowerManager)getSystemService(Context.POWER_SERVICE)).newWakeLock(PowerManager.FULL_WAKE_LOCK, Utilities.instance().getApplicationName());
         
+        //Create relative layout
+        m_Layout = new RelativeLayout(this);
+        RelativeLayout.LayoutParams Params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        
         //Create surface
         m_Canvas = new GLSurfaceView(this);
+        m_Layout.addView(m_Canvas, new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
         
         //Register listeners
         m_Canvas.setRenderer((Renderer) Device.instance());
@@ -69,7 +75,7 @@ public abstract class GameActivity extends Activity {
         if (!Accelerometers.isEmpty()) Manager.registerListener(AndroidDevice.instance(), Accelerometers.get(0), SensorManager.SENSOR_DELAY_GAME);
 
         //Set as activity view
-        setContentView(m_Canvas);
+        setContentView(m_Layout, Params);
     }
     
     protected void initialize() {        
@@ -119,7 +125,8 @@ public abstract class GameActivity extends Activity {
     }
 	
 	//Members
-	protected WakeLock 		m_Lock;
-	protected GLSurfaceView m_Canvas;
-    protected boolean		m_Focus;
+	protected WakeLock 			m_Lock;
+	protected GLSurfaceView 	m_Canvas;
+    protected RelativeLayout	m_Layout;
+    protected boolean			m_Focus;
 }
