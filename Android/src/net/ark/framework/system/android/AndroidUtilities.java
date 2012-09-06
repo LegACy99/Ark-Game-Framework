@@ -29,7 +29,7 @@ public class AndroidUtilities extends Utilities {
 	@Override
 	public int getRandom(int from, int to) {
 		//Return random
-		if (from + 1 >= to) return 0;
+		if (from + 1 >= to) return from;
 		else 				return m_Random.nextInt(to - from) + from;
 	}
 
