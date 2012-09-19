@@ -41,8 +41,8 @@ public abstract class Croppable extends Drawable {
 		if (m_OriginalRegionHeight < 0) 									m_OriginalRegionHeight = 0;
 		if (m_OriginalRegionX > m_OriginalWidth)							m_OriginalRegionX = m_OriginalWidth;
 		if (m_OriginalRegionY > m_OriginalHeight)							m_OriginalRegionY = m_OriginalHeight;
-		if (m_OriginalRegionWidth - m_OriginalRegionX > m_OriginalWidth) 	m_OriginalRegionWidth = m_OriginalWidth - m_OriginalRegionX;
-		if (m_OriginalRegionHeight - m_OriginalRegionY > m_OriginalHeight)	m_OriginalRegionHeight = m_OriginalHeight - m_OriginalRegionY;
+		if (m_OriginalRegionWidth + m_OriginalRegionX > m_OriginalWidth) 	m_OriginalRegionWidth = m_OriginalWidth - m_OriginalRegionX;
+		if (m_OriginalRegionHeight + m_OriginalRegionY > m_OriginalHeight)	m_OriginalRegionHeight = m_OriginalHeight - m_OriginalRegionY;
 		
 		//Scale
 		m_RegionX		= m_OriginalRegionX * Utilities.instance().getScale();

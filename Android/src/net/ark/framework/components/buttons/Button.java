@@ -27,13 +27,10 @@ public class Button extends Croppable {
 		m_Active		= true;
 		Visible			= true;
 		m_State			= STATE_NORMAL;
-		m_FontNormal	= Utilities.instance().getSystemFont();
-		m_FontPressed	= Utilities.instance().getSystemFont();
-		m_FontInactive	= Utilities.instance().getSystemFont();
 	}
 	
 	public Button(int id, String images) {
-		this(id, images, null, 0f, 0f);
+		this(id, images, null);
 	}
 	
 	public Button(int id, JSONObject[] images) {
@@ -41,23 +38,38 @@ public class Button extends Croppable {
 	}
 	
 	public Button(int id, String images, String text) {
-		this(id, images, text, 0f, 0f);
+		this(id, images, text, Utilities.instance().getSystemFont(), 0f, 0f);
 	}
 	
 	public Button(int id, JSONObject[] images, String text) {
-		this(id, images, text, 0f, 0f);
+		this(id, images, text, Utilities.instance().getSystemFont(), 0f, 0f);
+	}
+	
+	public Button(int id, String images, String text, String font) {
+		this(id, images, text, font, 0f, 0f);
+	}
+	
+	public Button(int id, JSONObject[] images, String text, String font) {
+		this(id, images, text, font, 0f, 0f);
 	}
 
 	public Button(int id, String images, float x, float y) {
-		this(id, images, null, x, y);
+		this(id, images, null, null, x, y);
 	}
 
 	public Button(int id, JSONObject[] images, float x, float y) {
-		this(id, images, null, x, y);
+		this(id, images, null, null, x, y);
 	}
 	
-	public Button(int id, String images, String text, float x, float y) {
-		this(id, (JSONObject[]) ResourceManager.instance().getTextures(images), text, x, y);
+	public Button(int id, String images, String text, String font, float x, float y) {
+		this(id, images, text, font, font, font, x, y);
+	}
+	public Button(int id, JSONObject[] images, String text, String font, float x, float y) {
+		this(id, images, text, font, font, font, x, y);
+	}
+	
+	public Button(int id, String images, String text, String font1, String font2, String font3, float x, float y) {
+		this(id, (JSONObject[]) ResourceManager.instance().getTextures(images), text, font1, font2, font3, x, y);
 	}
 	
 	/**
@@ -69,7 +81,7 @@ public class Button extends Croppable {
 	 * @param x Horizontal position of the button, unscaled
 	 * @param y Vertical position of the button, unscaled
 	 */
-	public Button(int id, JSONObject[] images, String text, float x, float y) {
+	public Button(int id, JSONObject[] images, String text, String font1, String font2, String font3, float x, float y) {
 		//Default
 		this();
 		
@@ -91,10 +103,10 @@ public class Button extends Croppable {
 		//If text exist
 		if (text != null) {
 			//Create label
-			m_Labels 				= new Label[m_Images.length];
-			m_Labels[STATE_NORMAL] 	= Label.create(text, m_FontNormal);
-			m_Labels[STATE_PRESSED] = Label.create(text, m_FontPressed); 
-			if (m_Labels.length > STATE_INACTIVE) m_Labels[STATE_INACTIVE] = Label.create(text, m_FontInactive);
+			m_Labels				= new Label[m_Images.length];
+			m_Labels[STATE_NORMAL] 	= Label.create(text, font1);
+			m_Labels[STATE_PRESSED]	= Label.create(text, font2);
+			if (m_Labels.length > STATE_INACTIVE) m_Labels[STATE_INACTIVE] = Label.create(text, font3);
 		}
 		
 		//Set position and size
@@ -140,28 +152,6 @@ public class Button extends Croppable {
 			//Set region
 			m_Labels[i].setRegion(Left / Utilities.instance().getScale(), Top / Utilities.instance().getScale(), Width / Utilities.instance().getScale(), Height / Utilities.instance().getScale());
 		}
-	}
-	
-	public void setFont(int state, String font) {
-		//Set based on state
-		if (state == STATE_NORMAL)			m_FontNormal = font;
-		else if (state == STATE_PRESSED)	m_FontPressed = font;
-		else if (state == STATE_INACTIVE)	m_FontInactive = font;
-	}
-	
-	public void setFont(String font) {
-		setFont(font, font, font);
-	}
-	
-	public void setFont(String fontNormal, String fontPressed) {
-		setFont(fontNormal, fontPressed, fontNormal);
-	}
-	
-	public void setFont(String fontNormal, String fontPressed, String fontInactive) {
-		//Set
-		setFont(STATE_NORMAL, fontNormal);
-		setFont(STATE_PRESSED, fontPressed);
-		setFont(STATE_INACTIVE, fontInactive);
 	}
 	
 	public void setInactiveImage(JSONObject json) {				
@@ -259,8 +249,6 @@ public class Button extends Croppable {
 	protected Label[]	m_Labels;
 	protected Image[] 	m_Images;
 	protected boolean	m_Active;
-	protected String	m_FontNormal;
-	protected String	m_FontPressed;
 	protected String	m_FontInactive;
 	public boolean		Visible;
 }
