@@ -78,7 +78,17 @@ public class ItemList extends Drawable {
 	}
 
 	//Accessor
-	public boolean isPressed()	{ return m_Pressed;	}
+	public int getItemSize()	{ return m_Items.length;	}
+	public boolean isPressed()	{ return m_Pressed;			}
+
+	public Croppable getItem(int position) {
+		//Get item
+		Croppable Result = null;
+		if (position >= 0 && position < m_Items.length) Result = m_Items[position];
+		
+		//Return
+		return Result;
+	}
 	
 	public void update(int[] keys, TouchInfo[] touches, long time) {		
 		//If touched
@@ -160,7 +170,7 @@ public class ItemList extends Drawable {
 		return true;
 	}
 	
-	protected void updateItems() {
+	public void updateItems() {
 		//Calculate
 		float X			= m_X / Utilities.instance().getScale();
 		float Y 		= (m_Y / Utilities.instance().getScale()) - m_Scroll;
