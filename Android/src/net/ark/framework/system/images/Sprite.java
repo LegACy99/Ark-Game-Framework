@@ -1,9 +1,9 @@
 package net.ark.framework.system.images;
 
-import net.ark.framework.components.Drawable;
+import net.ark.framework.components.Croppable;
 import net.ark.framework.system.images.android.AndroidSprite;
 
-public abstract class Sprite extends Drawable {
+public abstract class Sprite extends Croppable {
 	protected Sprite() {
 		//Super
 		super();

@@ -45,7 +45,6 @@ public class ItemList extends Drawable {
 		
 		//Set position
 		setPosition(x, y);
-		
 	}
 
 	public Croppable addItem(Croppable item) {
@@ -88,6 +87,15 @@ public class ItemList extends Drawable {
 		
 		//Return
 		return Result;
+	}
+	
+	@Override
+	public void setPosition(float x, float y, int horizontal, int vertical) {
+		//Super
+		super.setPosition(x, y, horizontal, vertical);
+		
+		//Refresh
+		updateItems();
 	}
 	
 	public void update(int[] keys, TouchInfo[] touches, long time) {		

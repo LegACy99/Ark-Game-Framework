@@ -81,9 +81,9 @@ public class ScrollingImage extends Drawable {
 		
 		//Set images position
 		m_Images[MAIN_IMAGE].setPosition(OriginalX + m_OffsetX, OriginalY + m_OffsetY);
-		m_Images[VERTICAL_IMAGE].setPosition(OriginalX + m_OffsetX, OriginalY + m_OffsetY - (m_OriginalHeight * Math.signum(m_OffsetY)));
-		m_Images[HORIZONTAL_IMAGE].setPosition(OriginalX + m_OffsetX - (m_OriginalWidth * Math.signum(m_OffsetX)), OriginalY + m_OffsetY);
-		m_Images[DIAGONAL_IMAGE].setPosition(OriginalX + m_OffsetX - (m_OriginalWidth * Math.signum(m_OffsetX)), OriginalY + m_OffsetY - (m_OriginalHeight * Math.signum(m_OffsetY)));
+		m_Images[VERTICAL_IMAGE].setPosition(OriginalX + m_OffsetX, OriginalY + m_OffsetY - ((m_OriginalHeight - 1) * Math.signum(m_OffsetY)));
+		m_Images[HORIZONTAL_IMAGE].setPosition(OriginalX + m_OffsetX - ((m_OriginalWidth - 1) * Math.signum(m_OffsetX)), OriginalY + m_OffsetY);
+		m_Images[DIAGONAL_IMAGE].setPosition(OriginalX + m_OffsetX - ((m_OriginalWidth - 1) * Math.signum(m_OffsetX)), OriginalY + m_OffsetY - ((m_OriginalHeight - 1) * Math.signum(m_OffsetY)));
 	}
 	
 	public void update(long time) {
