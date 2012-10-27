@@ -39,16 +39,12 @@ public class AndroidTexture extends Texture {
 			m_Width 	= Loaded.getWidth();
 			m_Height 	= Loaded.getHeight();
 			
-			//Get OpenGL
-			GL10 OpenGL = ((AndroidDevice)Device.instance()).getGL();
-			
 			//Generate texture
-			int[] TextureID = new int[1]; 
-			OpenGL.glGenTextures(1, TextureID, 0);
-			m_ID = TextureID[0];
+			GL10 OpenGL = ((AndroidDevice)Device.instance()).getGL();
+			OpenGL.glGenTextures(1, m_IDs, 0);
 
 			//Bind texture
-			OpenGL.glBindTexture(GL10.GL_TEXTURE_2D, TextureID[0]);
+			OpenGL.glBindTexture(GL10.GL_TEXTURE_2D, m_IDs[0]);
 			OpenGL.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_LINEAR);
 			OpenGL.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, m_AntiAlias ? GL10.GL_LINEAR : GL10.GL_NEAREST);
 			OpenGL.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S, GL10.GL_CLAMP_TO_EDGE);
@@ -61,5 +57,15 @@ public class AndroidTexture extends Texture {
 			OpenGL.glBindTexture(GL10.GL_TEXTURE_2D, 0);
 			Loaded.recycle();
 		} catch (IOException e) {}
+	}
+
+	@Override
+	public void destroy() {
+		//If ID exist
+		if (getID() >= 0) {
+			//Unload from memory
+			AndroidDevice.instance().getGL().glDeleteTextures(1, m_IDs, 0);
+			m_IDs = new int[] { -1 };
+		}
 	}
 }
