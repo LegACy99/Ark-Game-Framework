@@ -31,10 +31,15 @@ public abstract class SoundManager {
 	public abstract void pause();
 	
 	//Abstract audio functions
-	public abstract void playBGM();	
-	public abstract void playSFX(String sfx);
+	public abstract void playBGM();
+	public abstract void stopSFX(String sfx);
+	public abstract void playSFX(String sfx, boolean looping);
 	public abstract void loadBGM(String bgm);
 	public abstract void loadSFX(String sfx);		
+	
+	public void playSFX(String sfx) {
+		playSFX(sfx, false); 
+	}
 	
 	//Constants
 	protected final boolean INITIAL_MUTE 	= true;

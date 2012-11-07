@@ -2,7 +2,9 @@ package net.ark.framework.system.android;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 
+import android.annotation.TargetApi;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -17,12 +19,13 @@ public class AndroidSoundManager extends SoundManager {
 		m_InitVolume = 60;
 		
 		//Initialize data
-		m_BGM		= "";
-		m_Mute		= INITIAL_MUTE;
-		m_Volume	= getInitialVolume();
-		m_SFXMap	= new HashMap<String, Integer>();
-		m_SFXPlayer	= new SoundPool(MAX_SFX_CHANNEL, AudioManager.STREAM_MUSIC, 0);
-		m_BGMPlayer	= null;
+		m_BGM			= "";
+		m_Mute			= INITIAL_MUTE;
+		m_Volume		= getInitialVolume();
+		m_SFXMap		= new HashMap<String, Integer>();
+		m_SFXStreams	= new HashMap<String, Integer>();
+		m_SFXPlayer		= new SoundPool(MAX_SFX_CHANNEL, AudioManager.STREAM_MUSIC, 0);
+		m_BGMPlayer		= null;
 	}
 
 	public synchronized static SoundManager instance() {
@@ -42,12 +45,30 @@ public class AndroidSoundManager extends SoundManager {
 	public void resume() {
 		//Resume
 		if (m_BGMPlayer != null) m_BGMPlayer.start();
+		if (m_SFXPlayer != null) {
+			//For all SFX
+			Iterator<String> Iter = m_SFXStreams.keySet().iterator();
+			while (Iter.hasNext()) {
+				//Resume
+				String Key = Iter.next();
+				if (m_SFXStreams.get(Key) != null) m_SFXPlayer.resume(m_SFXStreams.get(Key).intValue());
+			}
+		}
 	}
 
 	@Override
 	public void pause() {
 		//Pause
 		if (m_BGMPlayer != null) m_BGMPlayer.pause();
+		if (m_SFXPlayer != null) {
+			//For looping SFX
+			Iterator<String> Iter = m_SFXStreams.keySet().iterator();
+			while (Iter.hasNext()) {
+				//Pause
+				String Key = Iter.next();
+				if (m_SFXStreams.get(Key) != null) m_SFXPlayer.pause(m_SFXStreams.get(Key).intValue());
+			}
+		}
 	}
 
 	@Override
@@ -88,22 +109,35 @@ public class AndroidSoundManager extends SoundManager {
 		if (m_BGM != null && m_BGMPlayer != null && !m_BGMPlayer.isPlaying()) m_BGMPlayer.start();
 	}
 
+	@TargetApi(3)
 	@Override
 	public void loadSFX(String sfx) {
 		try {
 			//Save sound
 			int ID = m_SFXPlayer.load(((AndroidDevice)Device.instance()).getAssets().openFd(sfx), 1);
-			m_SFXMap.put(sfx, new Integer(ID));
+			m_SFXMap.put(sfx, Integer.valueOf(ID));
 		} catch (IOException e) {}
 	}
 
 	@Override
-	public void playSFX(String sfx) {
+	public void playSFX(String sfx, boolean looping) {
 		//Skip if doesn't exist
-		if (!m_SFXMap.containsKey(sfx)) return;
+		if (m_SFXMap.get(sfx) == null) 					return;
+		if (looping && m_SFXStreams.get(sfx) != null) 	return;
 		
 		//Play
-		m_SFXPlayer.play(m_SFXMap.get(sfx).intValue(), m_Volume / MAX_VOLUME, m_Volume / MAX_VOLUME, 0, 0, 1);
+		int Stream = m_SFXPlayer.play(m_SFXMap.get(sfx).intValue(), m_Volume / MAX_VOLUME, m_Volume / MAX_VOLUME, 0, looping ? -1 : 0, 1);
+		if (looping) m_SFXStreams.put(sfx, Integer.valueOf(Stream));
+	}
+	
+	@Override
+	public void stopSFX(String sfx) {
+		//Skip if doesn't exist
+		if (m_SFXStreams.get(sfx) == null) return;
+		
+		//Stop
+		m_SFXPlayer.stop(m_SFXStreams.get(sfx).intValue());
+		m_SFXStreams.remove(sfx);
 	}
 	
 	//The only instance
@@ -116,5 +150,6 @@ public class AndroidSoundManager extends SoundManager {
 	protected String					m_BGM;
 	protected MediaPlayer				m_BGMPlayer;
 	protected SoundPool 				m_SFXPlayer;
+	protected HashMap<String, Integer>	m_SFXStreams;
 	protected HashMap<String, Integer>	m_SFXMap;
 }
