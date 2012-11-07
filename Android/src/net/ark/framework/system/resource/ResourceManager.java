@@ -63,7 +63,7 @@ public abstract class ResourceManager {
 		m_Finished	= false;
 	}	
 
-	public abstract void destroy(JSONObject resources);
+	public abstract void destroy(String resource);
 	public abstract void reload();
 	
 	public void update() {

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -223,20 +224,16 @@ public class AndroidResourceManager extends ResourceManager {
 	}
 
 	@Override
-	public void destroy(JSONObject resources) {		
-		/*try {
-			//Destroy JSON files
-			JSONArray JSONResources = resources.getJSONArray(Level.KEY_RESOURCE_JSON);
-			for (int i = 0; i < JSONResources.length(); i++) m_Resources.remove(JSONResources.getString(i));
-			
-			//Destroy JSON image
-			JSONArray ImageResources = resources.getJSONArray(Level.KEY_RESOURCE_IMAGE);
-			for (int i = 0; i < ImageResources.length(); i++) m_Resources.remove(ImageResources.getString(i));
-			
-			//Destroy JSON images
-			JSONArray ImagesResources = resources.getJSONArray(Level.KEY_RESOURCE_IMAGES);
-			for (int i = 0; i < ImagesResources.length(); i++) m_Resources.remove(J2MELoadableImages.create(ImagesResources.getJSONObject(i)).getName()); 
-		} catch (JSONException e) {}*/
+	public void destroy(String resource) {
+		//Remove
+		Object Removed = m_Resources.remove(resource);
+		
+		//If there's something removed and it's a texture
+		if (Removed != null && Removed instanceof Texture) {
+			//Destroy
+			m_Textures.remove(Removed);
+			((Texture)Removed).destroy();
+		}
 	}
 	
 	public void update() {
@@ -278,8 +275,8 @@ public class AndroidResourceManager extends ResourceManager {
 	private static ResourceManager s_Instance = null;
 	
 	//Data
-	protected ArrayList<Texture>		m_Textures;
-	protected ArrayList<Loadable>    	m_Loadables;
+	protected List<Texture>				m_Textures;
+	protected List<Loadable>    		m_Loadables;
 	protected HashMap<String, Object> 	m_Resources;
 
 }
