@@ -28,15 +28,48 @@ public class AndroidRectangle extends Rectangle {
 		setPosition(x, y);
 		setColor(r, g, b, a);
 		setRect(width, height);
+		setRegion(m_OriginalWidth, m_OriginalHeight);
 	}
 	
+	@Override
+	public void setRegion(float x, float y, float width, float height) {
+		//Set data
+		m_OriginalRegionX		= x;
+		m_OriginalRegionY		= y;
+		m_OriginalRegionWidth	= width;
+		m_OriginalRegionHeight	= height;
+		
+		//Validate
+		if (m_OriginalRegionX < 0) 											m_OriginalRegionX = 0;
+		if (m_OriginalRegionY < 0) 											m_OriginalRegionY = 0;
+		if (m_OriginalRegionWidth < 0) 										m_OriginalRegionWidth = 0;
+		if (m_OriginalRegionHeight < 0) 									m_OriginalRegionHeight = 0;
+		if (m_OriginalRegionX > m_OriginalWidth)							m_OriginalRegionX = m_OriginalWidth;
+		if (m_OriginalRegionY > m_OriginalHeight)							m_OriginalRegionY = m_OriginalHeight;
+		if (m_OriginalRegionWidth + m_OriginalRegionX > m_OriginalWidth) 	m_OriginalRegionWidth = m_OriginalWidth - m_OriginalRegionX;
+		if (m_OriginalRegionHeight + m_OriginalRegionY > m_OriginalHeight)	m_OriginalRegionHeight = m_OriginalHeight - m_OriginalRegionY;
+		
+		//Scale
+		m_RegionX		= m_OriginalRegionX * Utilities.instance().getScale();
+		m_RegionY		= m_OriginalRegionY * Utilities.instance().getScale();
+		m_RegionWidth	= m_OriginalRegionWidth * Utilities.instance().getScale();
+		m_RegionHeight	= m_OriginalRegionHeight * Utilities.instance().getScale();
+		
+		//Recreate
+		setRect(m_OriginalWidth, m_OriginalHeight);
+	}
+	
+	@Override
 	public void setColor(float r, float g, float b, float a) {
+		//Super
+		super.setColor(r, g, b, a);
+		
 		//Create float
 		float[] Colors = new float[] {
-			r, g, b, a,
-			r, g, b, a,
-			r, g, b, a,
-			r, g, b, a
+			m_Color[INDEX_RED], m_Color[INDEX_GREEN], m_Color[INDEX_BLUE], m_Color[INDEX_ALPHA],
+			m_Color[INDEX_RED], m_Color[INDEX_GREEN], m_Color[INDEX_BLUE], m_Color[INDEX_ALPHA],
+			m_Color[INDEX_RED], m_Color[INDEX_GREEN], m_Color[INDEX_BLUE], m_Color[INDEX_ALPHA],
+			m_Color[INDEX_RED], m_Color[INDEX_GREEN], m_Color[INDEX_BLUE], m_Color[INDEX_ALPHA]
 		};
 		
 		//Create buffer
@@ -66,10 +99,10 @@ public class AndroidRectangle extends Rectangle {
 	protected float[] createVertices() {
 		//Create vertices
 		return new float[] {
-			m_Width / 2f, 	m_Height / 2f,
-			-m_Width / 2f,	m_Height / 2f,
-			m_Width / 2f,	-m_Height / 2f,
-			-m_Width / 2f,	-m_Height / 2f
+			-(m_Width / 2f) + m_RegionX + m_RegionWidth, 	(m_Height / 2f) - m_RegionY,					//Top right
+			-(m_Width / 2f) + m_RegionX,					(m_Height / 2f) - m_RegionY,					//Top left
+			-(m_Width / 2f) + m_RegionX + m_RegionWidth,	(m_Height / 2f) - m_RegionY - m_RegionHeight,	//Bottom right
+			-(m_Width / 2f) + m_RegionX,					(m_Height / 2f) - m_RegionY - m_RegionHeight 	//Bottom left
 		};
 	}
 	
@@ -83,11 +116,17 @@ public class AndroidRectangle extends Rectangle {
 		gl.glVertexPointer(VERTEX_SIZE, GL10.GL_FLOAT, 0, m_Vertices);
 		gl.glBindTexture(GL10.GL_TEXTURE_2D, 0);
 		
+		//Change blending function if not black
+		if (getRedComponent() > 0 || getGreenComponent() > 0 || getBlueComponent() > 0) gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+		
 		//Translate and draw
 		gl.glTranslatef(((m_Width - Device.instance().getWidth()) / 2f) + m_X, ((Device.instance().getHeight() - m_Height) / 2) - m_Y, 0);
 		gl.glRotatef(m_Rotation, 0, 0, -1);
 		gl.glRotatef(m_Flip, -1, 0, 0);
 		gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, m_Vertices.capacity() / VERTEX_SIZE);
+		
+		//Restore blending if not black
+		if (getRedComponent() > 0 || getGreenComponent() > 0 || getBlueComponent() > 0) gl.glBlendFunc(GL10.GL_ONE, GL10.GL_ONE_MINUS_SRC_ALPHA);
 		
 		//Restore matrix
 		gl.glPopMatrix();

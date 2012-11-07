@@ -2,11 +2,11 @@ package net.ark.framework.system.images.android;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import org.json.JSONObject;
-
 import net.ark.framework.system.images.Image;
 import net.ark.framework.system.images.Sprite;
 import net.ark.framework.system.resource.ResourceManager;
+
+import org.json.JSONObject;
 
 public class AndroidSprite extends Sprite {
     protected AndroidSprite(int x, int y, long delay) {
@@ -32,6 +32,15 @@ public class AndroidSprite extends Sprite {
 		m_Height			= m_Images[0].getHeight();
 		m_OriginalWidth		= m_Images[0].getOriginalWidth();
 		m_OriginalHeight	= m_Images[0].getOriginalHeight();
+	}
+	
+	@Override
+	public void setRegion(float x, float y, float width, float height) {
+		//Super
+		super.setRegion(x, y, width, height);
+		
+		//Set images region
+		for (int i = 0; i < m_Images.length; i++) m_Images[i].setRegion(x, y, width, height);
 	}
 	
 	@Override
