@@ -56,6 +56,15 @@ public class ButtonContainer {
 		m_Buttons.clear();
 	}
 	
+	public Button getPressedButton() {
+		//Get pressed button
+		Button Result = null;
+		if (m_Pressed >= 0) Result = m_Buttons.get(m_Pressed);
+		
+		//Return
+		return Result;
+	}
+	
 	public int update(int[] keys, TouchInfo[] touches) {
 		//Initialize
 		int Result = NO_BUTTON;
@@ -89,18 +98,19 @@ public class ButtonContainer {
 				}
 			} else {
 				//If there's a pressed button
-				if (m_Pressed >= 0) {
+				Button Pressed = getPressedButton();
+				if (Pressed != null) {
 					//If released inside
-					if (m_Buttons.get(m_Pressed).isInside(touches[0].getCurrentX(), touches[0].getCurrentY()))	{
+					if (Pressed.isInside(touches[0].getCurrentX(), touches[0].getCurrentY()))	{
 						//Set as result
-						Result = m_Buttons.get(m_Pressed).getID();
+						Result = Pressed.getID();
 						
 						//SFX
 						if (Utilities.instance().getSystemReleaseSFX() != null) SoundManager.instance().playSFX(Utilities.instance().getSystemReleaseSFX());
 					}
 					
 					//Reset button state
-					m_Buttons.get(m_Pressed).setState(Button.STATE_NORMAL);
+					Pressed.setState(Button.STATE_NORMAL);
 				}
 				
 				//Nothing pressed
