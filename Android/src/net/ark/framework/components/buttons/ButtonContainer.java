@@ -4,12 +4,11 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import org.json.JSONObject;
-
 import net.ark.framework.system.SoundManager;
-import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.input.TouchInfo;
 import net.ark.framework.system.resource.ResourceManager;
+
+import org.json.JSONObject;
 
 public class ButtonContainer {
 	public ButtonContainer() {
@@ -87,7 +86,7 @@ public class ButtonContainer {
 							m_Buttons.get(i).setState(Button.STATE_PRESSED);
 							
 							//SFX
-							if (Utilities.instance().getSystemPressSFX() != null) SoundManager.instance().playSFX(Utilities.instance().getSystemPressSFX());
+							if (m_Buttons.get(i).getPressSFX() != null) SoundManager.instance().playSFX(m_Buttons.get(i).getPressSFX());
 						}
 					}
 				} else {
@@ -106,7 +105,7 @@ public class ButtonContainer {
 						Result = Pressed.getID();
 						
 						//SFX
-						if (Utilities.instance().getSystemReleaseSFX() != null) SoundManager.instance().playSFX(Utilities.instance().getSystemReleaseSFX());
+						if (Pressed.getReleaseSFX() != null) SoundManager.instance().playSFX(Pressed.getReleaseSFX());
 					}
 					
 					//Reset button state

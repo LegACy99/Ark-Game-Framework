@@ -22,6 +22,8 @@ public class Button extends Croppable {
 		m_InputY		= 0;
 		m_InputWidth	= 0;
 		m_InputHeight	= 0;
+		m_ReleasedSFX	= null;
+		m_PressedSFX	= null;
 		m_Images		= null;
 		m_Labels		= null;
 		m_Active		= true;
@@ -109,14 +111,34 @@ public class Button extends Croppable {
 			if (m_Labels.length > STATE_INACTIVE) m_Labels[STATE_INACTIVE] = Label.create(text, font3);
 		}
 		
+		//Set SFX
+		setSFX(Utilities.instance().getSystemPressSFX(), Utilities.instance().getSystemReleaseSFX());
+		
 		//Set position and size
 		setPosition(x, y);
 		setRegion(0, 0, m_OriginalWidth, m_OriginalHeight);
 	}
 	
 	//Accessors
-	public int getID()			{	return m_ID;		}
-	public boolean isActive()	{	return m_Active;	}
+	public int getID()				{ return m_ID;			}
+	public boolean isActive()		{ return m_Active;		}
+	public String getPressSFX()		{ return m_PressedSFX;	}
+	public String getReleaseSFX()	{ return m_ReleasedSFX;	}
+	
+	public boolean isInside(float x, float y) {
+		//Init variables
+		float Top = m_Y + m_InputY;
+		float Left	= m_X + m_InputX;	
+
+		//Check for false
+		if (y < Top) 					return false;
+		if (x < Left)					return false;
+		if (y > Top + m_InputHeight)	return false;
+		if (x > Left + m_InputWidth)	return false;
+		
+		//If passed, inside
+		return true;
+	}
 	
 	@Override
 	public void setPosition(float x, float y, int horizontal, int vertical) {
@@ -152,6 +174,12 @@ public class Button extends Croppable {
 			//Set region
 			m_Labels[i].setRegion(Left / Utilities.instance().getScale(), Top / Utilities.instance().getScale(), Width / Utilities.instance().getScale(), Height / Utilities.instance().getScale());
 		}
+	}
+	
+	public void setSFX(String pressed, String released) {
+		//Save
+		m_PressedSFX 	= pressed;
+		m_ReleasedSFX	= released;
 	}
 	
 	public void setInactiveImage(JSONObject json) {				
@@ -203,21 +231,6 @@ public class Button extends Croppable {
 		if (m_Images != null) m_State %= m_Images.length;
 	}
 	
-	public boolean isInside(float x, float y) {
-		//Init variables
-		float Top = m_Y + m_InputY;
-		float Left	= m_X + m_InputX;	
-
-		//Check for false
-		if (y < Top) 					return false;
-		if (x < Left)					return false;
-		if (y > Top + m_InputHeight)	return false;
-		if (x > Left + m_InputWidth)	return false;
-		
-		//If passed, inside
-		return true;
-	}
-	
 	@Override
 	public void draw(GL10 gl) {
 		//Skip if not visible
@@ -250,5 +263,7 @@ public class Button extends Croppable {
 	protected Image[] 	m_Images;
 	protected boolean	m_Active;
 	protected String	m_FontInactive;
+	protected String	m_ReleasedSFX;
+	protected String	m_PressedSFX;
 	public boolean		Visible;
 }
