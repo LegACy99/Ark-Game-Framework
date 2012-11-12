@@ -11,15 +11,17 @@ public class ItemList extends Drawable {
 		super();
 		
 		//Initialize
-		m_Gap		= 0;
-		m_Speed		= 0;
-		m_Total		= 0;
-		m_Window	= 0;
-		m_Scroll	= 0;
-		m_Slowing	= 0;
-		m_Pressed	= false;
-		m_Scrolling	= false;
-		m_Items		= new Croppable[0];
+		m_Gap			= 0;
+		m_Speed			= 0;
+		m_Total			= 0;
+		m_Window		= 0;
+		m_Scroll		= 0;
+		m_Slowing		= 0;
+		m_DrawnSize		= 0;
+		m_DrawnFirst	= 0;
+		m_Scrolling		= false;
+		m_Pressed		= false;
+		m_Items			= new Croppable[0];
 	}
 
 	public ItemList(float window) 					{ this(window, 0, 0);		}
@@ -71,6 +73,10 @@ public class ItemList extends Drawable {
 			m_Width			= item.getWidth();
 			m_OriginalWidth = item.getOriginalWidth();
 		}
+		
+		//Update items
+		createDrawList();
+		updateItems();
 
 		//Return the item
 		return item;
@@ -163,6 +169,7 @@ public class ItemList extends Drawable {
 			if (m_Scroll < 0) 					m_Scroll = 0;
 			
 			//Update items
+			createDrawList();
 			updateItems();
 		}
 	}
@@ -178,30 +185,74 @@ public class ItemList extends Drawable {
 		return true;
 	}
 	
+	protected void createDrawList() {
+		//Initialize
+		float Y			= 0;
+		m_DrawnFirst	= 0;
+		m_DrawnSize 	= 0;
+		
+		//For all item
+		for (int i = 0; i < m_Items.length; i++) {
+			//Get height
+			float Height = m_Items[i].getOriginalHeight();
+			
+			//If not started yet
+			if (m_DrawnSize <= 0) {
+				//Check if inside
+				if (Y + Height > m_Scroll) {
+					//Start
+					m_DrawnFirst 	= i;
+					m_DrawnSize		= 1;
+				}
+			} else {
+				//Add if inside
+				if (Y < m_Scroll + m_Window) m_DrawnSize++;
+			}
+			
+			//Next
+			Y += Height + m_Gap;
+		}
+	}
+	
 	public void updateItems() {
 		//Calculate
-		float X			= m_X / Utilities.instance().getScale();
-		float Y 		= (m_Y / Utilities.instance().getScale()) - m_Scroll;
-		float Window	= m_Window * Utilities.instance().getScale();
+		float X	= m_X / Utilities.instance().getScale();
+		float Y = (m_Y / Utilities.instance().getScale()) - m_Scroll;
 		
-		//For each item
-		for (int i = 0; i < m_Items.length; i++) {			
-			//Set position
-			float OldY = Y;
-			m_Items[i].setPosition(X, Y);
-			Y += m_Items[i].getOriginalHeight() + m_Gap;
+		//For all item
+		for (int i = 0; i < m_Items.length; i++) {
+			//Get item
+			Croppable Item = m_Items[i];
 			
-			//Calculate
-			float RegionY 		= m_Y - m_Items[i].getY();
-			float RegionHeight 	= m_Y + Window - (OldY * Utilities.instance().getScale());
-			m_Items[i].setRegion(0, RegionY / Utilities.instance().getScale(), m_Items[i].getOriginalWidth(), RegionHeight / Utilities.instance().getScale());
+			//If drawn
+			if (i >= m_DrawnFirst && i < m_DrawnFirst + m_DrawnSize) {
+				//Set position
+				Item.setPosition(X, Y);
+				
+				//If not first or last
+				if (i > m_DrawnFirst && i < m_DrawnFirst + m_DrawnSize - 1) {
+					//Ensure that it's drawn fully
+					if (Item.getOriginalRegionHeight() < Item.getOriginalHeight() || Item.getOriginalRegionY() > 0) Item.setRegion(Item.getOriginalWidth(), Item.getOriginalHeight());
+				} else {
+					//Calculate
+					float RegionY 		= m_Y - Item.getY();
+					float RegionHeight 	= m_Y + ((m_Window - Y) * Utilities.instance().getScale());
+					
+					//Crop if needed
+					if (RegionY >= 0 || RegionHeight <= Item.getHeight())
+						Item.setRegion(0, RegionY / Utilities.instance().getScale(), Item.getOriginalWidth(), RegionHeight / Utilities.instance().getScale());		
+				}
+			}
+			
+			//Next Y
+			Y += Item.getOriginalHeight() + m_Gap;
 		}
 	}
 
 	@Override
 	public void draw(GL10 gl) {
 		//Draw
-		for (int i = 0; i < m_Items.length; i++) m_Items[i].draw(gl);
+		for (int i = m_DrawnFirst; i < m_DrawnFirst + m_DrawnSize; i++) m_Items[i].draw(gl);
 	}
 	
 	//Constants
@@ -218,6 +269,8 @@ public class ItemList extends Drawable {
 	protected float			m_Total;
 	protected float			m_Window;
 	protected float			m_Scroll;
+	protected int			m_DrawnFirst;
+	protected int			m_DrawnSize;
 	protected Croppable[]	m_Items;
 
 }
