@@ -76,11 +76,18 @@ public class AndroidLabel extends Label {
 	
 	@Override
 	public void setRegion(float x, float y, float width, float height) {
+		//Initialize
+		float OldX		= m_OriginalRegionX;
+		float OldY		= m_OriginalRegionY;
+		float OldWidth	= m_OriginalRegionWidth;
+		float OldHeight	= m_OriginalRegionHeight;
+		
 		//Super
 		super.setRegion(x, y, width, height);
 		
-		//Skip if no text or font
-		if (m_Text == null || m_Font == null) return;
+		//Skip if same no text or no font
+		if (m_Text == null || m_Font == null) 																										return;
+		if (m_OriginalRegionX == OldX && m_OriginalRegionY == OldY && m_OriginalRegionWidth == OldWidth && m_OriginalRegionHeight == OldHeight) 	return;
 		
 		//Initialize data
 		int End					= -1;

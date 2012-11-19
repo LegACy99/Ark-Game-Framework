@@ -29,8 +29,6 @@ public abstract class Label extends Croppable {
 	//Accessors
 	public String getText()	{ return m_Text; }
 	
-	//Abstract functions
-	
 	//Data
 	protected String	m_Text;
 }

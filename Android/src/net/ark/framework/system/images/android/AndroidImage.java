@@ -111,31 +111,57 @@ public class AndroidImage extends Image {
 		//Return
 		return s_White;
 	}
+
 	
 	@Override
 	public void setRegion(float x, float y, float width, float height) {
+		//Set region not forced
+		setRegion(x, y, width, height, false);
+	}
+	
+	@Override
+	protected void setRegion(float x, float y, float width, float height, boolean force) {
+		//Initialize
+		boolean Valid 	= force;
+		float OldX		= m_OriginalRegionX;
+		float OldY		= m_OriginalRegionY;
+		float OldWidth	= m_OriginalRegionWidth;
+		float OldHeight	= m_OriginalRegionHeight;
+		
 		//Super
 		super.setRegion(x, y, width, height);
 		
-		//Get vertex and coordinates
-		float[] Coordinates = createCoordinates();
-		float[] Vertices	= createVertices();
+		//If not valid
+		if (!Valid) {
+			//Valid if there's a difference
+			if (m_OriginalRegionX != OldX) 					Valid = true;
+			else if (m_OriginalRegionY != OldY) 			Valid = true;
+			else if (m_OriginalRegionWidth != OldWidth) 	Valid = true;
+			else if (m_OriginalRegionHeight != OldHeight) 	Valid = true;
+		}
 		
-		//Create buffers
-		ByteBuffer VertexBuffer 	= ByteBuffer.allocateDirect(Vertices.length * Utilities.FLOAT_SIZE);
-		ByteBuffer CoordinateBuffer = ByteBuffer.allocateDirect(Coordinates.length * Utilities.FLOAT_SIZE);
-		CoordinateBuffer.order(ByteOrder.nativeOrder());
-		VertexBuffer.order(ByteOrder.nativeOrder());
-		
-		//Save vertices
-		m_Vertices = VertexBuffer.asFloatBuffer();
-		m_Vertices.put(Vertices);
-		m_Vertices.position(0);
-		
-		//Save coordinate
-		m_Coordinates = CoordinateBuffer.asFloatBuffer();
-		m_Coordinates.put(Coordinates);
-		m_Coordinates.position(0);
+		//Proceed if valid
+		if (Valid) {
+			//Get vertex and coordinates
+			float[] Coordinates = createCoordinates();
+			float[] Vertices	= createVertices();
+			
+			//Create buffers
+			ByteBuffer VertexBuffer 	= ByteBuffer.allocateDirect(Vertices.length * Utilities.FLOAT_SIZE);
+			ByteBuffer CoordinateBuffer = ByteBuffer.allocateDirect(Coordinates.length * Utilities.FLOAT_SIZE);
+			CoordinateBuffer.order(ByteOrder.nativeOrder());
+			VertexBuffer.order(ByteOrder.nativeOrder());
+			
+			//Save vertices
+			m_Vertices = VertexBuffer.asFloatBuffer();
+			m_Vertices.put(Vertices);
+			m_Vertices.position(0);
+			
+			//Save coordinate
+			m_Coordinates = CoordinateBuffer.asFloatBuffer();
+			m_Coordinates.put(Coordinates);
+			m_Coordinates.position(0);	
+		}
 	}
 	
 	protected float[] createVertices() {		

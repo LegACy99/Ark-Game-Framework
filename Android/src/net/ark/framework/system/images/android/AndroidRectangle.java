@@ -33,29 +33,17 @@ public class AndroidRectangle extends Rectangle {
 	
 	@Override
 	public void setRegion(float x, float y, float width, float height) {
-		//Set data
-		m_OriginalRegionX		= x;
-		m_OriginalRegionY		= y;
-		m_OriginalRegionWidth	= width;
-		m_OriginalRegionHeight	= height;
+		//Initialize
+		float OldX		= m_OriginalRegionX;
+		float OldY		= m_OriginalRegionY;
+		float OldWidth	= m_OriginalRegionWidth;
+		float OldHeight	= m_OriginalRegionHeight;
 		
-		//Validate
-		if (m_OriginalRegionX < 0) 											m_OriginalRegionX = 0;
-		if (m_OriginalRegionY < 0) 											m_OriginalRegionY = 0;
-		if (m_OriginalRegionWidth < 0) 										m_OriginalRegionWidth = 0;
-		if (m_OriginalRegionHeight < 0) 									m_OriginalRegionHeight = 0;
-		if (m_OriginalRegionX > m_OriginalWidth)							m_OriginalRegionX = m_OriginalWidth;
-		if (m_OriginalRegionY > m_OriginalHeight)							m_OriginalRegionY = m_OriginalHeight;
-		if (m_OriginalRegionWidth + m_OriginalRegionX > m_OriginalWidth) 	m_OriginalRegionWidth = m_OriginalWidth - m_OriginalRegionX;
-		if (m_OriginalRegionHeight + m_OriginalRegionY > m_OriginalHeight)	m_OriginalRegionHeight = m_OriginalHeight - m_OriginalRegionY;
+		//Super
+		super.setRegion(x, y, width, height);
 		
-		//Scale
-		m_RegionX		= m_OriginalRegionX * Utilities.instance().getScale();
-		m_RegionY		= m_OriginalRegionY * Utilities.instance().getScale();
-		m_RegionWidth	= m_OriginalRegionWidth * Utilities.instance().getScale();
-		m_RegionHeight	= m_OriginalRegionHeight * Utilities.instance().getScale();
-		
-		//Recreate
+		//Recreate if there's a difference
+		if (m_OriginalRegionX != OldX && m_OriginalRegionY == OldY && m_OriginalRegionWidth == OldWidth && m_OriginalRegionHeight == OldHeight) return;
 		setRect(m_OriginalWidth, m_OriginalHeight);
 	}
 	

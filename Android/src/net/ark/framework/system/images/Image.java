@@ -35,6 +35,8 @@ public abstract class Image extends Croppable {
 	public static Image create(JSONObject json, int x, int y)	{	return new AndroidImage(json, x, y);		}
 	public static Image create(String resource, int x, int y)	{	return new AndroidImage(resource, x, y);	}
 	
+	protected abstract void setRegion(float x, float y, float width, float height, boolean force);
+	
 	public void setRotation(float angle) {
 		//Initialize
 		int Add 	= 0;
@@ -81,7 +83,7 @@ public abstract class Image extends Croppable {
 		else 								m_Mirror = MIRROR_BOTH;
 		
 		//Reset rect
-		setRegion(0, 0, m_OriginalWidth, m_OriginalHeight);
+		setRegion(0, 0, m_OriginalWidth, m_OriginalHeight, true);
 	}
 	
 	//Constants
