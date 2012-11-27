@@ -41,6 +41,23 @@ public abstract class Sprite extends Croppable {
 	public float getHeight() 	{	return m_Height;	}
 	public float getWidth() 	{	return m_Width;		}
 	
+	public void setRotation(float angle) 					{ setRotation(angle, getOriginalWidth() / 2f, getOriginalHeight() / 2f); 			}
+	public void setRotation(float angle, float addition) 	{ setRotation(angle, addition, getOriginalWidth() / 2f, getOriginalHeight() / 2f); 	}
+	public void setRotation(float angle, float x, float y) {
+		//Initialize
+		int Add 	= 0;
+		float Angle	= angle;
+		
+		//Set angle
+		if (Angle == 0) {
+			Add 	= -1;
+			Angle 	= 1;
+		}
+		setRotation(Angle, Add, x, y);
+	}
+
+	public abstract void setRotation(float angle, float addition, float x, float y);
+	
 	public void setMirror(boolean horizontal, boolean vertical) {
 		//Set mirror
 		if (!horizontal && !vertical) 		m_Mirror = MIRROR_NONE;

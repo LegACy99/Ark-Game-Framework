@@ -53,6 +53,12 @@ public class AndroidSprite extends Sprite {
 	}
 	
 	@Override
+	public void setRotation(float angle, float addition, float x, float y) {
+		//Set all images
+		for (int i = 0; i < m_Images.length; i++) m_Images[i].setRotation(angle, addition, x, y);
+	}
+	
+	@Override
 	public void setMirror(boolean horizontal, boolean vertical) {
 		//Super
 		super.setMirror(horizontal, vertical);

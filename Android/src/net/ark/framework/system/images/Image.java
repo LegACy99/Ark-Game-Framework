@@ -1,6 +1,7 @@
 package net.ark.framework.system.images;
 
 import net.ark.framework.components.Croppable;
+import net.ark.framework.system.Utilities;
 import net.ark.framework.system.images.android.AndroidImage;
 import net.ark.framework.system.resource.ResourceManager;
 
@@ -14,6 +15,8 @@ public abstract class Image extends Croppable {
 		//Initialize variables
 		m_Flip		= 0;
 		m_Rotation	= 0;
+		m_PivotX	= 0;
+		m_PivotY	= 0;
 		m_Mirror	= MIRROR_NONE;
 	}
 	
@@ -37,7 +40,7 @@ public abstract class Image extends Croppable {
 	
 	protected abstract void setRegion(float x, float y, float width, float height, boolean force);
 	
-	public void setRotation(float angle) {
+	public void setRotation(float angle, float x, float y) {
 		//Initialize
 		int Add 	= 0;
 		float Angle	= angle;
@@ -47,13 +50,19 @@ public abstract class Image extends Croppable {
 			Add 	= -1;
 			Angle 	= 1;
 		}
-		setRotation(Angle, Add);
+		setRotation(Angle, Add, x, y);
 	}
 	
-	public void setRotation(float angle, float addition) {
+	public void setRotation(float angle) { setRotation(angle, getOriginalWidth() / 2f, getOriginalHeight() / 2f); }
+	public void setRotation(float angle, float addition) { setRotation(angle, addition, getOriginalWidth() / 2f, getOriginalHeight() / 2f); }
+	public void setRotation(float angle, float addition, float x, float y) {
 		//Set rotation
 		if (angle != 0) m_Rotation = angle;
 		m_Rotation += addition;
+		
+		//Set pivot
+		m_PivotX = x * Utilities.instance().getScale();
+		m_PivotY = y * Utilities.instance().getScale();
 	}
 	
 	public void setFlip(float angle) {
@@ -99,5 +108,7 @@ public abstract class Image extends Croppable {
 	//Data
 	protected float m_Flip;
 	protected float m_Rotation;
+	protected float m_PivotX;
+	protected float m_PivotY;
 	protected int	m_Mirror;
 }

@@ -82,6 +82,8 @@ public class AndroidImage extends Image {
 			//Scale
 			m_Width		= m_OriginalWidth * Utilities.instance().getScale();
 			m_Height	= m_OriginalHeight * Utilities.instance().getScale();
+			m_PivotY	= m_Height / 2f;
+			m_PivotX	= m_Width / 2f;
 
 			//Create drawing rect
 			setRegion(0, 0, m_OriginalWidth, m_OriginalHeight);
@@ -221,9 +223,14 @@ public class AndroidImage extends Image {
 		gl.glTexCoordPointer(COORDINATE_SIZE, GL10.GL_FLOAT, 0, m_Coordinates);
 		gl.glBindTexture(GL10.GL_TEXTURE_2D, m_Texture.getID());
 		
+		//Calculate rotation pivot
+		float PivotX = (m_Width / 2f) - m_PivotX;
+		float PivotY = m_PivotY - (m_Height / 2f);
+		
 		//Translate and draw
-		gl.glTranslatef(((m_Width - Device.instance().getWidth()) / 2f) + m_X, ((Device.instance().getHeight() - m_Height) / 2) - m_Y, 0);
+		gl.glTranslatef(((m_Width - Device.instance().getWidth()) / 2f) + m_X - PivotX, ((Device.instance().getHeight() - m_Height) / 2) - m_Y - PivotY, 0);
 		gl.glRotatef(m_Rotation, 0, 0, -1);
+		gl.glTranslatef(PivotX, PivotY, 0);
 		gl.glRotatef(m_Flip, -1, 0, 0);
 		gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, m_Vertices.capacity() / VERTEX_SIZE);
 		
