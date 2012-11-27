@@ -56,6 +56,11 @@ public abstract class Sprite extends Croppable {
 		setRotation(Angle, Add, x, y);
 	}
 
+	public void setTint(int red, int green, int blue) { setTint(red, green, blue, 255); }
+	public void setTint(float red, float green, float blue) { setTint(red, green, blue, 1f); }
+	public void setTint(int red, int green, int blue, int alpha) { setTint((float)red / 255f, (float)green / 255f, (float)blue / 255f); }
+
+	public abstract void setTint(float red, float green, float blue, float alpha);
 	public abstract void setRotation(float angle, float addition, float x, float y);
 	
 	public void setMirror(boolean horizontal, boolean vertical) {

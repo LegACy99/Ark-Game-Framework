@@ -87,33 +87,18 @@ public class AndroidImage extends Image {
 
 			//Create drawing rect
 			setRegion(0, 0, m_OriginalWidth, m_OriginalHeight);
-			m_Colors = getWhiteColors();
+			m_Colors = createColors();
 		} catch (JSONException e) {}
 	}
 	
-	protected static FloatBuffer getWhiteColors() {
-		//Check
-		if (s_White == null) {
-			//Create float
-			float[] Colors = new float[] {
-				1f, 1f, 1f, 1f,
-				1f, 1f, 1f, 1f,
-				1f, 1f, 1f, 1f,
-				1f, 1f, 1f, 1f
-			};
-			
-			//Create buffer
-			ByteBuffer ColorBuffer = ByteBuffer.allocateDirect(Colors.length * Utilities.FLOAT_SIZE);
-			ColorBuffer.order(ByteOrder.nativeOrder());			
-			s_White = ColorBuffer.asFloatBuffer();
-			s_White.put(Colors);
-			s_White.position(0);
-		}
-			
-		//Return
-		return s_White;
+	@Override
+	public void setTint(float red, float green, float blue, float alpha) {
+		//Super
+		super.setTint(red, green, blue, alpha);
+		
+		//Create buffer
+		m_Colors = createColors();
 	}
-
 	
 	@Override
 	public void setRegion(float x, float y, float width, float height) {
@@ -187,6 +172,27 @@ public class AndroidImage extends Image {
 		
 		//Return
 		return Coordinates;
+	}
+	
+	protected FloatBuffer createColors() {
+		//Initialize
+		FloatBuffer ColorBuffer = null;
+		float[] Colors = new float[] {
+			m_ColorRed, m_ColorGreen, m_ColorBlue, m_ColorAlpha,
+			m_ColorRed, m_ColorGreen, m_ColorBlue, m_ColorAlpha,
+			m_ColorRed, m_ColorGreen, m_ColorBlue, m_ColorAlpha,
+			m_ColorRed, m_ColorGreen, m_ColorBlue, m_ColorAlpha
+		};
+		
+		//Create buffer
+		ByteBuffer Buffer = ByteBuffer.allocateDirect(Colors.length * Utilities.FLOAT_SIZE);
+		Buffer.order(ByteOrder.nativeOrder());			
+		ColorBuffer = Buffer.asFloatBuffer();
+		ColorBuffer.put(Colors);
+		ColorBuffer.position(0);
+			
+		//Return
+		return ColorBuffer;
 	}
 	
 	protected float[] getEdges() {
@@ -264,9 +270,6 @@ public class AndroidImage extends Image {
 	protected final static int[] COORDINATES_HMIRROR 	=  { EDGE_LEFT, EDGE_TOP,		EDGE_RIGHT, EDGE_TOP,		EDGE_LEFT, EDGE_BOTTOM,		EDGE_RIGHT, EDGE_BOTTOM	};
 	protected final static int[] COORDINATES_VMIRROR 	=  { EDGE_RIGHT, EDGE_BOTTOM,	EDGE_LEFT, EDGE_BOTTOM,		EDGE_LEFT, EDGE_TOP,		EDGE_RIGHT, EDGE_TOP 	};
 	protected final static int[] COORDINATES_BOTHMIRROR =  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDGE_BOTTOM,	EDGE_RIGHT, EDGE_TOP,		EDGE_LEFT, EDGE_TOP		};
-	
-	//Color
-	protected static FloatBuffer s_White = null;
 	
 	//Data
 	protected float	m_Top;

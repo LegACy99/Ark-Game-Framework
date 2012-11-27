@@ -68,6 +68,12 @@ public class AndroidSprite extends Sprite {
 	}
 
 	@Override
+	public void setTint(float red, float green, float blue, float alpha) {
+		//Set images color
+		for (int i = 0; i < m_Images.length; i++) m_Images[i].setTint(red, green, blue, alpha);
+	}
+
+	@Override
 	public void draw(GL10 gl) {
 		//Draw the correct frame
 		m_Images[m_Frame].draw(gl);
