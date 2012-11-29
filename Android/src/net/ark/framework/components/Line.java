@@ -108,6 +108,7 @@ public class Line extends Drawable {
 		//Disable texture
 		gl.glDisable(GL10.GL_TEXTURE_2D);
 		gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
+		gl.glDisableClientState(GL10.GL_COLOR_ARRAY);
 		
 		//Set data
 		gl.glLineWidth(m_Thickness);
@@ -121,6 +122,7 @@ public class Line extends Drawable {
 		//Enable texture
 		gl.glEnable(GL10.GL_TEXTURE_2D);
 		gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
+		gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
 		
 		//Restore matrix
 		gl.glPopMatrix();
