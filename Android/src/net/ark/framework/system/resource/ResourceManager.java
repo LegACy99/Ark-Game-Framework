@@ -63,6 +63,7 @@ public abstract class ResourceManager {
 		m_Finished	= false;
 	}	
 
+	public abstract void destroy();
 	public abstract void destroy(String resource);
 	public abstract void reload();
 	

@@ -25,6 +25,7 @@ public class AndroidResourceManager extends ResourceManager {
 		super();
 		
 		//Initialize
+		m_Destroys	= new ArrayList<String>();
 		m_Textures	= new ArrayList<Texture>();
 		m_Loadables	= new ArrayList<Loadable>();
 		m_Resources	= new HashMap<String, Object>();
@@ -58,7 +59,7 @@ public class AndroidResourceManager extends ResourceManager {
 	@Override public Object getImage(String file)		{	return null;								}
 	@Override public Object getTexture(String file)		{	return m_Resources.get(file);				}
 	@Override public BitmapFont getFont(String file)	{	return (BitmapFont) m_Resources.get(file);	}
-	@Override public JSONObject getJSON(String file)	{	return (JSONObject)m_Resources.get(file);	}
+	@Override public JSONObject getJSON(String file)	{	return (JSONObject) m_Resources.get(file);	}
 	@Override public Object[] getImages(String file)	{	return null;								}
 
 	@Override
@@ -210,8 +211,9 @@ public class AndroidResourceManager extends ResourceManager {
 	
 	@Override
 	public void start() {
-		//Set added
+		//Initialize
 		m_Added = m_Loadables.size();
+		m_Destroys.clear();
 
 		//Super
 		super.start();
@@ -222,32 +224,53 @@ public class AndroidResourceManager extends ResourceManager {
 		//Reload textures
 		for (int i = 0; i < m_Textures.size(); i++) m_Textures.get(i).load();
 	}
+	
+	@Override
+	public void destroy() {
+		//Destroy all destructibles
+		for (int i = 0; i < m_Destroys.size(); i++) destroy(m_Destroys.get(i));
+		m_Destroys.clear();
+	}
 
 	@Override
 	public void destroy(String resource) {
-		//Remove
-		Object Removed = m_Resources.remove(resource);
-		
-		//If there's something removed and it's a texture
-		if (Removed != null && Removed instanceof Texture) {
-			//Destroy
-			m_Textures.remove(Removed);
-			((Texture)Removed).destroy();
+		//if loading
+		if (isLoading()) {
+			//Check if going to be loaded
+			boolean Loaded = false;
+			for (int i = 0; i < m_Loadables.size() && !Loaded; i++) if (m_Loadables.get(i).getName().equals(resource)) Loaded = true;
+			
+			//If isn't going to be loaded, add
+			if (!Loaded) m_Destroys.add(resource);
+		} else {
+			//Remove
+			Object Removed = m_Resources.remove(resource);
+			
+			//If there's something removed and it's a texture
+			if (Removed != null && Removed instanceof Texture) {
+				//Destroy
+				m_Textures.remove(Removed);
+				((Texture)Removed).destroy();
+			}
 		}
 	}
 	
 	public void update() {
 		//If loading
 		if (isLoading()) {
-			//Load
+			//Get object
 			Loadable Current	= (Loadable)m_Loadables.get(m_Loaded);
-			Object Loaded		= Current.load();
+			String Name			= Current.getName();
 			
-			//If not null
-			if (Loaded != null) {
-				//Add
-				m_Resources.put(Current.getName(), Loaded);
-				if (Loaded instanceof Texture) m_Textures.add((Texture)Loaded);
+			//If doesn't exist
+			if (!m_Resources.containsKey(Name)) {
+				//Load
+				Object Loaded = Current.load();
+				if (Loaded != null) {
+					//Add
+					m_Resources.put(Current.getName(), Loaded);
+					if (Loaded instanceof Texture) m_Textures.add((Texture)Loaded);
+				}	
 			}
 			
 			//Update
@@ -275,6 +298,7 @@ public class AndroidResourceManager extends ResourceManager {
 	private static ResourceManager s_Instance = null;
 	
 	//Data
+	protected List<String>				m_Destroys;
 	protected List<Texture>				m_Textures;
 	protected List<Loadable>    		m_Loadables;
 	protected HashMap<String, Object> 	m_Resources;
