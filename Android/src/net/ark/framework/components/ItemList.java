@@ -237,6 +237,7 @@ public class ItemList extends Drawable {
 					//Calculate
 					float RegionY 		= m_Y - Item.getY();
 					float RegionHeight 	= m_Y + ((m_Window - Y) * Utilities.instance().getScale());
+					if (RegionY > 0) RegionHeight -= RegionY;
 					
 					//Crop if needed
 					if (RegionY >= 0 || RegionHeight <= Item.getHeight())
