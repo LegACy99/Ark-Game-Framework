@@ -249,6 +249,16 @@ public class ItemList extends Drawable {
 			Y += Item.getOriginalHeight() + m_Gap;
 		}
 	}
+	
+	public void calculateSize() {
+		//For all items
+		m_Total = 0;
+		for (int i = 0; i < m_Items.length; i++) {
+			//Add height
+			m_Total += m_Items[i].getOriginalHeight();
+			if (i < m_Items.length - 1) m_Total += m_Gap;
+		}
+	}
 
 	@Override
 	public void draw(GL10 gl) {
