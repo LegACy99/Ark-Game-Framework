@@ -13,6 +13,7 @@ import net.ark.framework.system.android.input.TouchInfo;
 import net.ark.framework.system.resource.ResourceManager;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.hardware.Sensor;
@@ -255,6 +256,23 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 		if (URLIntent != null) MainActivity.startActivity(URLIntent);
 	}
 	
+	@Override
+	public void openAppPage(String app) {
+		//Skip if no activity
+		if (MainActivity == null || app == null) return;
+		
+		try {
+			//Open google play
+			String AppURI		= MARKET_URI + app;
+			Intent AppIntent 	= new Intent(Intent.ACTION_VIEW, Uri.parse(AppURI));
+			MainActivity.startActivity(AppIntent);
+		} catch (ActivityNotFoundException e) {
+			//Open in browser
+			String URL = MARKET_LINK + app;
+			openURL(URL, true, null, null);
+		}
+	}
+	
 	//Single instances
 	public static Activity 			MainActivity = null;
 	private static AndroidDevice 	s_Instance = null;
@@ -264,6 +282,8 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 	protected static final int AXIS_Y 			= 1;
 	protected static final int AXIS_Z 			= 2;
 	protected static final int[] IGNORED_KEYS 	= { KeyEvent.KEYCODE_VOLUME_DOWN, KeyEvent.KEYCODE_VOLUME_UP, KeyEvent.KEYCODE_VOLUME_MUTE };
+    protected static final String MARKET_LINK 	= "http://play.google.com/store/apps/details?id=";
+    protected static final String MARKET_URI 	= "market://details?id=";
     public static final String EXTRA_LOADING 	= "loading";
     public static final String EXTRA_TITLE 		= "title";
 	public static final String EXTRA_URL		= "url";

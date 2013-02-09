@@ -97,6 +97,10 @@ public abstract class Utilities {
 		Device.instance().openURL(url, browser, title, loading);
 	}
 	
+	public void openAppPAge(String app) {
+		Device.instance().openAppPage(app);
+	}
+	
 	public int getEuclidean(int x1, int y1, int x2, int y2) {
 		return Math.abs(x2 - x1) + Math.abs(y2 - y1);
 	}
@@ -113,7 +117,7 @@ public abstract class Utilities {
 		while (Number > 0) {
 			//Get current
 			int Current = Number % 10;
-			Digits.add(new Integer(Current));
+			Digits.add(Integer.valueOf(Current));
 			
 			//Change number
 			Number = (Number - Current) / 10;
