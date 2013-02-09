@@ -5,7 +5,6 @@ import java.util.List;
 import net.ark.framework.system.Device;
 import net.ark.framework.system.SoundManager;
 import net.ark.framework.system.StateManager;
-import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.AndroidDevice;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -17,8 +16,6 @@ import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PowerManager;
-import android.os.PowerManager.WakeLock;
 import android.view.View;
 import android.view.View.OnKeyListener;
 import android.view.View.OnTouchListener;
@@ -40,12 +37,10 @@ public abstract class GameActivity extends Activity {
         //Go full screen
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         
         //Set audio control
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        
-        //Get wakelock
-        m_Lock = ((PowerManager)getSystemService(Context.POWER_SERVICE)).newWakeLock(PowerManager.FULL_WAKE_LOCK, Utilities.instance().getApplicationName());
         
         //Create relative layout
         m_Layout = new RelativeLayout(this);
@@ -91,7 +86,6 @@ public abstract class GameActivity extends Activity {
     public void onResume() {
     	//Resume
     	super.onResume();
-    	m_Lock.acquire();
     	m_Canvas.onResume();
     	StateManager.instance().resume();
 		AndroidDevice.instance().allowResize(m_Focus);
@@ -102,7 +96,6 @@ public abstract class GameActivity extends Activity {
     public void onPause() {
     	//Pause
     	super.onPause();
-    	m_Lock.release();
     	m_Canvas.onPause();
     	StateManager.instance().pause();
     	SoundManager.instance().pause();
@@ -125,7 +118,6 @@ public abstract class GameActivity extends Activity {
     }
 	
 	//Members
-	protected WakeLock 			m_Lock;
 	protected GLSurfaceView 	m_Canvas;
     protected RelativeLayout	m_Layout;
     protected boolean			m_Focus;
