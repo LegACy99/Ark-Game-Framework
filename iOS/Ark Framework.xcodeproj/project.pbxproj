@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8377365E170FFFFC00F3C5E9 /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 8377365D170FFFFC00F3C5E9 /* texture.png */; };
 		83A8883A170F6AD100A61787 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A88839170F6AD100A61787 /* UIKit.framework */; };
 		83A8883C170F6AD100A61787 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8883B170F6AD100A61787 /* Foundation.framework */; };
 		83A8883E170F6AD100A61787 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8883D170F6AD100A61787 /* CoreGraphics.framework */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8377365D170FFFFC00F3C5E9 /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = texture.png; path = assets/textures/texture.png; sourceTree = "<group>"; };
 		83A88836170F6AD100A61787 /* Ark Framework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ark Framework.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A88839170F6AD100A61787 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		83A8883B170F6AD100A61787 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -85,10 +87,27 @@
 			path = res;
 			sourceTree = "<group>";
 		};
+		8377365B170FFFE200F3C5E9 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				8377365C170FFFE700F3C5E9 /* Textures */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		8377365C170FFFE700F3C5E9 /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+				8377365D170FFFFC00F3C5E9 /* texture.png */,
+			);
+			name = Textures;
+			sourceTree = "<group>";
+		};
 		83A8882D170F6AD100A61787 = {
 			isa = PBXGroup;
 			children = (
 				83773659170FC1DD00F3C5E9 /* Sources */,
+				8377365B170FFFE200F3C5E9 /* Assets */,
 				8377365A170FC1E400F3C5E9 /* Resources */,
 				83A88843170F6AD100A61787 /* Ark Framework */,
 				83A88838170F6AD100A61787 /* Frameworks */,
@@ -185,6 +204,7 @@
 				83A88854170F6AD100A61787 /* Default-568h@2x.png in Resources */,
 				83A8885E170F6AD100A61787 /* ViewController_iPhone.xib in Resources */,
 				83A88861170F6AD100A61787 /* ViewController_iPad.xib in Resources */,
+				8377365E170FFFFC00F3C5E9 /* texture.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

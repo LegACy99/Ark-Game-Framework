@@ -11,38 +11,20 @@
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
-// Uniform index.
-enum {
-    UNIFORM_MODELVIEWPROJECTION_MATRIX,
-    UNIFORM_NORMAL_MATRIX,
-    NUM_UNIFORMS
-};
-
-GLint uniforms[NUM_UNIFORMS];
-
-// Attribute index.
-enum {
-    ATTRIB_VERTEX,
-    ATTRIB_NORMAL,
-    NUM_ATTRIBUTES
-};
-
 GLfloat gCubeVertexData[216] = {
-    // Data layout for each line below is:
-    // positionX, positionY, positionZ,     normalX, normalY, normalZ,
-	
-    -100, 0, 0,        0, 0.0f, 1.0f,
-    -100, 100, 0,        0, 0.0f, 1.0f,
-    0, 0, 0,         0, 0.0f, 1.0f,
-    0, 0, 0,         0, 0.0f, 1.0f,
-    -100, 100, 0,        0, 0.0f, 1.0f,
-    0, 100, 0,         0, 0.0f, 1.0f,
+    -64, -128, 0,		0, 0,	1, 1, 1, 0.5f,
+    -64, 128, 0,	0, 2,		1, 1, 1, 0.5f,
+    0, -128, 0,		0.5f, 0,	1, 1, 1, 0.5f,
+    0, -128, 0,		0.5f, 0,	1, 1, 1, 0.5f,
+    -64, 128, 0,	0, 2,		1, 1, 1, 0.5f,
+    0, 128, 0,		0.5f, 2,		1, 1, 1, 0.5f,
 };
 
 @interface ViewController () {
-    
-    GLuint _vertexArray;
-    GLuint _vertexBuffer;
+    GLKTextureInfo*	m_Texture;
+    GLKTextureInfo*	m_Texture2;
+    GLuint			_vertexArray;
+    GLuint			_vertexBuffer;
 }
 
 @property (strong, nonatomic) EAGLContext	*context;
@@ -65,7 +47,7 @@ GLfloat gCubeVertexData[216] = {
     if (self.context) {
 		//Configure view
 		((GLKView *)self.view).context				= self.context;
-		((GLKView *)self.view).drawableDepthFormat	= GLKViewDrawableDepthFormat24;
+		//((GLKView *)self.view).drawableDepthFormat	= GLKViewDrawableDepthFormat24;
 		
 		//Setup openGL
 		[self setupGL];
@@ -103,10 +85,21 @@ GLfloat gCubeVertexData[216] = {
     [EAGLContext setCurrentContext:self.context];
     
     self.effect = [[GLKBaseEffect alloc] init];
-    self.effect.light0.enabled = GL_TRUE;
-    self.effect.light0.diffuseColor = GLKVector4Make(1.0f, 0.4f, 0.4f, 1.0f);
-    
-    glEnable(GL_DEPTH_TEST);
+	self.effect.texture2d0.envMode	= GLKTextureEnvModeModulate;
+	self.effect.texture2d0.target	= GLKTextureTarget2D;
+	
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
+	//Load texture
+	NSString* File			= [[NSBundle mainBundle] pathForResource: @"texture" ofType:@"png"];
+	NSDictionary* Options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:GLKTextureLoaderOriginBottomLeft];
+	m_Texture				= [GLKTextureLoader textureWithContentsOfFile:File options:Options error:nil];
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	m_Texture2				= [GLKTextureLoader textureWithContentsOfFile:File options:Options error:nil];
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     
     glGenVertexArraysOES(1, &_vertexArray);
     glBindVertexArrayOES(_vertexArray);
@@ -116,9 +109,11 @@ GLfloat gCubeVertexData[216] = {
     glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
     
     glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));
-    glEnableVertexAttribArray(GLKVertexAttribNormal);
-    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
+    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 36, BUFFER_OFFSET(0));
+	glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+    glVertexAttribPointer(GLKVertexAttribTexCoord0, 3, GL_FLOAT, GL_FALSE, 36, BUFFER_OFFSET(12));
+	glEnableVertexAttribArray(GLKVertexAttribColor);
+    glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, 36, BUFFER_OFFSET(20));
     
     glBindVertexArrayOES(0);
 }
@@ -143,8 +138,8 @@ GLfloat gCubeVertexData[216] = {
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
-    glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
     
     glBindVertexArrayOES(_vertexArray);
 	
@@ -153,6 +148,7 @@ GLfloat gCubeVertexData[216] = {
     self.effect.transform.modelviewMatrix = baseModelViewMatrix;
     
     // Render the object with GLKit
+	if (m_Texture) self.effect.texture2d0.name = m_Texture.name;
     [self.effect prepareToDraw];
     glDrawArrays(GL_TRIANGLES, 0, 6);
     
@@ -162,6 +158,7 @@ GLfloat gCubeVertexData[216] = {
     self.effect.transform.modelviewMatrix	= modelViewMatrix;
 	
     // Render the object with GLKit
+	if (m_Texture2) self.effect.texture2d0.name = m_Texture2.name;
     [self.effect prepareToDraw];
     glDrawArrays(GL_TRIANGLES, 0, 6);
 }
