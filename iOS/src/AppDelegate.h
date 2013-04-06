@@ -10,10 +10,11 @@
 
 @class ViewController;
 
+//Class declaration
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) ViewController *viewController;
+//Properties
+@property (strong, nonatomic) UIWindow			*window;
+@property (strong, nonatomic) ViewController	*viewController;
 
 @end

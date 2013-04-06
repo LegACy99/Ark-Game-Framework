@@ -6,21 +6,24 @@
 //  Copyright (c) 2013 LegACy. All rights reserved.
 //
 
+//Import
 #import "AppDelegate.h"
 #import "ViewController.h"
 
+//Class
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	//Set view controller
+	NSString* NibFile	= [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? @"ViewController_iPhone" : @"ViewController_iPad";
+	self.viewController = [[ViewController alloc] initWithNibName:NibFile bundle:nil];
+	
+	//Create window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
-    } else {
-        self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil];
-    }
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+	
+	//Return okay
     return YES;
 }
 

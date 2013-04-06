@@ -18,8 +18,6 @@
 		83A88850170F6AD100A61787 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A8884F170F6AD100A61787 /* Default.png */; };
 		83A88852170F6AD100A61787 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A88851170F6AD100A61787 /* Default@2x.png */; };
 		83A88854170F6AD100A61787 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A88853170F6AD100A61787 /* Default-568h@2x.png */; };
-		83A88856170F6AD100A61787 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 83A88855170F6AD100A61787 /* Shader.fsh */; };
-		83A88858170F6AD100A61787 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 83A88857170F6AD100A61787 /* Shader.vsh */; };
 		83A8885B170F6AD100A61787 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A8885A170F6AD100A61787 /* ViewController.m */; };
 		83A8885E170F6AD100A61787 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A8885C170F6AD100A61787 /* ViewController_iPhone.xib */; };
 		83A88861170F6AD100A61787 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A8885F170F6AD100A61787 /* ViewController_iPad.xib */; };
@@ -41,8 +39,6 @@
 		83A8884F170F6AD100A61787 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		83A88851170F6AD100A61787 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		83A88853170F6AD100A61787 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		83A88855170F6AD100A61787 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
-		83A88857170F6AD100A61787 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
 		83A88859170F6AD100A61787 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		83A8885A170F6AD100A61787 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		83A8885D170F6AD100A61787 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
@@ -65,9 +61,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		83773659170FC1DD00F3C5E9 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				83A88849170F6AD100A61787 /* main.m */,
+				83A8884C170F6AD100A61787 /* AppDelegate.h */,
+				83A8884D170F6AD100A61787 /* AppDelegate.m */,
+				83A88859170F6AD100A61787 /* ViewController.h */,
+				83A8885A170F6AD100A61787 /* ViewController.m */,
+			);
+			name = Sources;
+			path = src;
+			sourceTree = "<group>";
+		};
+		8377365A170FC1E400F3C5E9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				83A8884F170F6AD100A61787 /* Default.png */,
+				83A88851170F6AD100A61787 /* Default@2x.png */,
+				83A88853170F6AD100A61787 /* Default-568h@2x.png */,
+			);
+			name = Resources;
+			path = res;
+			sourceTree = "<group>";
+		};
 		83A8882D170F6AD100A61787 = {
 			isa = PBXGroup;
 			children = (
+				83773659170FC1DD00F3C5E9 /* Sources */,
+				8377365A170FC1E400F3C5E9 /* Resources */,
 				83A88843170F6AD100A61787 /* Ark Framework */,
 				83A88838170F6AD100A61787 /* Frameworks */,
 				83A88837170F6AD100A61787 /* Products */,
@@ -97,31 +119,13 @@
 		83A88843170F6AD100A61787 /* Ark Framework */ = {
 			isa = PBXGroup;
 			children = (
-				83A8884C170F6AD100A61787 /* AppDelegate.h */,
-				83A8884D170F6AD100A61787 /* AppDelegate.m */,
-				83A88855170F6AD100A61787 /* Shader.fsh */,
-				83A88857170F6AD100A61787 /* Shader.vsh */,
-				83A88859170F6AD100A61787 /* ViewController.h */,
-				83A8885A170F6AD100A61787 /* ViewController.m */,
+				83A88845170F6AD100A61787 /* Ark Framework-Info.plist */,
+				83A8884B170F6AD100A61787 /* Ark Framework-Prefix.pch */,
+				83A88846170F6AD100A61787 /* InfoPlist.strings */,
 				83A8885C170F6AD100A61787 /* ViewController_iPhone.xib */,
 				83A8885F170F6AD100A61787 /* ViewController_iPad.xib */,
-				83A88844170F6AD100A61787 /* Supporting Files */,
 			);
 			name = "Ark Framework";
-			sourceTree = "<group>";
-		};
-		83A88844170F6AD100A61787 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				83A88845170F6AD100A61787 /* Ark Framework-Info.plist */,
-				83A88846170F6AD100A61787 /* InfoPlist.strings */,
-				83A88849170F6AD100A61787 /* main.m */,
-				83A8884B170F6AD100A61787 /* Ark Framework-Prefix.pch */,
-				83A8884F170F6AD100A61787 /* Default.png */,
-				83A88851170F6AD100A61787 /* Default@2x.png */,
-				83A88853170F6AD100A61787 /* Default-568h@2x.png */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,8 +183,6 @@
 				83A88850170F6AD100A61787 /* Default.png in Resources */,
 				83A88852170F6AD100A61787 /* Default@2x.png in Resources */,
 				83A88854170F6AD100A61787 /* Default-568h@2x.png in Resources */,
-				83A88856170F6AD100A61787 /* Shader.fsh in Resources */,
-				83A88858170F6AD100A61787 /* Shader.vsh in Resources */,
 				83A8885E170F6AD100A61787 /* ViewController_iPhone.xib in Resources */,
 				83A88861170F6AD100A61787 /* ViewController_iPad.xib in Resources */,
 			);
