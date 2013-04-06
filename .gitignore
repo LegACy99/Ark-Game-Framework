@@ -3,7 +3,18 @@ Android/bin/
 Android/gen/
 Android Sample/bin/
 Android Sample/gen/
+
+#J2ME
 J2ME Sample/build/
 J2ME Sample/dist/
 J2ME/build/
 J2ME/dist/
+
+#iOS
+iOS/build/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcworkspace
+xcuserdata
