@@ -8,6 +8,7 @@
 
 //Header files
 #import "ViewController.h"
+#import "ARKImage.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -23,8 +24,7 @@ GLfloat gCubeVertexData[216] = {
 @interface ViewController () {
     GLKTextureInfo*	m_Texture;
     GLKTextureInfo*	m_Texture2;
-    GLuint			_vertexArray;
-    GLuint			_vertexBuffer;
+	ARKImage*		m_Image;
 }
 
 @property (strong, nonatomic) EAGLContext	*context;
@@ -51,6 +51,7 @@ GLfloat gCubeVertexData[216] = {
 		
 		//Setup openGL
 		[self setupGL];
+		m_Image = [ARKImage createFromPath:@"texture"];
     }
 }
 
@@ -83,39 +84,25 @@ GLfloat gCubeVertexData[216] = {
 - (void)setupGL {
 	//Set context
     [EAGLContext setCurrentContext:self.context];
+	
+	//Initialize openGL
+    glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+	
+	//Set openGL state
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
-    self.effect = [[GLKBaseEffect alloc] init];
+	//Initialize effect
+    self.effect						= [[GLKBaseEffect alloc] init];
 	self.effect.texture2d0.envMode	= GLKTextureEnvModeModulate;
 	self.effect.texture2d0.target	= GLKTextureTarget2D;
 	
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
 	//Load texture
-	NSString* File			= [[NSBundle mainBundle] pathForResource: @"texture" ofType:@"png"];
-	NSDictionary* Options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:GLKTextureLoaderOriginBottomLeft];
-	m_Texture				= [GLKTextureLoader textureWithContentsOfFile:File options:Options error:nil];
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	/*glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	m_Texture2				= [GLKTextureLoader textureWithContentsOfFile:File options:Options error:nil];
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    
-    glGenVertexArraysOES(1, &_vertexArray);
-    glBindVertexArrayOES(_vertexArray);
-    
-    glGenBuffers(1, &_vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
-    
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 36, BUFFER_OFFSET(0));
-	glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
-    glVertexAttribPointer(GLKVertexAttribTexCoord0, 3, GL_FLOAT, GL_FALSE, 36, BUFFER_OFFSET(12));
-	glEnableVertexAttribArray(GLKVertexAttribColor);
-    glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, 36, BUFFER_OFFSET(20));
-    
-    glBindVertexArrayOES(0);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);*/
 }
 
 - (void)tearDownGL {
@@ -123,8 +110,8 @@ GLfloat gCubeVertexData[216] = {
     [EAGLContext setCurrentContext:self.context];
     
 	//Destroy buffers
-    glDeleteBuffers(1, &_vertexBuffer);
-    glDeleteVertexArraysOES(1, &_vertexArray);
+    //glDeleteBuffers(1, &_vertexBuffer);
+    //glDeleteVertexArraysOES(1, &_vertexArray);
     
 	//No effect
     self.effect = nil;
@@ -138,29 +125,8 @@ GLfloat gCubeVertexData[216] = {
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
-    //glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
-    
-    glBindVertexArrayOES(_vertexArray);
-	
-	//Create
-    GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeLookAt(0, 0, self.view.bounds.size.height / 2, 0, 0, 0, 0, 1, 0);
-    self.effect.transform.modelviewMatrix = baseModelViewMatrix;
-    
-    // Render the object with GLKit
-	if (m_Texture) self.effect.texture2d0.name = m_Texture.name;
-    [self.effect prepareToDraw];
-    glDrawArrays(GL_TRIANGLES, 0, 6);
-    
-    // Compute the model view matrix for the object rendered with GLKit
-    GLKMatrix4 modelViewMatrix				= GLKMatrix4MakeTranslation(100.0f, -100.0f, 0);
-    modelViewMatrix							= GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
-    self.effect.transform.modelviewMatrix	= modelViewMatrix;
-	
-    // Render the object with GLKit
-	if (m_Texture2) self.effect.texture2d0.name = m_Texture2.name;
-    [self.effect prepareToDraw];
-    glDrawArrays(GL_TRIANGLES, 0, 6);
+    [m_Image drawWithEffect:self.effect];
 }
 
 @end
