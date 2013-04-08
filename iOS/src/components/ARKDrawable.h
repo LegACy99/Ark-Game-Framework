@@ -34,7 +34,7 @@
 - (void) setPositionAtX:(float)x atY:(float)y;
 - (void) setPositionAtX:(float)x atY:(float)y horizontallyAlignedTo:(int)horizontal;
 - (void) setPositionAtX:(float)x atY:(float)y horizontallyAlignedTo:(int)horizontal verticallyAlignedTo:(int)vertical;
-- (void) drawWithEffect:(GLKBaseEffect*)effect;
+- (void) drawWithGL:(GLKBaseEffect*)gl;
 
 @end
 

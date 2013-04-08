@@ -13,10 +13,9 @@
 
 //Class declaration
 @interface ARKiOSImage : ARKImage {
-	//Protected variables
+	//Variables
 	GLKTextureInfo*	m_Texture;
-    GLuint			m_Array;
-    GLuint			m_Buffer;
+	GLfloat			m_Attributes[48];
 }
 
 //

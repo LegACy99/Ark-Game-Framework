@@ -14,6 +14,7 @@
 const int COLOR_SIZE 		= 4;
 const int VERTEX_SIZE 		= 2;
 const int COORDINATE_SIZE 	= 2;
+const int DATA_SIZE			= VERTEX_SIZE + COORDINATE_SIZE + COLOR_SIZE;
 
 //Edge constants
 const int EDGE_TOP		= 0;
@@ -27,14 +28,15 @@ const int COORDINATES_HMIRROR[8] 	=  { EDGE_LEFT, EDGE_TOP,		EDGE_RIGHT, EDGE_TO
 const int COORDINATES_VMIRROR[8] 	=  { EDGE_RIGHT, EDGE_BOTTOM,	EDGE_LEFT, EDGE_BOTTOM,		EDGE_LEFT, EDGE_TOP,		EDGE_RIGHT, EDGE_TOP 	};
 const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDGE_BOTTOM,	EDGE_RIGHT, EDGE_TOP,		EDGE_LEFT, EDGE_TOP		};
 
-const GLfloat DATA[54] = {
-    -64, -128, 0,		0, 0,	1, 1, 1, 0.5f,
-    -64, 128, 0,	0, 2,		1, 1, 1, 0.5f,
-    0, -128, 0,		0.5f, 0,	1, 1, 1, 0.5f,
-    0, -128, 0,		0.5f, 0,	1, 1, 1, 0.5f,
-    -64, 128, 0,	0, 2,		1, 1, 1, 0.5f,
-    0, 128, 0,		0.5f, 2,		1, 1, 1, 0.5f,
-};
+//Private stuff
+@interface ARKiOSImage ()
+
+//Private functions
+- (void)configureVertices;
+- (void)configureCoordinates;
+- (void)configureColors;
+
+@end
 
 @implementation ARKiOSImage
 
@@ -52,27 +54,16 @@ const GLfloat DATA[54] = {
 		NSDictionary* Options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:GLKTextureLoaderOriginBottomLeft];
 		m_Texture				= [GLKTextureLoader textureWithContentsOfFile:File options:Options error:nil];
 		
-		//Set array
-		glGenVertexArraysOES(1, &m_Array);
-		glBindVertexArrayOES(m_Array);
+		//Set size
+		m_Width = 64;
+		m_Height = 64;
+		m_OriginalWidth = 64;
+		m_OriginalHeight = 64;
 		
-		//Set buffer
-		glGenBuffers(1, &m_Buffer);
-		glBindBuffer(GL_ARRAY_BUFFER, m_Buffer);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(DATA), DATA, GL_STATIC_DRAW);
+		//Create drawing rect
+		[self setRegionfromX:0 fromY:0 withWidth:m_OriginalWidth withHeight:m_OriginalHeight];
+		[self configureColors];
 		
-		//Set attributes
-		glEnableVertexAttribArray(GLKVertexAttribColor);
-		glEnableVertexAttribArray(GLKVertexAttribPosition);
-		glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
-		
-		//Segment vertext data
-		glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, 36, (void*)20);
-		glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 36, (void*)0);
-		glVertexAttribPointer(GLKVertexAttribTexCoord0, 3, GL_FLOAT, GL_FALSE, 36, (void*)12);
-		
-		//Release
-		glBindVertexArrayOES(0);
 	}
 	
 	//Return
@@ -84,19 +75,95 @@ const GLfloat DATA[54] = {
 	return nil;
 }
 
-- (void)drawWithEffect:(GLKBaseEffect*)effect {
-	//Bind vertext array
-    glBindVertexArrayOES(m_Array);
+- (void)setTintWithRedF:(float)red withGreenF:(float)green withBlueF:(float)blue withAlphaF:(float)alpha {
+	//Super
+	[super setTintWithRedF:red withGreenF:green withBlueF:blue withAlphaF:alpha];
+	
+	//Manage attribute
+	[self configureColors];
+}
+
+- (void)setRegionfromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height {
+	//Set region not forced
+	[self setRegionfromX:x fromY:y withWidth:width withHeight:height forced:NO];
+}
+
+- (void)setRegionfromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height forced:(BOOL)force {
+	//Initialize
+	BOOL Valid		= force;
+	float OldX		= m_OriginalRegionX;
+	float OldY		= m_OriginalRegionY;
+	float OldWidth	= m_OriginalRegionWidth;
+	float OldHeight	= m_OriginalRegionHeight;
+	
+	//Super
+	[super setRegionfromX:x fromY:y withWidth:width withHeight:height];
+	
+	//If not valid
+	if (!Valid) {
+		//Valid if there's a difference
+		if (m_OriginalRegionX != OldX) 					Valid = YES;
+		else if (m_OriginalRegionY != OldY) 			Valid = YES;
+		else if (m_OriginalRegionWidth != OldWidth) 	Valid = YES;
+		else if (m_OriginalRegionHeight != OldHeight) 	Valid = YES;
+	}
+	
+	//If valid
+	if (Valid) {
+		//Configure vertex attributes
+		[self configureVertices];
+		[self configureCoordinates];
+	}
+}
+
+- (void)configureVertices {
+	//Set vertex attributes
+	m_Attributes[0 * DATA_SIZE] = -(m_Width / 2) + m_RegionX;					m_Attributes[(0 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY - m_RegionHeight;
+	m_Attributes[1 * DATA_SIZE] = -(m_Width / 2) + m_RegionX;					m_Attributes[(1 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY;
+	m_Attributes[2 * DATA_SIZE] = -(m_Width / 2) + m_RegionX + m_RegionWidth;	m_Attributes[(2 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY - m_RegionHeight;
+	m_Attributes[3 * DATA_SIZE] = -(m_Width / 2) + m_RegionX + m_RegionWidth;	m_Attributes[(3 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY - m_RegionHeight;
+	m_Attributes[4 * DATA_SIZE] = -(m_Width / 2) + m_RegionX;					m_Attributes[(4 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY;
+	m_Attributes[5 * DATA_SIZE] = -(m_Width / 2) + m_RegionX + m_RegionWidth;	m_Attributes[(5 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY;
+}
+
+- (void)configureCoordinates {
+	//Set texture coordinates attribute
+	int Offset	= VERTEX_SIZE;
+	m_Attributes[(0 * DATA_SIZE) + Offset] = 0.0;	m_Attributes[(0 * DATA_SIZE) + Offset + 1] = 0.5;
+	m_Attributes[(1 * DATA_SIZE) + Offset] = 0.0;	m_Attributes[(1 * DATA_SIZE) + Offset + 1] = 1;
+	m_Attributes[(2 * DATA_SIZE) + Offset] = 0.5;	m_Attributes[(2 * DATA_SIZE) + Offset + 1] = 0.5;
+	m_Attributes[(3 * DATA_SIZE) + Offset] = 0.5;	m_Attributes[(3 * DATA_SIZE) + Offset + 1] = 0.5;
+	m_Attributes[(4 * DATA_SIZE) + Offset] = 0.0;	m_Attributes[(4 * DATA_SIZE) + Offset + 1] = 1;
+	m_Attributes[(5 * DATA_SIZE) + Offset] = 0.5;	m_Attributes[(5 * DATA_SIZE) + Offset + 1] = 1;
+}
+
+- (void)configureColors {
+	//For each vertex
+	int Offset = VERTEX_SIZE + COORDINATE_SIZE;
+	for (int i = 0; i < 6; i++) {
+		//Set color
+		m_Attributes[(i * DATA_SIZE) + Offset + 0] = m_ColorRed;
+		m_Attributes[(i * DATA_SIZE) + Offset + 1] = m_ColorGreen;
+		m_Attributes[(i * DATA_SIZE) + Offset + 2] = m_ColorBlue;
+		m_Attributes[(i * DATA_SIZE) + Offset + 3] = m_ColorAlpha;
+	}
+}
+
+- (void)drawWithGL:(GLKBaseEffect*)gl {
+	//Set vertex attributes
+	glVertexAttribPointer(GLKVertexAttribPosition, VERTEX_SIZE, GL_FLOAT, GL_FALSE, DATA_SIZE * 4, &m_Attributes);
+	glVertexAttribPointer(GLKVertexAttribColor, COLOR_SIZE, GL_FLOAT, GL_FALSE, DATA_SIZE * 4, &(m_Attributes[VERTEX_SIZE + COORDINATE_SIZE]));
+	glVertexAttribPointer(GLKVertexAttribTexCoord0, COORDINATE_SIZE, GL_FLOAT, GL_FALSE, DATA_SIZE * 4, &(m_Attributes[VERTEX_SIZE]));
+	
+    //Set texture
+	if (m_Texture) gl.texture2d0.name = m_Texture.name;
 	
 	//Create matrix
     GLKMatrix4 ViewMatrix = GLKMatrix4MakeLookAt(0, 0, 240, 0, 0, 0, 0, 1, 0);
-    effect.transform.modelviewMatrix = ViewMatrix;
-    
-    //Set texture
-	if (m_Texture) effect.texture2d0.name = m_Texture.name;
+    gl.transform.modelviewMatrix = ViewMatrix;
 	
 	//Render
-    [effect prepareToDraw];
+    [gl prepareToDraw];
     glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 

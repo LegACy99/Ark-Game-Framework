@@ -91,6 +91,9 @@ GLfloat gCubeVertexData[216] = {
 	//Set openGL state
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+	glEnableVertexAttribArray(GLKVertexAttribPosition);
+	glEnableVertexAttribArray(GLKVertexAttribColor);
     
 	//Initialize effect
     self.effect						= [[GLKBaseEffect alloc] init];
@@ -126,7 +129,7 @@ GLfloat gCubeVertexData[216] = {
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     glClear(GL_COLOR_BUFFER_BIT);
-    [m_Image drawWithEffect:self.effect];
+    [m_Image drawWithGL:self.effect];
 }
 
 @end

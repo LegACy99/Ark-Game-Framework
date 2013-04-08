@@ -75,11 +75,9 @@ const int DRAWABLE_MIRROR_BOTH			= 3;
 	else if (vertical == DRAWABLE_ANCHOR_VCENTER)	m_Y -= (m_Height / 2);
 }
 
-- (void)drawWithEffect:(GLKBaseEffect*)effect {
+- (void)drawWithGL:(GLKBaseEffect*)gl {
 	//Invalid
 	[self doesNotRecognizeSelector:_cmd];
 }
-
-
 
 @end
