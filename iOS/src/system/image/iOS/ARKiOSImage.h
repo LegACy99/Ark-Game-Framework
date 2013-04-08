@@ -14,8 +14,10 @@
 //Class declaration
 @interface ARKiOSImage : ARKImage {
 	//Variables
+	float			m_Top;
+	float			m_Left;
 	GLKTextureInfo*	m_Texture;
-	GLfloat			m_Attributes[48];
+	GLfloat			m_Attributes[32];
 }
 
 //

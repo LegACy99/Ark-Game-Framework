@@ -32,9 +32,11 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 @interface ARKiOSImage ()
 
 //Private functions
+- (void)configureColors;
 - (void)configureVertices;
 - (void)configureCoordinates;
-- (void)configureColors;
+- (const int*)getTemplateFromMirror:(int)mirror;
+- (NSArray*)getEdges;
 
 @end
 
@@ -51,10 +53,11 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 	if (self) {
 		//Create texture
 		NSString* File			= [[NSBundle mainBundle] pathForResource:file ofType:@"png"];
-		NSDictionary* Options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:GLKTextureLoaderOriginBottomLeft];
-		m_Texture				= [GLKTextureLoader textureWithContentsOfFile:File options:Options error:nil];
+		m_Texture				= [GLKTextureLoader textureWithContentsOfFile:File options:nil error:nil];
 		
 		//Set size
+		m_Top = 0;
+		m_Left = 0;
 		m_Width = 64;
 		m_Height = 64;
 		m_OriginalWidth = 64;
@@ -118,29 +121,50 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 
 - (void)configureVertices {
 	//Set vertex attributes
-	m_Attributes[0 * DATA_SIZE] = -(m_Width / 2) + m_RegionX;					m_Attributes[(0 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY - m_RegionHeight;
+	m_Attributes[0 * DATA_SIZE] = -(m_Width / 2) + m_RegionX + m_RegionWidth;	m_Attributes[(0 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY;
 	m_Attributes[1 * DATA_SIZE] = -(m_Width / 2) + m_RegionX;					m_Attributes[(1 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY;
 	m_Attributes[2 * DATA_SIZE] = -(m_Width / 2) + m_RegionX + m_RegionWidth;	m_Attributes[(2 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY - m_RegionHeight;
-	m_Attributes[3 * DATA_SIZE] = -(m_Width / 2) + m_RegionX + m_RegionWidth;	m_Attributes[(3 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY - m_RegionHeight;
-	m_Attributes[4 * DATA_SIZE] = -(m_Width / 2) + m_RegionX;					m_Attributes[(4 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY;
-	m_Attributes[5 * DATA_SIZE] = -(m_Width / 2) + m_RegionX + m_RegionWidth;	m_Attributes[(5 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY;
+	m_Attributes[3 * DATA_SIZE] = -(m_Width / 2) + m_RegionX;					m_Attributes[(3 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY - m_RegionHeight;
 }
 
 - (void)configureCoordinates {
-	//Set texture coordinates attribute
-	int Offset	= VERTEX_SIZE;
-	m_Attributes[(0 * DATA_SIZE) + Offset] = 0.0;	m_Attributes[(0 * DATA_SIZE) + Offset + 1] = 0.5;
-	m_Attributes[(1 * DATA_SIZE) + Offset] = 0.0;	m_Attributes[(1 * DATA_SIZE) + Offset + 1] = 1;
-	m_Attributes[(2 * DATA_SIZE) + Offset] = 0.5;	m_Attributes[(2 * DATA_SIZE) + Offset + 1] = 0.5;
-	m_Attributes[(3 * DATA_SIZE) + Offset] = 0.5;	m_Attributes[(3 * DATA_SIZE) + Offset + 1] = 0.5;
-	m_Attributes[(4 * DATA_SIZE) + Offset] = 0.0;	m_Attributes[(4 * DATA_SIZE) + Offset + 1] = 1;
-	m_Attributes[(5 * DATA_SIZE) + Offset] = 0.5;	m_Attributes[(5 * DATA_SIZE) + Offset + 1] = 1;
+	//Initialize
+	NSArray* Edges		= [self getEdges];
+	const int* Template = [self getTemplateFromMirror:m_Mirror];
+	
+	//For each data
+	int Offset = VERTEX_SIZE;
+	for (int i = 0; i < 4; i++) {
+		//Set attribute
+		for (int j = 0; j < 2; j++) m_Attributes[(i * DATA_SIZE) + Offset + j] = [(NSNumber*)[Edges objectAtIndex:Template[(i * 2) + j]] floatValue];
+	}
+}
+
+- (NSArray*)getEdges {
+	//Calculate
+	NSArray* Edges = [NSArray arrayWithObjects:
+					  [NSNumber numberWithFloat:(m_Top + m_OriginalRegionY) / 128],//m_Texture.getHeight()],
+					  [NSNumber numberWithFloat:(m_Left + m_OriginalRegionX) / 128],//m_Texture.getWidth()],
+					  [NSNumber numberWithFloat:(m_Left + m_OriginalRegionX + m_OriginalRegionWidth) / 128],//m_Texture.getWidth()],
+					  [NSNumber numberWithFloat:(m_Top + m_OriginalRegionY + m_OriginalRegionHeight) / 128],//m_Texture.getHeight()],
+					  nil];
+	
+	//Return
+	return Edges;
+}
+
+- (const int*)getTemplateFromMirror:(int)mirror {
+	//Get the correct pattern
+	if (mirror == DRAWABLE_MIRROR_VERTICAL)			return COORDINATES_VMIRROR;
+	else if (mirror == DRAWABLE_MIRROR_HORIZONTAL) 	return COORDINATES_HMIRROR;
+	else if (mirror == DRAWABLE_MIRROR_BOTH)		return COORDINATES_BOTHMIRROR;
+	else											return COORDINATES_NORMAL;
 }
 
 - (void)configureColors {
 	//For each vertex
 	int Offset = VERTEX_SIZE + COORDINATE_SIZE;
-	for (int i = 0; i < 6; i++) {
+	for (int i = 0; i < 4; i++) {
 		//Set color
 		m_Attributes[(i * DATA_SIZE) + Offset + 0] = m_ColorRed;
 		m_Attributes[(i * DATA_SIZE) + Offset + 1] = m_ColorGreen;
@@ -164,7 +188,7 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 	
 	//Render
     [gl prepareToDraw];
-    glDrawArrays(GL_TRIANGLES, 0, 6);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
 @end
