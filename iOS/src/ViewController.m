@@ -51,7 +51,7 @@ GLfloat gCubeVertexData[216] = {
 		
 		//Setup openGL
 		[self setupGL];
-		m_Image = [ARKImage createFromPath:@"texture"];
+		m_Image = [ARKImage createFromPath:@"texture2"];
     }
 }
 
@@ -99,13 +99,6 @@ GLfloat gCubeVertexData[216] = {
     self.effect						= [[GLKBaseEffect alloc] init];
 	self.effect.texture2d0.envMode	= GLKTextureEnvModeModulate;
 	self.effect.texture2d0.target	= GLKTextureTarget2D;
-	
-	//Load texture
-	/*glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	m_Texture2				= [GLKTextureLoader textureWithContentsOfFile:File options:Options error:nil];
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);*/
 }
 
 - (void)tearDownGL {

@@ -8,6 +8,7 @@
 
 //Header files
 #import <GLKit/GLKit.h>
+#import "ARKTexture.h"
 #import "ARKiOSImage.h"
 
 //Sizes
@@ -52,8 +53,8 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 	self = [super initFromFile:file atX:x atY:y];
 	if (self) {
 		//Create texture
-		NSString* File			= [[NSBundle mainBundle] pathForResource:file ofType:@"png"];
-		m_Texture				= [GLKTextureLoader textureWithContentsOfFile:File options:nil error:nil];
+		m_Texture = [ARKTexture createFromFile:file withAntiAlias:true];
+		[m_Texture load];
 		
 		//Set size
 		m_Top = 0;
@@ -180,7 +181,7 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 	glVertexAttribPointer(GLKVertexAttribTexCoord0, COORDINATE_SIZE, GL_FLOAT, GL_FALSE, DATA_SIZE * 4, &(m_Attributes[VERTEX_SIZE]));
 	
     //Set texture
-	if (m_Texture) gl.texture2d0.name = m_Texture.name;
+	if (m_Texture) gl.texture2d0.name = [m_Texture getID];
 	
 	//Create matrix
     GLKMatrix4 ViewMatrix = GLKMatrix4MakeLookAt(0, 0, 240, 0, 0, 0, 0, 1, 0);

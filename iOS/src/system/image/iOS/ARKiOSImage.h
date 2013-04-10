@@ -9,15 +9,15 @@
 #import "ARKImage.h"
 
 //Forward declaration
-@class GLKTextureInfo;
+@class ARKTexture;
 
 //Class declaration
 @interface ARKiOSImage : ARKImage {
 	//Variables
-	float			m_Top;
-	float			m_Left;
-	GLKTextureInfo*	m_Texture;
-	GLfloat			m_Attributes[32];
+	float		m_Top;
+	float		m_Left;
+	ARKTexture*	m_Texture;
+	GLfloat		m_Attributes[32];
 }
 
 //
