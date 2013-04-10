@@ -44,39 +44,96 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 @implementation ARKiOSImage
 
 - (id)init {
-	//Do not use
-	return nil;
-}
-
-- (id)initFromFile:(NSString *)file atX:(float)x atY:(float)y {
-	//Init
-	self = [super initFromFile:file atX:x atY:y];
+	//Super
+	self = [super init];
 	if (self) {
-		//Create texture
-		m_Texture = [ARKTexture createFromFile:file withAntiAlias:true];
-		[m_Texture load];
-		
-		//Set size
-		m_Top = 0;
-		m_Left = 0;
-		m_Width = 64;
-		m_Height = 64;
-		m_OriginalWidth = 64;
-		m_OriginalHeight = 64;
-		
-		//Create drawing rect
-		[self setRegionfromX:0 fromY:0 withWidth:m_OriginalWidth withHeight:m_OriginalHeight];
-		[self configureColors];
-		
+		//Initialize
+		m_Top		= 0;
+		m_Left		= 0;
+		m_Texture	= nil;
+		for (int i = 0; i < sizeof(m_Attributes); i++) m_Attributes[i] = 0;
 	}
 	
 	//Return
 	return self;
 }
 
-- (id)initFromJSON:(id)json atX:(float)x atY:(float)y {
-	//Do nothing
-	return nil;
+- (id)initFromFile:(NSString *)file atX:(float)x atY:(float)y {
+	//Return using JSON
+	return [self initFromJSON:nil atX:x atY:y];
+}
+
+- (id)initFromJSON:(NSDictionary*)json atX:(float)x atY:(float)y {
+	//Init
+	self = [self init];
+	if (self) {
+		//Set position
+		[self setPositionAtX:x atY:y];
+		
+		//If json exist
+		if (json) {
+			//Get texture
+			NSString* TextureName	= [json objectForKey:IMAGE_KEY_TEXTURE];
+			m_Texture				= [ARKTexture createFromFile:TextureName withAntiAlias:true];
+			[m_Texture load];
+			
+			//Get rect
+			NSDictionary* RectDictionary = [json objectForKey:IMAGE_KEY_RECT];
+			if (RectDictionary) {
+				//Get horizontal size
+				NSNumber* Left = [RectDictionary objectForKey:IMAGE_KEY_RECT_LEFT];
+				if (Left) {
+					//Get left
+					m_Left = [Left floatValue];
+					
+					//Get width
+					NSNumber* Right = [RectDictionary objectForKey:IMAGE_KEY_RECT_RIGHT];
+					NSNumber* Width = [RectDictionary objectForKey:IMAGE_KEY_RECT_WIDTH];
+					if (Right)		m_OriginalWidth = [Right floatValue] - m_Left;
+					else if (Width)	m_OriginalWidth = [Width floatValue];
+				} else {
+					//Get width
+					NSNumber* Right = [RectDictionary objectForKey:IMAGE_KEY_RECT_RIGHT];
+					NSNumber* Width = [RectDictionary objectForKey:IMAGE_KEY_RECT_WIDTH];
+					if (Right) m_Left = [Right floatValue] - m_OriginalWidth;
+					if (Width) m_OriginalWidth = [Width floatValue];
+				}
+				
+				//Get vertical size
+				NSNumber* Top = [RectDictionary objectForKey:IMAGE_KEY_RECT_TOP];
+				if (Top) {
+					//Get top
+					m_Left = [Top floatValue];
+					
+					//Get height
+					NSNumber* Bottom = [RectDictionary objectForKey:IMAGE_KEY_RECT_BOTTOM];
+					NSNumber* Height = [RectDictionary objectForKey:IMAGE_KEY_RECT_HEIGHT];
+					if (Bottom)			m_OriginalHeight = [Bottom floatValue] - m_Top;
+					else if (Height)	m_OriginalHeight = [Height floatValue];
+				} else {
+					//Get height
+					NSNumber* Bottom = [RectDictionary objectForKey:IMAGE_KEY_RECT_BOTTOM];
+					NSNumber* Height = [RectDictionary objectForKey:IMAGE_KEY_RECT_HEIGHT];
+					if (Bottom) m_Top = [Bottom floatValue] - m_OriginalHeight;
+					if (Height) m_OriginalHeight = [Height floatValue];
+				}
+			}
+			
+			//Scale
+			m_Width		= m_OriginalWidth;// * Utilities.instance().getScale();
+			m_Height	= m_OriginalHeight;// * Utilities.instance().getScale();
+			m_PivotY	= m_Height / 2;
+			m_PivotX	= m_Width / 2;
+
+			
+			//Create drawing rect
+			[self setRegionfromX:0 fromY:0 withWidth:m_OriginalWidth withHeight:m_OriginalHeight];
+			[self configureColors];
+		}
+	}
+	
+	//Return
+	return self;
 }
 
 - (void)setTintWithRedF:(float)red withGreenF:(float)green withBlueF:(float)blue withAlphaF:(float)alpha {

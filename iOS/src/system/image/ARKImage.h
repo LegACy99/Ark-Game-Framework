@@ -29,7 +29,9 @@
 
 //Static functions
 + (ARKImage*)createFromPath:(NSString*)resource;
++ (ARKImage*)createFromJSON:(NSDictionary*)json;
 + (ARKImage*)createFromPath:(NSString*)resource atX:(float)x atY:(float)y;
++ (ARKImage*)createFromJSON:(NSDictionary*)json atX:(float)x atY:(float)y;
 
 //Rotation functions
 - (void)setRotationWithAngle:(float)angle;
@@ -48,5 +50,15 @@
 - (void)setFlipWithAngle:(float)angle increasedBy:(float)increase;
 - (void)setMirrorHorizontally:(BOOL)horizontal andVertically:(BOOL)vertical;
 - (void)setRegionfromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height forced:(BOOL)force;
+
+//Constants
+extern const NSString* IMAGE_KEY_RECT;
+extern const NSString* IMAGE_KEY_RECT_TOP;
+extern const NSString* IMAGE_KEY_RECT_LEFT;
+extern const NSString* IMAGE_KEY_RECT_RIGHT;
+extern const NSString* IMAGE_KEY_RECT_BOTTOM;
+extern const NSString* IMAGE_KEY_RECT_HEIGHT;
+extern const NSString* IMAGE_KEY_RECT_WIDTH;
+extern const NSString* IMAGE_KEY_TEXTURE;
 
 @end

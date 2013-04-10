@@ -20,8 +20,8 @@
 	GLfloat		m_Attributes[32];
 }
 
-//
+//Constructors
 - (id)initFromFile:(NSString *)file atX:(float)x atY:(float)y;
-- (id)initFromJSON:(id)json atX:(float)x atY:(float)y;
+- (id)initFromJSON:(NSDictionary*)json atX:(float)x atY:(float)y;
 
 @end

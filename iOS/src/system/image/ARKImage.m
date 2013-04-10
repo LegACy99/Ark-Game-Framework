@@ -9,14 +9,19 @@
 #import "ARKImage.h"
 #import "ARKiOSImage.h"
 
+//Constants
+const NSString* IMAGE_KEY_RECT			= @"Rect";
+const NSString* IMAGE_KEY_RECT_TOP		= @"Top";
+const NSString* IMAGE_KEY_RECT_LEFT		= @"Left";
+const NSString* IMAGE_KEY_RECT_RIGHT	= @"Right";
+const NSString* IMAGE_KEY_RECT_BOTTOM	= @"Bottom";
+const NSString* IMAGE_KEY_RECT_HEIGHT	= @"Height";
+const NSString* IMAGE_KEY_RECT_WIDTH	= @"Width";
+const NSString* IMAGE_KEY_TEXTURE		= @"Texture";
+
 @implementation ARKImage
 
 - (id)init {
-	//Do not use
-	return nil;
-}
-
-- (id)initFromFile:(NSString*)file atX:(float)x atY:(float)y {
 	//Init
 	self = [super init];
 	if (self) {
@@ -30,7 +35,16 @@
 		m_ColorGreen	= 1;
 		m_ColorAlpha	= 1;
 		m_Mirror		= DRAWABLE_MIRROR_NONE;
-		
+	}
+	
+	//Return
+	return self;
+}
+
+- (id)initFromFile:(NSString*)file atX:(float)x atY:(float)y {
+	//Init
+	self = [self init];
+	if (self) {
 		//Position
 		[self setPositionAtX:x atY:y];
 	}
@@ -41,18 +55,21 @@
 }
 
 - (id)initFromJSON:(id)json atX:(float)x atY:(float)y {
-	//Do nothing
-	return nil;
+	//Init
+	self = [self init];
+	if (self) {
+		//Position
+		[self setPositionAtX:x atY:y];
+	}
+	
+	//Return
+	return self;
 }
 
-+ (ARKImage*)createFromPath:(NSString *)resource {
-	//Create
-	return [ARKImage createFromPath:resource atX:0 atY:0];
-}
-
-+ (ARKImage*)createFromPath:(NSString *)resource atX:(float)x atY:(float)y {
-	return [[ARKiOSImage alloc] initFromFile:resource atX:x atY:y];
-}
++ (ARKImage*)createFromJSON:(NSDictionary*)json								{ return [ARKImage createFromJSON:json atX:0 atY:0];				}
++ (ARKImage*)createFromPath:(NSString*)resource								{ return [ARKImage createFromPath:resource atX:0 atY:0];			}
++ (ARKImage*)createFromJSON:(NSDictionary*)json atX:(float)x atY:(float)y	{ return [[ARKiOSImage alloc] initFromJSON:json atX:x atY:y];		}
++ (ARKImage*)createFromPath:(NSString*)resource atX:(float)x atY:(float)y	{ return [[ARKiOSImage alloc] initFromFile:resource atX:x atY:y];	}
 
 - (void)setRotationWithAngle:(float)angle {
 	//Set rotation
@@ -99,8 +116,7 @@
 	[self setTintWithRedF:red withGreenF:green withBlueF:blue withAlphaF:1];
 }
 
-- (void)setTintWithRed:(int)red withGreen:(int)green withBlue:(int)blue withAlpha:(int)alpha {
-	//Set color
+- (void)setTintWithRed:(int)red withGreen:(int)green withBlue:(int)blue withAlpha:(int)alpha { 
 	[self setTintWithRedF:red/255 withGreenF:green/255 withBlueF:blue/255 withAlphaF:alpha/255];
 }
 
