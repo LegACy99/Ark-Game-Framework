@@ -24,6 +24,9 @@
 		//Initialize
 		m_Name		= file;
 		m_AntiAlias	= antiAlias;
+		
+		//Load
+		[self load];
 	}
 	
 	//Return

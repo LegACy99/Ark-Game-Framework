@@ -8,8 +8,9 @@
 
 //Header files
 #import <GLKit/GLKit.h>
-#import "ARKTexture.h"
 #import "ARKiOSImage.h"
+#import "ARKResourceManager.h"
+#import "ARKTexture.h"
 
 //Sizes
 const int COLOR_SIZE 		= 4;
@@ -60,7 +61,7 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 
 - (id)initFromFile:(NSString *)file atX:(float)x atY:(float)y {
 	//Return using JSON
-	return [self initFromJSON:nil atX:x atY:y];
+	return [self initFromJSON:[[ARKResourceManager instance] getJSONWithName:file] atX:x atY:y];
 }
 
 - (id)initFromJSON:(NSDictionary*)json atX:(float)x atY:(float)y {
@@ -74,8 +75,7 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 		if (json) {
 			//Get texture
 			NSString* TextureName	= [json objectForKey:IMAGE_KEY_TEXTURE];
-			m_Texture				= [ARKTexture createFromFile:TextureName withAntiAlias:true];
-			[m_Texture load];
+			m_Texture				= [[ARKResourceManager instance] getTextureWithName:TextureName];
 			
 			//Get rect
 			NSDictionary* RectDictionary = [json objectForKey:IMAGE_KEY_RECT];

@@ -13,7 +13,7 @@
 @implementation ARKResourceManager
 
 //Synthesize properties
-@synthesize finished;
+@synthesize finished = m_Finished;
 
 - (id)init {
 	//Super
@@ -44,13 +44,13 @@
 - (void)addFontFromFile:(NSString*)file										{ [self doesNotRecognizeSelector:_cmd]; }
 - (void)addImageFromFile:(NSString*)file									{ [self doesNotRecognizeSelector:_cmd]; }
 - (void)addTextureFromFile:(NSString*)file									{ [self doesNotRecognizeSelector:_cmd]; }
-- (void)addTextureFromFile:(NSString*)file withAntiAlias:(BOOL)antiAlias	{ [self doesNotRecognizeSelector:_cmd]; }
+- (void)addTextureFromFile:(NSString*)file withAntiAlias:(BOOL)antialias	{ [self doesNotRecognizeSelector:_cmd]; }
 
 //Resource accessors
 - (id)getImageWithName:(NSString*)name				{ return nil; }
 - (id)getTextureWithName:(NSString*)name;			{ return nil; }
 - (NSArray*)getImagesWithName:(NSString*)name;		{ return nil; }
-- (NSArray*)getTexturesithName:(NSString*)name;		{ return nil; }
+- (NSArray*)getTexturesWithName:(NSString*)name;		{ return nil; }
 - (NSDictionary*)getJSONWithName:(NSString*)name;	{ return nil; }
 - (NSDictionary*)readJSONFromFile:(NSString*)file;	{ return nil; }
 - (id)getFontWithName:(NSString*)name;				{ return nil; }

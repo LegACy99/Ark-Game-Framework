@@ -38,6 +38,7 @@
 }
 
 + (ARKTexture*)createFromFile:(NSString *)file withAntiAlias:(BOOL)antiAlias {
+	//Create texture
 	return [[ARKiOSTexture alloc] initFromFile:file withAntiAlias:antiAlias];
 }
 

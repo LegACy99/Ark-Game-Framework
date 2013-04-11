@@ -33,13 +33,13 @@
 - (void)addFontFromFile:(NSString*)file;
 - (void)addImageFromFile:(NSString*)file;
 - (void)addTextureFromFile:(NSString*)file;
-- (void)addTextureFromFile:(NSString*)file withAntiAlias:(BOOL)antiAlias;
+- (void)addTextureFromFile:(NSString*)file withAntiAlias:(BOOL)antialias;
 
 //Abstract resource accessors
 - (id)getImageWithName:(NSString*)name;
 - (id)getTextureWithName:(NSString*)name;
 - (NSArray*)getImagesWithName:(NSString*)name;
-- (NSArray*)getTexturesithName:(NSString*)name;
+- (NSArray*)getTexturesWithName:(NSString*)name;
 - (NSDictionary*)getJSONWithName:(NSString*)name;
 - (NSDictionary*)readJSONFromFile:(NSString*)file;
 - (id)getFontWithName:(NSString*)name;

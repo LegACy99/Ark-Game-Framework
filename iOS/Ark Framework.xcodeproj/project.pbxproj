@@ -13,6 +13,8 @@
 		832FB2941715DB2100E73D11 /* ARKResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2931715DB2100E73D11 /* ARKResourceManager.m */; };
 		832FB2981715DB9D00E73D11 /* ARKiOSResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2971715DB9D00E73D11 /* ARKiOSResourceManager.m */; };
 		832FB29A1716ACC200E73D11 /* ship.json in Resources */ = {isa = PBXBuildFile; fileRef = 832FB2991716ACC200E73D11 /* ship.json */; };
+		832FB29D1716B5A700E73D11 /* ARKLoadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB29C1716B5A700E73D11 /* ARKLoadable.m */; };
+		832FB2A01716C42200E73D11 /* ARKLoadableTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB29F1716C42200E73D11 /* ARKLoadableTexture.m */; };
 		837736641710285400F3C5E9 /* ARKImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 837736631710285400F3C5E9 /* ARKImage.m */; };
 		8377366817102E2300F3C5E9 /* ARKDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377366717102E2300F3C5E9 /* ARKDrawable.m */; };
 		8377366B17103ED900F3C5E9 /* ARKCroppable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377366A17103ED900F3C5E9 /* ARKCroppable.m */; };
@@ -44,6 +46,10 @@
 		832FB2961715DB9D00E73D11 /* ARKiOSResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSResourceManager.h; path = system/resource/iOS/ARKiOSResourceManager.h; sourceTree = "<group>"; };
 		832FB2971715DB9D00E73D11 /* ARKiOSResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSResourceManager.m; path = system/resource/iOS/ARKiOSResourceManager.m; sourceTree = "<group>"; };
 		832FB2991716ACC200E73D11 /* ship.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ship.json; path = assets/images/game/ship.json; sourceTree = "<group>"; };
+		832FB29B1716B5A700E73D11 /* ARKLoadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKLoadable.h; path = system/resource/ARKLoadable.h; sourceTree = "<group>"; };
+		832FB29C1716B5A700E73D11 /* ARKLoadable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKLoadable.m; path = system/resource/ARKLoadable.m; sourceTree = "<group>"; };
+		832FB29E1716C42200E73D11 /* ARKLoadableTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKLoadableTexture.h; path = system/resource/ARKLoadableTexture.h; sourceTree = "<group>"; };
+		832FB29F1716C42200E73D11 /* ARKLoadableTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKLoadableTexture.m; path = system/resource/ARKLoadableTexture.m; sourceTree = "<group>"; };
 		837736621710285400F3C5E9 /* ARKImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKImage.h; path = system/image/ARKImage.h; sourceTree = "<group>"; };
 		837736631710285400F3C5E9 /* ARKImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKImage.m; path = system/image/ARKImage.m; sourceTree = "<group>"; };
 		8377366617102E2300F3C5E9 /* ARKDrawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKDrawable.h; path = components/ARKDrawable.h; sourceTree = "<group>"; };
@@ -94,6 +100,10 @@
 			children = (
 				832FB2921715DB2100E73D11 /* ARKResourceManager.h */,
 				832FB2931715DB2100E73D11 /* ARKResourceManager.m */,
+				832FB29B1716B5A700E73D11 /* ARKLoadable.h */,
+				832FB29C1716B5A700E73D11 /* ARKLoadable.m */,
+				832FB29E1716C42200E73D11 /* ARKLoadableTexture.h */,
+				832FB29F1716C42200E73D11 /* ARKLoadableTexture.m */,
 				832FB2951715DB7E00E73D11 /* iOS */,
 			);
 			name = Resource;
@@ -310,6 +320,8 @@
 				832FB2831715275A00E73D11 /* ARKiOSTexture.m in Sources */,
 				832FB2941715DB2100E73D11 /* ARKResourceManager.m in Sources */,
 				832FB2981715DB9D00E73D11 /* ARKiOSResourceManager.m in Sources */,
+				832FB29D1716B5A700E73D11 /* ARKLoadable.m in Sources */,
+				832FB2A01716C42200E73D11 /* ARKLoadableTexture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
