@@ -124,7 +124,6 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 			m_Height	= m_OriginalHeight;// * Utilities.instance().getScale();
 			m_PivotY	= m_Height / 2;
 			m_PivotX	= m_Width / 2;
-
 			
 			//Create drawing rect
 			[self setRegionfromX:0 fromY:0 withWidth:m_OriginalWidth withHeight:m_OriginalHeight];
@@ -201,10 +200,10 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 - (NSArray*)getEdges {
 	//Calculate
 	NSArray* Edges = [NSArray arrayWithObjects:
-					  [NSNumber numberWithFloat:(m_Top + m_OriginalRegionY) / 128],//m_Texture.getHeight()],
-					  [NSNumber numberWithFloat:(m_Left + m_OriginalRegionX) / 128],//m_Texture.getWidth()],
-					  [NSNumber numberWithFloat:(m_Left + m_OriginalRegionX + m_OriginalRegionWidth) / 128],//m_Texture.getWidth()],
-					  [NSNumber numberWithFloat:(m_Top + m_OriginalRegionY + m_OriginalRegionHeight) / 128],//m_Texture.getHeight()],
+					  [NSNumber numberWithFloat:(m_Top + m_OriginalRegionY) / [m_Texture getHeight]],
+					  [NSNumber numberWithFloat:(m_Left + m_OriginalRegionX) / [m_Texture getWidth]],
+					  [NSNumber numberWithFloat:(m_Top + m_OriginalRegionY + m_OriginalRegionHeight) / [m_Texture getHeight]],
+					  [NSNumber numberWithFloat:(m_Left + m_OriginalRegionX + m_OriginalRegionWidth) / [m_Texture getWidth]],
 					  nil];
 	
 	//Return
@@ -240,10 +239,18 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
     //Set texture
 	if (m_Texture) gl.texture2d0.name = [m_Texture getID];
 	
+	//Calculate rotation pivot
+	float PivotX = (m_Width / 2) - m_PivotX;
+	float PivotY = m_PivotY - (m_Height / 2);
+	
 	//Create matrix
     GLKMatrix4 ViewMatrix = GLKMatrix4MakeLookAt(0, 0, 240, 0, 0, 0, 0, 1, 0);
+	ViewMatrix = GLKMatrix4Translate(ViewMatrix, ((m_Width - 320) / 2) + m_X - PivotX, ((480 - m_Height) / 2) - m_Y - PivotY, 0);
+	ViewMatrix = GLKMatrix4Rotate(ViewMatrix, m_Rotation, 0, 0, -1);
+	ViewMatrix = GLKMatrix4Translate(ViewMatrix, PivotX, PivotY, 0);
+	ViewMatrix = GLKMatrix4Rotate(ViewMatrix, m_Rotation, -1, 0, 0);
     gl.transform.modelviewMatrix = ViewMatrix;
-	
+
 	//Render
     [gl prepareToDraw];
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
