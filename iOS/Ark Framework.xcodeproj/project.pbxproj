@@ -15,6 +15,8 @@
 		832FB29A1716ACC200E73D11 /* ship.json in Resources */ = {isa = PBXBuildFile; fileRef = 832FB2991716ACC200E73D11 /* ship.json */; };
 		832FB29D1716B5A700E73D11 /* ARKLoadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB29C1716B5A700E73D11 /* ARKLoadable.m */; };
 		832FB2A01716C42200E73D11 /* ARKLoadableTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB29F1716C42200E73D11 /* ARKLoadableTexture.m */; };
+		832FB2A3171807F500E73D11 /* ARKUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2A2171807F500E73D11 /* ARKUtilities.m */; };
+		832FB2A81718226B00E73D11 /* ARKiOSUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2A71718226B00E73D11 /* ARKiOSUtilities.m */; };
 		837736641710285400F3C5E9 /* ARKImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 837736631710285400F3C5E9 /* ARKImage.m */; };
 		8377366817102E2300F3C5E9 /* ARKDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377366717102E2300F3C5E9 /* ARKDrawable.m */; };
 		8377366B17103ED900F3C5E9 /* ARKCroppable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377366A17103ED900F3C5E9 /* ARKCroppable.m */; };
@@ -50,6 +52,11 @@
 		832FB29C1716B5A700E73D11 /* ARKLoadable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKLoadable.m; path = system/resource/ARKLoadable.m; sourceTree = "<group>"; };
 		832FB29E1716C42200E73D11 /* ARKLoadableTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKLoadableTexture.h; path = system/resource/ARKLoadableTexture.h; sourceTree = "<group>"; };
 		832FB29F1716C42200E73D11 /* ARKLoadableTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKLoadableTexture.m; path = system/resource/ARKLoadableTexture.m; sourceTree = "<group>"; };
+		832FB2A1171807F400E73D11 /* ARKUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKUtilities.h; path = system/ARKUtilities.h; sourceTree = "<group>"; };
+		832FB2A2171807F500E73D11 /* ARKUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKUtilities.m; path = system/ARKUtilities.m; sourceTree = "<group>"; };
+		832FB2A4171808D000E73D11 /* ARKSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ARKSystem.h; path = system/ARKSystem.h; sourceTree = "<group>"; };
+		832FB2A61718226B00E73D11 /* ARKiOSUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSUtilities.h; path = system/iOS/ARKiOSUtilities.h; sourceTree = "<group>"; };
+		832FB2A71718226B00E73D11 /* ARKiOSUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSUtilities.m; path = system/iOS/ARKiOSUtilities.m; sourceTree = "<group>"; };
 		837736621710285400F3C5E9 /* ARKImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKImage.h; path = system/image/ARKImage.h; sourceTree = "<group>"; };
 		837736631710285400F3C5E9 /* ARKImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKImage.m; path = system/image/ARKImage.m; sourceTree = "<group>"; };
 		8377366617102E2300F3C5E9 /* ARKDrawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKDrawable.h; path = components/ARKDrawable.h; sourceTree = "<group>"; };
@@ -118,6 +125,15 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		832FB2A5171821F200E73D11 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				832FB2A61718226B00E73D11 /* ARKiOSUtilities.h */,
+				832FB2A71718226B00E73D11 /* ARKiOSUtilities.m */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 		83773659170FC1DD00F3C5E9 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +172,10 @@
 		8377365F1710267000F3C5E9 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				832FB2A4171808D000E73D11 /* ARKSystem.h */,
+				832FB2A1171807F400E73D11 /* ARKUtilities.h */,
+				832FB2A2171807F500E73D11 /* ARKUtilities.m */,
+				832FB2A5171821F200E73D11 /* iOS */,
 				832FB2911715DB0200E73D11 /* Resource */,
 				837736601710267900F3C5E9 /* Image */,
 			);
@@ -322,6 +342,8 @@
 				832FB2981715DB9D00E73D11 /* ARKiOSResourceManager.m in Sources */,
 				832FB29D1716B5A700E73D11 /* ARKLoadable.m in Sources */,
 				832FB2A01716C42200E73D11 /* ARKLoadableTexture.m in Sources */,
+				832FB2A3171807F500E73D11 /* ARKUtilities.m in Sources */,
+				832FB2A81718226B00E73D11 /* ARKiOSUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

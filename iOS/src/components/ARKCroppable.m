@@ -8,6 +8,7 @@
 
 //Header file
 #import "ARKCroppable.h"
+#import "ARKUtilities.h"
 
 //Implementation
 @implementation ARKCroppable
@@ -70,10 +71,10 @@
 	if (m_OriginalRegionHeight + m_OriginalRegionY > m_OriginalHeight)	m_OriginalRegionHeight = m_OriginalHeight - m_OriginalRegionY;
 	
 	//Scale
-	m_RegionX		= m_OriginalRegionX;// * Utilities.instance().getScale();
-	m_RegionY		= m_OriginalRegionY;// * Utilities.instance().getScale();
-	m_RegionWidth	= m_OriginalRegionWidth;// * Utilities.instance().getScale();
-	m_RegionHeight	= m_OriginalRegionHeight;// * Utilities.instance().getScale();
+	m_RegionX		= m_OriginalRegionX * [[ARKUtilities instance] getScale];
+	m_RegionY		= m_OriginalRegionY * [[ARKUtilities instance] getScale];
+	m_RegionWidth	= m_OriginalRegionWidth * [[ARKUtilities instance] getScale];
+	m_RegionHeight	= m_OriginalRegionHeight * [[ARKUtilities instance] getScale];
 }
 
 @end

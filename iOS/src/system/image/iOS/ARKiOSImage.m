@@ -10,6 +10,7 @@
 #import <GLKit/GLKit.h>
 #import "ARKiOSImage.h"
 #import "ARKResourceManager.h"
+#import "ARKUtilities.h"
 #import "ARKTexture.h"
 
 //Sizes
@@ -120,8 +121,8 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 			}
 			
 			//Scale
-			m_Width		= m_OriginalWidth;// * Utilities.instance().getScale();
-			m_Height	= m_OriginalHeight;// * Utilities.instance().getScale();
+			m_Width		= m_OriginalWidth * [[ARKUtilities instance] getScale];
+			m_Height	= m_OriginalHeight * [[ARKUtilities instance] getScale];
 			m_PivotY	= m_Height / 2;
 			m_PivotX	= m_Width / 2;
 			

@@ -8,6 +8,7 @@
 
 #import "ARKImage.h"
 #import "ARKiOSImage.h"
+#import "ARKUtilities.h"
 
 //Constants
 const NSString* IMAGE_KEY_RECT			= @"Rect";
@@ -102,8 +103,8 @@ const NSString* IMAGE_KEY_TEXTURE		= @"Texture";
 	m_Rotation += increase;
 	
 	//Set pivot
-	m_PivotX = x;// * Utilities.instance().getScale();
-	m_PivotY = y;// * Utilities.instance().getScale();
+	m_PivotX = x * [[ARKUtilities instance] getScale];
+	m_PivotY = y * [[ARKUtilities instance] getScale];
 }
 
 - (void)setTintWithRed:(int)red withGreen:(int)green withBlue:(int)blue {
