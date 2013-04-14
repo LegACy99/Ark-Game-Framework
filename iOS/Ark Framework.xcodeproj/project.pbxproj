@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8310BDE5171A7F9D007E4224 /* ARKSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDE4171A7F9D007E4224 /* ARKSprite.m */; };
+		8310BDE8171A84EE007E4224 /* ARKiOSSPrite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDE7171A84EE007E4224 /* ARKiOSSPrite.m */; };
 		832FB280171525F100E73D11 /* ARKTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB27F171525F100E73D11 /* ARKTexture.m */; };
 		832FB2831715275A00E73D11 /* ARKiOSTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2821715275A00E73D11 /* ARKiOSTexture.m */; };
 		832FB28D171562E200E73D11 /* textures in Resources */ = {isa = PBXBuildFile; fileRef = 832FB28C171562E200E73D11 /* textures */; };
@@ -43,6 +45,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8310BDE3171A7F9D007E4224 /* ARKSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKSprite.h; path = system/image/ARKSprite.h; sourceTree = "<group>"; };
+		8310BDE4171A7F9D007E4224 /* ARKSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKSprite.m; path = system/image/ARKSprite.m; sourceTree = "<group>"; };
+		8310BDE6171A84EE007E4224 /* ARKiOSSPrite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSSPrite.h; path = system/image/iOS/ARKiOSSPrite.h; sourceTree = "<group>"; };
+		8310BDE7171A84EE007E4224 /* ARKiOSSPrite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSSPrite.m; path = system/image/iOS/ARKiOSSPrite.m; sourceTree = "<group>"; };
 		832FB27E171525F100E73D11 /* ARKTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKTexture.h; path = system/image/ARKTexture.h; sourceTree = "<group>"; };
 		832FB27F171525F100E73D11 /* ARKTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKTexture.m; path = system/image/ARKTexture.m; sourceTree = "<group>"; };
 		832FB2811715275A00E73D11 /* ARKiOSTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSTexture.h; path = system/image/iOS/ARKiOSTexture.h; sourceTree = "<group>"; };
@@ -230,6 +236,8 @@
 			children = (
 				837736621710285400F3C5E9 /* ARKImage.h */,
 				837736631710285400F3C5E9 /* ARKImage.m */,
+				8310BDE3171A7F9D007E4224 /* ARKSprite.h */,
+				8310BDE4171A7F9D007E4224 /* ARKSprite.m */,
 				832FB27E171525F100E73D11 /* ARKTexture.h */,
 				832FB27F171525F100E73D11 /* ARKTexture.m */,
 				837736611710270600F3C5E9 /* iOS */,
@@ -242,6 +250,8 @@
 			children = (
 				8377366C171046EB00F3C5E9 /* ARKiOSImage.h */,
 				8377366D171046EB00F3C5E9 /* ARKiOSImage.m */,
+				8310BDE6171A84EE007E4224 /* ARKiOSSPrite.h */,
+				8310BDE7171A84EE007E4224 /* ARKiOSSPrite.m */,
 				832FB2811715275A00E73D11 /* ARKiOSTexture.h */,
 				832FB2821715275A00E73D11 /* ARKiOSTexture.m */,
 			);
@@ -392,6 +402,8 @@
 				832FB2BD171A5CFC00E73D11 /* ARKTouchInfo.m in Sources */,
 				832FB2C4171A685800E73D11 /* ARKRecordWriter.m in Sources */,
 				832FB2C7171A68EE00E73D11 /* ARKiOSRecordWriter.m in Sources */,
+				8310BDE5171A7F9D007E4224 /* ARKSprite.m in Sources */,
+				8310BDE8171A84EE007E4224 /* ARKiOSSPrite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
