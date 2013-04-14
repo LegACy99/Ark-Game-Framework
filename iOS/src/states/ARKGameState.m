@@ -7,6 +7,7 @@
 //
 
 #import "ARKGameState.h"
+#import "ARKAccelerometerInfo.h"
 #import "ARKImage.h"
 
 @implementation ARKGameState
@@ -67,7 +68,7 @@
 - (void)onExit		{}
 - (void)onResume	{}
 
-- (void)updateWithDelta:(long)time withKeys:(NSArray*)keys withTouches:(NSArray*)touches withAccelerometer:(id)accel {
+- (void)updateWithDelta:(long)time withKeys:(NSArray*)keys withTouches:(NSArray*)touches withAccelerometer:(ARKAccelerometerInfo*)accel {
 	//Do nothing here
 }
 
