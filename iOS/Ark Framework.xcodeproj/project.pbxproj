@@ -20,6 +20,8 @@
 		832FB2AD1719936A00E73D11 /* ARKGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2AC1719936A00E73D11 /* ARKGameState.m */; };
 		832FB2BA1719D47100E73D11 /* ARKAccelerometerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2B91719D47100E73D11 /* ARKAccelerometerInfo.m */; };
 		832FB2BD171A5CFC00E73D11 /* ARKTouchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2BC171A5CFC00E73D11 /* ARKTouchInfo.m */; };
+		832FB2C4171A685800E73D11 /* ARKRecordWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2C3171A685200E73D11 /* ARKRecordWriter.m */; };
+		832FB2C7171A68EE00E73D11 /* ARKiOSRecordWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2C6171A68EE00E73D11 /* ARKiOSRecordWriter.m */; };
 		837736641710285400F3C5E9 /* ARKImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 837736631710285400F3C5E9 /* ARKImage.m */; };
 		8377366817102E2300F3C5E9 /* ARKDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377366717102E2300F3C5E9 /* ARKDrawable.m */; };
 		8377366B17103ED900F3C5E9 /* ARKCroppable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377366A17103ED900F3C5E9 /* ARKCroppable.m */; };
@@ -67,6 +69,10 @@
 		832FB2B91719D47100E73D11 /* ARKAccelerometerInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKAccelerometerInfo.m; path = system/input/ARKAccelerometerInfo.m; sourceTree = "<group>"; };
 		832FB2BB171A5CFC00E73D11 /* ARKTouchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKTouchInfo.h; path = system/input/ARKTouchInfo.h; sourceTree = "<group>"; };
 		832FB2BC171A5CFC00E73D11 /* ARKTouchInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKTouchInfo.m; path = system/input/ARKTouchInfo.m; sourceTree = "<group>"; };
+		832FB2C2171A685000E73D11 /* ARKRecordWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKRecordWriter.h; path = system/ARKRecordWriter.h; sourceTree = "<group>"; };
+		832FB2C3171A685200E73D11 /* ARKRecordWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKRecordWriter.m; path = system/ARKRecordWriter.m; sourceTree = "<group>"; };
+		832FB2C5171A68EE00E73D11 /* ARKiOSRecordWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSRecordWriter.h; path = system/iOS/ARKiOSRecordWriter.h; sourceTree = "<group>"; };
+		832FB2C6171A68EE00E73D11 /* ARKiOSRecordWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSRecordWriter.m; path = system/iOS/ARKiOSRecordWriter.m; sourceTree = "<group>"; };
 		837736621710285400F3C5E9 /* ARKImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKImage.h; path = system/image/ARKImage.h; sourceTree = "<group>"; };
 		837736631710285400F3C5E9 /* ARKImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKImage.m; path = system/image/ARKImage.m; sourceTree = "<group>"; };
 		8377366617102E2300F3C5E9 /* ARKDrawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKDrawable.h; path = components/ARKDrawable.h; sourceTree = "<group>"; };
@@ -140,6 +146,8 @@
 			children = (
 				832FB2A61718226B00E73D11 /* ARKiOSUtilities.h */,
 				832FB2A71718226B00E73D11 /* ARKiOSUtilities.m */,
+				832FB2C5171A68EE00E73D11 /* ARKiOSRecordWriter.h */,
+				832FB2C6171A68EE00E73D11 /* ARKiOSRecordWriter.m */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -207,6 +215,8 @@
 				832FB2A4171808D000E73D11 /* ARKSystem.h */,
 				832FB2A1171807F400E73D11 /* ARKUtilities.h */,
 				832FB2A2171807F500E73D11 /* ARKUtilities.m */,
+				832FB2C2171A685000E73D11 /* ARKRecordWriter.h */,
+				832FB2C3171A685200E73D11 /* ARKRecordWriter.m */,
 				832FB2A5171821F200E73D11 /* iOS */,
 				837736601710267900F3C5E9 /* Image */,
 				832FB2B71719D43200E73D11 /* Input */,
@@ -380,6 +390,8 @@
 				832FB2AD1719936A00E73D11 /* ARKGameState.m in Sources */,
 				832FB2BA1719D47100E73D11 /* ARKAccelerometerInfo.m in Sources */,
 				832FB2BD171A5CFC00E73D11 /* ARKTouchInfo.m in Sources */,
+				832FB2C4171A685800E73D11 /* ARKRecordWriter.m in Sources */,
+				832FB2C7171A68EE00E73D11 /* ARKiOSRecordWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

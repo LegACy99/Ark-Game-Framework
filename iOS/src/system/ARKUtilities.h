@@ -71,6 +71,8 @@
 - (NSArray*)getDigitsFromNumber:(int)number limitedTo:(int)length;
 - (NSArray*)getDigitsFromNumber:(int)number;
 
+@end
+
 //Constants
 extern const NSString* UTILITIES_DATA_FOLDER;
 extern const NSString* UTILITIES_AUDIO_FOLDER;
@@ -81,5 +83,3 @@ extern const NSString* UTILITIES_STRING_FOLDER;
 extern const NSString* UTILITIES_FONT_FOLDER;
 extern const NSString* UTILITIES_BGM_FOLDER;
 extern const NSString* UTILITIES_SFX_FOLDER;
-
-@end
