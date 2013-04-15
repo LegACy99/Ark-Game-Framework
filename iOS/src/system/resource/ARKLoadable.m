@@ -9,6 +9,7 @@
 //Import
 #import "ARKTexture.h"
 #import "ARKLoadable.h"
+#import "ARKBitmapFont.h"
 #import "ARKLoadableTexture.h"
 #import "ARKResourceManager.h"
 
@@ -67,7 +68,7 @@ const int LOADABLE_TEXTURE	= 7;
 		Result = [[ARKResourceManager instance] readJSONFromFile:m_Name];
 	} else if (m_Resource == LOADABLE_FONT) {
 		//Load font
-		//
+		Result = [ARKBitmapFont createFromJSON:[[ARKResourceManager instance] readJSONFromFile:m_Name]];
 	} else if (m_Resource == LOADABLE_SFX) {
 		//Load SFX
 	} else if (m_Resource == LOADABLE_BGM) {

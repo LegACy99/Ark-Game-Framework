@@ -11,10 +11,6 @@
 
 @implementation ARKiOSUtilities
 
-- (id)init {
-	return [super init];
-}
-
 + (ARKUtilities*)instance {
 	//Static objects
 	static dispatch_once_t Token		= 0;

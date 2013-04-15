@@ -12,11 +12,6 @@
 
 @implementation ARKiOSTexture
 
-- (id)init {
-	//Do not use
-	return nil;
-}
-
 - (id)initFromFile:(NSString*)file withAntiAlias:(BOOL)antiAlias {
 	//Super
 	self = [super init];

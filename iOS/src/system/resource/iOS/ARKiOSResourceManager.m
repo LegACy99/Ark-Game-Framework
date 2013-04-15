@@ -7,6 +7,7 @@
 //
 
 #import "ARKiOSResourceManager.h"
+#import "ARKBitmapFont.h"
 #import "ARKLoadable.h"
 #import "ARKTexture.h"
 #import "ARKImage.h"
@@ -95,13 +96,13 @@ const NSString* RESOURCEMANAGER_KEY_SHEET_GAP		= @"Gap";
 	return Result;
 }
 
-- (id)getFontWithName:(NSString *)name {
+- (ARKBitmapFont*)getFontWithName:(NSString *)name {
 	//Initialize
-	ARKTexture* Result = nil;
+	ARKBitmapFont* Result = nil;
 	
 	//Get
-	//id Object = [m_Resources objectForKey:name];
-	//if (Object && [Object isKindOfClass:[ARKTexture class]]) Result = Object;
+	id Object = [m_Resources objectForKey:name];
+	if (Object && [Object isKindOfClass:[ARKBitmapFont class]]) Result = Object;
 	
 	//Return
 	return Result;
@@ -235,7 +236,7 @@ const NSString* RESOURCEMANAGER_KEY_SHEET_GAP		= @"Gap";
 
 	//Open JSON file
 	NSString* Path			= [[NSBundle mainBundle] pathForResource:file ofType:@"json"];
-	NSInputStream* Stream	= [NSInputStream inputStreamWithFileAtPath:Path];// [[NSString alloc] initWithContentsOfFile:Path encoding:NSUTF8StringEncoding error:nil];
+	NSInputStream* Stream	= [NSInputStream inputStreamWithFileAtPath:Path];
 	if (Stream) {
 		//Create JSON from stream
 		[Stream open];

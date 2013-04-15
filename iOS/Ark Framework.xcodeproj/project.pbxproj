@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		8310BDE5171A7F9D007E4224 /* ARKSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDE4171A7F9D007E4224 /* ARKSprite.m */; };
 		8310BDE8171A84EE007E4224 /* ARKiOSSPrite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDE7171A84EE007E4224 /* ARKiOSSPrite.m */; };
+		8310BDEB171BC673007E4224 /* ARKBitmapFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDEA171BC673007E4224 /* ARKBitmapFont.m */; };
+		8310BDEE171BCC4F007E4224 /* ARKiOSBitmapFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDED171BCC4F007E4224 /* ARKiOSBitmapFont.m */; };
+		8310BDF1171C00EC007E4224 /* ARKBitmapChar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDF0171C00EC007E4224 /* ARKBitmapChar.m */; };
+		8310BDF5171C0AC0007E4224 /* pixel.json in Resources */ = {isa = PBXBuildFile; fileRef = 8310BDF4171C0AC0007E4224 /* pixel.json */; };
 		832FB280171525F100E73D11 /* ARKTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB27F171525F100E73D11 /* ARKTexture.m */; };
 		832FB2831715275A00E73D11 /* ARKiOSTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2821715275A00E73D11 /* ARKiOSTexture.m */; };
 		832FB28D171562E200E73D11 /* textures in Resources */ = {isa = PBXBuildFile; fileRef = 832FB28C171562E200E73D11 /* textures */; };
@@ -49,6 +53,13 @@
 		8310BDE4171A7F9D007E4224 /* ARKSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKSprite.m; path = system/image/ARKSprite.m; sourceTree = "<group>"; };
 		8310BDE6171A84EE007E4224 /* ARKiOSSPrite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSSPrite.h; path = system/image/iOS/ARKiOSSPrite.h; sourceTree = "<group>"; };
 		8310BDE7171A84EE007E4224 /* ARKiOSSPrite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSSPrite.m; path = system/image/iOS/ARKiOSSPrite.m; sourceTree = "<group>"; };
+		8310BDE9171BC672007E4224 /* ARKBitmapFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKBitmapFont.h; path = system/image/ARKBitmapFont.h; sourceTree = "<group>"; };
+		8310BDEA171BC673007E4224 /* ARKBitmapFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKBitmapFont.m; path = system/image/ARKBitmapFont.m; sourceTree = "<group>"; };
+		8310BDEC171BCC4F007E4224 /* ARKiOSBitmapFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSBitmapFont.h; path = system/image/iOS/ARKiOSBitmapFont.h; sourceTree = "<group>"; };
+		8310BDED171BCC4F007E4224 /* ARKiOSBitmapFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSBitmapFont.m; path = system/image/iOS/ARKiOSBitmapFont.m; sourceTree = "<group>"; };
+		8310BDEF171C00EC007E4224 /* ARKBitmapChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKBitmapChar.h; path = system/image/iOS/ARKBitmapChar.h; sourceTree = "<group>"; };
+		8310BDF0171C00EC007E4224 /* ARKBitmapChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKBitmapChar.m; path = system/image/iOS/ARKBitmapChar.m; sourceTree = "<group>"; };
+		8310BDF4171C0AC0007E4224 /* pixel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = pixel.json; path = assets/data/font/pixel.json; sourceTree = "<group>"; };
 		832FB27E171525F100E73D11 /* ARKTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKTexture.h; path = system/image/ARKTexture.h; sourceTree = "<group>"; };
 		832FB27F171525F100E73D11 /* ARKTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKTexture.m; path = system/image/ARKTexture.m; sourceTree = "<group>"; };
 		832FB2811715275A00E73D11 /* ARKiOSTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSTexture.h; path = system/image/iOS/ARKiOSTexture.h; sourceTree = "<group>"; };
@@ -209,6 +220,7 @@
 		8377365B170FFFE200F3C5E9 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				8310BDF4171C0AC0007E4224 /* pixel.json */,
 				832FB2991716ACC200E73D11 /* ship.json */,
 				832FB28C171562E200E73D11 /* textures */,
 			);
@@ -240,6 +252,8 @@
 				8310BDE4171A7F9D007E4224 /* ARKSprite.m */,
 				832FB27E171525F100E73D11 /* ARKTexture.h */,
 				832FB27F171525F100E73D11 /* ARKTexture.m */,
+				8310BDE9171BC672007E4224 /* ARKBitmapFont.h */,
+				8310BDEA171BC673007E4224 /* ARKBitmapFont.m */,
 				837736611710270600F3C5E9 /* iOS */,
 			);
 			name = Image;
@@ -254,6 +268,10 @@
 				8310BDE7171A84EE007E4224 /* ARKiOSSPrite.m */,
 				832FB2811715275A00E73D11 /* ARKiOSTexture.h */,
 				832FB2821715275A00E73D11 /* ARKiOSTexture.m */,
+				8310BDEC171BCC4F007E4224 /* ARKiOSBitmapFont.h */,
+				8310BDED171BCC4F007E4224 /* ARKiOSBitmapFont.m */,
+				8310BDEF171C00EC007E4224 /* ARKBitmapChar.h */,
+				8310BDF0171C00EC007E4224 /* ARKBitmapChar.m */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -372,6 +390,7 @@
 				83A88861170F6AD100A61787 /* ViewController_iPad.xib in Resources */,
 				832FB28D171562E200E73D11 /* textures in Resources */,
 				832FB29A1716ACC200E73D11 /* ship.json in Resources */,
+				8310BDF5171C0AC0007E4224 /* pixel.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +423,9 @@
 				832FB2C7171A68EE00E73D11 /* ARKiOSRecordWriter.m in Sources */,
 				8310BDE5171A7F9D007E4224 /* ARKSprite.m in Sources */,
 				8310BDE8171A84EE007E4224 /* ARKiOSSPrite.m in Sources */,
+				8310BDEB171BC673007E4224 /* ARKBitmapFont.m in Sources */,
+				8310BDEE171BCC4F007E4224 /* ARKiOSBitmapFont.m in Sources */,
+				8310BDF1171C00EC007E4224 /* ARKBitmapChar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

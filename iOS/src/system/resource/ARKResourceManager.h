@@ -9,6 +9,9 @@
 //Import
 #import <Foundation/Foundation.h>
 
+//Forward declaration
+@class ARKBitmapFont;
+
 //Class delcaration
 @interface ARKResourceManager : NSObject {
 	//Protected variables
@@ -42,7 +45,7 @@
 - (NSArray*)getTexturesWithName:(NSString*)name;
 - (NSDictionary*)getJSONWithName:(NSString*)name;
 - (NSDictionary*)readJSONFromFile:(NSString*)file;
-- (id)getFontWithName:(NSString*)name;
+- (ARKBitmapFont*)getFontWithName:(NSString*)name;
 
 //Accessors
 - (BOOL)isLoading;

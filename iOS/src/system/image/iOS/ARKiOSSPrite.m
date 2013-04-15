@@ -12,8 +12,6 @@
 
 @implementation ARKiOSSPrite
 
-- (id)init													{ return nil; }
-- (id)initAtX:(float)x atY:(float)y withDelay:(long)delay	{ return nil; }
 - (id)initWithPath:(NSString *)path AtX:(float)x atY:(float)y withDelay:(long)delay {
 	//Super
 	self = [super initAtX:x atY:y withDelay:delay];

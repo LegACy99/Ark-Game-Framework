@@ -50,10 +50,10 @@
 - (id)getImageWithName:(NSString*)name				{ return nil; }
 - (id)getTextureWithName:(NSString*)name;			{ return nil; }
 - (NSArray*)getImagesWithName:(NSString*)name;		{ return nil; }
-- (NSArray*)getTexturesWithName:(NSString*)name;		{ return nil; }
+- (NSArray*)getTexturesWithName:(NSString*)name;	{ return nil; }
 - (NSDictionary*)getJSONWithName:(NSString*)name;	{ return nil; }
 - (NSDictionary*)readJSONFromFile:(NSString*)file;	{ return nil; }
-- (id)getFontWithName:(NSString*)name;				{ return nil; }
+- (ARKBitmapFont*)getFontWithName:(NSString*)name;	{ return nil; }
 
 - (BOOL)isLoading {
 	//Loading if started and not finished yet
