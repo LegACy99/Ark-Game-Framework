@@ -8,6 +8,7 @@
 
 #import "ARKiOSResourceManager.h"
 #import "ARKBitmapFont.h"
+#import "ARKUtilities.h"
 #import "ARKLoadable.h"
 #import "ARKTexture.h"
 #import "ARKImage.h"
@@ -32,6 +33,14 @@ const NSString* RESOURCEMANAGER_KEY_SHEET_GAP		= @"Gap";
 		m_Textures	= [NSMutableArray array];
 		m_Loadables	= [NSMutableArray array];
 		m_Resources	= [NSMutableDictionary dictionary];
+		
+		//Load system resources
+		if ([[ARKUtilities instance] getSystemFont])		[self addFontFromFile:[[ARKUtilities instance] getSystemFont]];
+		if ([[ARKUtilities instance] getSystemPressSFX]) 	[self addSFXFromFile:[[ARKUtilities instance] getSystemPressSFX]];
+		if ([[ARKUtilities instance] getSystemCursorSFX]) 	[self addSFXFromFile:[[ARKUtilities instance] getSystemCursorSFX]];
+		if ([[ARKUtilities instance] getSystemReleaseSFX]) 	[self addSFXFromFile:[[ARKUtilities instance] getSystemReleaseSFX]];
+		if ([[ARKUtilities instance] getSystemFontTexture])	[self addTextureFromFile:[[ARKUtilities instance] getSystemFontTexture]
+																	   withAntiAlias:[[ARKUtilities instance] isSystemFontSmooth]];
 	}
 	
 	//Return

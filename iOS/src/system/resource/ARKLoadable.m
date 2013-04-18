@@ -10,6 +10,7 @@
 #import "ARKTexture.h"
 #import "ARKLoadable.h"
 #import "ARKBitmapFont.h"
+#import "ARKSoundManager.h"
 #import "ARKLoadableTexture.h"
 #import "ARKResourceManager.h"
 
@@ -71,8 +72,10 @@ const int LOADABLE_TEXTURE	= 7;
 		Result = [ARKBitmapFont createFromJSON:[[ARKResourceManager instance] readJSONFromFile:m_Name]];
 	} else if (m_Resource == LOADABLE_SFX) {
 		//Load SFX
+		[[ARKSoundManager instance] loadSFXWithName:m_Name];
 	} else if (m_Resource == LOADABLE_BGM) {
 		//Load BGM
+		[[ARKSoundManager instance] loadBGMWithName:m_Name];
 	} else if (m_Resource == LOADABLE_NUMBER) {
 		//Not used
 	} else if (m_Resource == LOADABLE_STRING) {

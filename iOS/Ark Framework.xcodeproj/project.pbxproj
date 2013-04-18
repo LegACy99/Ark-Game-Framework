@@ -34,6 +34,11 @@
 		8379C492171EF1D1005F457C /* ARKLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C491171EF1D1005F457C /* ARKLabel.m */; };
 		8379C495171F0A3D005F457C /* ARKiOSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C494171F0A3D005F457C /* ARKiOSLabel.m */; };
 		8379C49B171F0AF0005F457C /* ARKiOSSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C49A171F0AF0005F457C /* ARKiOSSprite.m */; };
+		8379C49E1720190A005F457C /* ARKSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C49D1720190A005F457C /* ARKSoundManager.m */; };
+		8379C4A117202110005F457C /* ARKiOSSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C4A017202110005F457C /* ARKiOSSoundManager.m */; };
+		8379C4A317205884005F457C /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 8379C4A217205884005F457C /* audio */; };
+		8379C4A517205E09005F457C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8379C4A417205E09005F457C /* AVFoundation.framework */; };
+		8379C4A717205E31005F457C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8379C4A617205E31005F457C /* AVFoundation.framework */; };
 		83A8883A170F6AD100A61787 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A88839170F6AD100A61787 /* UIKit.framework */; };
 		83A8883C170F6AD100A61787 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8883B170F6AD100A61787 /* Foundation.framework */; };
 		83A8883E170F6AD100A61787 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8883D170F6AD100A61787 /* CoreGraphics.framework */; };
@@ -104,6 +109,13 @@
 		8379C494171F0A3D005F457C /* ARKiOSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSLabel.m; path = system/image/iOS/ARKiOSLabel.m; sourceTree = "<group>"; };
 		8379C499171F0AF0005F457C /* ARKiOSSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSSprite.h; path = system/image/iOS/ARKiOSSprite.h; sourceTree = "<group>"; };
 		8379C49A171F0AF0005F457C /* ARKiOSSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSSprite.m; path = system/image/iOS/ARKiOSSprite.m; sourceTree = "<group>"; };
+		8379C49C17201909005F457C /* ARKSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKSoundManager.h; path = system/ARKSoundManager.h; sourceTree = "<group>"; };
+		8379C49D1720190A005F457C /* ARKSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKSoundManager.m; path = system/ARKSoundManager.m; sourceTree = "<group>"; };
+		8379C49F17202110005F457C /* ARKiOSSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSSoundManager.h; path = system/iOS/ARKiOSSoundManager.h; sourceTree = "<group>"; };
+		8379C4A017202110005F457C /* ARKiOSSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSSoundManager.m; path = system/iOS/ARKiOSSoundManager.m; sourceTree = "<group>"; };
+		8379C4A217205884005F457C /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = audio; path = assets/audio; sourceTree = "<group>"; };
+		8379C4A417205E09005F457C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8379C4A617205E31005F457C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		83A88836170F6AD100A61787 /* Ark Framework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ark Framework.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A88839170F6AD100A61787 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		83A8883B170F6AD100A61787 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -130,11 +142,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8379C4A517205E09005F457C /* AVFoundation.framework in Frameworks */,
 				83A8883A170F6AD100A61787 /* UIKit.framework in Frameworks */,
 				83A8883C170F6AD100A61787 /* Foundation.framework in Frameworks */,
 				83A8883E170F6AD100A61787 /* CoreGraphics.framework in Frameworks */,
 				83A88840170F6AD100A61787 /* GLKit.framework in Frameworks */,
 				83A88842170F6AD100A61787 /* OpenGLES.framework in Frameworks */,
+				8379C4A717205E31005F457C /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +185,8 @@
 				832FB2A71718226B00E73D11 /* ARKiOSUtilities.m */,
 				832FB2C5171A68EE00E73D11 /* ARKiOSRecordWriter.h */,
 				832FB2C6171A68EE00E73D11 /* ARKiOSRecordWriter.m */,
+				8379C49F17202110005F457C /* ARKiOSSoundManager.h */,
+				8379C4A017202110005F457C /* ARKiOSSoundManager.m */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -226,6 +242,7 @@
 		8377365B170FFFE200F3C5E9 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				8379C4A217205884005F457C /* audio */,
 				8310BDF4171C0AC0007E4224 /* pixel.json */,
 				832FB2991716ACC200E73D11 /* ship.json */,
 				832FB28C171562E200E73D11 /* textures */,
@@ -237,10 +254,12 @@
 			isa = PBXGroup;
 			children = (
 				832FB2A4171808D000E73D11 /* ARKSystem.h */,
-				832FB2A1171807F400E73D11 /* ARKUtilities.h */,
-				832FB2A2171807F500E73D11 /* ARKUtilities.m */,
+				8379C49C17201909005F457C /* ARKSoundManager.h */,
+				8379C49D1720190A005F457C /* ARKSoundManager.m */,
 				832FB2C2171A685000E73D11 /* ARKRecordWriter.h */,
 				832FB2C3171A685200E73D11 /* ARKRecordWriter.m */,
+				832FB2A1171807F400E73D11 /* ARKUtilities.h */,
+				832FB2A2171807F500E73D11 /* ARKUtilities.m */,
 				832FB2A5171821F200E73D11 /* iOS */,
 				837736601710267900F3C5E9 /* Image */,
 				832FB2B71719D43200E73D11 /* Input */,
@@ -300,6 +319,7 @@
 		83A8882D170F6AD100A61787 = {
 			isa = PBXGroup;
 			children = (
+				8379C4A417205E09005F457C /* AVFoundation.framework */,
 				83773659170FC1DD00F3C5E9 /* Sources */,
 				8377365B170FFFE200F3C5E9 /* Assets */,
 				8377365A170FC1E400F3C5E9 /* Resources */,
@@ -320,6 +340,7 @@
 		83A88838170F6AD100A61787 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8379C4A617205E31005F457C /* AVFoundation.framework */,
 				83A88839170F6AD100A61787 /* UIKit.framework */,
 				83A8883B170F6AD100A61787 /* Foundation.framework */,
 				83A8883D170F6AD100A61787 /* CoreGraphics.framework */,
@@ -401,6 +422,7 @@
 				832FB28D171562E200E73D11 /* textures in Resources */,
 				832FB29A1716ACC200E73D11 /* ship.json in Resources */,
 				8310BDF5171C0AC0007E4224 /* pixel.json in Resources */,
+				8379C4A317205884005F457C /* audio in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +460,8 @@
 				8379C492171EF1D1005F457C /* ARKLabel.m in Sources */,
 				8379C495171F0A3D005F457C /* ARKiOSLabel.m in Sources */,
 				8379C49B171F0AF0005F457C /* ARKiOSSprite.m in Sources */,
+				8379C49E1720190A005F457C /* ARKSoundManager.m in Sources */,
+				8379C4A117202110005F457C /* ARKiOSSoundManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

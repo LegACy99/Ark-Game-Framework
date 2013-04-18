@@ -33,7 +33,7 @@
 @property (readonly, getter = getSystemPressSFX)		NSString* pressSFX;
 @property (readonly, getter = getSystemCursorSFX)		NSString* cursorSFX;
 @property (readonly, getter = getSystemReleaseSFX)		NSString* releaseSFX;
-@property (readonly, getter = getFontTexture)			NSString* fontTexture;
+@property (readonly, getter = getSystemFontTexture)		NSString* fontTexture;
 @property (readonly, getter = isSystemBasedOnHeight)	BOOL heightAsBase;
 @property (readonly, getter = isSystemFontSmooth)		BOOL fontSmooth;
 @property (readonly, getter = getBaseHeight)			int baseHeight;
