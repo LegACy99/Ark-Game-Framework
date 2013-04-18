@@ -8,7 +8,7 @@
 
 #import "ARKSprite.h"
 
-@interface ARKiOSSPrite : ARKSprite {
+@interface ARKiOSSprite : ARKSprite {
 	NSArray* m_Images;
 }
 

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8310BDE5171A7F9D007E4224 /* ARKSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDE4171A7F9D007E4224 /* ARKSprite.m */; };
-		8310BDE8171A84EE007E4224 /* ARKiOSSPrite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDE7171A84EE007E4224 /* ARKiOSSPrite.m */; };
 		8310BDEB171BC673007E4224 /* ARKBitmapFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDEA171BC673007E4224 /* ARKBitmapFont.m */; };
 		8310BDEE171BCC4F007E4224 /* ARKiOSBitmapFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDED171BCC4F007E4224 /* ARKiOSBitmapFont.m */; };
 		8310BDF1171C00EC007E4224 /* ARKBitmapChar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDF0171C00EC007E4224 /* ARKBitmapChar.m */; };
@@ -32,6 +31,9 @@
 		8377366817102E2300F3C5E9 /* ARKDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377366717102E2300F3C5E9 /* ARKDrawable.m */; };
 		8377366B17103ED900F3C5E9 /* ARKCroppable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377366A17103ED900F3C5E9 /* ARKCroppable.m */; };
 		8377366E171046EB00F3C5E9 /* ARKiOSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377366D171046EB00F3C5E9 /* ARKiOSImage.m */; };
+		8379C492171EF1D1005F457C /* ARKLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C491171EF1D1005F457C /* ARKLabel.m */; };
+		8379C495171F0A3D005F457C /* ARKiOSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C494171F0A3D005F457C /* ARKiOSLabel.m */; };
+		8379C49B171F0AF0005F457C /* ARKiOSSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C49A171F0AF0005F457C /* ARKiOSSprite.m */; };
 		83A8883A170F6AD100A61787 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A88839170F6AD100A61787 /* UIKit.framework */; };
 		83A8883C170F6AD100A61787 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8883B170F6AD100A61787 /* Foundation.framework */; };
 		83A8883E170F6AD100A61787 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8883D170F6AD100A61787 /* CoreGraphics.framework */; };
@@ -51,8 +53,6 @@
 /* Begin PBXFileReference section */
 		8310BDE3171A7F9D007E4224 /* ARKSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKSprite.h; path = system/image/ARKSprite.h; sourceTree = "<group>"; };
 		8310BDE4171A7F9D007E4224 /* ARKSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKSprite.m; path = system/image/ARKSprite.m; sourceTree = "<group>"; };
-		8310BDE6171A84EE007E4224 /* ARKiOSSPrite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSSPrite.h; path = system/image/iOS/ARKiOSSPrite.h; sourceTree = "<group>"; };
-		8310BDE7171A84EE007E4224 /* ARKiOSSPrite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSSPrite.m; path = system/image/iOS/ARKiOSSPrite.m; sourceTree = "<group>"; };
 		8310BDE9171BC672007E4224 /* ARKBitmapFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKBitmapFont.h; path = system/image/ARKBitmapFont.h; sourceTree = "<group>"; };
 		8310BDEA171BC673007E4224 /* ARKBitmapFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKBitmapFont.m; path = system/image/ARKBitmapFont.m; sourceTree = "<group>"; };
 		8310BDEC171BCC4F007E4224 /* ARKiOSBitmapFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSBitmapFont.h; path = system/image/iOS/ARKiOSBitmapFont.h; sourceTree = "<group>"; };
@@ -98,6 +98,12 @@
 		8377366A17103ED900F3C5E9 /* ARKCroppable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKCroppable.m; path = components/ARKCroppable.m; sourceTree = "<group>"; };
 		8377366C171046EB00F3C5E9 /* ARKiOSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSImage.h; path = system/image/iOS/ARKiOSImage.h; sourceTree = "<group>"; };
 		8377366D171046EB00F3C5E9 /* ARKiOSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSImage.m; path = system/image/iOS/ARKiOSImage.m; sourceTree = "<group>"; };
+		8379C490171EF1D1005F457C /* ARKLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKLabel.h; path = system/image/ARKLabel.h; sourceTree = "<group>"; };
+		8379C491171EF1D1005F457C /* ARKLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKLabel.m; path = system/image/ARKLabel.m; sourceTree = "<group>"; };
+		8379C493171F0A3D005F457C /* ARKiOSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSLabel.h; path = system/image/iOS/ARKiOSLabel.h; sourceTree = "<group>"; };
+		8379C494171F0A3D005F457C /* ARKiOSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSLabel.m; path = system/image/iOS/ARKiOSLabel.m; sourceTree = "<group>"; };
+		8379C499171F0AF0005F457C /* ARKiOSSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSSprite.h; path = system/image/iOS/ARKiOSSprite.h; sourceTree = "<group>"; };
+		8379C49A171F0AF0005F457C /* ARKiOSSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSSprite.m; path = system/image/iOS/ARKiOSSprite.m; sourceTree = "<group>"; };
 		83A88836170F6AD100A61787 /* Ark Framework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ark Framework.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A88839170F6AD100A61787 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		83A8883B170F6AD100A61787 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -250,6 +256,8 @@
 				837736631710285400F3C5E9 /* ARKImage.m */,
 				8310BDE3171A7F9D007E4224 /* ARKSprite.h */,
 				8310BDE4171A7F9D007E4224 /* ARKSprite.m */,
+				8379C490171EF1D1005F457C /* ARKLabel.h */,
+				8379C491171EF1D1005F457C /* ARKLabel.m */,
 				832FB27E171525F100E73D11 /* ARKTexture.h */,
 				832FB27F171525F100E73D11 /* ARKTexture.m */,
 				8310BDE9171BC672007E4224 /* ARKBitmapFont.h */,
@@ -264,14 +272,16 @@
 			children = (
 				8377366C171046EB00F3C5E9 /* ARKiOSImage.h */,
 				8377366D171046EB00F3C5E9 /* ARKiOSImage.m */,
-				8310BDE6171A84EE007E4224 /* ARKiOSSPrite.h */,
-				8310BDE7171A84EE007E4224 /* ARKiOSSPrite.m */,
+				8379C493171F0A3D005F457C /* ARKiOSLabel.h */,
+				8379C494171F0A3D005F457C /* ARKiOSLabel.m */,
 				832FB2811715275A00E73D11 /* ARKiOSTexture.h */,
 				832FB2821715275A00E73D11 /* ARKiOSTexture.m */,
 				8310BDEC171BCC4F007E4224 /* ARKiOSBitmapFont.h */,
 				8310BDED171BCC4F007E4224 /* ARKiOSBitmapFont.m */,
 				8310BDEF171C00EC007E4224 /* ARKBitmapChar.h */,
 				8310BDF0171C00EC007E4224 /* ARKBitmapChar.m */,
+				8379C499171F0AF0005F457C /* ARKiOSSprite.h */,
+				8379C49A171F0AF0005F457C /* ARKiOSSprite.m */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -422,10 +432,12 @@
 				832FB2C4171A685800E73D11 /* ARKRecordWriter.m in Sources */,
 				832FB2C7171A68EE00E73D11 /* ARKiOSRecordWriter.m in Sources */,
 				8310BDE5171A7F9D007E4224 /* ARKSprite.m in Sources */,
-				8310BDE8171A84EE007E4224 /* ARKiOSSPrite.m in Sources */,
 				8310BDEB171BC673007E4224 /* ARKBitmapFont.m in Sources */,
 				8310BDEE171BCC4F007E4224 /* ARKiOSBitmapFont.m in Sources */,
 				8310BDF1171C00EC007E4224 /* ARKBitmapChar.m in Sources */,
+				8379C492171EF1D1005F457C /* ARKLabel.m in Sources */,
+				8379C495171F0A3D005F457C /* ARKiOSLabel.m in Sources */,
+				8379C49B171F0AF0005F457C /* ARKiOSSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

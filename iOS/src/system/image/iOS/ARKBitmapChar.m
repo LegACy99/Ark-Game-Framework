@@ -21,17 +21,23 @@ const NSString* CHAR_KEY_ADVANCE	= @"xadvance";
 @implementation ARKBitmapChar
 
 //Synthesize
-@synthesize advance = m_Advance;
+@synthesize advance		= m_Advance;
+@synthesize vertices	= m_Vertices;
+@synthesize coordinates	= m_Coordinates;
 
 - (id)init {
 	//Super
 	self = [super init];
 	if (self) {
 		//Initialize
-		m_Advance = 0;
-		m_Kerning = [NSDictionary dictionary];
-		for (int i = 0; i < sizeof(m_Vertices); i++)	m_Vertices[i] = 0;
-		for (int i = 0; i < sizeof(m_Coordinates); i++) m_Coordinates[i] = 0;
+		m_Advance	= 0;
+		m_Kerning	= [NSDictionary dictionary];
+		m_Vertices	= [NSArray arrayWithObjects:
+					   [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0],
+					   [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], nil];
+		m_Coordinates = [NSArray arrayWithObjects:
+						 [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0],
+						 [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], nil];
 	}
 	
 	//Return
@@ -62,21 +68,33 @@ const NSString* CHAR_KEY_ADVANCE	= @"xadvance";
 			Height		= [[json objectForKey:CHAR_KEY_HEIGHT] intValue];
 			OffsetX		= [[json objectForKey:CHAR_KEY_OFFSETX] intValue];
 			OffsetY		= [[json objectForKey:CHAR_KEY_OFFSETY] intValue];
-			m_Advance	= [[json objectForKey:CHAR_KEY_ADVANCE] intValue];// * [[ARKUtilities instance] getScale];
+			m_Advance	= [[json objectForKey:CHAR_KEY_ADVANCE] intValue] * [[ARKUtilities instance] getScale];
 		}
 		
 		//Create vertex
-		m_Vertices[0]	= OffsetX;			m_Vertices[1] = -OffsetY; 				//Top left
-		m_Vertices[2]	= OffsetX;			m_Vertices[3] = -(OffsetY + Height);	//Bottom left
-		m_Vertices[4]	= OffsetX + Width;	m_Vertices[5] = -OffsetY;				//Top right
-		m_Vertices[6]	= OffsetX + Width;	m_Vertices[7] = -(OffsetY + Height);	//Bottom right
-		//for (int i = 0; i < sizeof(m_Vertices); i++) m_Vertices[i] *= [[ARKUtilities instance] getScale];
+		float Vertices[8];
+		Vertices[0]	= OffsetX;			Vertices[1] = -OffsetY; 			//Top left
+		Vertices[2]	= OffsetX;			Vertices[3] = -(OffsetY + Height);	//Bottom left
+		Vertices[4]	= OffsetX + Width;	Vertices[5] = -OffsetY;				//Top right
+		Vertices[6]	= OffsetX + Width;	Vertices[7] = -(OffsetY + Height);	//Bottom right
+		m_Vertices = [NSArray arrayWithObjects:
+					  [NSNumber numberWithFloat:Vertices[0] * [[ARKUtilities instance] getScale]],
+					  [NSNumber numberWithFloat:Vertices[1] * [[ARKUtilities instance] getScale]],
+					  [NSNumber numberWithFloat:Vertices[2] * [[ARKUtilities instance] getScale]],
+					  [NSNumber numberWithFloat:Vertices[3] * [[ARKUtilities instance] getScale]],
+					  [NSNumber numberWithFloat:Vertices[4] * [[ARKUtilities instance] getScale]],
+					  [NSNumber numberWithFloat:Vertices[5] * [[ARKUtilities instance] getScale]],
+					  [NSNumber numberWithFloat:Vertices[6] * [[ARKUtilities instance] getScale]],
+					  [NSNumber numberWithFloat:Vertices[7] * [[ARKUtilities instance] getScale]],
+					  nil];
 		
 		//Create coordinates
-		m_Coordinates[0]	= X / width;			m_Coordinates[1] = Y / height;				//Top left
-		m_Coordinates[2]	= X / width;			m_Coordinates[3] = (Y + Height) / height;	//Bottom left
-		m_Coordinates[4]	= (X + Width) / width;	m_Coordinates[5] = Y / height;				//Top right
-		m_Coordinates[6]	= (X + Width) / width;	m_Coordinates[7] = (Y + Height) / height;	//Bottom right
+		m_Coordinates = [NSArray arrayWithObjects:
+						 [NSNumber numberWithFloat:X / width],				[NSNumber numberWithFloat:Y / height],				//Top left
+						 [NSNumber numberWithFloat:X / width],				[NSNumber numberWithFloat:(Y + Height) / height],	//Bottom left
+						 [NSNumber numberWithFloat:(X + Width) / width],	[NSNumber numberWithFloat:Y / height],				//Top right
+						 [NSNumber numberWithFloat:(X + Width) / width],	[NSNumber numberWithFloat:(Y + Height) / height],	//Bottom right
+						 nil];
 	}
 	
 	//Return
@@ -84,12 +102,10 @@ const NSString* CHAR_KEY_ADVANCE	= @"xadvance";
 }
 
 //Getters
-- (float*)getVertices				{ return m_Vertices;					}
-- (float*)getTextureCoordinates		{ return m_Coordinates;					}
-- (float)getBottom					{ return m_Vertices[3];					}
-- (float)getHeight					{ return m_Vertices[1] - m_Vertices[3];	}
-- (float)getWidth					{ return m_Vertices[4] - m_Vertices[0];	}
-- (float)getTop						{ return m_Vertices[1];					}
+- (float)getBottom	{ return [[m_Vertices objectAtIndex:3] floatValue];												}
+- (float)getHeight	{ return [[m_Vertices objectAtIndex:1] floatValue] - [[m_Vertices objectAtIndex:3] floatValue];	}
+- (float)getWidth	{ return [[m_Vertices objectAtIndex:4] floatValue] - [[m_Vertices objectAtIndex:0] floatValue];	}
+- (float)getTop		{ return [[m_Vertices objectAtIndex:1] floatValue];												}
 
 - (float)getAdvanceForChar:(char)character {
 	//Get advance

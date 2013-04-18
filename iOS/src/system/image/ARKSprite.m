@@ -7,7 +7,7 @@
 //
 
 #import "ARKSprite.h"
-#import "ARKiOSSPrite.h"
+#import "ARKiOSSprite.h"
 
 @implementation ARKSprite
 
@@ -53,7 +53,7 @@
 + (ARKSprite*)createFromPath:(NSString*)path withDelay:(long)delay		{ return [ARKSprite createFromPath:path atX:0 atY:0 withDelay:delay];	}
 + (ARKSprite*)createFromPath:(NSString*)path atX:(float)x atY:(float)y	{ return [ARKSprite createFromPath:path atX:x atY:y withDelay:0];		}
 + (ARKSprite*)createFromPath:(NSString*)path atX:(float)x atY:(float)y withDelay:(long)delay {
-	return [[ARKiOSSPrite alloc] initWithPath:path AtX:x atY:y withDelay:delay];
+	return [[ARKiOSSprite alloc] initWithPath:path AtX:x atY:y withDelay:delay];
 }
 
 - (void)setRotationWithAngle:(float)angle {

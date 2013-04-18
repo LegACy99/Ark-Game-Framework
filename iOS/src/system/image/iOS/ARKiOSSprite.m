@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 LegACy. All rights reserved.
 //
 
-#import "ARKiOSSPrite.h"
+#import "ARKiOSSprite.h"
 #import "ARKResourceManager.h"
 #import "ARKImage.h"
 
-@implementation ARKiOSSPrite
+@implementation ARKiOSSprite
 
 - (id)initWithPath:(NSString *)path AtX:(float)x atY:(float)y withDelay:(long)delay {
 	//Super
