@@ -14,6 +14,7 @@
 	NSString*				m_BGM;
 	AVAudioPlayer*			m_BGMPlayer;
 	NSMutableDictionary*	m_SFXPlayers;
+	NSMutableDictionary*	m_SFXPlayings;
 }
 
 //Singleton
