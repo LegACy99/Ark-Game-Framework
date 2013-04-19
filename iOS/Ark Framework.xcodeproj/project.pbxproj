@@ -39,6 +39,8 @@
 		8379C4A317205884005F457C /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 8379C4A217205884005F457C /* audio */; };
 		8379C4A517205E09005F457C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8379C4A417205E09005F457C /* AVFoundation.framework */; };
 		8379C4A717205E31005F457C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8379C4A617205E31005F457C /* AVFoundation.framework */; };
+		8379C4AA17215968005F457C /* ARKStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C4A917215967005F457C /* ARKStateManager.m */; };
+		8379C4AD172161D2005F457C /* ARKiOSStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C4AC172161D2005F457C /* ARKiOSStateManager.m */; };
 		83A8883A170F6AD100A61787 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A88839170F6AD100A61787 /* UIKit.framework */; };
 		83A8883C170F6AD100A61787 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8883B170F6AD100A61787 /* Foundation.framework */; };
 		83A8883E170F6AD100A61787 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8883D170F6AD100A61787 /* CoreGraphics.framework */; };
@@ -116,6 +118,10 @@
 		8379C4A217205884005F457C /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = audio; path = assets/audio; sourceTree = "<group>"; };
 		8379C4A417205E09005F457C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8379C4A617205E31005F457C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8379C4A817215967005F457C /* ARKStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKStateManager.h; path = system/ARKStateManager.h; sourceTree = "<group>"; };
+		8379C4A917215967005F457C /* ARKStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKStateManager.m; path = system/ARKStateManager.m; sourceTree = "<group>"; };
+		8379C4AB172161D2005F457C /* ARKiOSStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSStateManager.h; path = system/iOS/ARKiOSStateManager.h; sourceTree = "<group>"; };
+		8379C4AC172161D2005F457C /* ARKiOSStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSStateManager.m; path = system/iOS/ARKiOSStateManager.m; sourceTree = "<group>"; };
 		83A88836170F6AD100A61787 /* Ark Framework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ark Framework.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A88839170F6AD100A61787 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		83A8883B170F6AD100A61787 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -181,12 +187,14 @@
 		832FB2A5171821F200E73D11 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				832FB2A61718226B00E73D11 /* ARKiOSUtilities.h */,
-				832FB2A71718226B00E73D11 /* ARKiOSUtilities.m */,
+				8379C4AB172161D2005F457C /* ARKiOSStateManager.h */,
+				8379C4AC172161D2005F457C /* ARKiOSStateManager.m */,
 				832FB2C5171A68EE00E73D11 /* ARKiOSRecordWriter.h */,
 				832FB2C6171A68EE00E73D11 /* ARKiOSRecordWriter.m */,
 				8379C49F17202110005F457C /* ARKiOSSoundManager.h */,
 				8379C4A017202110005F457C /* ARKiOSSoundManager.m */,
+				832FB2A61718226B00E73D11 /* ARKiOSUtilities.h */,
+				832FB2A71718226B00E73D11 /* ARKiOSUtilities.m */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -254,6 +262,8 @@
 			isa = PBXGroup;
 			children = (
 				832FB2A4171808D000E73D11 /* ARKSystem.h */,
+				8379C4A817215967005F457C /* ARKStateManager.h */,
+				8379C4A917215967005F457C /* ARKStateManager.m */,
 				8379C49C17201909005F457C /* ARKSoundManager.h */,
 				8379C49D1720190A005F457C /* ARKSoundManager.m */,
 				832FB2C2171A685000E73D11 /* ARKRecordWriter.h */,
@@ -462,6 +472,8 @@
 				8379C49B171F0AF0005F457C /* ARKiOSSprite.m in Sources */,
 				8379C49E1720190A005F457C /* ARKSoundManager.m in Sources */,
 				8379C4A117202110005F457C /* ARKiOSSoundManager.m in Sources */,
+				8379C4AA17215968005F457C /* ARKStateManager.m in Sources */,
+				8379C4AD172161D2005F457C /* ARKiOSStateManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
