@@ -12,6 +12,7 @@
 		8310BDEE171BCC4F007E4224 /* ARKiOSBitmapFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDED171BCC4F007E4224 /* ARKiOSBitmapFont.m */; };
 		8310BDF1171C00EC007E4224 /* ARKBitmapChar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDF0171C00EC007E4224 /* ARKBitmapChar.m */; };
 		8310BDF5171C0AC0007E4224 /* pixel.json in Resources */ = {isa = PBXBuildFile; fileRef = 8310BDF4171C0AC0007E4224 /* pixel.json */; };
+		831774741722A21D00F585AC /* ARKiOSDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 831774731722A21D00F585AC /* ARKiOSDevice.m */; };
 		832FB280171525F100E73D11 /* ARKTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB27F171525F100E73D11 /* ARKTexture.m */; };
 		832FB2831715275A00E73D11 /* ARKiOSTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2821715275A00E73D11 /* ARKiOSTexture.m */; };
 		832FB28D171562E200E73D11 /* textures in Resources */ = {isa = PBXBuildFile; fileRef = 832FB28C171562E200E73D11 /* textures */; };
@@ -41,6 +42,7 @@
 		8379C4A717205E31005F457C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8379C4A617205E31005F457C /* AVFoundation.framework */; };
 		8379C4AA17215968005F457C /* ARKStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C4A917215967005F457C /* ARKStateManager.m */; };
 		8379C4AD172161D2005F457C /* ARKiOSStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C4AC172161D2005F457C /* ARKiOSStateManager.m */; };
+		8379C4B01721BFE1005F457C /* ARKDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C4AF1721BFE0005F457C /* ARKDevice.m */; };
 		83A8883A170F6AD100A61787 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A88839170F6AD100A61787 /* UIKit.framework */; };
 		83A8883C170F6AD100A61787 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8883B170F6AD100A61787 /* Foundation.framework */; };
 		83A8883E170F6AD100A61787 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8883D170F6AD100A61787 /* CoreGraphics.framework */; };
@@ -67,6 +69,8 @@
 		8310BDEF171C00EC007E4224 /* ARKBitmapChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKBitmapChar.h; path = system/image/iOS/ARKBitmapChar.h; sourceTree = "<group>"; };
 		8310BDF0171C00EC007E4224 /* ARKBitmapChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKBitmapChar.m; path = system/image/iOS/ARKBitmapChar.m; sourceTree = "<group>"; };
 		8310BDF4171C0AC0007E4224 /* pixel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = pixel.json; path = assets/data/font/pixel.json; sourceTree = "<group>"; };
+		831774721722A21D00F585AC /* ARKiOSDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSDevice.h; path = system/iOS/ARKiOSDevice.h; sourceTree = "<group>"; };
+		831774731722A21D00F585AC /* ARKiOSDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSDevice.m; path = system/iOS/ARKiOSDevice.m; sourceTree = "<group>"; };
 		832FB27E171525F100E73D11 /* ARKTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKTexture.h; path = system/image/ARKTexture.h; sourceTree = "<group>"; };
 		832FB27F171525F100E73D11 /* ARKTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKTexture.m; path = system/image/ARKTexture.m; sourceTree = "<group>"; };
 		832FB2811715275A00E73D11 /* ARKiOSTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSTexture.h; path = system/image/iOS/ARKiOSTexture.h; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 		8379C4A917215967005F457C /* ARKStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKStateManager.m; path = system/ARKStateManager.m; sourceTree = "<group>"; };
 		8379C4AB172161D2005F457C /* ARKiOSStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSStateManager.h; path = system/iOS/ARKiOSStateManager.h; sourceTree = "<group>"; };
 		8379C4AC172161D2005F457C /* ARKiOSStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSStateManager.m; path = system/iOS/ARKiOSStateManager.m; sourceTree = "<group>"; };
+		8379C4AE1721BFDF005F457C /* ARKDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKDevice.h; path = system/ARKDevice.h; sourceTree = "<group>"; };
+		8379C4AF1721BFE0005F457C /* ARKDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKDevice.m; path = system/ARKDevice.m; sourceTree = "<group>"; };
 		83A88836170F6AD100A61787 /* Ark Framework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ark Framework.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A88839170F6AD100A61787 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		83A8883B170F6AD100A61787 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -187,6 +193,8 @@
 		832FB2A5171821F200E73D11 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				831774721722A21D00F585AC /* ARKiOSDevice.h */,
+				831774731722A21D00F585AC /* ARKiOSDevice.m */,
 				8379C4AB172161D2005F457C /* ARKiOSStateManager.h */,
 				8379C4AC172161D2005F457C /* ARKiOSStateManager.m */,
 				832FB2C5171A68EE00E73D11 /* ARKiOSRecordWriter.h */,
@@ -262,6 +270,8 @@
 			isa = PBXGroup;
 			children = (
 				832FB2A4171808D000E73D11 /* ARKSystem.h */,
+				8379C4AE1721BFDF005F457C /* ARKDevice.h */,
+				8379C4AF1721BFE0005F457C /* ARKDevice.m */,
 				8379C4A817215967005F457C /* ARKStateManager.h */,
 				8379C4A917215967005F457C /* ARKStateManager.m */,
 				8379C49C17201909005F457C /* ARKSoundManager.h */,
@@ -474,6 +484,8 @@
 				8379C4A117202110005F457C /* ARKiOSSoundManager.m in Sources */,
 				8379C4AA17215968005F457C /* ARKStateManager.m in Sources */,
 				8379C4AD172161D2005F457C /* ARKiOSStateManager.m in Sources */,
+				8379C4B01721BFE1005F457C /* ARKDevice.m in Sources */,
+				831774741722A21D00F585AC /* ARKiOSDevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

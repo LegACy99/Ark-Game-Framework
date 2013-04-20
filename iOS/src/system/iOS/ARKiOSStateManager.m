@@ -10,6 +10,7 @@
 #import "ARKiOSStateManager.h"
 #import "ARKStateFactory.h"
 #import "ARKGameState.h"
+#import "ARKDevice.h"
 
 @implementation ARKiOSStateManager
 
@@ -238,9 +239,9 @@
 				//For each updated
 				for (int i = [Updated count] - 1; i >= 0; i--) {
 					//Get data
-					NSArray* Keys				= i == 0 ? nil : [NSArray array];
-					NSArray* Touches			= i == 0 ? nil : [NSArray array];
-					ARKAccelerometerInfo* Accel	= i == 0 ? nil : nil;
+					NSArray* Keys				= i == 0 ? [[ARKDevice instance] getKeys] : [NSArray array];
+					NSArray* Touches			= i == 0 ? [[ARKDevice instance] getTouches] : [NSArray array];
+					ARKAccelerometerInfo* Accel	= i == 0 ? [[ARKDevice instance] getAccelerometer] : nil;
 					
 					//Update
 					[[Updated objectAtIndex:i] updateWithDelta:Difference withKeys:Keys withTouches:Touches withAccelerometer:Accel];

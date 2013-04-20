@@ -9,6 +9,7 @@
 #import <math.h>
 #import "ARKUtilities.h"
 #import "ARKiOsUtilities.h"
+#import "ARKDevice.h"
 #import "ARKSystem.h"
 
 //Folder constants
@@ -100,11 +101,13 @@ const NSString* UTILITIES_SFX_FOLDER		= @"audio/sfx/";
 - (void)openURL:(NSString*)url inBrowser:(BOOL)browser;								{ [self openURL:url inBrowser:browser withTitle:nil];					}
 - (void)openURL:(NSString*)url inBrowser:(BOOL)browser withTitle:(NSString*)title;	{ [self openURL:url inBrowser:browser withTitle:title withLoading:nil];	}
 - (void)openURL:(NSString *)url inBrowser:(BOOL)browser withTitle:(NSString *)title withLoading:(NSString*)loading {
-	//Do nothing (yet)
+	//Open URL on device
+	[[ARKDevice instance] openURL:url inBrowser:browser withTitle:title withLoading:loading];
 }
 
 - (void)openAppPage:(NSString*)app {
-	//Do nothing (yet)
+	//Open app page on device
+	[[ARKDevice instance] openAppPage:app];
 }
 
 - (int)getEuclideanDistanceFromX:(int)x1 fromY:(int)y1 toX:(int)x2 toY:(int)y2 {
