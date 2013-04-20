@@ -14,6 +14,6 @@
 @protocol ARKStateFactory <NSObject>
 
 - (int)getFirstState;
-- (ARKGameState*)createGameStateWithID:(int)ID withParameters:(NSSArray*)parameters;
+- (ARKGameState*)createGameStateWithID:(int)ID withParameters:(NSArray*)parameters;
 
 @end

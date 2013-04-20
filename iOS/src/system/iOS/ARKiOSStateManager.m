@@ -23,7 +23,7 @@
 		m_Resumed		= NO;
 		m_Initialized	= NO;
 		m_RemovalDepth	= 0;
-		m_CurrentTime	= CACurrentMediaTime();
+		m_CurrentTime	= 0;//CACurrentMediaTime();
 		m_StateList		= [NSMutableArray array];
 	}
 	
@@ -178,8 +178,8 @@
 	if (!m_Initialized) [self initialize];
 	
 	//Save
-	long Difference	= (long)((CACurrentMediaTime() - m_CurrentTime) * 1000);
-	m_CurrentTime	= CACurrentMediaTime();
+	long Difference	= 0;//(long)((CACurrentMediaTime() - m_CurrentTime) * 1000);
+	m_CurrentTime	= 0;//CACurrentMediaTime();
 	
 	//Trim states
 	for (int i = 0; i < m_RemovalDepth; i++) [self removeState];

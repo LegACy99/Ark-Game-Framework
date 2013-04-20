@@ -8,7 +8,7 @@
 
 //Import
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "ARKViewController.h"
 
 //Class
 @implementation AppDelegate
@@ -16,7 +16,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	//Set view controller
 	NSString* NibFile	= [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? @"ViewController_iPhone" : @"ViewController_iPad";
-	self.viewController = [[ViewController alloc] initWithNibName:NibFile bundle:nil];
+	self.viewController = [[ARKViewController alloc] initWithNibName:NibFile bundle:nil];
 	
 	//Create window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

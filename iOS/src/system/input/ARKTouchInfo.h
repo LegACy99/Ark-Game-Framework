@@ -45,6 +45,7 @@
 - (void)draggedToX:(float)x toY:(float)y;
 - (void)releasedAtX:(float)x atY:(float)y;
 - (void)addSwipeFromX:(float)x1 fromY:(float)y1 toX:(float)x2 toY:(float)y2;
+- (void)addSwipeTo:(int)direction;
 
 @end
 

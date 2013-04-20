@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class ViewController;
+@class ARKViewController;
 
 //Class declaration
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 //Properties
 @property (strong, nonatomic) UIWindow			*window;
-@property (strong, nonatomic) ViewController	*viewController;
+@property (strong, nonatomic) ARKViewController	*viewController;
 
 @end

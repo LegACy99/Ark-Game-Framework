@@ -177,4 +177,13 @@ const double TOUCH_TAN_22		= 0.4142135623731; //tan(22.5)
 	if (Swipe != TOUCH_NO_SWIPE) m_Swipe = Swipe;
 }
 
+- (void)addSwipeTo:(int)direction {
+	//Check direction
+	if (direction <= TOUCH_NO_SWIPE)		return;
+	if (direction > TOUCH_SWIPE_NORTHWEST)	return;
+	
+	//Save
+	m_Swipe = direction;
+}
+
 @end
