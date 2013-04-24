@@ -31,7 +31,7 @@
 	return self;
 }
 
-+ (ARKStateManager*)instance {
++ (ARKiOSStateManager*)instance {
 	//Static objects
 	static dispatch_once_t Token		= 0;
 	static ARKiOSStateManager* Instance	= nil;

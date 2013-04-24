@@ -18,6 +18,6 @@
 }
 
 //Singleton
-+ (ARKSoundManager*)instance;
++ (ARKiOSSoundManager*)instance;
 
 @end

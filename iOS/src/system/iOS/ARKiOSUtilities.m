@@ -11,7 +11,7 @@
 
 @implementation ARKiOSUtilities
 
-+ (ARKUtilities*)instance {
++ (ARKiOSUtilities*)instance {
 	//Static objects
 	static dispatch_once_t Token		= 0;
 	static ARKiOSUtilities* Instance	= nil;

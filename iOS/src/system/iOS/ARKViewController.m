@@ -8,7 +8,10 @@
 
 #import "ARKViewController.h"
 #import "ARKAccelerometerInfo.h"
+#import "ARKStateManager.h"
+#import "ARKSoundManager.h"
 #import "ARKTouchInfo.h"
+#import "ARKiOSDevice.h"
 
 @interface ARKViewController ()
 
@@ -16,6 +19,7 @@
 - (ARKTouchInfo*)findInfoFor:(UITouch*)touch;
 - (ARKTouchInfo*)findInfoFor:(UITouch*)touch thenSave:(BOOL)save;
 
+//Swipe stuff
 - (void)swipeEast;
 - (void)swipeWest;
 - (void)swipeNorth;
@@ -26,6 +30,7 @@
 @implementation ARKViewController
 
 //Synthesize
+@synthesize gl				= m_OpenGL;
 @synthesize touches			= m_Touches;
 @synthesize accelerometer	= m_Accelerometer;
 
@@ -34,6 +39,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
 		//Initialize
+		m_Size			= NO;
+		m_OpenGL		= nil;
+		m_Context		= nil;
 		m_UITouches		= [NSMutableDictionary dictionary];
 		m_Accelerometer = [[ARKAccelerometerInfo alloc] init];
 		
@@ -75,31 +83,92 @@
 	[self.view addGestureRecognizer:RecognizerRight];
 	
 	//Create context
-	EAGLContext* Context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-	if (Context) {
+	m_Context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+	if (m_Context) {
 		//Set context
-		((GLKView*)self.view).context = Context;
+		((GLKView*)self.view).context = m_Context;
+		
+		//Set openGL state
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+		glEnableVertexAttribArray(GLKVertexAttribPosition);
+		glEnableVertexAttribArray(GLKVertexAttribColor);
+		
+		//Initialize OpenGL effect
+		m_OpenGL					= [[GLKBaseEffect alloc] init];
+		m_OpenGL.texture2d0.envMode	= GLKTextureEnvModeModulate;
+		m_OpenGL.texture2d0.target	= GLKTextureTarget2D;
+		
+		//Save controller
+		[[ARKiOSDevice instance] setupViewController:self];
 	}
 }
 
 - (void)dealloc {
-	
+	//Remove context
+	if ([EAGLContext currentContext] == m_Context) [EAGLContext setCurrentContext:nil];
+	m_Context	= nil;
+	m_OpenGL	= nil;
 }
 
 - (void)didReceiveMemoryWarning {
+	//Super
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	
+	//If view exist
+    if ([self isViewLoaded] && ([[self view] window] == nil)) {
+		//Destroy
+		self.view = nil;
+		if ([EAGLContext currentContext] == m_Context) [EAGLContext setCurrentContext:nil];
+		m_Context	= nil;
+		m_OpenGL	= nil;
+    }
 }
 
 - (void)glkViewController:(GLKViewController *)controller willPause:(BOOL)pause {
-	
+	//If paused
+	if (pause) {
+		//pause
+		[[ARKStateManager instance] pause];
+		[[ARKSoundManager instance] pause];
+	} else {
+		//Resume
+		[[ARKStateManager instance] resume];
+		[[ARKSoundManager instance] resume];
+	}
 }
 
 - (void)glkViewControllerUpdate:(GLKViewController *)controller {
+	//If size not saved yet
+	if (!m_Size) {
+		//Get view size
+		float Width		= self.view.bounds.size.width;
+		float Height	= self.view.bounds.size.height;
+		
+		//Save size
+		m_Size = YES;
+		[[ARKiOSDevice instance] setSizeWithWidth:Width withHeight:Height];
+		NSLog(@"W:%f, H:%f", Width, Height);
+		
+		//Create projection matrix (view frustum)
+		float Ratio							= fabsf(Width / Height);
+		GLKMatrix4 Projection				= GLKMatrix4MakeFrustum(-Ratio, Ratio, -1, 1, 1.0f, 1000.0f);
+		m_OpenGL.transform.projectionMatrix = Projection;
+	}
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
+	//Clear
+    glClear(GL_COLOR_BUFFER_BIT);
+	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 	
+	//Check all touch
+	for (int i = 0; i < [m_Touches count]; i++) if (![[m_Touches objectAtIndex:i] isPressed]) [[m_Touches objectAtIndex:i] removed];
+	
+	//Run state manager
+	NSLog(@"Drawing");
+	//[[ARKStateManager instance] run];
 }
 
 - (ARKTouchInfo*)findInfoFor:(UITouch *)touch { return [self findInfoFor:touch thenSave:NO]; }

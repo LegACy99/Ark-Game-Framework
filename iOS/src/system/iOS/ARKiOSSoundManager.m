@@ -39,7 +39,7 @@ const int SOUND_INITIAL_SFX = 3;
 	return self;
 }
 
-+ (ARKSoundManager*)instance {
++ (ARKiOSSoundManager*)instance {
 	//Static objects
 	static dispatch_once_t Token		= 0;
 	static ARKiOSSoundManager* Instance	= nil;

@@ -13,13 +13,17 @@
 
 @interface ARKViewController : GLKViewController<GLKViewControllerDelegate> {
 	//Data
+	BOOL					m_Size;
 	NSArray*				m_Touches;
+	EAGLContext*			m_Context;
 	NSMutableDictionary*	m_UITouches;
 	ARKAccelerometerInfo*	m_Accelerometer;
+	GLKBaseEffect*			m_OpenGL;
 }
 
 //Properties
 @property (readonly, getter = getTouches)		NSArray* touches;
 @property (readonly, getter = getAccelerometer) ARKAccelerometerInfo* accelerometer;
+@property (readonly, getter = getGL)			GLKBaseEffect* gl;
 
 @end

@@ -11,6 +11,6 @@
 @interface ARKiOSUtilities : ARKUtilities
 
 //Singleton
-+ (ARKUtilities*)instance;
++ (ARKiOSUtilities*)instance;
 
 @end

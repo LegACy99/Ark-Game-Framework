@@ -8,11 +8,20 @@
 
 #import "ARKDevice.h"
 
+//Forward declaration
+@class GLKBaseEffect, ARKViewController;
+
 @interface ARKiOSDevice : ARKDevice {
-	//
+	//Data
+	ARKViewController*	m_ViewController;
 }
 
 //Factory
-+ (ARKDevice*)instance;
++ (ARKiOSDevice*)instance;
+
+//Getters and setters
+- (GLKBaseEffect*) getGL;
+- (void)setupViewController:(ARKViewController*)controller;
+- (void)setSizeWithWidth:(float)width withHeight:(float)height;
 
 @end

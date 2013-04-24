@@ -28,9 +28,9 @@
 	int m_Up;
 	
 	//Input data
-	NSMutableArray*			m_Keys;
-	NSMutableArray*			m_Touches;
+	NSArray*				m_Touches;
 	ARKAccelerometerInfo*	m_Accelerometer;
+	NSMutableArray*			m_Keys;
 }
 
 //Properties

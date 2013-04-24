@@ -19,6 +19,6 @@
 }
 
 //Singleton
-+ (ARKStateManager*)instance;
++ (ARKiOSStateManager*)instance;
 
 @end
