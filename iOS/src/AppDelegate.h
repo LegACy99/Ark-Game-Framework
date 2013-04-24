@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ARKSystem.h"
 
-@class ARKViewController;
+@class GLKViewController;
 
 //Class declaration
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, ARKSystem>
 
 //Properties
 @property (strong, nonatomic) UIWindow			*window;
-@property (strong, nonatomic) ARKViewController	*viewController;
+@property (strong, nonatomic) GLKViewController	*viewController;
 
 @end

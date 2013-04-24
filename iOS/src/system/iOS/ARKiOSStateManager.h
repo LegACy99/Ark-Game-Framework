@@ -14,7 +14,6 @@
 	BOOL			m_Resumed;
 	BOOL			m_Initialized;
 	NSMutableArray*	m_StateList;
-	double			m_CurrentTime;
 	int				m_RemovalDepth;
 }
 

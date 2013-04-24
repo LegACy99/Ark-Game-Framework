@@ -19,11 +19,6 @@
 @synthesize drawPrevious	= m_DrawPrevious;
 @synthesize updatePrevious	= m_UpdatePrevious;
 
-- (id)init {
-	//Do not use
-	return nil;
-}
-
 - (id)initWithID:(int)ID {
 	//No background
 	return [self initWithID:ID withBackground:nil];

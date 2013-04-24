@@ -73,11 +73,11 @@
 		for (int i = 0; i < [version count]; i++) {
 			//Get number of digit
 			int Digit = 1;
-			if (digits && [digits count] > i) Digit = [digits[i] intValue];
+			if (digits && [digits count] > i) Digit = [[digits objectAtIndex:i] intValue];
 			if (Digit < 1) Digit = 1;
 			
 			//Get numbers
-			NSArray* Numbers = [self getDigitsFromNumber:[version[i] intValue] limitedTo:Digit];
+			NSArray* Numbers = [self getDigitsFromNumber:[[version objectAtIndex:i] intValue] limitedTo:Digit];
 			for (int j = 0; j < [Numbers count]; j++) [Builder appendFormat:@"%d", [Numbers[j] intValue]];
 			
 			//Add dot if not last

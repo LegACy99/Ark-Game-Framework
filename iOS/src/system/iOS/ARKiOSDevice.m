@@ -38,6 +38,12 @@
 	return Instance;
 }
 
+- (long)getDeltaTime {
+	//Check
+	if (m_ViewController)	return [m_ViewController getTime];
+	else					return 0;
+}
+
 - (GLKBaseEffect*)getGL {
 	//Check
 	if (m_ViewController)	return [m_ViewController getGL];

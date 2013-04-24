@@ -55,7 +55,7 @@
 }
 
 - (void)destroy {
-	//IF there's ID
+	//If there's ID
 	if (m_ID > 0) {
 		//Delete texture
 		glDeleteTextures(1, &m_ID);

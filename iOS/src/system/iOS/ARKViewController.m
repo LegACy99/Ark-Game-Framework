@@ -11,6 +11,7 @@
 #import "ARKStateManager.h"
 #import "ARKSoundManager.h"
 #import "ARKTouchInfo.h"
+#import "ARKUtilities.h"
 #import "ARKiOSDevice.h"
 
 @interface ARKViewController ()
@@ -33,6 +34,7 @@
 @synthesize gl				= m_OpenGL;
 @synthesize touches			= m_Touches;
 @synthesize accelerometer	= m_Accelerometer;
+@synthesize time			= m_Time;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	//Super
@@ -87,6 +89,10 @@
 	if (m_Context) {
 		//Set context
 		((GLKView*)self.view).context = m_Context;
+		self.preferredFramesPerSecond = [[ARKUtilities instance] getSystemFPS];
+		
+		//Initialize openGL
+		glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 		
 		//Set openGL state
 		glEnable(GL_BLEND);
@@ -99,6 +105,8 @@
 		m_OpenGL					= [[GLKBaseEffect alloc] init];
 		m_OpenGL.texture2d0.envMode	= GLKTextureEnvModeModulate;
 		m_OpenGL.texture2d0.target	= GLKTextureTarget2D;
+		
+		NSLog(@"Setting up OpenGL");
 		
 		//Save controller
 		[[ARKiOSDevice instance] setupViewController:self];
@@ -149,7 +157,6 @@
 		//Save size
 		m_Size = YES;
 		[[ARKiOSDevice instance] setSizeWithWidth:Width withHeight:Height];
-		NSLog(@"W:%f, H:%f", Width, Height);
 		
 		//Create projection matrix (view frustum)
 		float Ratio							= fabsf(Width / Height);
@@ -159,16 +166,18 @@
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
+	//Get time
+	m_Time = [self timeSinceLastDraw] * 1000;
+	
 	//Clear
     glClear(GL_COLOR_BUFFER_BIT);
-	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+	//glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 	
 	//Check all touch
 	for (int i = 0; i < [m_Touches count]; i++) if (![[m_Touches objectAtIndex:i] isPressed]) [[m_Touches objectAtIndex:i] removed];
 	
 	//Run state manager
-	NSLog(@"Drawing");
-	//[[ARKStateManager instance] run];
+	[[ARKStateManager instance] run];
 }
 
 - (ARKTouchInfo*)findInfoFor:(UITouch *)touch { return [self findInfoFor:touch thenSave:NO]; }

@@ -8,12 +8,31 @@
 
 //Import
 #import "AppDelegate.h"
+#import "ViewController.h"
 #import "ARKViewController.h"
+#import "ARKStateManager.h"
+#import "HolesStateFactory.h"
+#import "ARKUtilities.h"
 
 //Class
 @implementation AppDelegate
 
+- (int)	getFPS						{ return 60;				}
+- (int)	getBaseWidth				{ return 480;				}
+- (int)	getBaseHeight				{ return -320;				}
+- (NSString*) getApplicationName	{ return @"Black Holes";	}
+- (NSString*) getPressSFX			{ return nil;				}
+- (NSString*) getCursorSFX			{ return nil;				}
+- (NSString*) getReleaseSFX			{ return nil;				}
+- (NSString*) getFontTexture		{ return @"pixel";			}
+- (BOOL) isFontSmooth				{ return NO;				}
+- (NSString*) getFont				{ return @"pixel";			}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	//Initialize
+	[[ARKUtilities instance] setSystem:self];
+	[[ARKStateManager instance] setupWithFactory:[[HolesStateFactory alloc] init]];
+	
 	//Set view controller
 	NSString* NibFile	= [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? @"ViewController_iPhone" : @"ViewController_iPad";
 	self.viewController = [[ARKViewController alloc] initWithNibName:NibFile bundle:nil];

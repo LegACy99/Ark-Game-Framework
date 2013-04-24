@@ -19,8 +19,11 @@
 //Factory
 + (ARKiOSDevice*)instance;
 
-//Getters and setters
+//Getters
+- (long) getDeltaTime;
 - (GLKBaseEffect*) getGL;
+
+//Setters
 - (void)setupViewController:(ARKViewController*)controller;
 - (void)setSizeWithWidth:(float)width withHeight:(float)height;
 

@@ -10,7 +10,7 @@
 #import "ARKiOSStateManager.h"
 #import "ARKStateFactory.h"
 #import "ARKGameState.h"
-#import "ARKDevice.h"
+#import "ARKiOSDevice.h"
 
 @implementation ARKiOSStateManager
 
@@ -23,7 +23,6 @@
 		m_Resumed		= NO;
 		m_Initialized	= NO;
 		m_RemovalDepth	= 0;
-		m_CurrentTime	= 0;//CACurrentMediaTime();
 		m_StateList		= [NSMutableArray array];
 	}
 	
@@ -177,10 +176,6 @@
 	//Initialize if not
 	if (!m_Initialized) [self initialize];
 	
-	//Save
-	long Difference	= 0;//(long)((CACurrentMediaTime() - m_CurrentTime) * 1000);
-	m_CurrentTime	= 0;//CACurrentMediaTime();
-	
 	//Trim states
 	for (int i = 0; i < m_RemovalDepth; i++) [self removeState];
 	m_RemovalDepth = 0;
@@ -226,7 +221,7 @@
 		//If paused
 		if (m_Paused) {
 			//Update if should run in the back
-			//TODO
+			//TODO (or may be not)
 		} else {
 			//If resumed
 			if (m_Resumed) {
@@ -236,6 +231,10 @@
 				//No longer resumed
 				m_Resumed = NO;
 			} else {
+				//Get time
+				long Time = [[ARKiOSDevice instance] getDeltaTime];
+				
+				
 				//For each updated
 				for (int i = [Updated count] - 1; i >= 0; i--) {
 					//Get data
@@ -244,11 +243,11 @@
 					ARKAccelerometerInfo* Accel	= i == 0 ? [[ARKDevice instance] getAccelerometer] : nil;
 					
 					//Update
-					[[Updated objectAtIndex:i] updateWithDelta:Difference withKeys:Keys withTouches:Touches withAccelerometer:Accel];
+					[[Updated objectAtIndex:i] updateWithDelta:Time withKeys:Keys withTouches:Touches withAccelerometer:Accel];
 				}
 				
 				//Draw all
-				for (int i = [Drawn count] - 1; i >= 0; i--) [[Drawn objectAtIndex:i] drawWithGL:nil];
+				for (int i = [Drawn count] - 1; i >= 0; i--) [[Drawn objectAtIndex:i] drawWithGL:[[ARKiOSDevice instance] getGL]];
 			}
 		}
 	}
