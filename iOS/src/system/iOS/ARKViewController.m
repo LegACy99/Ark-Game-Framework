@@ -146,7 +146,9 @@
 	}
 }
 
-- (void)glkViewControllerUpdate:(GLKViewController *)controller {
+- (void)glkViewControllerUpdate:(GLKViewController *)controller {}
+
+- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
 	//If size not saved yet
 	if (!m_Size) {
 		//Get view size
@@ -162,9 +164,7 @@
 		GLKMatrix4 Projection				= GLKMatrix4MakeFrustum(-Ratio, Ratio, -1, 1, 1.0f, 1000.0f);
 		m_OpenGL.transform.projectionMatrix = Projection;
 	}
-}
-
-- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
+	
 	//Get time
 	m_Time = [self timeSinceLastDraw] * 1000;
 	

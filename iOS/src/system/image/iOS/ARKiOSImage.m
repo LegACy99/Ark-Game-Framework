@@ -54,7 +54,7 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 		m_Top		= 0;
 		m_Left		= 0;
 		m_Texture	= nil;
-		for (int i = 0; i < sizeof(m_Attributes); i++) m_Attributes[i] = 0;
+		for (int i = 0; i < 32; i++) m_Attributes[i] = 0;
 	}
 	
 	//Return
@@ -105,7 +105,7 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 				NSNumber* Top = [RectDictionary objectForKey:IMAGE_KEY_RECT_TOP];
 				if (Top) {
 					//Get top
-					m_Left = [Top floatValue];
+					m_Top = [Top floatValue];
 					
 					//Get height
 					NSNumber* Bottom = [RectDictionary objectForKey:IMAGE_KEY_RECT_BOTTOM];

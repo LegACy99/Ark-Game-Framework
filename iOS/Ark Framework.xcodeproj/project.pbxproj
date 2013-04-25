@@ -54,9 +54,16 @@
 		83A88850170F6AD100A61787 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A8884F170F6AD100A61787 /* Default.png */; };
 		83A88852170F6AD100A61787 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A88851170F6AD100A61787 /* Default@2x.png */; };
 		83A88854170F6AD100A61787 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A88853170F6AD100A61787 /* Default-568h@2x.png */; };
-		83A8885B170F6AD100A61787 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A8885A170F6AD100A61787 /* ViewController.m */; };
 		83A8885E170F6AD100A61787 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A8885C170F6AD100A61787 /* ViewController_iPhone.xib */; };
 		83A88861170F6AD100A61787 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A8885F170F6AD100A61787 /* ViewController_iPad.xib */; };
+		83F14B301728D0DE0083C11E /* HoleState.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B2F1728D0DE0083C11E /* HoleState.m */; };
+		83F14B331728D14C0083C11E /* HoleStateFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B321728D14C0083C11E /* HoleStateFactory.m */; };
+		83F14B391728D4030083C11E /* StateTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B381728D4030083C11E /* StateTitle.m */; };
+		83F14B3C1728D4170083C11E /* StateGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B3B1728D4170083C11E /* StateGame.m */; };
+		83F14B471728DD620083C11E /* title.json in Resources */ = {isa = PBXBuildFile; fileRef = 83F14B461728DD620083C11E /* title.json */; };
+		83F14B491728DD700083C11E /* sky.json in Resources */ = {isa = PBXBuildFile; fileRef = 83F14B481728DD700083C11E /* sky.json */; };
+		83F14B4D17292CD10083C11E /* ARKButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B4C17292CD10083C11E /* ARKButton.m */; };
+		83F14B501729430A0083C11E /* ARKButtonContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B4F1729430A0083C11E /* ARKButtonContainer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,10 +151,22 @@
 		83A8884F170F6AD100A61787 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		83A88851170F6AD100A61787 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		83A88853170F6AD100A61787 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		83A88859170F6AD100A61787 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		83A8885A170F6AD100A61787 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		83A8885D170F6AD100A61787 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		83A88860170F6AD100A61787 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		83F14B2E1728D0DE0083C11E /* HoleState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HoleState.h; path = blackhole/states/HoleState.h; sourceTree = "<group>"; };
+		83F14B2F1728D0DE0083C11E /* HoleState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HoleState.m; path = blackhole/states/HoleState.m; sourceTree = "<group>"; };
+		83F14B311728D14C0083C11E /* HoleStateFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HoleStateFactory.h; path = blackhole/states/HoleStateFactory.h; sourceTree = "<group>"; };
+		83F14B321728D14C0083C11E /* HoleStateFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HoleStateFactory.m; path = blackhole/states/HoleStateFactory.m; sourceTree = "<group>"; };
+		83F14B371728D4020083C11E /* StateTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StateTitle.h; path = blackhole/states/StateTitle.h; sourceTree = "<group>"; };
+		83F14B381728D4030083C11E /* StateTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StateTitle.m; path = blackhole/states/StateTitle.m; sourceTree = "<group>"; };
+		83F14B3A1728D4170083C11E /* StateGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StateGame.h; path = blackhole/states/StateGame.h; sourceTree = "<group>"; };
+		83F14B3B1728D4170083C11E /* StateGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StateGame.m; path = blackhole/states/StateGame.m; sourceTree = "<group>"; };
+		83F14B461728DD620083C11E /* title.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = title.json; path = assets/images/interface/title.json; sourceTree = "<group>"; };
+		83F14B481728DD700083C11E /* sky.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = sky.json; path = assets/images/game/sky.json; sourceTree = "<group>"; };
+		83F14B4B17292CD10083C11E /* ARKButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKButton.h; path = components/buttons/ARKButton.h; sourceTree = "<group>"; };
+		83F14B4C17292CD10083C11E /* ARKButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKButton.m; path = components/buttons/ARKButton.m; sourceTree = "<group>"; };
+		83F14B4E1729430A0083C11E /* ARKButtonContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKButtonContainer.h; path = components/buttons/ARKButtonContainer.h; sourceTree = "<group>"; };
+		83F14B4F1729430A0083C11E /* ARKButtonContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKButtonContainer.m; path = components/buttons/ARKButtonContainer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,14 +252,13 @@
 		83773659170FC1DD00F3C5E9 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				83F14B281728D0720083C11E /* Black Holes */,
 				8377366517102DDE00F3C5E9 /* Components */,
 				832FB2AA1719932D00E73D11 /* States */,
 				8377365F1710267000F3C5E9 /* System */,
 				83A88849170F6AD100A61787 /* main.m */,
 				83A8884C170F6AD100A61787 /* AppDelegate.h */,
 				83A8884D170F6AD100A61787 /* AppDelegate.m */,
-				83A88859170F6AD100A61787 /* ViewController.h */,
-				83A8885A170F6AD100A61787 /* ViewController.m */,
 			);
 			name = Sources;
 			path = src;
@@ -260,6 +278,8 @@
 		8377365B170FFFE200F3C5E9 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				83F14B481728DD700083C11E /* sky.json */,
+				83F14B461728DD620083C11E /* title.json */,
 				8379C4A217205884005F457C /* audio */,
 				8310BDF4171C0AC0007E4224 /* pixel.json */,
 				832FB2991716ACC200E73D11 /* ship.json */,
@@ -330,6 +350,7 @@
 		8377366517102DDE00F3C5E9 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				83F14B4A17292CBC0083C11E /* Buttons */,
 				8377366617102E2300F3C5E9 /* ARKDrawable.h */,
 				8377366717102E2300F3C5E9 /* ARKDrawable.m */,
 				8377366917103ED900F3C5E9 /* ARKCroppable.h */,
@@ -381,6 +402,48 @@
 				83A8885F170F6AD100A61787 /* ViewController_iPad.xib */,
 			);
 			name = "Ark Framework";
+			sourceTree = "<group>";
+		};
+		83F14B281728D0720083C11E /* Black Holes */ = {
+			isa = PBXGroup;
+			children = (
+				83F14B2A1728D0980083C11E /* Game */,
+				83F14B291728D0900083C11E /* States */,
+			);
+			name = "Black Holes";
+			sourceTree = "<group>";
+		};
+		83F14B291728D0900083C11E /* States */ = {
+			isa = PBXGroup;
+			children = (
+				83F14B2E1728D0DE0083C11E /* HoleState.h */,
+				83F14B2F1728D0DE0083C11E /* HoleState.m */,
+				83F14B311728D14C0083C11E /* HoleStateFactory.h */,
+				83F14B321728D14C0083C11E /* HoleStateFactory.m */,
+				83F14B371728D4020083C11E /* StateTitle.h */,
+				83F14B381728D4030083C11E /* StateTitle.m */,
+				83F14B3A1728D4170083C11E /* StateGame.h */,
+				83F14B3B1728D4170083C11E /* StateGame.m */,
+			);
+			name = States;
+			sourceTree = "<group>";
+		};
+		83F14B2A1728D0980083C11E /* Game */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+		83F14B4A17292CBC0083C11E /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				83F14B4B17292CD10083C11E /* ARKButton.h */,
+				83F14B4C17292CD10083C11E /* ARKButton.m */,
+				83F14B4E1729430A0083C11E /* ARKButtonContainer.h */,
+				83F14B4F1729430A0083C11E /* ARKButtonContainer.m */,
+			);
+			name = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -444,6 +507,8 @@
 				832FB29A1716ACC200E73D11 /* ship.json in Resources */,
 				8310BDF5171C0AC0007E4224 /* pixel.json in Resources */,
 				8379C4A317205884005F457C /* audio in Resources */,
+				83F14B471728DD620083C11E /* title.json in Resources */,
+				83F14B491728DD700083C11E /* sky.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,7 +521,6 @@
 			files = (
 				83A8884A170F6AD100A61787 /* main.m in Sources */,
 				83A8884E170F6AD100A61787 /* AppDelegate.m in Sources */,
-				83A8885B170F6AD100A61787 /* ViewController.m in Sources */,
 				837736641710285400F3C5E9 /* ARKImage.m in Sources */,
 				8377366817102E2300F3C5E9 /* ARKDrawable.m in Sources */,
 				8377366B17103ED900F3C5E9 /* ARKCroppable.m in Sources */,
@@ -488,6 +552,12 @@
 				8379C4B01721BFE1005F457C /* ARKDevice.m in Sources */,
 				831774741722A21D00F585AC /* ARKiOSDevice.m in Sources */,
 				831774771722A57700F585AC /* ARKViewController.m in Sources */,
+				83F14B301728D0DE0083C11E /* HoleState.m in Sources */,
+				83F14B331728D14C0083C11E /* HoleStateFactory.m in Sources */,
+				83F14B391728D4030083C11E /* StateTitle.m in Sources */,
+				83F14B3C1728D4170083C11E /* StateGame.m in Sources */,
+				83F14B4D17292CD10083C11E /* ARKButton.m in Sources */,
+				83F14B501729430A0083C11E /* ARKButtonContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +603,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raka Mahesa (6V8K52S2EN)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -548,6 +619,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -565,6 +637,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raka Mahesa (6V8K52S2EN)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -573,6 +646,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -582,10 +656,12 @@
 		83A88865170F6AD100A61787 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raka Mahesa (6V8K52S2EN)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ark Framework-Prefix.pch";
 				INFOPLIST_FILE = "Ark Framework-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -593,10 +669,12 @@
 		83A88866170F6AD100A61787 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raka Mahesa (6V8K52S2EN)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Ark Framework-Prefix.pch";
 				INFOPLIST_FILE = "Ark Framework-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

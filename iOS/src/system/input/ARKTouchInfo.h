@@ -26,8 +26,8 @@
 }
 
 //Properties
-@property (readonly, getter = getX)			float x;
-@property (readonly, getter = getY)			float y;
+@property (readonly, getter = getCurrentX)	float x;
+@property (readonly, getter = getCurrentY)	float y;
 @property (readonly, getter = getStartX)	float startX;
 @property (readonly, getter = getStartY)	float startY;
 @property (readonly, getter = isPressed)	BOOL pressed;
