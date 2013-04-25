@@ -90,6 +90,7 @@
 		//Set context
 		((GLKView*)self.view).context = m_Context;
 		self.preferredFramesPerSecond = [[ARKUtilities instance] getSystemFPS];
+		[EAGLContext setCurrentContext:m_Context];
 		
 		//Initialize openGL
 		glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
@@ -105,8 +106,6 @@
 		m_OpenGL					= [[GLKBaseEffect alloc] init];
 		m_OpenGL.texture2d0.envMode	= GLKTextureEnvModeModulate;
 		m_OpenGL.texture2d0.target	= GLKTextureTarget2D;
-		
-		NSLog(@"Setting up OpenGL");
 		
 		//Save controller
 		[[ARKiOSDevice instance] setupViewController:self];
@@ -171,7 +170,6 @@
 	
 	//Clear
     glClear(GL_COLOR_BUFFER_BIT);
-	//glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 	
 	//Check all touch
 	for (int i = 0; i < [m_Touches count]; i++) if (![[m_Touches objectAtIndex:i] isPressed]) [[m_Touches objectAtIndex:i] removed];

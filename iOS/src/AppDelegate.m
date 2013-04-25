@@ -8,7 +8,6 @@
 
 //Import
 #import "AppDelegate.h"
-#import "ViewController.h"
 #import "ARKViewController.h"
 #import "ARKStateManager.h"
 #import "HolesStateFactory.h"
@@ -18,8 +17,8 @@
 @implementation AppDelegate
 
 - (int)	getFPS						{ return 60;				}
-- (int)	getBaseWidth				{ return 480;				}
-- (int)	getBaseHeight				{ return -320;				}
+- (int)	getBaseWidth				{ return 320;				}
+- (int)	getBaseHeight				{ return -480;				}
 - (NSString*) getApplicationName	{ return @"Black Holes";	}
 - (NSString*) getPressSFX			{ return nil;				}
 - (NSString*) getCursorSFX			{ return nil;				}
@@ -31,7 +30,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	//Initialize
 	[[ARKUtilities instance] setSystem:self];
-	[[ARKStateManager instance] setupWithFactory:[[HolesStateFactory alloc] init]];
 	
 	//Set view controller
 	NSString* NibFile	= [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? @"ViewController_iPhone" : @"ViewController_iPad";
@@ -41,6 +39,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+	
+	//Start ark state manager
+	[[ARKStateManager instance] setupWithFactory:[[HolesStateFactory alloc] init]];
 	
 	//Return okay
     return YES;

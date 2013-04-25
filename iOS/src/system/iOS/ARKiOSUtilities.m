@@ -7,6 +7,7 @@
 //
 
 #import <stdlib.h>
+#import "ARKDevice.h"
 #import "ARKiOSUtilities.h"
 
 @implementation ARKiOSUtilities
@@ -26,11 +27,11 @@
 }
 
 //Accessors
-- (int)getRow		{ return [super getRow];	}
-- (int)getColumn	{ return [super getColumn];	}
-- (float)getScale	{ return 1;					}
-- (float)getWidth	{ return 320;				}
-- (float)getHeight	{ return 480;				}
+- (int)getRow		{ return [[ARKDevice instance] getRow];											}
+- (int)getColumn	{ return [[ARKDevice instance] getColumn];										}
+- (float)getScale	{ return [[ARKDevice instance] getScale];										}
+- (float)getWidth	{ return [[ARKDevice instance] getWidth] / [[ARKDevice instance] getScale];		}
+- (float)getHeight	{ return [[ARKDevice instance] getHeight] / [[ARKDevice instance] getScale];	}
 
 - (int)getARandomNumberBetween:(int)from to:(int)to {
 	if (from + 1 >= to) return from;

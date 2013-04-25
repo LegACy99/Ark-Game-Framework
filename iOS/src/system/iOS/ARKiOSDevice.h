@@ -7,14 +7,19 @@
 //
 
 #import "ARKDevice.h"
+#import <GLKit/GLKit.h>
 
 //Forward declaration
-@class GLKBaseEffect, ARKViewController;
+@class ARKViewController;
 
 @interface ARKiOSDevice : ARKDevice {
 	//Data
+	GLKMatrix4			m_ViewMatrix;
 	ARKViewController*	m_ViewController;
 }
+
+//Property
+@property (readonly, getter = getViewMatrix) GLKMatrix4 viewMatrix;
 
 //Factory
 + (ARKiOSDevice*)instance;

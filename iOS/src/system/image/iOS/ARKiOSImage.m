@@ -11,6 +11,7 @@
 #import "ARKiOSImage.h"
 #import "ARKResourceManager.h"
 #import "ARKUtilities.h"
+#import "ARKiOSDevice.h"
 #import "ARKTexture.h"
 
 //Sizes
@@ -240,16 +241,18 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
     //Set texture
 	if (m_Texture) gl.texture2d0.name = [m_Texture getID];
 	
-	//Calculate rotation pivot
-	float PivotX = (m_Width / 2) - m_PivotX;
-	float PivotY = m_PivotY - (m_Height / 2);
+	//Calculate stuff
+	float PivotX		= (m_Width / 2) - m_PivotX;
+	float PivotY		= m_PivotY - (m_Height / 2);
+	float TranslationX	= ((m_Width - [[ARKDevice instance] getWidth]) / 2) + m_X - PivotX;
+	float TranslationY	= (([[ARKDevice instance] getHeight] - m_Height) / 2) - m_Y - PivotY;
 	
 	//Create matrix
-    GLKMatrix4 ViewMatrix = GLKMatrix4MakeLookAt(0, 0, 240, 0, 0, 0, 0, 1, 0);
-	ViewMatrix = GLKMatrix4Translate(ViewMatrix, ((m_Width - 320) / 2) + m_X - PivotX, ((480 - m_Height) / 2) - m_Y - PivotY, 0);
-	ViewMatrix = GLKMatrix4Rotate(ViewMatrix, m_Rotation, 0, 0, -1);
-	ViewMatrix = GLKMatrix4Translate(ViewMatrix, PivotX, PivotY, 0);
-	ViewMatrix = GLKMatrix4Rotate(ViewMatrix, m_Rotation, -1, 0, 0);
+    GLKMatrix4 ViewMatrix	= [[ARKiOSDevice instance] getViewMatrix];
+	ViewMatrix				= GLKMatrix4Translate(ViewMatrix, TranslationX, TranslationY, 0);
+	ViewMatrix				= GLKMatrix4Rotate(ViewMatrix, m_Rotation, 0, 0, -1);
+	ViewMatrix				= GLKMatrix4Translate(ViewMatrix, PivotX, PivotY, 0);
+	ViewMatrix				= GLKMatrix4Rotate(ViewMatrix, m_Rotation, -1, 0, 0);
     gl.transform.modelviewMatrix = ViewMatrix;
 
 	//Render

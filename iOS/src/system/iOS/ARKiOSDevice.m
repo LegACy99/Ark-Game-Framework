@@ -12,12 +12,16 @@
 
 @implementation ARKiOSDevice
 
+//Synthesize
+@synthesize viewMatrix = m_ViewMatrix;
+
 - (id)init {
 	//Super
 	self = [super init];
 	if (self) {
 		//Initialize
-		m_ViewController = nil;
+		m_ViewController	= nil;
+		m_ViewMatrix		= GLKMatrix4Identity;
 	}
 	
 	//Return
@@ -75,6 +79,9 @@
 	//Calculate scale
 	if ([[ARKUtilities instance] isSystemBasedOnHeight]) 	m_Scale = m_Height / [[ARKUtilities instance] getBaseHeight];
 	else													m_Scale = m_Width / [[ARKUtilities instance] getBaseWidth];
+	
+	//Calculate matrix
+	m_ViewMatrix = GLKMatrix4MakeLookAt(0, 0, m_Height / 2, 0, 0, 0, 0, 1, 0);
 }
 
 - (void)openURL:(NSString *)url inBrowser:(BOOL)browser withTitle:(NSString *)title withLoading:(NSString *)loading {
