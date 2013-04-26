@@ -158,10 +158,10 @@ const NSString* IMAGE_KEY_TEXTURE		= @"Texture";
 	else 								m_Mirror = DRAWABLE_MIRROR_BOTH;
 	
 	//Reset rect
-	[self setRegionfromX:0 fromY:0 withWidth:m_OriginalWidth withHeight:m_OriginalHeight forced:YES];
+	[self setRegionFromX:0 fromY:0 withWidth:m_OriginalWidth withHeight:m_OriginalHeight forced:YES];
 }
 
-- (void)setRegionfromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height forced:(BOOL)force {
+- (void)setRegionFromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height forced:(BOOL)force {
 	//Invalid
 	[self doesNotRecognizeSelector:_cmd];
 }

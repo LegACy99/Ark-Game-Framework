@@ -40,20 +40,20 @@
 
 - (void)setRegionFromX:(float)left fromY:(float)top {
 	//Set region
-	[self setRegionfromX:left fromY:top withWidth:m_OriginalWidth - left withHeight:m_OriginalHeight - top];
+	[self setRegionFromX:left fromY:top withWidth:m_OriginalWidth - left withHeight:m_OriginalHeight - top];
 }
 
 - (void)setRegionFromX:(float)left fromY:(float)top toX:(float)right toY:(float)bottom {
 	//Set region
-	[self setRegionfromX:left fromY:top withWidth:right - left withHeight:bottom - top];
+	[self setRegionFromX:left fromY:top withWidth:right - left withHeight:bottom - top];
 }
 
 - (void)setRegionWithWidth:(float)width withHeight:(float)height {
 	//Set region
-	[self setRegionfromX:0 fromY:0 withWidth:width withHeight:height];
+	[self setRegionFromX:0 fromY:0 withWidth:width withHeight:height];
 }
 
-- (void)setRegionfromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height {
+- (void)setRegionFromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height {
 	//Set data
 	m_OriginalRegionX		= x;
 	m_OriginalRegionY		= y;

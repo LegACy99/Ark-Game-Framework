@@ -7,6 +7,7 @@
 //
 
 #import "ARKButtonContainer.h"
+#import "ARKResourceManager.h"
 #import "ARKSoundManager.h"
 #import "ARKTouchInfo.h"
 #import "ARKButton.h"
@@ -53,17 +54,31 @@ const int CONTAINER_NO_BUTTON = -1;
 }
 
 - (ARKButton*)addButtonWithID:(int)ID withResource:(NSString *)resource withText:(NSString *)text {
-	return [self addButton:[[ARKButton alloc] initWithID:ID withResource:resource withText:text]];
+	return [self addButtonWithID:ID withImages:[[ARKResourceManager instance] getTexturesWithName:resource] withText:text];
 }
 
 - (ARKButton*)addButtonWithID:(int)ID withResource:(NSString *)resource withText:(NSString *)text withFont:(NSString *)font {
-	return [self addButton:[[ARKButton alloc] initWithID:ID withResource:resource withText:text withFont:font]];
+	return [self addButtonWithID:ID withImages:[[ARKResourceManager instance] getTexturesWithName:resource] withText:text withFont:font];
+}
+
+- (ARKButton*)addButtonWithID:(int)ID withImages:(NSArray *)images withText:(NSString *)text withFont:(NSString *)font {
+	return [self addButton:[[ARKButton alloc] initWithID:ID withImages:images withText:text withFont:font]];
+}
+
+- (ARKButton*)addButtonWithID:(int)ID withImages:(NSArray *)images withText:(NSString *)text {
+	return [self addButton:[[ARKButton alloc] initWithID:ID withImages:images withText:text]];
 }
 
 - (ARKButton*)addButton:(ARKButton *)button {
 	//Add a button
 	if (button) [m_Buttons addObject:button];
 	return button;
+}
+
+- (void)addButtons:(NSArray *)buttons {
+	//Add buttons
+	if (!buttons) return;
+	for (int i = 0; i < [buttons count]; i++) [self addButtons:[buttons objectAtIndex:i]];
 }
 
 - (void)removeButtons {

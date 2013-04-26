@@ -28,11 +28,6 @@ const int LOADABLE_TEXTURE	= 7;
 //Synthesize properties
 @synthesize name = m_Name;
 
-- (id)init {
-	//Don't use
-	return nil;
-}
-
 - (id)initResourceType:(int)type { return [self initResourceType:type withName:@""]; }
 - (id)initResourceType:(int)type withName:(NSString*)name {
 	//Super

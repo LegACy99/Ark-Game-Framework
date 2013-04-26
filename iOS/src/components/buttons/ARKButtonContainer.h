@@ -25,7 +25,10 @@
 //Setters
 - (ARKButton*) addButtonWithID:(int)ID withResource:(NSString*)resource withText:(NSString*)text;
 - (ARKButton*) addButtonWithID:(int)ID withResource:(NSString*)resource withText:(NSString*)text withFont:(NSString*)font;
+- (ARKButton*) addButtonWithID:(int)ID withImages:(NSArray*)images withText:(NSString*)text withFont:(NSString*)font;
+- (ARKButton*) addButtonWithID:(int)ID withImages:(NSArray*)images withText:(NSString*)text;
 - (ARKButton*) addButton:(ARKButton*)button;
+- (void)addButtons:(NSArray*)buttons;
 - (void)removeButtons;
 
 //Function

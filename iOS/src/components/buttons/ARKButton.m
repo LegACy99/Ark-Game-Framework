@@ -101,7 +101,7 @@ const int BUTTON_STATE_INACTIVE	= 2;
 		m_ID = ID;
 		
 		//If image exist
-		if (images ) {
+		if (images && [images count] > 0) {
 			//Create image
 			NSMutableArray* Images = [NSMutableArray array];
 			for (int i = 0; i < [images count]; i++) [Images addObject:[ARKImage createFromJSON:[images objectAtIndex:i]]];
@@ -129,7 +129,7 @@ const int BUTTON_STATE_INACTIVE	= 2;
 		
 		//Set position and size
 		[self setPositionAtX:0 atY:0];
-		[self setRegionfromX:0 fromY:0 withWidth:m_OriginalWidth withHeight:m_OriginalHeight];
+		[self setRegionFromX:0 fromY:0 withWidth:m_OriginalWidth withHeight:m_OriginalHeight];
 	}
 	
 	//Return
@@ -165,15 +165,15 @@ const int BUTTON_STATE_INACTIVE	= 2;
 								   verticallyAlignedTo:DRAWABLE_ANCHOR_VCENTER];
 }
 
-- (void)setRegionfromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height {
+- (void)setRegionFromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height {
 	//Super
-	[super setRegionfromX:x fromY:y withWidth:width withHeight:height];
+	[super setRegionFromX:x fromY:y withWidth:width withHeight:height];
 	
 	//Set size
 	[self setSizeWithX:m_RegionX withY:m_RegionY withWidth:m_RegionWidth withHeight:m_RegionHeight offsetScaled:NO sizeScaled:NO];
 	
 	//Set images region
-	if (m_Images) for (int i = 0; i < [m_Images count]; i++) [[m_Images objectAtIndex:i] setRegionfromX:x fromY:y withWidth:width withHeight:height];
+	if (m_Images) for (int i = 0; i < [m_Images count]; i++) [[m_Images objectAtIndex:i] setRegionFromX:x fromY:y withWidth:width withHeight:height];
 	
 	//If label exist
 	float Scale = [[ARKUtilities instance] getScale];
@@ -185,7 +185,7 @@ const int BUTTON_STATE_INACTIVE	= 2;
 		float Height	= [[m_Labels objectAtIndex:i] getY] + [[m_Labels objectAtIndex:i] getHeight] > m_Y + m_RegionY + m_RegionHeight ? m_Y + m_RegionY + m_RegionHeight - Top - [[m_Labels objectAtIndex:i] getY] : [[m_Labels objectAtIndex:i] getHeight] - Top;
 		
 		//Set region
-		[[m_Labels objectAtIndex:i] setRegionfromX:Left / Scale fromY:Top / Scale withWidth:Width / Scale withHeight:Height / Scale];
+		[[m_Labels objectAtIndex:i] setRegionFromX:Left / Scale fromY:Top / Scale withWidth:Width / Scale withHeight:Height / Scale];
 	}
 }
 

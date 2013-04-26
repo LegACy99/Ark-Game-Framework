@@ -64,6 +64,8 @@
 		83F14B491728DD700083C11E /* sky.json in Resources */ = {isa = PBXBuildFile; fileRef = 83F14B481728DD700083C11E /* sky.json */; };
 		83F14B4D17292CD10083C11E /* ARKButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B4C17292CD10083C11E /* ARKButton.m */; };
 		83F14B501729430A0083C11E /* ARKButtonContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B4F1729430A0083C11E /* ARKButtonContainer.m */; };
+		83F14B531729AA190083C11E /* ARKRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B521729AA190083C11E /* ARKRectangle.m */; };
+		83F14B561729B2010083C11E /* ARKiOSRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B551729B2010083C11E /* ARKiOSRectangle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -167,6 +169,10 @@
 		83F14B4C17292CD10083C11E /* ARKButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKButton.m; path = components/buttons/ARKButton.m; sourceTree = "<group>"; };
 		83F14B4E1729430A0083C11E /* ARKButtonContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKButtonContainer.h; path = components/buttons/ARKButtonContainer.h; sourceTree = "<group>"; };
 		83F14B4F1729430A0083C11E /* ARKButtonContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKButtonContainer.m; path = components/buttons/ARKButtonContainer.m; sourceTree = "<group>"; };
+		83F14B511729AA190083C11E /* ARKRectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKRectangle.h; path = system/image/ARKRectangle.h; sourceTree = "<group>"; };
+		83F14B521729AA190083C11E /* ARKRectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKRectangle.m; path = system/image/ARKRectangle.m; sourceTree = "<group>"; };
+		83F14B541729B2010083C11E /* ARKiOSRectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSRectangle.h; path = system/image/iOS/ARKiOSRectangle.h; sourceTree = "<group>"; };
+		83F14B551729B2010083C11E /* ARKiOSRectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSRectangle.m; path = system/image/iOS/ARKiOSRectangle.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +325,8 @@
 				8310BDE4171A7F9D007E4224 /* ARKSprite.m */,
 				8379C490171EF1D1005F457C /* ARKLabel.h */,
 				8379C491171EF1D1005F457C /* ARKLabel.m */,
+				83F14B511729AA190083C11E /* ARKRectangle.h */,
+				83F14B521729AA190083C11E /* ARKRectangle.m */,
 				832FB27E171525F100E73D11 /* ARKTexture.h */,
 				832FB27F171525F100E73D11 /* ARKTexture.m */,
 				8310BDE9171BC672007E4224 /* ARKBitmapFont.h */,
@@ -335,6 +343,8 @@
 				8377366D171046EB00F3C5E9 /* ARKiOSImage.m */,
 				8379C493171F0A3D005F457C /* ARKiOSLabel.h */,
 				8379C494171F0A3D005F457C /* ARKiOSLabel.m */,
+				83F14B541729B2010083C11E /* ARKiOSRectangle.h */,
+				83F14B551729B2010083C11E /* ARKiOSRectangle.m */,
 				832FB2811715275A00E73D11 /* ARKiOSTexture.h */,
 				832FB2821715275A00E73D11 /* ARKiOSTexture.m */,
 				8310BDEC171BCC4F007E4224 /* ARKiOSBitmapFont.h */,
@@ -558,6 +568,8 @@
 				83F14B3C1728D4170083C11E /* StateGame.m in Sources */,
 				83F14B4D17292CD10083C11E /* ARKButton.m in Sources */,
 				83F14B501729430A0083C11E /* ARKButtonContainer.m in Sources */,
+				83F14B531729AA190083C11E /* ARKRectangle.m in Sources */,
+				83F14B561729B2010083C11E /* ARKiOSRectangle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

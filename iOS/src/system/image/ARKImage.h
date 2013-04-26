@@ -49,7 +49,7 @@
 - (void)setFlipWithAngle:(float)angle;
 - (void)setFlipWithAngle:(float)angle increasedBy:(float)increase;
 - (void)setMirrorHorizontally:(BOOL)horizontal andVertically:(BOOL)vertical;
-- (void)setRegionfromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height forced:(BOOL)force;
+- (void)setRegionFromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height forced:(BOOL)force;
 
 //Constants
 extern const NSString* IMAGE_KEY_RECT;

@@ -39,12 +39,12 @@
 	return self;
 }
 
-- (void)setRegionfromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height {
+- (void)setRegionFromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height {
 	//Super
-	[super setRegionfromX:x fromY:y withWidth:width withHeight:height];
+	[super setRegionFromX:x fromY:y withWidth:width withHeight:height];
 	
 	//Set all region
-	for (int i = 0; i < [m_Images count]; i++) [[m_Images objectAtIndex:i] setRegionfromX:x fromY:y withWidth:width withHeight:height];
+	for (int i = 0; i < [m_Images count]; i++) [[m_Images objectAtIndex:i] setRegionFromX:x fromY:y withWidth:width withHeight:height];
 }
 
 - (void)setPositionAtX:(float)x atY:(float)y horizontallyAlignedTo:(int)horizontal verticallyAlignedTo:(int)vertical {

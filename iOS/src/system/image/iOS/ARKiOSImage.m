@@ -15,22 +15,23 @@
 #import "ARKTexture.h"
 
 //Sizes
-const int COLOR_SIZE 		= 4;
-const int VERTEX_SIZE 		= 2;
-const int COORDINATE_SIZE 	= 2;
-const int DATA_SIZE			= VERTEX_SIZE + COORDINATE_SIZE + COLOR_SIZE;
+const int IMAGE_COLOR_SIZE 		= 4;
+const int IMAGE_VERTEX_SIZE 	= 2;
+const int IMAGE_COORDINATE_SIZE = 2;
+const int IMAGE_DATA_SIZE		= IMAGE_VERTEX_SIZE + IMAGE_COORDINATE_SIZE + IMAGE_COLOR_SIZE;
+const int IMAGE_VERTEX_COUNT	= 4;
 
 //Edge constants
-const int EDGE_TOP		= 0;
-const int EDGE_LEFT 	= 1;
-const int EDGE_RIGHT 	= 3;
-const int EDGE_BOTTOM 	= 2;
+const int IMAGE_EDGE_TOP	= 0;
+const int IMAGE_EDGE_LEFT 	= 1;
+const int IMAGE_EDGE_RIGHT 	= 3;
+const int IMAGE_EDGE_BOTTOM = 2;
 
 //Index constants: 0 top, 1 left, 2 bottom, 3 right
-const int COORDINATES_NORMAL[8]		=  { EDGE_RIGHT, EDGE_TOP,		EDGE_LEFT, EDGE_TOP,		EDGE_RIGHT, EDGE_BOTTOM,	EDGE_LEFT, EDGE_BOTTOM	};
-const int COORDINATES_HMIRROR[8] 	=  { EDGE_LEFT, EDGE_TOP,		EDGE_RIGHT, EDGE_TOP,		EDGE_LEFT, EDGE_BOTTOM,		EDGE_RIGHT, EDGE_BOTTOM	};
-const int COORDINATES_VMIRROR[8] 	=  { EDGE_RIGHT, EDGE_BOTTOM,	EDGE_LEFT, EDGE_BOTTOM,		EDGE_LEFT, EDGE_TOP,		EDGE_RIGHT, EDGE_TOP 	};
-const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDGE_BOTTOM,	EDGE_RIGHT, EDGE_TOP,		EDGE_LEFT, EDGE_TOP		};
+const int IMAGE_COORDINATES_NORMAL[8]		=  { IMAGE_EDGE_RIGHT, IMAGE_EDGE_TOP,		IMAGE_EDGE_LEFT, IMAGE_EDGE_TOP,		IMAGE_EDGE_RIGHT, IMAGE_EDGE_BOTTOM,	IMAGE_EDGE_LEFT, IMAGE_EDGE_BOTTOM	};
+const int IMAGE_COORDINATES_HMIRROR[8]		=  { IMAGE_EDGE_LEFT, IMAGE_EDGE_TOP,		IMAGE_EDGE_RIGHT, IMAGE_EDGE_TOP,		IMAGE_EDGE_LEFT, IMAGE_EDGE_BOTTOM,		IMAGE_EDGE_RIGHT, IMAGE_EDGE_BOTTOM	};
+const int IMAGE_COORDINATES_VMIRROR[8]		=  { IMAGE_EDGE_RIGHT, IMAGE_EDGE_BOTTOM,	IMAGE_EDGE_LEFT, IMAGE_EDGE_BOTTOM,		IMAGE_EDGE_LEFT, IMAGE_EDGE_TOP,		IMAGE_EDGE_RIGHT, IMAGE_EDGE_TOP 	};
+const int IMAGE_COORDINATES_BOTHMIRROR[8]	=  { IMAGE_EDGE_LEFT, IMAGE_EDGE_BOTTOM,	IMAGE_EDGE_RIGHT, IMAGE_EDGE_BOTTOM,	IMAGE_EDGE_RIGHT, IMAGE_EDGE_TOP,		IMAGE_EDGE_LEFT, IMAGE_EDGE_TOP		};
 
 //Private stuff
 @interface ARKiOSImage ()
@@ -54,7 +55,7 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 		m_Top		= 0;
 		m_Left		= 0;
 		m_Texture	= nil;
-		for (int i = 0; i < 32; i++) m_Attributes[i] = 0;
+		for (int i = 0; i < sizeof(m_Attributes) / sizeof(m_Attributes[0]); i++) m_Attributes[i] = 0;
 	}
 	
 	//Return
@@ -128,7 +129,7 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 			m_PivotX	= m_Width / 2;
 			
 			//Create drawing rect
-			[self setRegionfromX:0 fromY:0 withWidth:m_OriginalWidth withHeight:m_OriginalHeight];
+			[self setRegionFromX:0 fromY:0 withWidth:m_OriginalWidth withHeight:m_OriginalHeight];
 			[self configureColors];
 		}
 	}
@@ -145,12 +146,12 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 	[self configureColors];
 }
 
-- (void)setRegionfromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height {
+- (void)setRegionFromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height {
 	//Set region not forced
-	[self setRegionfromX:x fromY:y withWidth:width withHeight:height forced:NO];
+	[self setRegionFromX:x fromY:y withWidth:width withHeight:height forced:NO];
 }
 
-- (void)setRegionfromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height forced:(BOOL)force {
+- (void)setRegionFromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height forced:(BOOL)force {
 	//Initialize
 	BOOL Valid		= force;
 	float OldX		= m_OriginalRegionX;
@@ -159,7 +160,7 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 	float OldHeight	= m_OriginalRegionHeight;
 	
 	//Super
-	[super setRegionfromX:x fromY:y withWidth:width withHeight:height];
+	[super setRegionFromX:x fromY:y withWidth:width withHeight:height];
 	
 	//If not valid
 	if (!Valid) {
@@ -180,10 +181,10 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 
 - (void)configureVertices {
 	//Set vertex attributes
-	m_Attributes[0 * DATA_SIZE] = -(m_Width / 2) + m_RegionX + m_RegionWidth;	m_Attributes[(0 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY;
-	m_Attributes[1 * DATA_SIZE] = -(m_Width / 2) + m_RegionX;					m_Attributes[(1 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY;
-	m_Attributes[2 * DATA_SIZE] = -(m_Width / 2) + m_RegionX + m_RegionWidth;	m_Attributes[(2 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY - m_RegionHeight;
-	m_Attributes[3 * DATA_SIZE] = -(m_Width / 2) + m_RegionX;					m_Attributes[(3 * DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY - m_RegionHeight;
+	m_Attributes[0 * IMAGE_DATA_SIZE] = -(m_Width / 2) + m_RegionX + m_RegionWidth;	m_Attributes[(0 * IMAGE_DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY;
+	m_Attributes[1 * IMAGE_DATA_SIZE] = -(m_Width / 2) + m_RegionX;					m_Attributes[(1 * IMAGE_DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY;
+	m_Attributes[2 * IMAGE_DATA_SIZE] = -(m_Width / 2) + m_RegionX + m_RegionWidth;	m_Attributes[(2 * IMAGE_DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY - m_RegionHeight;
+	m_Attributes[3 * IMAGE_DATA_SIZE] = -(m_Width / 2) + m_RegionX;					m_Attributes[(3 * IMAGE_DATA_SIZE) + 1] = (m_Height / 2) - m_RegionY - m_RegionHeight;
 }
 
 - (void)configureCoordinates {
@@ -192,10 +193,10 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 	const int* Template = [self getTemplateFromMirror:m_Mirror];
 	
 	//For each data
-	int Offset = VERTEX_SIZE;
-	for (int i = 0; i < 4; i++) {
+	int Offset = IMAGE_VERTEX_SIZE;
+	for (int i = 0; i < IMAGE_VERTEX_COUNT; i++) {
 		//Set attribute
-		for (int j = 0; j < 2; j++) m_Attributes[(i * DATA_SIZE) + Offset + j] = [(NSNumber*)[Edges objectAtIndex:Template[(i * 2) + j]] floatValue];
+		for (int j = 0; j < 2; j++) m_Attributes[(i * IMAGE_DATA_SIZE) + Offset + j] = [(NSNumber*)[Edges objectAtIndex:Template[(i * 2) + j]] floatValue];
 	}
 }
 
@@ -214,29 +215,33 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 
 - (const int*)getTemplateFromMirror:(int)mirror {
 	//Get the correct pattern
-	if (mirror == DRAWABLE_MIRROR_VERTICAL)			return COORDINATES_VMIRROR;
-	else if (mirror == DRAWABLE_MIRROR_HORIZONTAL) 	return COORDINATES_HMIRROR;
-	else if (mirror == DRAWABLE_MIRROR_BOTH)		return COORDINATES_BOTHMIRROR;
-	else											return COORDINATES_NORMAL;
+	if (mirror == DRAWABLE_MIRROR_VERTICAL)			return IMAGE_COORDINATES_VMIRROR;
+	else if (mirror == DRAWABLE_MIRROR_HORIZONTAL) 	return IMAGE_COORDINATES_HMIRROR;
+	else if (mirror == DRAWABLE_MIRROR_BOTH)		return IMAGE_COORDINATES_BOTHMIRROR;
+	else											return IMAGE_COORDINATES_NORMAL;
 }
 
 - (void)configureColors {
 	//For each vertex
-	int Offset = VERTEX_SIZE + COORDINATE_SIZE;
-	for (int i = 0; i < 4; i++) {
+	int Offset = IMAGE_VERTEX_SIZE + IMAGE_COORDINATE_SIZE;
+	for (int i = 0; i < IMAGE_VERTEX_COUNT; i++) {
 		//Set color
-		m_Attributes[(i * DATA_SIZE) + Offset + 0] = m_ColorRed;
-		m_Attributes[(i * DATA_SIZE) + Offset + 1] = m_ColorGreen;
-		m_Attributes[(i * DATA_SIZE) + Offset + 2] = m_ColorBlue;
-		m_Attributes[(i * DATA_SIZE) + Offset + 3] = m_ColorAlpha;
+		m_Attributes[(i * IMAGE_DATA_SIZE) + Offset + 0] = m_ColorRed;
+		m_Attributes[(i * IMAGE_DATA_SIZE) + Offset + 1] = m_ColorGreen;
+		m_Attributes[(i * IMAGE_DATA_SIZE) + Offset + 2] = m_ColorBlue;
+		m_Attributes[(i * IMAGE_DATA_SIZE) + Offset + 3] = m_ColorAlpha;
 	}
 }
 
 - (void)drawWithGL:(GLKBaseEffect*)gl {
+	//Skip if no gl
+	if (!gl) return;
+	
 	//Set vertex attributes
-	glVertexAttribPointer(GLKVertexAttribPosition, VERTEX_SIZE, GL_FLOAT, GL_FALSE, DATA_SIZE * 4, &m_Attributes);
-	glVertexAttribPointer(GLKVertexAttribColor, COLOR_SIZE, GL_FLOAT, GL_FALSE, DATA_SIZE * 4, &(m_Attributes[VERTEX_SIZE + COORDINATE_SIZE]));
-	glVertexAttribPointer(GLKVertexAttribTexCoord0, COORDINATE_SIZE, GL_FLOAT, GL_FALSE, DATA_SIZE * 4, &(m_Attributes[VERTEX_SIZE]));
+	int Size = IMAGE_VERTEX_COUNT * IMAGE_DATA_SIZE;
+	glVertexAttribPointer(GLKVertexAttribPosition, IMAGE_VERTEX_SIZE, GL_FLOAT, GL_FALSE, Size, &m_Attributes);
+	glVertexAttribPointer(GLKVertexAttribColor, IMAGE_COLOR_SIZE, GL_FLOAT, GL_FALSE, Size, &(m_Attributes[IMAGE_VERTEX_SIZE + IMAGE_COORDINATE_SIZE]));
+	glVertexAttribPointer(GLKVertexAttribTexCoord0, IMAGE_COORDINATE_SIZE, GL_FLOAT, GL_FALSE, Size, &(m_Attributes[IMAGE_VERTEX_SIZE]));
 	
     //Set texture
 	if (m_Texture) gl.texture2d0.name = [m_Texture getID];
@@ -252,12 +257,12 @@ const int COORDINATES_BOTHMIRROR[8]	=  { EDGE_LEFT, EDGE_BOTTOM,	EDGE_RIGHT, EDG
 	ViewMatrix				= GLKMatrix4Translate(ViewMatrix, TranslationX, TranslationY, 0);
 	ViewMatrix				= GLKMatrix4Rotate(ViewMatrix, m_Rotation, 0, 0, -1);
 	ViewMatrix				= GLKMatrix4Translate(ViewMatrix, PivotX, PivotY, 0);
-	ViewMatrix				= GLKMatrix4Rotate(ViewMatrix, m_Rotation, -1, 0, 0);
+	ViewMatrix				= GLKMatrix4Rotate(ViewMatrix, m_Flip, -1, 0, 0);
     gl.transform.modelviewMatrix = ViewMatrix;
 
 	//Render
     [gl prepareToDraw];
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, IMAGE_VERTEX_COUNT);
 }
 
 @end

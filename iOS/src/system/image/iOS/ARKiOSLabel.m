@@ -49,7 +49,7 @@ const short LABEL_BASE_INDICES[]	= { 0, 1, 2, 2, 1, 3 };
 		
 		//Calculate size and region
 		[self calculateSize];
-		[self setRegionfromX:0 fromY:0 withWidth:m_OriginalWidth withHeight:m_OriginalHeight];
+		[self setRegionFromX:0 fromY:0 withWidth:m_OriginalWidth withHeight:m_OriginalHeight];
 	}
 	
 	//Return
@@ -85,7 +85,7 @@ const short LABEL_BASE_INDICES[]	= { 0, 1, 2, 2, 1, 3 };
 	m_Height			= m_OriginalHeight * [[ARKUtilities instance] getScale];
 }
 
-- (void)setRegionfromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height {
+- (void)setRegionFromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height {
 	//Initialize
 	float OldX		= m_OriginalRegionX;
 	float OldY		= m_OriginalRegionY;
@@ -93,7 +93,7 @@ const short LABEL_BASE_INDICES[]	= { 0, 1, 2, 2, 1, 3 };
 	float OldHeight	= m_OriginalRegionHeight;
 	
 	//Super
-	[super setRegionfromX:x fromY:y withWidth:width withHeight:height];
+	[super setRegionFromX:x fromY:y withWidth:width withHeight:height];
 	
 	//Skip if same or no text
 	if (!m_Text || !m_Font || [m_Text length] <= 0)																							return;

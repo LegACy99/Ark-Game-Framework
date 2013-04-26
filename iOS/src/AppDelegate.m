@@ -10,15 +10,15 @@
 #import "AppDelegate.h"
 #import "ARKViewController.h"
 #import "ARKStateManager.h"
-#import "HolesStateFactory.h"
+#import "HoleStateFactory.h"
 #import "ARKUtilities.h"
 
 //Class
 @implementation AppDelegate
 
 - (int)	getFPS						{ return 60;				}
-- (int)	getBaseWidth				{ return 320;				}
-- (int)	getBaseHeight				{ return -480;				}
+- (int)	getBaseWidth				{ return -480;				}
+- (int)	getBaseHeight				{ return 320;				}
 - (NSString*) getApplicationName	{ return @"Black Holes";	}
 - (NSString*) getPressSFX			{ return nil;				}
 - (NSString*) getCursorSFX			{ return nil;				}
@@ -41,7 +41,7 @@
     [self.window makeKeyAndVisible];
 	
 	//Start ark state manager
-	[[ARKStateManager instance] setupWithFactory:[[HolesStateFactory alloc] init]];
+	[[ARKStateManager instance] setupWithFactory:[[HoleStateFactory alloc] init]];
 	
 	//Return okay
     return YES;

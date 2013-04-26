@@ -30,7 +30,7 @@
 //Public functions
 - (void)setRegionFromX:(float)left fromY:(float)top;
 - (void)setRegionFromX:(float)left fromY:(float)top toX:(float)right toY:(float)bottom;
-- (void)setRegionfromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height;
+- (void)setRegionFromX:(float)x fromY:(float)y withWidth:(float)width withHeight:(float)height;
 - (void)setRegionWithWidth:(float)width withHeight:(float)height;
 
 @end
