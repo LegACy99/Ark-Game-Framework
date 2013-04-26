@@ -77,7 +77,7 @@ const int IMAGE_COORDINATES_BOTHMIRROR[8]	=  { IMAGE_EDGE_LEFT, IMAGE_EDGE_BOTTO
 		//If json exist
 		if (json) {
 			//Get texture
-			NSString* TextureName	= [json objectForKey:IMAGE_KEY_TEXTURE];
+			NSString* TextureName	= [NSString stringWithFormat:@"%@%@", UTILITIES_TEXTURE_FOLDER, [json objectForKey:IMAGE_KEY_TEXTURE]];
 			m_Texture				= [[ARKResourceManager instance] getTextureWithName:TextureName];
 			
 			//Get rect

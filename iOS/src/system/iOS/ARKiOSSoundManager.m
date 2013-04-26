@@ -7,6 +7,7 @@
 //
 
 #import "ARKiOSSoundManager.h"
+#import "ARKiOSUtilities.h"
 
 //Constant
 const int SOUND_INITIAL_SFX = 3;
@@ -127,7 +128,7 @@ const int SOUND_INITIAL_SFX = 3;
 	if ([m_BGM isEqualToString:bgm])	return;
 	
 	//Get file
-	NSString* Path	= [[NSBundle mainBundle] pathForResource:bgm ofType:@"mp3" inDirectory:@"audio/bgm"];
+	NSString* Path = [[ARKiOSUtilities instance] getResourcePath:bgm];
 	if (Path) {
 		//Save
 		m_BGM = bgm;
@@ -162,7 +163,7 @@ const int SOUND_INITIAL_SFX = 3;
 	AVAudioPlayer* Player = nil;
 	
 	//Get file
-	NSString* Path = [[NSBundle mainBundle] pathForResource:sfx ofType:@"aiff" inDirectory:@"audio/sfx"];
+	NSString* Path = [[ARKiOSUtilities instance] getResourcePath:sfx];
 	if (Path) {
 		//Create player
 		NSURL* FileURL	= [[NSURL alloc] initFileURLWithPath:Path];

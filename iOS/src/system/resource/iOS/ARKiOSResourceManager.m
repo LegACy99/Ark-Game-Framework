@@ -7,8 +7,8 @@
 //
 
 #import "ARKiOSResourceManager.h"
+#import "ARKiOSUtilities.h"
 #import "ARKBitmapFont.h"
-#import "ARKUtilities.h"
 #import "ARKLoadable.h"
 #import "ARKTexture.h"
 #import "ARKImage.h"
@@ -244,7 +244,7 @@ const NSString* RESOURCEMANAGER_KEY_SHEET_GAP		= @"Gap";
 	NSDictionary* Result = nil;
 
 	//Open JSON file
-	NSString* Path			= [[NSBundle mainBundle] pathForResource:file ofType:@"json"];
+	NSString* Path			= [[ARKiOSUtilities instance] getResourcePath:file];
 	NSInputStream* Stream	= [NSInputStream inputStreamWithFileAtPath:Path];
 	if (Stream) {
 		//Create JSON from stream

@@ -9,6 +9,7 @@
 //Header files
 #import <GLKit/GLKit.h>
 #import "ARKiOSTexture.h"
+#import "ARKiOSUtilities.h"
 
 @implementation ARKiOSTexture
 
@@ -30,7 +31,7 @@
 
 - (void)load {
 	//Load image file
-	NSString* Path	= [[NSBundle mainBundle] pathForResource:m_Name ofType:@"png" inDirectory:@"textures"];
+	NSString* Path	= [[ARKiOSUtilities instance] getResourcePath:m_Name];
 	UIImage* Img	= [UIImage imageWithContentsOfFile:Path];
 	
 	//If texture exist

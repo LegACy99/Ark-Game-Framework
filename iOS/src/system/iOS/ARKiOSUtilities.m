@@ -82,12 +82,57 @@
 			for (int j = 0; j < [Numbers count]; j++) [Builder appendFormat:@"%d", [Numbers[j] intValue]];
 			
 			//Add dot if not last
-			if (i != [version count] - 1) [Builder appendString:@"."];;
+			if (i != [version count] - 1) [Builder appendString:@"."];
 		}
 	}
 	
 	//Return
 	return [NSString stringWithString:Builder];
+}
+
+- (NSArray*)splitFilePath:(NSString *)path {
+	//Initialize
+	NSString* File		= @"";
+	NSString* Folder	= @"";
+	NSString* Extension = @"";
+	
+	//If there's a path
+	if (path) {
+		//Find characters position
+		NSRange DotRange	= [path rangeOfString:@"." options:NSBackwardsSearch];
+		NSRange SlashRange	= [path rangeOfString:@"/" options:NSBackwardsSearch];
+		
+		//If exist
+		if (DotRange.location != NSNotFound)	Extension = [path substringFromIndex:DotRange.location + 1];
+		if (SlashRange.location != NSNotFound)	Folder = [path substringToIndex:SlashRange.location];
+		
+		//Get file name
+		int Start	= SlashRange.location == NSNotFound ? 0 : SlashRange.location + 1;
+		int End		= DotRange.location == NSNotFound ? [path length] : DotRange.location;
+		File		= [path substringWithRange:NSMakeRange(Start, End - Start)];
+	}
+	
+	//Return as array
+	return [NSArray arrayWithObjects:Folder, File, Extension, nil];
+}
+
+- (NSString*)getResourcePath:(NSString *)path {
+	//Initialize
+	NSString* Result = nil;
+	
+	//If path exist
+	if (path) {
+		//Split
+		NSArray* Sections = [self splitFilePath:path];
+		if ([[Sections objectAtIndex:0] length] > 0) {
+			Result = [[NSBundle mainBundle] pathForResource:[Sections objectAtIndex:1] ofType:[Sections objectAtIndex:2] inDirectory:[Sections objectAtIndex:0]];
+		} else {
+			Result = [[NSBundle mainBundle] pathForResource:[Sections objectAtIndex:1] ofType:[Sections objectAtIndex:2]];
+		}
+	}
+	
+	//Return
+	return Result;
 }
 
 @end

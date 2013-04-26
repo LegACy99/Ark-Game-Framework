@@ -13,4 +13,8 @@
 //Singleton
 + (ARKiOSUtilities*)instance;
 
+//File processor
+- (NSArray*)splitFilePath:(NSString*)path;
+- (NSString*)getResourcePath:(NSString*)path;
+
 @end

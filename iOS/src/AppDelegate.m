@@ -16,16 +16,16 @@
 //Class
 @implementation AppDelegate
 
-- (int)	getFPS						{ return 60;				}
-- (int)	getBaseWidth				{ return -480;				}
-- (int)	getBaseHeight				{ return 320;				}
-- (NSString*) getApplicationName	{ return @"Black Holes";	}
-- (NSString*) getPressSFX			{ return nil;				}
-- (NSString*) getCursorSFX			{ return nil;				}
-- (NSString*) getReleaseSFX			{ return nil;				}
-- (NSString*) getFontTexture		{ return @"pixel";			}
-- (BOOL) isFontSmooth				{ return NO;				}
-- (NSString*) getFont				{ return @"pixel";			}
+- (int)	getFPS						{ return 60;																}
+- (int)	getBaseWidth				{ return -480;																}
+- (int)	getBaseHeight				{ return 320;																}
+- (NSString*) getApplicationName	{ return @"Black Holes";													}
+- (NSString*) getPressSFX			{ return nil;																}
+- (NSString*) getCursorSFX			{ return nil;																}
+- (NSString*) getReleaseSFX			{ return nil;																}
+- (NSString*) getFontTexture		{ return [UTILITIES_FONT_TEXTURES stringByAppendingString:@"pixel.png"];	}
+- (BOOL) isFontSmooth				{ return NO;																}
+- (NSString*) getFont				{ return @"pixel.json";														}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	//Initialize

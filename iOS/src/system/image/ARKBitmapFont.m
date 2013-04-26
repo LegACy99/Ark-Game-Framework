@@ -8,6 +8,7 @@
 
 #import "ARKBitmapFont.h"
 #import "ARKiOSBitmapFont.h"
+#import "ARKUtilities.h"
 
 //Character constants
 const NSString* FONT_KEY_CHAR		= @"char";
@@ -73,7 +74,7 @@ const NSString* FONT_KEY_LINE	= @"lineheight";
 			if (JSONPages) {
 				//Get texture name
 				NSDictionary* JSONPage	= [JSONPages objectForKey:FONT_KEY_PAGE];
-				if (JSONPage) m_Texture = [JSONPage objectForKey:FONT_KEY_FILE];
+				if (JSONPage) m_Texture = [UTILITIES_FONT_TEXTURES stringByAppendingString:[JSONPage objectForKey:FONT_KEY_FILE]];
 			}
 		}
 	}
