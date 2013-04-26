@@ -66,6 +66,7 @@
 		83F14B501729430A0083C11E /* ARKButtonContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B4F1729430A0083C11E /* ARKButtonContainer.m */; };
 		83F14B531729AA190083C11E /* ARKRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B521729AA190083C11E /* ARKRectangle.m */; };
 		83F14B561729B2010083C11E /* ARKiOSRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B551729B2010083C11E /* ARKiOSRectangle.m */; };
+		83F14B96172A40F80083C11E /* ARKScrollingImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B95172A40F80083C11E /* ARKScrollingImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -173,6 +174,8 @@
 		83F14B521729AA190083C11E /* ARKRectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKRectangle.m; path = system/image/ARKRectangle.m; sourceTree = "<group>"; };
 		83F14B541729B2010083C11E /* ARKiOSRectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSRectangle.h; path = system/image/iOS/ARKiOSRectangle.h; sourceTree = "<group>"; };
 		83F14B551729B2010083C11E /* ARKiOSRectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSRectangle.m; path = system/image/iOS/ARKiOSRectangle.m; sourceTree = "<group>"; };
+		83F14B94172A40F80083C11E /* ARKScrollingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKScrollingImage.h; path = components/ARKScrollingImage.h; sourceTree = "<group>"; };
+		83F14B95172A40F80083C11E /* ARKScrollingImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKScrollingImage.m; path = components/ARKScrollingImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,11 +363,13 @@
 		8377366517102DDE00F3C5E9 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				83F14B4A17292CBC0083C11E /* Buttons */,
 				8377366617102E2300F3C5E9 /* ARKDrawable.h */,
 				8377366717102E2300F3C5E9 /* ARKDrawable.m */,
 				8377366917103ED900F3C5E9 /* ARKCroppable.h */,
 				8377366A17103ED900F3C5E9 /* ARKCroppable.m */,
+				83F14B94172A40F80083C11E /* ARKScrollingImage.h */,
+				83F14B95172A40F80083C11E /* ARKScrollingImage.m */,
+				83F14B4A17292CBC0083C11E /* Buttons */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -570,6 +575,7 @@
 				83F14B501729430A0083C11E /* ARKButtonContainer.m in Sources */,
 				83F14B531729AA190083C11E /* ARKRectangle.m in Sources */,
 				83F14B561729B2010083C11E /* ARKiOSRectangle.m in Sources */,
+				83F14B96172A40F80083C11E /* ARKScrollingImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
