@@ -91,7 +91,7 @@ const int RECTANGLE_DATA_SIZE		= RECTANGLE_COLOR_SIZE + RECTANGLE_VERTEX_SIZE;
 	if (!gl) return;
 	
 	//Set vertex attributes
-	int Size = RECTANGLE_VERTEX_COUNT * RECTANGLE_DATA_SIZE;
+	int Size = RECTANGLE_DATA_SIZE * sizeof(GLfloat);
 	glVertexAttribPointer(GLKVertexAttribPosition, RECTANGLE_VERTEX_SIZE, GL_FLOAT, GL_FALSE, Size, &m_Attributes);
 	glVertexAttribPointer(GLKVertexAttribColor, RECTANGLE_COLOR_SIZE, GL_FLOAT, GL_FALSE, Size, &(m_Attributes[RECTANGLE_VERTEX_SIZE]));
 	

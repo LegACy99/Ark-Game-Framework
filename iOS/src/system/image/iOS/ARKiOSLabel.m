@@ -7,23 +7,29 @@
 //
 
 //Header files
+#import <GLKit/GLKit.h>
 #import "ARKiOSLabel.h"
 #import "ARKResourceManager.h"
 #import "ARKBitmapFont.h"
 #import "ARKBitmapChar.h"
 #import "ARKUtilities.h"
+#import "ARKiOSDevice.h"
 #import "ARKTexture.h"
 
 //Constants
-const int LABEL_QUAD_COLORS			= 16;
-const int LABEL_QUAD_INDICES		= 6;
-const int LABEL_QUAD_VERTICES		= 8;
-const int LABEL_QUAD_COORDINATES	= 8;
+const int LABEL_COLOR_SIZE			= 4;
+const int LABEL_VERTEX_SIZE			= 2;
+const int LABEL_COORDINATE_SIZE		= 2;
+const int LABEL_QUAD_COLORS			= LABEL_COLOR_SIZE * 4;
+const int LABEL_QUAD_VERTICES		= LABEL_VERTEX_SIZE * 4;
+const int LABEL_QUAD_COORDINATES	= LABEL_COORDINATE_SIZE * 4;
 const short LABEL_BASE_INDICES[]	= { 0, 1, 2, 2, 1, 3 };
+const int LABEL_QUAD_INDICES		= 6;
 
 @interface ARKiOSLabel ()
 
 - (void)calculateSize;
+- (void)releaseBuffer;
 
 @end
 
@@ -35,6 +41,7 @@ const short LABEL_BASE_INDICES[]	= { 0, 1, 2, 2, 1, 3 };
 	self = [super initWithText:text atX:x atY:y];
 	if (self) {
 		//Initialize
+		m_Size		= 0;
 		m_Font		= nil;
 		m_Buffer	= nil;
 		m_Indices	= nil;
@@ -54,6 +61,17 @@ const short LABEL_BASE_INDICES[]	= { 0, 1, 2, 2, 1, 3 };
 	
 	//Return
 	return self;
+}
+
+- (void)dealloc {
+	//Release
+	[self releaseBuffer];
+}
+
+- (void)releaseBuffer {
+	//Release
+	if (m_Buffer)	free(m_Buffer);
+	if (m_Indices)	free(m_Indices);
 }
 
 - (void)calculateSize {
@@ -113,10 +131,10 @@ const short LABEL_BASE_INDICES[]	= { 0, 1, 2, 2, 1, 3 };
 	//For each character
 	for (int i = 0; i < [m_Text length]; i++) {
 		//Initialize
-		[Drawns replaceObjectAtIndex:i withObject:[NSNumber numberWithBool:NO]];
-		[OffsetTops replaceObjectAtIndex:i withObject:[NSNumber numberWithFloat:0]];
-		[OffsetBottoms replaceObjectAtIndex:i withObject:[NSNumber numberWithFloat:0]];
-		[Chars replaceObjectAtIndex:i withObject:[NSNumber numberWithChar:[m_Text characterAtIndex:i]]];
+		[Drawns addObject:[NSNumber numberWithBool:NO]];
+		[OffsetTops addObject:[NSNumber numberWithFloat:0]];
+		[OffsetBottoms addObject:[NSNumber numberWithFloat:0]];
+		[Chars addObject:[m_Font getCharForCharacter:[m_Text characterAtIndex:i]]];
 		
 		//If character exist
 		ARKBitmapChar* Chara = [Chars objectAtIndex:i];
@@ -162,11 +180,20 @@ const short LABEL_BASE_INDICES[]	= { 0, 1, 2, 2, 1, 3 };
 	int Size = 0;
 	for (int i = 0; i < [Drawns count]; i++) if ([[Drawns objectAtIndex:i] boolValue]) Size++;
 	
-	//Create array
+	//Release buffers
+	[self releaseBuffer];
+	
+	//Create index
+	m_Size		= Size * LABEL_QUAD_INDICES;
+	m_Indices	= malloc(m_Size * sizeof(GLshort));
+	
+	//Create more arrays
 	NSMutableArray* Colors		= [NSMutableArray arrayWithCapacity:Size * LABEL_QUAD_COLORS];
-	NSMutableArray* Indices 	= [NSMutableArray arrayWithCapacity:Size * LABEL_QUAD_INDICES];
 	NSMutableArray* Vertices 	= [NSMutableArray arrayWithCapacity:Size * LABEL_QUAD_VERTICES];
 	NSMutableArray* Coordinates = [NSMutableArray arrayWithCapacity:Size * LABEL_QUAD_COORDINATES];
+	for (int i = 0; i < Size * LABEL_QUAD_COORDINATES; i++) [Coordinates addObject:[NSNull null]];
+	for (int i = 0; i < Size * LABEL_QUAD_VERTICES; i++)	[Vertices addObject:[NSNull null]];
+	for (int i = 0; i < Size * LABEL_QUAD_COLORS; i++)		[Colors addObject:[NSNull null]];
 	
 	//For each character
 	Cursor 		= 0;
@@ -254,12 +281,7 @@ const short LABEL_BASE_INDICES[]	= { 0, 1, 2, 2, 1, 3 };
 			
 			//Set colors and indices
 			for (int j = 0; j < LABEL_QUAD_COLORS; j++)	[Colors replaceObjectAtIndex:(Index * LABEL_QUAD_COLORS) + j withObject:[NSNumber numberWithFloat:1]];
-			for (int j = 0; j < LABEL_QUAD_INDICES; j++) {
-				[Indices
-				 replaceObjectAtIndex:(Index * LABEL_QUAD_INDICES) + j
-						   withObject:[NSNumber numberWithShort:(short) ((Index * LABEL_QUAD_VERTICES / 2) + LABEL_BASE_INDICES[j])]
-				];
-			}
+			for (int j = 0; j < LABEL_QUAD_INDICES; j++) m_Indices[(Index * LABEL_QUAD_INDICES) + j] = (short)((Index * LABEL_QUAD_VERTICES / 2) + LABEL_BASE_INDICES[j]);
 			
 			//Next
 			Index++;
@@ -272,11 +294,50 @@ const short LABEL_BASE_INDICES[]	= { 0, 1, 2, 2, 1, 3 };
 			else							Cursor += [[Chars objectAtIndex:i] getAdvance];
 		}
 	}
+	
+	//Allocate
+	int BufferSize	= [Vertices count] + [Colors count] + [Coordinates count];
+	m_Buffer		= malloc(BufferSize * sizeof(GLfloat));
+	
+	//For each vertex
+	int VertexSize = LABEL_VERTEX_SIZE + LABEL_COLOR_SIZE + LABEL_COORDINATE_SIZE;
+	for (int i = 0; i < BufferSize / VertexSize; i++) {
+		//Save position data
+		int VertexIndex = i * VertexSize;
+		for (int j = 0; j < LABEL_VERTEX_SIZE; j++) m_Buffer[VertexIndex + j] = [[Vertices objectAtIndex:(i * LABEL_VERTEX_SIZE) + j] floatValue];
+		
+		//Save coordinate data
+		VertexIndex += LABEL_VERTEX_SIZE;
+		for (int j = 0; j < LABEL_COORDINATE_SIZE; j++) m_Buffer[VertexIndex + j] = [[Coordinates objectAtIndex:(i * LABEL_COORDINATE_SIZE) + j] floatValue];
+		
+		//Save color data
+		VertexIndex += LABEL_COORDINATE_SIZE;
+		for (int j = 0; j < LABEL_COLOR_SIZE; j++) m_Buffer[VertexIndex + j]	= [[Colors objectAtIndex:(i * LABEL_COLOR_SIZE) + j] floatValue];
+	}
+	
 }
 
 - (void)drawWithGL:(GLKBaseEffect *)gl {
 	//Skip if nothing
-	if (!m_Texture || !m_Buffer || !m_Indices) return;
+	if (!m_Texture || m_Size <= 0 || !m_Buffer || !m_Indices || !gl) return;
+	
+	//Set vertex attributes
+	int Size = sizeof(GLfloat) * (LABEL_VERTEX_SIZE + LABEL_COLOR_SIZE + LABEL_COORDINATE_SIZE);
+	glVertexAttribPointer(GLKVertexAttribPosition, LABEL_VERTEX_SIZE, GL_FLOAT, GL_FALSE, Size, m_Buffer);
+	glVertexAttribPointer(GLKVertexAttribColor, LABEL_COLOR_SIZE, GL_FLOAT, GL_FALSE, Size, &(m_Buffer[LABEL_VERTEX_SIZE + LABEL_COORDINATE_SIZE]));
+	glVertexAttribPointer(GLKVertexAttribTexCoord0, LABEL_COORDINATE_SIZE, GL_FLOAT, GL_FALSE, Size, &(m_Buffer[LABEL_VERTEX_SIZE]));
+	
+    //Set texture
+	gl.texture2d0.name = [m_Texture getID];
+	
+	//Create matrix
+	float TranslationX				= m_X - ([[ARKDevice instance] getWidth] / 2);
+	float TranslationY				= ([[ARKDevice instance] getHeight] / 2) - m_Y;
+	gl.transform.modelviewMatrix	= GLKMatrix4Translate([[ARKiOSDevice instance] getViewMatrix], TranslationX,  TranslationY, 0);
+	
+	//Render
+    [gl prepareToDraw];
+	glDrawElements(GL_TRIANGLES, m_Size, GL_UNSIGNED_SHORT, m_Indices);
 }
 
 @end

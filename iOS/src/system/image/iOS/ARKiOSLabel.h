@@ -12,6 +12,7 @@
 
 @interface ARKiOSLabel : ARKLabel {
 	//Data
+	int				m_Size;
 	GLfloat*		m_Buffer;
 	GLshort*		m_Indices;
 	ARKTexture*		m_Texture;

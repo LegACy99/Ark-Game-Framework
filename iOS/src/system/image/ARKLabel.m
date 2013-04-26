@@ -7,6 +7,7 @@
 //
 
 #import "ARKLabel.h"
+#import "ARKiOSLabel.h"
 #import "ARKUtilities.h"
 
 @implementation ARKLabel
@@ -39,7 +40,7 @@
 
 + (ARKLabel*)createWithText:(NSString*)text withFont:(NSString*)font atX:(float)x atY:(float)y {
 	//Return label
-	return nil;
+	return [[ARKiOSLabel alloc] initWithText:text withFont:font atX:x atY:y];
 }
 
 + (ARKLabel*)createWithFloat:(float)number withDecimalDigit:(int)decimal {

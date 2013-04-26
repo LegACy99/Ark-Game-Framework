@@ -238,7 +238,7 @@ const int IMAGE_COORDINATES_BOTHMIRROR[8]	=  { IMAGE_EDGE_LEFT, IMAGE_EDGE_BOTTO
 	if (!gl) return;
 	
 	//Set vertex attributes
-	int Size = IMAGE_VERTEX_COUNT * IMAGE_DATA_SIZE;
+	int Size = IMAGE_DATA_SIZE * sizeof(GLfloat);
 	glVertexAttribPointer(GLKVertexAttribPosition, IMAGE_VERTEX_SIZE, GL_FLOAT, GL_FALSE, Size, &m_Attributes);
 	glVertexAttribPointer(GLKVertexAttribColor, IMAGE_COLOR_SIZE, GL_FLOAT, GL_FALSE, Size, &(m_Attributes[IMAGE_VERTEX_SIZE + IMAGE_COORDINATE_SIZE]));
 	glVertexAttribPointer(GLKVertexAttribTexCoord0, IMAGE_COORDINATE_SIZE, GL_FLOAT, GL_FALSE, Size, &(m_Attributes[IMAGE_VERTEX_SIZE]));
