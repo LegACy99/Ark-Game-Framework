@@ -6,610 +6,641 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		83F14CE3172BEAE10083C11E /* Framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 83F14CE4172BEAE10083C11E /* Build configuration list for PBXAggregateTarget "Framework" */;
+			buildPhases = (
+				83F14CE9172BEAFB0083C11E /* Build Framework */,
+			);
+			dependencies = (
+				83F14CE8172BEAEA0083C11E /* PBXTargetDependency */,
+			);
+			name = Framework;
+			productName = Framework;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		8310BDE5171A7F9D007E4224 /* ARKSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDE4171A7F9D007E4224 /* ARKSprite.m */; };
-		8310BDEB171BC673007E4224 /* ARKBitmapFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDEA171BC673007E4224 /* ARKBitmapFont.m */; };
-		8310BDEE171BCC4F007E4224 /* ARKiOSBitmapFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDED171BCC4F007E4224 /* ARKiOSBitmapFont.m */; };
-		8310BDF1171C00EC007E4224 /* ARKBitmapChar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8310BDF0171C00EC007E4224 /* ARKBitmapChar.m */; };
-		8310BDF5171C0AC0007E4224 /* pixel.json in Resources */ = {isa = PBXBuildFile; fileRef = 8310BDF4171C0AC0007E4224 /* pixel.json */; };
-		831774741722A21D00F585AC /* ARKiOSDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 831774731722A21D00F585AC /* ARKiOSDevice.m */; };
-		831774771722A57700F585AC /* ARKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831774761722A57700F585AC /* ARKViewController.m */; };
-		832FB280171525F100E73D11 /* ARKTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB27F171525F100E73D11 /* ARKTexture.m */; };
-		832FB2831715275A00E73D11 /* ARKiOSTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2821715275A00E73D11 /* ARKiOSTexture.m */; };
-		832FB28D171562E200E73D11 /* textures in Resources */ = {isa = PBXBuildFile; fileRef = 832FB28C171562E200E73D11 /* textures */; };
-		832FB2941715DB2100E73D11 /* ARKResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2931715DB2100E73D11 /* ARKResourceManager.m */; };
-		832FB2981715DB9D00E73D11 /* ARKiOSResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2971715DB9D00E73D11 /* ARKiOSResourceManager.m */; };
-		832FB29A1716ACC200E73D11 /* ship.json in Resources */ = {isa = PBXBuildFile; fileRef = 832FB2991716ACC200E73D11 /* ship.json */; };
-		832FB29D1716B5A700E73D11 /* ARKLoadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB29C1716B5A700E73D11 /* ARKLoadable.m */; };
-		832FB2A01716C42200E73D11 /* ARKLoadableTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB29F1716C42200E73D11 /* ARKLoadableTexture.m */; };
-		832FB2A3171807F500E73D11 /* ARKUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2A2171807F500E73D11 /* ARKUtilities.m */; };
-		832FB2A81718226B00E73D11 /* ARKiOSUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2A71718226B00E73D11 /* ARKiOSUtilities.m */; };
-		832FB2AD1719936A00E73D11 /* ARKGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2AC1719936A00E73D11 /* ARKGameState.m */; };
-		832FB2BA1719D47100E73D11 /* ARKAccelerometerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2B91719D47100E73D11 /* ARKAccelerometerInfo.m */; };
-		832FB2BD171A5CFC00E73D11 /* ARKTouchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2BC171A5CFC00E73D11 /* ARKTouchInfo.m */; };
-		832FB2C4171A685800E73D11 /* ARKRecordWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2C3171A685200E73D11 /* ARKRecordWriter.m */; };
-		832FB2C7171A68EE00E73D11 /* ARKiOSRecordWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 832FB2C6171A68EE00E73D11 /* ARKiOSRecordWriter.m */; };
-		837736641710285400F3C5E9 /* ARKImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 837736631710285400F3C5E9 /* ARKImage.m */; };
-		8377366817102E2300F3C5E9 /* ARKDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377366717102E2300F3C5E9 /* ARKDrawable.m */; };
-		8377366B17103ED900F3C5E9 /* ARKCroppable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377366A17103ED900F3C5E9 /* ARKCroppable.m */; };
-		8377366E171046EB00F3C5E9 /* ARKiOSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377366D171046EB00F3C5E9 /* ARKiOSImage.m */; };
-		8379C492171EF1D1005F457C /* ARKLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C491171EF1D1005F457C /* ARKLabel.m */; };
-		8379C495171F0A3D005F457C /* ARKiOSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C494171F0A3D005F457C /* ARKiOSLabel.m */; };
-		8379C49B171F0AF0005F457C /* ARKiOSSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C49A171F0AF0005F457C /* ARKiOSSprite.m */; };
-		8379C49E1720190A005F457C /* ARKSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C49D1720190A005F457C /* ARKSoundManager.m */; };
-		8379C4A117202110005F457C /* ARKiOSSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C4A017202110005F457C /* ARKiOSSoundManager.m */; };
-		8379C4A317205884005F457C /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 8379C4A217205884005F457C /* audio */; };
-		8379C4A517205E09005F457C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8379C4A417205E09005F457C /* AVFoundation.framework */; };
-		8379C4AA17215968005F457C /* ARKStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C4A917215967005F457C /* ARKStateManager.m */; };
-		8379C4AD172161D2005F457C /* ARKiOSStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C4AC172161D2005F457C /* ARKiOSStateManager.m */; };
-		8379C4B01721BFE1005F457C /* ARKDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8379C4AF1721BFE0005F457C /* ARKDevice.m */; };
-		83A8883A170F6AD100A61787 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A88839170F6AD100A61787 /* UIKit.framework */; };
-		83A8883C170F6AD100A61787 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8883B170F6AD100A61787 /* Foundation.framework */; };
-		83A8883E170F6AD100A61787 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8883D170F6AD100A61787 /* CoreGraphics.framework */; };
-		83A88840170F6AD100A61787 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A8883F170F6AD100A61787 /* GLKit.framework */; };
-		83A88842170F6AD100A61787 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A88841170F6AD100A61787 /* OpenGLES.framework */; };
-		83A88848170F6AD100A61787 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83A88846170F6AD100A61787 /* InfoPlist.strings */; };
-		83A8884A170F6AD100A61787 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A88849170F6AD100A61787 /* main.m */; };
-		83A8884E170F6AD100A61787 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A8884D170F6AD100A61787 /* AppDelegate.m */; };
-		83A88850170F6AD100A61787 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A8884F170F6AD100A61787 /* Default.png */; };
-		83A88852170F6AD100A61787 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A88851170F6AD100A61787 /* Default@2x.png */; };
-		83A88854170F6AD100A61787 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A88853170F6AD100A61787 /* Default-568h@2x.png */; };
-		83A8885E170F6AD100A61787 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A8885C170F6AD100A61787 /* ViewController_iPhone.xib */; };
-		83A88861170F6AD100A61787 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A8885F170F6AD100A61787 /* ViewController_iPad.xib */; };
-		83F14B301728D0DE0083C11E /* HoleState.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B2F1728D0DE0083C11E /* HoleState.m */; };
-		83F14B331728D14C0083C11E /* HoleStateFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B321728D14C0083C11E /* HoleStateFactory.m */; };
-		83F14B391728D4030083C11E /* StateTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B381728D4030083C11E /* StateTitle.m */; };
-		83F14B3C1728D4170083C11E /* StateGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B3B1728D4170083C11E /* StateGame.m */; };
-		83F14B471728DD620083C11E /* title.json in Resources */ = {isa = PBXBuildFile; fileRef = 83F14B461728DD620083C11E /* title.json */; };
-		83F14B491728DD700083C11E /* sky.json in Resources */ = {isa = PBXBuildFile; fileRef = 83F14B481728DD700083C11E /* sky.json */; };
-		83F14B4D17292CD10083C11E /* ARKButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B4C17292CD10083C11E /* ARKButton.m */; };
-		83F14B501729430A0083C11E /* ARKButtonContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B4F1729430A0083C11E /* ARKButtonContainer.m */; };
-		83F14B531729AA190083C11E /* ARKRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B521729AA190083C11E /* ARKRectangle.m */; };
-		83F14B561729B2010083C11E /* ARKiOSRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B551729B2010083C11E /* ARKiOSRectangle.m */; };
-		83F14B96172A40F80083C11E /* ARKScrollingImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14B95172A40F80083C11E /* ARKScrollingImage.m */; };
+		83F14CC5172BE7380083C11E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14CC4172BE7380083C11E /* Foundation.framework */; };
+		83F14CD9172BE8DD0083C11E /* Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14CC9172BE7380083C11E /* Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14CDE172BE9AD0083C11E /* ARKAccelerometerInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14CDA172BE9AD0083C11E /* ARKAccelerometerInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14CDF172BE9AD0083C11E /* ARKAccelerometerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14CDB172BE9AD0083C11E /* ARKAccelerometerInfo.m */; };
+		83F14CE0172BE9AD0083C11E /* ARKTouchInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14CDC172BE9AD0083C11E /* ARKTouchInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14CE1172BE9AD0083C11E /* ARKTouchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14CDD172BE9AD0083C11E /* ARKTouchInfo.m */; };
+		83F14CEF172BEF070083C11E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14CEE172BEF070083C11E /* AVFoundation.framework */; };
+		83F14CF1172BEF140083C11E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14CF0172BEF140083C11E /* CoreGraphics.framework */; };
+		83F14CF3172BEF200083C11E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14CF2172BEF200083C11E /* OpenGLES.framework */; };
+		83F14CF5172BEF380083C11E /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14CF4172BEF380083C11E /* GLKit.framework */; };
+		83F14D04172BEFFC0083C11E /* ARKCroppable.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14CFE172BEFFC0083C11E /* ARKCroppable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D05172BEFFC0083C11E /* ARKCroppable.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14CFF172BEFFC0083C11E /* ARKCroppable.m */; };
+		83F14D06172BEFFC0083C11E /* ARKDrawable.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D00172BEFFC0083C11E /* ARKDrawable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D07172BEFFC0083C11E /* ARKDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D01172BEFFC0083C11E /* ARKDrawable.m */; };
+		83F14D08172BEFFC0083C11E /* ARKScrollingImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D02172BEFFC0083C11E /* ARKScrollingImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D09172BEFFC0083C11E /* ARKScrollingImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D03172BEFFC0083C11E /* ARKScrollingImage.m */; };
+		83F14D0E172BF0430083C11E /* ARKButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D0A172BF0420083C11E /* ARKButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D0F172BF0430083C11E /* ARKButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D0B172BF0430083C11E /* ARKButton.m */; };
+		83F14D10172BF0430083C11E /* ARKButtonContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D0C172BF0430083C11E /* ARKButtonContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D11172BF0430083C11E /* ARKButtonContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D0D172BF0430083C11E /* ARKButtonContainer.m */; };
+		83F14D15172BF04D0083C11E /* ARKGameState.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D12172BF04D0083C11E /* ARKGameState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D16172BF04D0083C11E /* ARKGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D13172BF04D0083C11E /* ARKGameState.m */; };
+		83F14D17172BF04D0083C11E /* ARKStateFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D14172BF04D0083C11E /* ARKStateFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D23172BF05C0083C11E /* ARKDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D18172BF0570083C11E /* ARKDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D24172BF05C0083C11E /* ARKDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D19172BF0580083C11E /* ARKDevice.m */; };
+		83F14D25172BF05C0083C11E /* ARKRecordWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D1A172BF0580083C11E /* ARKRecordWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D26172BF05C0083C11E /* ARKRecordWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D1B172BF0580083C11E /* ARKRecordWriter.m */; };
+		83F14D27172BF05C0083C11E /* ARKSoundManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D1C172BF0590083C11E /* ARKSoundManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D28172BF05C0083C11E /* ARKSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D1D172BF0590083C11E /* ARKSoundManager.m */; };
+		83F14D29172BF05C0083C11E /* ARKStateManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D1E172BF05A0083C11E /* ARKStateManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D2A172BF05C0083C11E /* ARKStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D1F172BF05A0083C11E /* ARKStateManager.m */; };
+		83F14D2B172BF05C0083C11E /* ARKSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D20172BF05A0083C11E /* ARKSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D2C172BF05C0083C11E /* ARKUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D21172BF05A0083C11E /* ARKUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D2D172BF05C0083C11E /* ARKUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D22172BF05C0083C11E /* ARKUtilities.m */; };
+		83F14D3A172BF0C00083C11E /* ARKiOSDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D2E172BF0C00083C11E /* ARKiOSDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D3B172BF0C00083C11E /* ARKiOSDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D2F172BF0C00083C11E /* ARKiOSDevice.m */; };
+		83F14D3C172BF0C00083C11E /* ARKiOSRecordWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D30172BF0C00083C11E /* ARKiOSRecordWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D3D172BF0C00083C11E /* ARKiOSRecordWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D31172BF0C00083C11E /* ARKiOSRecordWriter.m */; };
+		83F14D3E172BF0C00083C11E /* ARKiOSSoundManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D32172BF0C00083C11E /* ARKiOSSoundManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D3F172BF0C00083C11E /* ARKiOSSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D33172BF0C00083C11E /* ARKiOSSoundManager.m */; };
+		83F14D40172BF0C00083C11E /* ARKiOSStateManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D34172BF0C00083C11E /* ARKiOSStateManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D41172BF0C00083C11E /* ARKiOSStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D35172BF0C00083C11E /* ARKiOSStateManager.m */; };
+		83F14D42172BF0C00083C11E /* ARKiOSUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D36172BF0C00083C11E /* ARKiOSUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D43172BF0C00083C11E /* ARKiOSUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D37172BF0C00083C11E /* ARKiOSUtilities.m */; };
+		83F14D44172BF0C00083C11E /* ARKViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D38172BF0C00083C11E /* ARKViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D45172BF0C00083C11E /* ARKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D39172BF0C00083C11E /* ARKViewController.m */; };
+		83F14D52172BF0E30083C11E /* ARKBitmapFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D46172BF0E30083C11E /* ARKBitmapFont.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D53172BF0E30083C11E /* ARKBitmapFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D47172BF0E30083C11E /* ARKBitmapFont.m */; };
+		83F14D54172BF0E30083C11E /* ARKImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D48172BF0E30083C11E /* ARKImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D55172BF0E30083C11E /* ARKImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D49172BF0E30083C11E /* ARKImage.m */; };
+		83F14D56172BF0E30083C11E /* ARKLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D4A172BF0E30083C11E /* ARKLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D57172BF0E30083C11E /* ARKLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D4B172BF0E30083C11E /* ARKLabel.m */; };
+		83F14D58172BF0E30083C11E /* ARKRectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D4C172BF0E30083C11E /* ARKRectangle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D59172BF0E30083C11E /* ARKRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D4D172BF0E30083C11E /* ARKRectangle.m */; };
+		83F14D5A172BF0E30083C11E /* ARKSprite.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D4E172BF0E30083C11E /* ARKSprite.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D5B172BF0E30083C11E /* ARKSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D4F172BF0E30083C11E /* ARKSprite.m */; };
+		83F14D5C172BF0E30083C11E /* ARKTexture.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D50172BF0E30083C11E /* ARKTexture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D5D172BF0E30083C11E /* ARKTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D51172BF0E30083C11E /* ARKTexture.m */; };
+		83F14D6C172BF1790083C11E /* ARKBitmapChar.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D5E172BF1790083C11E /* ARKBitmapChar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D6D172BF1790083C11E /* ARKBitmapChar.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D5F172BF1790083C11E /* ARKBitmapChar.m */; };
+		83F14D6E172BF1790083C11E /* ARKiOSBitmapFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D60172BF1790083C11E /* ARKiOSBitmapFont.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D6F172BF1790083C11E /* ARKiOSBitmapFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D61172BF1790083C11E /* ARKiOSBitmapFont.m */; };
+		83F14D70172BF1790083C11E /* ARKiOSImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D62172BF1790083C11E /* ARKiOSImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D71172BF1790083C11E /* ARKiOSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D63172BF1790083C11E /* ARKiOSImage.m */; };
+		83F14D72172BF1790083C11E /* ARKiOSLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D64172BF1790083C11E /* ARKiOSLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D73172BF1790083C11E /* ARKiOSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D65172BF1790083C11E /* ARKiOSLabel.m */; };
+		83F14D74172BF1790083C11E /* ARKiOSRectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D66172BF1790083C11E /* ARKiOSRectangle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D75172BF1790083C11E /* ARKiOSRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D67172BF1790083C11E /* ARKiOSRectangle.m */; };
+		83F14D76172BF1790083C11E /* ARKiOSSprite.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D68172BF1790083C11E /* ARKiOSSprite.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D77172BF1790083C11E /* ARKiOSSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D69172BF1790083C11E /* ARKiOSSprite.m */; };
+		83F14D78172BF1790083C11E /* ARKiOSTexture.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D6A172BF1790083C11E /* ARKiOSTexture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D79172BF1790083C11E /* ARKiOSTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D6B172BF1790083C11E /* ARKiOSTexture.m */; };
+		83F14D80172BF1DB0083C11E /* ARKLoadable.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D7A172BF1DB0083C11E /* ARKLoadable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D81172BF1DB0083C11E /* ARKLoadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D7B172BF1DB0083C11E /* ARKLoadable.m */; };
+		83F14D82172BF1DB0083C11E /* ARKLoadableTexture.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D7C172BF1DB0083C11E /* ARKLoadableTexture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D83172BF1DB0083C11E /* ARKLoadableTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D7D172BF1DB0083C11E /* ARKLoadableTexture.m */; };
+		83F14D84172BF1DB0083C11E /* ARKResourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D7E172BF1DB0083C11E /* ARKResourceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D85172BF1DB0083C11E /* ARKResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D7F172BF1DB0083C11E /* ARKResourceManager.m */; };
+		83F14D88172BF1FA0083C11E /* ARKiOSResourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D86172BF1FA0083C11E /* ARKiOSResourceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14D89172BF1FA0083C11E /* ARKiOSResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D87172BF1FA0083C11E /* ARKiOSResourceManager.m */; };
+		83F14D91172BFBD60083C11E /* ARKGameDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D8F172BFBD60083C11E /* ARKGameDelegate.h */; };
+		83F14D92172BFBD60083C11E /* ARKGameDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D90172BFBD60083C11E /* ARKGameDelegate.m */; };
+		83F14D94172BFD000083C11E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14D93172BFCFD0083C11E /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		83F14CE7172BEAEA0083C11E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83F14CB9172BE7380083C11E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83F14CC0172BE7380083C11E;
+			remoteInfo = "ARK Framework";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		83F14CBF172BE7380083C11E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		8310BDE3171A7F9D007E4224 /* ARKSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKSprite.h; path = system/image/ARKSprite.h; sourceTree = "<group>"; };
-		8310BDE4171A7F9D007E4224 /* ARKSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKSprite.m; path = system/image/ARKSprite.m; sourceTree = "<group>"; };
-		8310BDE9171BC672007E4224 /* ARKBitmapFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKBitmapFont.h; path = system/image/ARKBitmapFont.h; sourceTree = "<group>"; };
-		8310BDEA171BC673007E4224 /* ARKBitmapFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKBitmapFont.m; path = system/image/ARKBitmapFont.m; sourceTree = "<group>"; };
-		8310BDEC171BCC4F007E4224 /* ARKiOSBitmapFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSBitmapFont.h; path = system/image/iOS/ARKiOSBitmapFont.h; sourceTree = "<group>"; };
-		8310BDED171BCC4F007E4224 /* ARKiOSBitmapFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSBitmapFont.m; path = system/image/iOS/ARKiOSBitmapFont.m; sourceTree = "<group>"; };
-		8310BDEF171C00EC007E4224 /* ARKBitmapChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKBitmapChar.h; path = system/image/iOS/ARKBitmapChar.h; sourceTree = "<group>"; };
-		8310BDF0171C00EC007E4224 /* ARKBitmapChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKBitmapChar.m; path = system/image/iOS/ARKBitmapChar.m; sourceTree = "<group>"; };
-		8310BDF4171C0AC0007E4224 /* pixel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = pixel.json; path = assets/data/font/pixel.json; sourceTree = "<group>"; };
-		831774721722A21D00F585AC /* ARKiOSDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSDevice.h; path = system/iOS/ARKiOSDevice.h; sourceTree = "<group>"; };
-		831774731722A21D00F585AC /* ARKiOSDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSDevice.m; path = system/iOS/ARKiOSDevice.m; sourceTree = "<group>"; };
-		831774751722A57700F585AC /* ARKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKViewController.h; path = system/iOS/ARKViewController.h; sourceTree = "<group>"; };
-		831774761722A57700F585AC /* ARKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKViewController.m; path = system/iOS/ARKViewController.m; sourceTree = "<group>"; };
-		832FB27E171525F100E73D11 /* ARKTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKTexture.h; path = system/image/ARKTexture.h; sourceTree = "<group>"; };
-		832FB27F171525F100E73D11 /* ARKTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKTexture.m; path = system/image/ARKTexture.m; sourceTree = "<group>"; };
-		832FB2811715275A00E73D11 /* ARKiOSTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSTexture.h; path = system/image/iOS/ARKiOSTexture.h; sourceTree = "<group>"; };
-		832FB2821715275A00E73D11 /* ARKiOSTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSTexture.m; path = system/image/iOS/ARKiOSTexture.m; sourceTree = "<group>"; };
-		832FB28C171562E200E73D11 /* textures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = textures; path = assets/textures; sourceTree = "<group>"; };
-		832FB2921715DB2100E73D11 /* ARKResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKResourceManager.h; path = system/resource/ARKResourceManager.h; sourceTree = "<group>"; };
-		832FB2931715DB2100E73D11 /* ARKResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKResourceManager.m; path = system/resource/ARKResourceManager.m; sourceTree = "<group>"; };
-		832FB2961715DB9D00E73D11 /* ARKiOSResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSResourceManager.h; path = system/resource/iOS/ARKiOSResourceManager.h; sourceTree = "<group>"; };
-		832FB2971715DB9D00E73D11 /* ARKiOSResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSResourceManager.m; path = system/resource/iOS/ARKiOSResourceManager.m; sourceTree = "<group>"; };
-		832FB2991716ACC200E73D11 /* ship.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ship.json; path = assets/images/game/ship.json; sourceTree = "<group>"; };
-		832FB29B1716B5A700E73D11 /* ARKLoadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKLoadable.h; path = system/resource/ARKLoadable.h; sourceTree = "<group>"; };
-		832FB29C1716B5A700E73D11 /* ARKLoadable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKLoadable.m; path = system/resource/ARKLoadable.m; sourceTree = "<group>"; };
-		832FB29E1716C42200E73D11 /* ARKLoadableTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKLoadableTexture.h; path = system/resource/ARKLoadableTexture.h; sourceTree = "<group>"; };
-		832FB29F1716C42200E73D11 /* ARKLoadableTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKLoadableTexture.m; path = system/resource/ARKLoadableTexture.m; sourceTree = "<group>"; };
-		832FB2A1171807F400E73D11 /* ARKUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKUtilities.h; path = system/ARKUtilities.h; sourceTree = "<group>"; };
-		832FB2A2171807F500E73D11 /* ARKUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKUtilities.m; path = system/ARKUtilities.m; sourceTree = "<group>"; };
-		832FB2A4171808D000E73D11 /* ARKSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ARKSystem.h; path = system/ARKSystem.h; sourceTree = "<group>"; };
-		832FB2A61718226B00E73D11 /* ARKiOSUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSUtilities.h; path = system/iOS/ARKiOSUtilities.h; sourceTree = "<group>"; };
-		832FB2A71718226B00E73D11 /* ARKiOSUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSUtilities.m; path = system/iOS/ARKiOSUtilities.m; sourceTree = "<group>"; };
-		832FB2A91719932500E73D11 /* ARKStateFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ARKStateFactory.h; path = states/ARKStateFactory.h; sourceTree = "<group>"; };
-		832FB2AB1719936A00E73D11 /* ARKGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKGameState.h; path = states/ARKGameState.h; sourceTree = "<group>"; };
-		832FB2AC1719936A00E73D11 /* ARKGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKGameState.m; path = states/ARKGameState.m; sourceTree = "<group>"; };
-		832FB2B81719D47100E73D11 /* ARKAccelerometerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKAccelerometerInfo.h; path = system/input/ARKAccelerometerInfo.h; sourceTree = "<group>"; };
-		832FB2B91719D47100E73D11 /* ARKAccelerometerInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKAccelerometerInfo.m; path = system/input/ARKAccelerometerInfo.m; sourceTree = "<group>"; };
-		832FB2BB171A5CFC00E73D11 /* ARKTouchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKTouchInfo.h; path = system/input/ARKTouchInfo.h; sourceTree = "<group>"; };
-		832FB2BC171A5CFC00E73D11 /* ARKTouchInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKTouchInfo.m; path = system/input/ARKTouchInfo.m; sourceTree = "<group>"; };
-		832FB2C2171A685000E73D11 /* ARKRecordWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKRecordWriter.h; path = system/ARKRecordWriter.h; sourceTree = "<group>"; };
-		832FB2C3171A685200E73D11 /* ARKRecordWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKRecordWriter.m; path = system/ARKRecordWriter.m; sourceTree = "<group>"; };
-		832FB2C5171A68EE00E73D11 /* ARKiOSRecordWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSRecordWriter.h; path = system/iOS/ARKiOSRecordWriter.h; sourceTree = "<group>"; };
-		832FB2C6171A68EE00E73D11 /* ARKiOSRecordWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSRecordWriter.m; path = system/iOS/ARKiOSRecordWriter.m; sourceTree = "<group>"; };
-		837736621710285400F3C5E9 /* ARKImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKImage.h; path = system/image/ARKImage.h; sourceTree = "<group>"; };
-		837736631710285400F3C5E9 /* ARKImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKImage.m; path = system/image/ARKImage.m; sourceTree = "<group>"; };
-		8377366617102E2300F3C5E9 /* ARKDrawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKDrawable.h; path = components/ARKDrawable.h; sourceTree = "<group>"; };
-		8377366717102E2300F3C5E9 /* ARKDrawable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKDrawable.m; path = components/ARKDrawable.m; sourceTree = "<group>"; };
-		8377366917103ED900F3C5E9 /* ARKCroppable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKCroppable.h; path = components/ARKCroppable.h; sourceTree = "<group>"; };
-		8377366A17103ED900F3C5E9 /* ARKCroppable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKCroppable.m; path = components/ARKCroppable.m; sourceTree = "<group>"; };
-		8377366C171046EB00F3C5E9 /* ARKiOSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSImage.h; path = system/image/iOS/ARKiOSImage.h; sourceTree = "<group>"; };
-		8377366D171046EB00F3C5E9 /* ARKiOSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSImage.m; path = system/image/iOS/ARKiOSImage.m; sourceTree = "<group>"; };
-		8379C490171EF1D1005F457C /* ARKLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKLabel.h; path = system/image/ARKLabel.h; sourceTree = "<group>"; };
-		8379C491171EF1D1005F457C /* ARKLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKLabel.m; path = system/image/ARKLabel.m; sourceTree = "<group>"; };
-		8379C493171F0A3D005F457C /* ARKiOSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSLabel.h; path = system/image/iOS/ARKiOSLabel.h; sourceTree = "<group>"; };
-		8379C494171F0A3D005F457C /* ARKiOSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSLabel.m; path = system/image/iOS/ARKiOSLabel.m; sourceTree = "<group>"; };
-		8379C499171F0AF0005F457C /* ARKiOSSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSSprite.h; path = system/image/iOS/ARKiOSSprite.h; sourceTree = "<group>"; };
-		8379C49A171F0AF0005F457C /* ARKiOSSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSSprite.m; path = system/image/iOS/ARKiOSSprite.m; sourceTree = "<group>"; };
-		8379C49C17201909005F457C /* ARKSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKSoundManager.h; path = system/ARKSoundManager.h; sourceTree = "<group>"; };
-		8379C49D1720190A005F457C /* ARKSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKSoundManager.m; path = system/ARKSoundManager.m; sourceTree = "<group>"; };
-		8379C49F17202110005F457C /* ARKiOSSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSSoundManager.h; path = system/iOS/ARKiOSSoundManager.h; sourceTree = "<group>"; };
-		8379C4A017202110005F457C /* ARKiOSSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSSoundManager.m; path = system/iOS/ARKiOSSoundManager.m; sourceTree = "<group>"; };
-		8379C4A217205884005F457C /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = audio; path = assets/audio; sourceTree = "<group>"; };
-		8379C4A417205E09005F457C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		8379C4A817215967005F457C /* ARKStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKStateManager.h; path = system/ARKStateManager.h; sourceTree = "<group>"; };
-		8379C4A917215967005F457C /* ARKStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKStateManager.m; path = system/ARKStateManager.m; sourceTree = "<group>"; };
-		8379C4AB172161D2005F457C /* ARKiOSStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSStateManager.h; path = system/iOS/ARKiOSStateManager.h; sourceTree = "<group>"; };
-		8379C4AC172161D2005F457C /* ARKiOSStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSStateManager.m; path = system/iOS/ARKiOSStateManager.m; sourceTree = "<group>"; };
-		8379C4AE1721BFDF005F457C /* ARKDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKDevice.h; path = system/ARKDevice.h; sourceTree = "<group>"; };
-		8379C4AF1721BFE0005F457C /* ARKDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKDevice.m; path = system/ARKDevice.m; sourceTree = "<group>"; };
-		83A88836170F6AD100A61787 /* Ark Framework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ark Framework.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		83A88839170F6AD100A61787 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		83A8883B170F6AD100A61787 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		83A8883D170F6AD100A61787 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		83A8883F170F6AD100A61787 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		83A88841170F6AD100A61787 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		83A88845170F6AD100A61787 /* Ark Framework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Ark Framework-Info.plist"; sourceTree = "<group>"; };
-		83A88847170F6AD100A61787 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		83A88849170F6AD100A61787 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		83A8884B170F6AD100A61787 /* Ark Framework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ark Framework-Prefix.pch"; sourceTree = "<group>"; };
-		83A8884C170F6AD100A61787 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		83A8884D170F6AD100A61787 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		83A8884F170F6AD100A61787 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		83A88851170F6AD100A61787 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		83A88853170F6AD100A61787 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		83A8885D170F6AD100A61787 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
-		83A88860170F6AD100A61787 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
-		83F14B2E1728D0DE0083C11E /* HoleState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HoleState.h; path = blackhole/states/HoleState.h; sourceTree = "<group>"; };
-		83F14B2F1728D0DE0083C11E /* HoleState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HoleState.m; path = blackhole/states/HoleState.m; sourceTree = "<group>"; };
-		83F14B311728D14C0083C11E /* HoleStateFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HoleStateFactory.h; path = blackhole/states/HoleStateFactory.h; sourceTree = "<group>"; };
-		83F14B321728D14C0083C11E /* HoleStateFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HoleStateFactory.m; path = blackhole/states/HoleStateFactory.m; sourceTree = "<group>"; };
-		83F14B371728D4020083C11E /* StateTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StateTitle.h; path = blackhole/states/StateTitle.h; sourceTree = "<group>"; };
-		83F14B381728D4030083C11E /* StateTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StateTitle.m; path = blackhole/states/StateTitle.m; sourceTree = "<group>"; };
-		83F14B3A1728D4170083C11E /* StateGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StateGame.h; path = blackhole/states/StateGame.h; sourceTree = "<group>"; };
-		83F14B3B1728D4170083C11E /* StateGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StateGame.m; path = blackhole/states/StateGame.m; sourceTree = "<group>"; };
-		83F14B461728DD620083C11E /* title.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = title.json; path = assets/images/interface/title.json; sourceTree = "<group>"; };
-		83F14B481728DD700083C11E /* sky.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = sky.json; path = assets/images/game/sky.json; sourceTree = "<group>"; };
-		83F14B4B17292CD10083C11E /* ARKButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKButton.h; path = components/buttons/ARKButton.h; sourceTree = "<group>"; };
-		83F14B4C17292CD10083C11E /* ARKButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKButton.m; path = components/buttons/ARKButton.m; sourceTree = "<group>"; };
-		83F14B4E1729430A0083C11E /* ARKButtonContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKButtonContainer.h; path = components/buttons/ARKButtonContainer.h; sourceTree = "<group>"; };
-		83F14B4F1729430A0083C11E /* ARKButtonContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKButtonContainer.m; path = components/buttons/ARKButtonContainer.m; sourceTree = "<group>"; };
-		83F14B511729AA190083C11E /* ARKRectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKRectangle.h; path = system/image/ARKRectangle.h; sourceTree = "<group>"; };
-		83F14B521729AA190083C11E /* ARKRectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKRectangle.m; path = system/image/ARKRectangle.m; sourceTree = "<group>"; };
-		83F14B541729B2010083C11E /* ARKiOSRectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKiOSRectangle.h; path = system/image/iOS/ARKiOSRectangle.h; sourceTree = "<group>"; };
-		83F14B551729B2010083C11E /* ARKiOSRectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKiOSRectangle.m; path = system/image/iOS/ARKiOSRectangle.m; sourceTree = "<group>"; };
-		83F14B94172A40F80083C11E /* ARKScrollingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKScrollingImage.h; path = components/ARKScrollingImage.h; sourceTree = "<group>"; };
-		83F14B95172A40F80083C11E /* ARKScrollingImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARKScrollingImage.m; path = components/ARKScrollingImage.m; sourceTree = "<group>"; };
+		83F14CC1172BE7380083C11E /* ARKFramework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = ARKFramework.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		83F14CC4172BE7380083C11E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		83F14CC8172BE7380083C11E /* ARK Framework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ARK Framework-Prefix.pch"; sourceTree = "<group>"; };
+		83F14CC9172BE7380083C11E /* Framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Framework.h; sourceTree = "<group>"; };
+		83F14CDA172BE9AD0083C11E /* ARKAccelerometerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKAccelerometerInfo.h; sourceTree = "<group>"; };
+		83F14CDB172BE9AD0083C11E /* ARKAccelerometerInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKAccelerometerInfo.m; sourceTree = "<group>"; };
+		83F14CDC172BE9AD0083C11E /* ARKTouchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKTouchInfo.h; sourceTree = "<group>"; };
+		83F14CDD172BE9AD0083C11E /* ARKTouchInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKTouchInfo.m; sourceTree = "<group>"; };
+		83F14CEE172BEF070083C11E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		83F14CF0172BEF140083C11E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		83F14CF2172BEF200083C11E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		83F14CF4172BEF380083C11E /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		83F14CFE172BEFFC0083C11E /* ARKCroppable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKCroppable.h; sourceTree = "<group>"; };
+		83F14CFF172BEFFC0083C11E /* ARKCroppable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKCroppable.m; sourceTree = "<group>"; };
+		83F14D00172BEFFC0083C11E /* ARKDrawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKDrawable.h; sourceTree = "<group>"; };
+		83F14D01172BEFFC0083C11E /* ARKDrawable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKDrawable.m; sourceTree = "<group>"; };
+		83F14D02172BEFFC0083C11E /* ARKScrollingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKScrollingImage.h; sourceTree = "<group>"; };
+		83F14D03172BEFFC0083C11E /* ARKScrollingImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKScrollingImage.m; sourceTree = "<group>"; };
+		83F14D0A172BF0420083C11E /* ARKButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKButton.h; sourceTree = "<group>"; };
+		83F14D0B172BF0430083C11E /* ARKButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKButton.m; sourceTree = "<group>"; };
+		83F14D0C172BF0430083C11E /* ARKButtonContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKButtonContainer.h; sourceTree = "<group>"; };
+		83F14D0D172BF0430083C11E /* ARKButtonContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKButtonContainer.m; sourceTree = "<group>"; };
+		83F14D12172BF04D0083C11E /* ARKGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKGameState.h; sourceTree = "<group>"; };
+		83F14D13172BF04D0083C11E /* ARKGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKGameState.m; sourceTree = "<group>"; };
+		83F14D14172BF04D0083C11E /* ARKStateFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKStateFactory.h; sourceTree = "<group>"; };
+		83F14D18172BF0570083C11E /* ARKDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKDevice.h; sourceTree = "<group>"; };
+		83F14D19172BF0580083C11E /* ARKDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKDevice.m; sourceTree = "<group>"; };
+		83F14D1A172BF0580083C11E /* ARKRecordWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKRecordWriter.h; sourceTree = "<group>"; };
+		83F14D1B172BF0580083C11E /* ARKRecordWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKRecordWriter.m; sourceTree = "<group>"; };
+		83F14D1C172BF0590083C11E /* ARKSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKSoundManager.h; sourceTree = "<group>"; };
+		83F14D1D172BF0590083C11E /* ARKSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKSoundManager.m; sourceTree = "<group>"; };
+		83F14D1E172BF05A0083C11E /* ARKStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKStateManager.h; sourceTree = "<group>"; };
+		83F14D1F172BF05A0083C11E /* ARKStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKStateManager.m; sourceTree = "<group>"; };
+		83F14D20172BF05A0083C11E /* ARKSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKSystem.h; sourceTree = "<group>"; };
+		83F14D21172BF05A0083C11E /* ARKUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKUtilities.h; sourceTree = "<group>"; };
+		83F14D22172BF05C0083C11E /* ARKUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKUtilities.m; sourceTree = "<group>"; };
+		83F14D2E172BF0C00083C11E /* ARKiOSDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKiOSDevice.h; sourceTree = "<group>"; };
+		83F14D2F172BF0C00083C11E /* ARKiOSDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKiOSDevice.m; sourceTree = "<group>"; };
+		83F14D30172BF0C00083C11E /* ARKiOSRecordWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKiOSRecordWriter.h; sourceTree = "<group>"; };
+		83F14D31172BF0C00083C11E /* ARKiOSRecordWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKiOSRecordWriter.m; sourceTree = "<group>"; };
+		83F14D32172BF0C00083C11E /* ARKiOSSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKiOSSoundManager.h; sourceTree = "<group>"; };
+		83F14D33172BF0C00083C11E /* ARKiOSSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKiOSSoundManager.m; sourceTree = "<group>"; };
+		83F14D34172BF0C00083C11E /* ARKiOSStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKiOSStateManager.h; sourceTree = "<group>"; };
+		83F14D35172BF0C00083C11E /* ARKiOSStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKiOSStateManager.m; sourceTree = "<group>"; };
+		83F14D36172BF0C00083C11E /* ARKiOSUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKiOSUtilities.h; sourceTree = "<group>"; };
+		83F14D37172BF0C00083C11E /* ARKiOSUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKiOSUtilities.m; sourceTree = "<group>"; };
+		83F14D38172BF0C00083C11E /* ARKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKViewController.h; sourceTree = "<group>"; };
+		83F14D39172BF0C00083C11E /* ARKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKViewController.m; sourceTree = "<group>"; };
+		83F14D46172BF0E30083C11E /* ARKBitmapFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKBitmapFont.h; sourceTree = "<group>"; };
+		83F14D47172BF0E30083C11E /* ARKBitmapFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKBitmapFont.m; sourceTree = "<group>"; };
+		83F14D48172BF0E30083C11E /* ARKImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKImage.h; sourceTree = "<group>"; };
+		83F14D49172BF0E30083C11E /* ARKImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKImage.m; sourceTree = "<group>"; };
+		83F14D4A172BF0E30083C11E /* ARKLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKLabel.h; sourceTree = "<group>"; };
+		83F14D4B172BF0E30083C11E /* ARKLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKLabel.m; sourceTree = "<group>"; };
+		83F14D4C172BF0E30083C11E /* ARKRectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKRectangle.h; sourceTree = "<group>"; };
+		83F14D4D172BF0E30083C11E /* ARKRectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKRectangle.m; sourceTree = "<group>"; };
+		83F14D4E172BF0E30083C11E /* ARKSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKSprite.h; sourceTree = "<group>"; };
+		83F14D4F172BF0E30083C11E /* ARKSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKSprite.m; sourceTree = "<group>"; };
+		83F14D50172BF0E30083C11E /* ARKTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKTexture.h; sourceTree = "<group>"; };
+		83F14D51172BF0E30083C11E /* ARKTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKTexture.m; sourceTree = "<group>"; };
+		83F14D5E172BF1790083C11E /* ARKBitmapChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKBitmapChar.h; sourceTree = "<group>"; };
+		83F14D5F172BF1790083C11E /* ARKBitmapChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKBitmapChar.m; sourceTree = "<group>"; };
+		83F14D60172BF1790083C11E /* ARKiOSBitmapFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKiOSBitmapFont.h; sourceTree = "<group>"; };
+		83F14D61172BF1790083C11E /* ARKiOSBitmapFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKiOSBitmapFont.m; sourceTree = "<group>"; };
+		83F14D62172BF1790083C11E /* ARKiOSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKiOSImage.h; sourceTree = "<group>"; };
+		83F14D63172BF1790083C11E /* ARKiOSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKiOSImage.m; sourceTree = "<group>"; };
+		83F14D64172BF1790083C11E /* ARKiOSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKiOSLabel.h; sourceTree = "<group>"; };
+		83F14D65172BF1790083C11E /* ARKiOSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKiOSLabel.m; sourceTree = "<group>"; };
+		83F14D66172BF1790083C11E /* ARKiOSRectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKiOSRectangle.h; sourceTree = "<group>"; };
+		83F14D67172BF1790083C11E /* ARKiOSRectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKiOSRectangle.m; sourceTree = "<group>"; };
+		83F14D68172BF1790083C11E /* ARKiOSSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKiOSSprite.h; sourceTree = "<group>"; };
+		83F14D69172BF1790083C11E /* ARKiOSSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKiOSSprite.m; sourceTree = "<group>"; };
+		83F14D6A172BF1790083C11E /* ARKiOSTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKiOSTexture.h; sourceTree = "<group>"; };
+		83F14D6B172BF1790083C11E /* ARKiOSTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKiOSTexture.m; sourceTree = "<group>"; };
+		83F14D7A172BF1DB0083C11E /* ARKLoadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKLoadable.h; sourceTree = "<group>"; };
+		83F14D7B172BF1DB0083C11E /* ARKLoadable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKLoadable.m; sourceTree = "<group>"; };
+		83F14D7C172BF1DB0083C11E /* ARKLoadableTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKLoadableTexture.h; sourceTree = "<group>"; };
+		83F14D7D172BF1DB0083C11E /* ARKLoadableTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKLoadableTexture.m; sourceTree = "<group>"; };
+		83F14D7E172BF1DB0083C11E /* ARKResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKResourceManager.h; sourceTree = "<group>"; };
+		83F14D7F172BF1DB0083C11E /* ARKResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKResourceManager.m; sourceTree = "<group>"; };
+		83F14D86172BF1FA0083C11E /* ARKiOSResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKiOSResourceManager.h; sourceTree = "<group>"; };
+		83F14D87172BF1FA0083C11E /* ARKiOSResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKiOSResourceManager.m; sourceTree = "<group>"; };
+		83F14D8F172BFBD60083C11E /* ARKGameDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKGameDelegate.h; sourceTree = "<group>"; };
+		83F14D90172BFBD60083C11E /* ARKGameDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKGameDelegate.m; sourceTree = "<group>"; };
+		83F14D93172BFCFD0083C11E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		83A88833170F6AD100A61787 /* Frameworks */ = {
+		83F14CBE172BE7380083C11E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8379C4A517205E09005F457C /* AVFoundation.framework in Frameworks */,
-				83A8883A170F6AD100A61787 /* UIKit.framework in Frameworks */,
-				83A8883C170F6AD100A61787 /* Foundation.framework in Frameworks */,
-				83A8883E170F6AD100A61787 /* CoreGraphics.framework in Frameworks */,
-				83A88840170F6AD100A61787 /* GLKit.framework in Frameworks */,
-				83A88842170F6AD100A61787 /* OpenGLES.framework in Frameworks */,
+				83F14D94172BFD000083C11E /* UIKit.framework in Frameworks */,
+				83F14CC5172BE7380083C11E /* Foundation.framework in Frameworks */,
+				83F14CEF172BEF070083C11E /* AVFoundation.framework in Frameworks */,
+				83F14CF1172BEF140083C11E /* CoreGraphics.framework in Frameworks */,
+				83F14CF3172BEF200083C11E /* OpenGLES.framework in Frameworks */,
+				83F14CF5172BEF380083C11E /* GLKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		832FB2911715DB0200E73D11 /* Resource */ = {
+		83F14CB8172BE7380083C11E = {
 			isa = PBXGroup;
 			children = (
-				832FB2921715DB2100E73D11 /* ARKResourceManager.h */,
-				832FB2931715DB2100E73D11 /* ARKResourceManager.m */,
-				832FB29B1716B5A700E73D11 /* ARKLoadable.h */,
-				832FB29C1716B5A700E73D11 /* ARKLoadable.m */,
-				832FB29E1716C42200E73D11 /* ARKLoadableTexture.h */,
-				832FB29F1716C42200E73D11 /* ARKLoadableTexture.m */,
-				832FB2951715DB7E00E73D11 /* iOS */,
-			);
-			name = Resource;
-			sourceTree = "<group>";
-		};
-		832FB2951715DB7E00E73D11 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				832FB2961715DB9D00E73D11 /* ARKiOSResourceManager.h */,
-				832FB2971715DB9D00E73D11 /* ARKiOSResourceManager.m */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		832FB2A5171821F200E73D11 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				831774721722A21D00F585AC /* ARKiOSDevice.h */,
-				831774731722A21D00F585AC /* ARKiOSDevice.m */,
-				8379C4AB172161D2005F457C /* ARKiOSStateManager.h */,
-				8379C4AC172161D2005F457C /* ARKiOSStateManager.m */,
-				832FB2C5171A68EE00E73D11 /* ARKiOSRecordWriter.h */,
-				832FB2C6171A68EE00E73D11 /* ARKiOSRecordWriter.m */,
-				8379C49F17202110005F457C /* ARKiOSSoundManager.h */,
-				8379C4A017202110005F457C /* ARKiOSSoundManager.m */,
-				832FB2A61718226B00E73D11 /* ARKiOSUtilities.h */,
-				832FB2A71718226B00E73D11 /* ARKiOSUtilities.m */,
-				831774751722A57700F585AC /* ARKViewController.h */,
-				831774761722A57700F585AC /* ARKViewController.m */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		832FB2AA1719932D00E73D11 /* States */ = {
-			isa = PBXGroup;
-			children = (
-				832FB2AB1719936A00E73D11 /* ARKGameState.h */,
-				832FB2AC1719936A00E73D11 /* ARKGameState.m */,
-				832FB2A91719932500E73D11 /* ARKStateFactory.h */,
-			);
-			name = States;
-			sourceTree = "<group>";
-		};
-		832FB2B71719D43200E73D11 /* Input */ = {
-			isa = PBXGroup;
-			children = (
-				832FB2B81719D47100E73D11 /* ARKAccelerometerInfo.h */,
-				832FB2B91719D47100E73D11 /* ARKAccelerometerInfo.m */,
-				832FB2BB171A5CFC00E73D11 /* ARKTouchInfo.h */,
-				832FB2BC171A5CFC00E73D11 /* ARKTouchInfo.m */,
-			);
-			name = Input;
-			sourceTree = "<group>";
-		};
-		83773659170FC1DD00F3C5E9 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				83F14B281728D0720083C11E /* Black Holes */,
-				8377366517102DDE00F3C5E9 /* Components */,
-				832FB2AA1719932D00E73D11 /* States */,
-				8377365F1710267000F3C5E9 /* System */,
-				83A88849170F6AD100A61787 /* main.m */,
-				83A8884C170F6AD100A61787 /* AppDelegate.h */,
-				83A8884D170F6AD100A61787 /* AppDelegate.m */,
-			);
-			name = Sources;
-			path = src;
-			sourceTree = "<group>";
-		};
-		8377365A170FC1E400F3C5E9 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				83A8884F170F6AD100A61787 /* Default.png */,
-				83A88851170F6AD100A61787 /* Default@2x.png */,
-				83A88853170F6AD100A61787 /* Default-568h@2x.png */,
-			);
-			name = Resources;
-			path = res;
-			sourceTree = "<group>";
-		};
-		8377365B170FFFE200F3C5E9 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				83F14B481728DD700083C11E /* sky.json */,
-				83F14B461728DD620083C11E /* title.json */,
-				8379C4A217205884005F457C /* audio */,
-				8310BDF4171C0AC0007E4224 /* pixel.json */,
-				832FB2991716ACC200E73D11 /* ship.json */,
-				832FB28C171562E200E73D11 /* textures */,
-			);
-			name = Assets;
-			sourceTree = "<group>";
-		};
-		8377365F1710267000F3C5E9 /* System */ = {
-			isa = PBXGroup;
-			children = (
-				832FB2A4171808D000E73D11 /* ARKSystem.h */,
-				8379C4AE1721BFDF005F457C /* ARKDevice.h */,
-				8379C4AF1721BFE0005F457C /* ARKDevice.m */,
-				8379C4A817215967005F457C /* ARKStateManager.h */,
-				8379C4A917215967005F457C /* ARKStateManager.m */,
-				8379C49C17201909005F457C /* ARKSoundManager.h */,
-				8379C49D1720190A005F457C /* ARKSoundManager.m */,
-				832FB2C2171A685000E73D11 /* ARKRecordWriter.h */,
-				832FB2C3171A685200E73D11 /* ARKRecordWriter.m */,
-				832FB2A1171807F400E73D11 /* ARKUtilities.h */,
-				832FB2A2171807F500E73D11 /* ARKUtilities.m */,
-				832FB2A5171821F200E73D11 /* iOS */,
-				837736601710267900F3C5E9 /* Image */,
-				832FB2B71719D43200E73D11 /* Input */,
-				832FB2911715DB0200E73D11 /* Resource */,
-			);
-			name = System;
-			sourceTree = "<group>";
-		};
-		837736601710267900F3C5E9 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				837736621710285400F3C5E9 /* ARKImage.h */,
-				837736631710285400F3C5E9 /* ARKImage.m */,
-				8310BDE3171A7F9D007E4224 /* ARKSprite.h */,
-				8310BDE4171A7F9D007E4224 /* ARKSprite.m */,
-				8379C490171EF1D1005F457C /* ARKLabel.h */,
-				8379C491171EF1D1005F457C /* ARKLabel.m */,
-				83F14B511729AA190083C11E /* ARKRectangle.h */,
-				83F14B521729AA190083C11E /* ARKRectangle.m */,
-				832FB27E171525F100E73D11 /* ARKTexture.h */,
-				832FB27F171525F100E73D11 /* ARKTexture.m */,
-				8310BDE9171BC672007E4224 /* ARKBitmapFont.h */,
-				8310BDEA171BC673007E4224 /* ARKBitmapFont.m */,
-				837736611710270600F3C5E9 /* iOS */,
-			);
-			name = Image;
-			sourceTree = "<group>";
-		};
-		837736611710270600F3C5E9 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				8377366C171046EB00F3C5E9 /* ARKiOSImage.h */,
-				8377366D171046EB00F3C5E9 /* ARKiOSImage.m */,
-				8379C493171F0A3D005F457C /* ARKiOSLabel.h */,
-				8379C494171F0A3D005F457C /* ARKiOSLabel.m */,
-				83F14B541729B2010083C11E /* ARKiOSRectangle.h */,
-				83F14B551729B2010083C11E /* ARKiOSRectangle.m */,
-				832FB2811715275A00E73D11 /* ARKiOSTexture.h */,
-				832FB2821715275A00E73D11 /* ARKiOSTexture.m */,
-				8310BDEC171BCC4F007E4224 /* ARKiOSBitmapFont.h */,
-				8310BDED171BCC4F007E4224 /* ARKiOSBitmapFont.m */,
-				8310BDEF171C00EC007E4224 /* ARKBitmapChar.h */,
-				8310BDF0171C00EC007E4224 /* ARKBitmapChar.m */,
-				8379C499171F0AF0005F457C /* ARKiOSSprite.h */,
-				8379C49A171F0AF0005F457C /* ARKiOSSprite.m */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		8377366517102DDE00F3C5E9 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				8377366617102E2300F3C5E9 /* ARKDrawable.h */,
-				8377366717102E2300F3C5E9 /* ARKDrawable.m */,
-				8377366917103ED900F3C5E9 /* ARKCroppable.h */,
-				8377366A17103ED900F3C5E9 /* ARKCroppable.m */,
-				83F14B94172A40F80083C11E /* ARKScrollingImage.h */,
-				83F14B95172A40F80083C11E /* ARKScrollingImage.m */,
-				83F14B4A17292CBC0083C11E /* Buttons */,
-			);
-			name = Components;
-			sourceTree = "<group>";
-		};
-		83A8882D170F6AD100A61787 = {
-			isa = PBXGroup;
-			children = (
-				83773659170FC1DD00F3C5E9 /* Sources */,
-				8377365B170FFFE200F3C5E9 /* Assets */,
-				8377365A170FC1E400F3C5E9 /* Resources */,
-				83A88843170F6AD100A61787 /* Ark Framework */,
-				83A88838170F6AD100A61787 /* Frameworks */,
-				83A88837170F6AD100A61787 /* Products */,
+				83F14CD6172BE84D0083C11E /* Sources */,
+				83F14CC6172BE7380083C11E /* ARK Framework */,
+				83F14CC3172BE7380083C11E /* Frameworks */,
+				83F14CC2172BE7380083C11E /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		83A88837170F6AD100A61787 /* Products */ = {
+		83F14CC2172BE7380083C11E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				83A88836170F6AD100A61787 /* Ark Framework.app */,
+				83F14CC1172BE7380083C11E /* ARKFramework.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		83A88838170F6AD100A61787 /* Frameworks */ = {
+		83F14CC3172BE7380083C11E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8379C4A417205E09005F457C /* AVFoundation.framework */,
-				83A88839170F6AD100A61787 /* UIKit.framework */,
-				83A8883B170F6AD100A61787 /* Foundation.framework */,
-				83A8883D170F6AD100A61787 /* CoreGraphics.framework */,
-				83A8883F170F6AD100A61787 /* GLKit.framework */,
-				83A88841170F6AD100A61787 /* OpenGLES.framework */,
+				83F14D93172BFCFD0083C11E /* UIKit.framework */,
+				83F14CC4172BE7380083C11E /* Foundation.framework */,
+				83F14CEE172BEF070083C11E /* AVFoundation.framework */,
+				83F14CF0172BEF140083C11E /* CoreGraphics.framework */,
+				83F14CF2172BEF200083C11E /* OpenGLES.framework */,
+				83F14CF4172BEF380083C11E /* GLKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		83A88843170F6AD100A61787 /* Ark Framework */ = {
+		83F14CC6172BE7380083C11E /* ARK Framework */ = {
 			isa = PBXGroup;
 			children = (
-				83A88845170F6AD100A61787 /* Ark Framework-Info.plist */,
-				83A8884B170F6AD100A61787 /* Ark Framework-Prefix.pch */,
-				83A88846170F6AD100A61787 /* InfoPlist.strings */,
-				83A8885C170F6AD100A61787 /* ViewController_iPhone.xib */,
-				83A8885F170F6AD100A61787 /* ViewController_iPad.xib */,
+				83F14CC8172BE7380083C11E /* ARK Framework-Prefix.pch */,
 			);
-			name = "Ark Framework";
+			name = "ARK Framework";
+			sourceTree = SOURCE_ROOT;
+		};
+		83F14CD6172BE84D0083C11E /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				83F14CC9172BE7380083C11E /* Framework.h */,
+				83F14CF6172BEF990083C11E /* Components */,
+				83F14CF7172BEFA00083C11E /* States */,
+				83F14CD7172BE8510083C11E /* System */,
+			);
+			name = Sources;
+			path = src;
+			sourceTree = SOURCE_ROOT;
+		};
+		83F14CD7172BE8510083C11E /* System */ = {
+			isa = PBXGroup;
+			children = (
+				83F14D18172BF0570083C11E /* ARKDevice.h */,
+				83F14D19172BF0580083C11E /* ARKDevice.m */,
+				83F14D1A172BF0580083C11E /* ARKRecordWriter.h */,
+				83F14D1B172BF0580083C11E /* ARKRecordWriter.m */,
+				83F14D1C172BF0590083C11E /* ARKSoundManager.h */,
+				83F14D1D172BF0590083C11E /* ARKSoundManager.m */,
+				83F14D1E172BF05A0083C11E /* ARKStateManager.h */,
+				83F14D1F172BF05A0083C11E /* ARKStateManager.m */,
+				83F14D20172BF05A0083C11E /* ARKSystem.h */,
+				83F14D21172BF05A0083C11E /* ARKUtilities.h */,
+				83F14D22172BF05C0083C11E /* ARKUtilities.m */,
+				83F14CF8172BEFAF0083C11E /* iOS */,
+				83F14CF9172BEFB50083C11E /* Image */,
+				83F14CFA172BEFB90083C11E /* Resource */,
+			);
+			name = System;
+			path = system;
 			sourceTree = "<group>";
 		};
-		83F14B281728D0720083C11E /* Black Holes */ = {
+		83F14CD8172BE8560083C11E /* Input */ = {
 			isa = PBXGroup;
 			children = (
-				83F14B2A1728D0980083C11E /* Game */,
-				83F14B291728D0900083C11E /* States */,
+				83F14CDA172BE9AD0083C11E /* ARKAccelerometerInfo.h */,
+				83F14CDB172BE9AD0083C11E /* ARKAccelerometerInfo.m */,
+				83F14CDC172BE9AD0083C11E /* ARKTouchInfo.h */,
+				83F14CDD172BE9AD0083C11E /* ARKTouchInfo.m */,
 			);
-			name = "Black Holes";
+			name = Input;
+			path = input;
 			sourceTree = "<group>";
 		};
-		83F14B291728D0900083C11E /* States */ = {
+		83F14CF6172BEF990083C11E /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				83F14B2E1728D0DE0083C11E /* HoleState.h */,
-				83F14B2F1728D0DE0083C11E /* HoleState.m */,
-				83F14B311728D14C0083C11E /* HoleStateFactory.h */,
-				83F14B321728D14C0083C11E /* HoleStateFactory.m */,
-				83F14B371728D4020083C11E /* StateTitle.h */,
-				83F14B381728D4030083C11E /* StateTitle.m */,
-				83F14B3A1728D4170083C11E /* StateGame.h */,
-				83F14B3B1728D4170083C11E /* StateGame.m */,
+				83F14CFE172BEFFC0083C11E /* ARKCroppable.h */,
+				83F14CFF172BEFFC0083C11E /* ARKCroppable.m */,
+				83F14D00172BEFFC0083C11E /* ARKDrawable.h */,
+				83F14D01172BEFFC0083C11E /* ARKDrawable.m */,
+				83F14D02172BEFFC0083C11E /* ARKScrollingImage.h */,
+				83F14D03172BEFFC0083C11E /* ARKScrollingImage.m */,
+				83F14CFD172BEFE30083C11E /* Buttons */,
+			);
+			name = Components;
+			path = components;
+			sourceTree = "<group>";
+		};
+		83F14CF7172BEFA00083C11E /* States */ = {
+			isa = PBXGroup;
+			children = (
+				83F14D12172BF04D0083C11E /* ARKGameState.h */,
+				83F14D13172BF04D0083C11E /* ARKGameState.m */,
+				83F14D14172BF04D0083C11E /* ARKStateFactory.h */,
 			);
 			name = States;
+			path = states;
 			sourceTree = "<group>";
 		};
-		83F14B2A1728D0980083C11E /* Game */ = {
+		83F14CF8172BEFAF0083C11E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				83F14D2E172BF0C00083C11E /* ARKiOSDevice.h */,
+				83F14D2F172BF0C00083C11E /* ARKiOSDevice.m */,
+				83F14D30172BF0C00083C11E /* ARKiOSRecordWriter.h */,
+				83F14D31172BF0C00083C11E /* ARKiOSRecordWriter.m */,
+				83F14D32172BF0C00083C11E /* ARKiOSSoundManager.h */,
+				83F14D33172BF0C00083C11E /* ARKiOSSoundManager.m */,
+				83F14D34172BF0C00083C11E /* ARKiOSStateManager.h */,
+				83F14D35172BF0C00083C11E /* ARKiOSStateManager.m */,
+				83F14D36172BF0C00083C11E /* ARKiOSUtilities.h */,
+				83F14D37172BF0C00083C11E /* ARKiOSUtilities.m */,
+				83F14CD8172BE8560083C11E /* Input */,
+				83F14D8E172BFA360083C11E /* UI */,
 			);
-			name = Game;
+			path = iOS;
 			sourceTree = "<group>";
 		};
-		83F14B4A17292CBC0083C11E /* Buttons */ = {
+		83F14CF9172BEFB50083C11E /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				83F14B4B17292CD10083C11E /* ARKButton.h */,
-				83F14B4C17292CD10083C11E /* ARKButton.m */,
-				83F14B4E1729430A0083C11E /* ARKButtonContainer.h */,
-				83F14B4F1729430A0083C11E /* ARKButtonContainer.m */,
+				83F14D46172BF0E30083C11E /* ARKBitmapFont.h */,
+				83F14D47172BF0E30083C11E /* ARKBitmapFont.m */,
+				83F14D48172BF0E30083C11E /* ARKImage.h */,
+				83F14D49172BF0E30083C11E /* ARKImage.m */,
+				83F14D4A172BF0E30083C11E /* ARKLabel.h */,
+				83F14D4B172BF0E30083C11E /* ARKLabel.m */,
+				83F14D4C172BF0E30083C11E /* ARKRectangle.h */,
+				83F14D4D172BF0E30083C11E /* ARKRectangle.m */,
+				83F14D4E172BF0E30083C11E /* ARKSprite.h */,
+				83F14D4F172BF0E30083C11E /* ARKSprite.m */,
+				83F14D50172BF0E30083C11E /* ARKTexture.h */,
+				83F14D51172BF0E30083C11E /* ARKTexture.m */,
+				83F14CFC172BEFC50083C11E /* iOS */,
+			);
+			name = Image;
+			path = image;
+			sourceTree = "<group>";
+		};
+		83F14CFA172BEFB90083C11E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				83F14D7A172BF1DB0083C11E /* ARKLoadable.h */,
+				83F14D7B172BF1DB0083C11E /* ARKLoadable.m */,
+				83F14D7C172BF1DB0083C11E /* ARKLoadableTexture.h */,
+				83F14D7D172BF1DB0083C11E /* ARKLoadableTexture.m */,
+				83F14D7E172BF1DB0083C11E /* ARKResourceManager.h */,
+				83F14D7F172BF1DB0083C11E /* ARKResourceManager.m */,
+				83F14CFB172BEFC20083C11E /* iOS */,
+			);
+			name = Resource;
+			path = resource;
+			sourceTree = "<group>";
+		};
+		83F14CFB172BEFC20083C11E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				83F14D86172BF1FA0083C11E /* ARKiOSResourceManager.h */,
+				83F14D87172BF1FA0083C11E /* ARKiOSResourceManager.m */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		83F14CFC172BEFC50083C11E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				83F14D5E172BF1790083C11E /* ARKBitmapChar.h */,
+				83F14D5F172BF1790083C11E /* ARKBitmapChar.m */,
+				83F14D60172BF1790083C11E /* ARKiOSBitmapFont.h */,
+				83F14D61172BF1790083C11E /* ARKiOSBitmapFont.m */,
+				83F14D62172BF1790083C11E /* ARKiOSImage.h */,
+				83F14D63172BF1790083C11E /* ARKiOSImage.m */,
+				83F14D64172BF1790083C11E /* ARKiOSLabel.h */,
+				83F14D65172BF1790083C11E /* ARKiOSLabel.m */,
+				83F14D66172BF1790083C11E /* ARKiOSRectangle.h */,
+				83F14D67172BF1790083C11E /* ARKiOSRectangle.m */,
+				83F14D68172BF1790083C11E /* ARKiOSSprite.h */,
+				83F14D69172BF1790083C11E /* ARKiOSSprite.m */,
+				83F14D6A172BF1790083C11E /* ARKiOSTexture.h */,
+				83F14D6B172BF1790083C11E /* ARKiOSTexture.m */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		83F14CFD172BEFE30083C11E /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				83F14D0A172BF0420083C11E /* ARKButton.h */,
+				83F14D0B172BF0430083C11E /* ARKButton.m */,
+				83F14D0C172BF0430083C11E /* ARKButtonContainer.h */,
+				83F14D0D172BF0430083C11E /* ARKButtonContainer.m */,
 			);
 			name = Buttons;
+			path = buttons;
+			sourceTree = "<group>";
+		};
+		83F14D8E172BFA360083C11E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				83F14D8F172BFBD60083C11E /* ARKGameDelegate.h */,
+				83F14D90172BFBD60083C11E /* ARKGameDelegate.m */,
+				83F14D38172BF0C00083C11E /* ARKViewController.h */,
+				83F14D39172BF0C00083C11E /* ARKViewController.m */,
+			);
+			name = UI;
+			path = ui;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		83F14CD5172BE8270083C11E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83F14CD9172BE8DD0083C11E /* Framework.h in Headers */,
+				83F14CDE172BE9AD0083C11E /* ARKAccelerometerInfo.h in Headers */,
+				83F14CE0172BE9AD0083C11E /* ARKTouchInfo.h in Headers */,
+				83F14D04172BEFFC0083C11E /* ARKCroppable.h in Headers */,
+				83F14D06172BEFFC0083C11E /* ARKDrawable.h in Headers */,
+				83F14D08172BEFFC0083C11E /* ARKScrollingImage.h in Headers */,
+				83F14D0E172BF0430083C11E /* ARKButton.h in Headers */,
+				83F14D10172BF0430083C11E /* ARKButtonContainer.h in Headers */,
+				83F14D15172BF04D0083C11E /* ARKGameState.h in Headers */,
+				83F14D17172BF04D0083C11E /* ARKStateFactory.h in Headers */,
+				83F14D23172BF05C0083C11E /* ARKDevice.h in Headers */,
+				83F14D25172BF05C0083C11E /* ARKRecordWriter.h in Headers */,
+				83F14D27172BF05C0083C11E /* ARKSoundManager.h in Headers */,
+				83F14D29172BF05C0083C11E /* ARKStateManager.h in Headers */,
+				83F14D2B172BF05C0083C11E /* ARKSystem.h in Headers */,
+				83F14D2C172BF05C0083C11E /* ARKUtilities.h in Headers */,
+				83F14D3A172BF0C00083C11E /* ARKiOSDevice.h in Headers */,
+				83F14D3C172BF0C00083C11E /* ARKiOSRecordWriter.h in Headers */,
+				83F14D3E172BF0C00083C11E /* ARKiOSSoundManager.h in Headers */,
+				83F14D40172BF0C00083C11E /* ARKiOSStateManager.h in Headers */,
+				83F14D42172BF0C00083C11E /* ARKiOSUtilities.h in Headers */,
+				83F14D44172BF0C00083C11E /* ARKViewController.h in Headers */,
+				83F14D52172BF0E30083C11E /* ARKBitmapFont.h in Headers */,
+				83F14D54172BF0E30083C11E /* ARKImage.h in Headers */,
+				83F14D56172BF0E30083C11E /* ARKLabel.h in Headers */,
+				83F14D58172BF0E30083C11E /* ARKRectangle.h in Headers */,
+				83F14D5A172BF0E30083C11E /* ARKSprite.h in Headers */,
+				83F14D5C172BF0E30083C11E /* ARKTexture.h in Headers */,
+				83F14D6C172BF1790083C11E /* ARKBitmapChar.h in Headers */,
+				83F14D6E172BF1790083C11E /* ARKiOSBitmapFont.h in Headers */,
+				83F14D70172BF1790083C11E /* ARKiOSImage.h in Headers */,
+				83F14D72172BF1790083C11E /* ARKiOSLabel.h in Headers */,
+				83F14D74172BF1790083C11E /* ARKiOSRectangle.h in Headers */,
+				83F14D76172BF1790083C11E /* ARKiOSSprite.h in Headers */,
+				83F14D78172BF1790083C11E /* ARKiOSTexture.h in Headers */,
+				83F14D80172BF1DB0083C11E /* ARKLoadable.h in Headers */,
+				83F14D82172BF1DB0083C11E /* ARKLoadableTexture.h in Headers */,
+				83F14D84172BF1DB0083C11E /* ARKResourceManager.h in Headers */,
+				83F14D88172BF1FA0083C11E /* ARKiOSResourceManager.h in Headers */,
+				83F14D91172BFBD60083C11E /* ARKGameDelegate.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		83A88835170F6AD100A61787 /* Ark Framework */ = {
+		83F14CC0172BE7380083C11E /* ARK Framework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83A88864170F6AD100A61787 /* Build configuration list for PBXNativeTarget "Ark Framework" */;
+			buildConfigurationList = 83F14CCF172BE7380083C11E /* Build configuration list for PBXNativeTarget "ARK Framework" */;
 			buildPhases = (
-				83A88832170F6AD100A61787 /* Sources */,
-				83A88833170F6AD100A61787 /* Frameworks */,
-				83A88834170F6AD100A61787 /* Resources */,
+				83F14CBD172BE7380083C11E /* Sources */,
+				83F14CBE172BE7380083C11E /* Frameworks */,
+				83F14CBF172BE7380083C11E /* CopyFiles */,
+				83F14CD5172BE8270083C11E /* Headers */,
+				83F14CE2172BEA770083C11E /* Prepare framework */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Ark Framework";
-			productName = "Ark Framework";
-			productReference = 83A88836170F6AD100A61787 /* Ark Framework.app */;
-			productType = "com.apple.product-type.application";
+			name = "ARK Framework";
+			productName = iOS;
+			productReference = 83F14CC1172BE7380083C11E /* ARKFramework.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		83A8882E170F6AD100A61787 /* Project object */ = {
+		83F14CB9172BE7380083C11E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = LegACy;
 			};
-			buildConfigurationList = 83A88831170F6AD100A61787 /* Build configuration list for PBXProject "Ark Framework" */;
+			buildConfigurationList = 83F14CBC172BE7380083C11E /* Build configuration list for PBXProject "ARK Framework" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 83A8882D170F6AD100A61787;
-			productRefGroup = 83A88837170F6AD100A61787 /* Products */;
+			mainGroup = 83F14CB8172BE7380083C11E;
+			productRefGroup = 83F14CC2172BE7380083C11E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				83A88835170F6AD100A61787 /* Ark Framework */,
+				83F14CC0172BE7380083C11E /* ARK Framework */,
+				83F14CE3172BEAE10083C11E /* Framework */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		83A88834170F6AD100A61787 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
+/* Begin PBXShellScriptBuildPhase section */
+		83F14CE2172BEA770083C11E /* Prepare framework */ = {
+			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83A88848170F6AD100A61787 /* InfoPlist.strings in Resources */,
-				83A88850170F6AD100A61787 /* Default.png in Resources */,
-				83A88852170F6AD100A61787 /* Default@2x.png in Resources */,
-				83A88854170F6AD100A61787 /* Default-568h@2x.png in Resources */,
-				83A8885E170F6AD100A61787 /* ViewController_iPhone.xib in Resources */,
-				83A88861170F6AD100A61787 /* ViewController_iPad.xib in Resources */,
-				832FB28D171562E200E73D11 /* textures in Resources */,
-				832FB29A1716ACC200E73D11 /* ship.json in Resources */,
-				8310BDF5171C0AC0007E4224 /* pixel.json in Resources */,
-				8379C4A317205884005F457C /* audio in Resources */,
-				83F14B471728DD620083C11E /* title.json in Resources */,
-				83F14B491728DD700083C11E /* sky.json in Resources */,
+			);
+			inputPaths = (
+			);
+			name = "Prepare framework";
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"";
 		};
-/* End PBXResourcesBuildPhase section */
+		83F14CE9172BEAFB0083C11E /* Build Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=ARKFramework\nSF_EXECUTABLE_PATH=\"${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nlipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\n# Copy the binary to the other architecture folder to have a complete framework in both.\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		83A88832170F6AD100A61787 /* Sources */ = {
+		83F14CBD172BE7380083C11E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83A8884A170F6AD100A61787 /* main.m in Sources */,
-				83A8884E170F6AD100A61787 /* AppDelegate.m in Sources */,
-				837736641710285400F3C5E9 /* ARKImage.m in Sources */,
-				8377366817102E2300F3C5E9 /* ARKDrawable.m in Sources */,
-				8377366B17103ED900F3C5E9 /* ARKCroppable.m in Sources */,
-				8377366E171046EB00F3C5E9 /* ARKiOSImage.m in Sources */,
-				832FB280171525F100E73D11 /* ARKTexture.m in Sources */,
-				832FB2831715275A00E73D11 /* ARKiOSTexture.m in Sources */,
-				832FB2941715DB2100E73D11 /* ARKResourceManager.m in Sources */,
-				832FB2981715DB9D00E73D11 /* ARKiOSResourceManager.m in Sources */,
-				832FB29D1716B5A700E73D11 /* ARKLoadable.m in Sources */,
-				832FB2A01716C42200E73D11 /* ARKLoadableTexture.m in Sources */,
-				832FB2A3171807F500E73D11 /* ARKUtilities.m in Sources */,
-				832FB2A81718226B00E73D11 /* ARKiOSUtilities.m in Sources */,
-				832FB2AD1719936A00E73D11 /* ARKGameState.m in Sources */,
-				832FB2BA1719D47100E73D11 /* ARKAccelerometerInfo.m in Sources */,
-				832FB2BD171A5CFC00E73D11 /* ARKTouchInfo.m in Sources */,
-				832FB2C4171A685800E73D11 /* ARKRecordWriter.m in Sources */,
-				832FB2C7171A68EE00E73D11 /* ARKiOSRecordWriter.m in Sources */,
-				8310BDE5171A7F9D007E4224 /* ARKSprite.m in Sources */,
-				8310BDEB171BC673007E4224 /* ARKBitmapFont.m in Sources */,
-				8310BDEE171BCC4F007E4224 /* ARKiOSBitmapFont.m in Sources */,
-				8310BDF1171C00EC007E4224 /* ARKBitmapChar.m in Sources */,
-				8379C492171EF1D1005F457C /* ARKLabel.m in Sources */,
-				8379C495171F0A3D005F457C /* ARKiOSLabel.m in Sources */,
-				8379C49B171F0AF0005F457C /* ARKiOSSprite.m in Sources */,
-				8379C49E1720190A005F457C /* ARKSoundManager.m in Sources */,
-				8379C4A117202110005F457C /* ARKiOSSoundManager.m in Sources */,
-				8379C4AA17215968005F457C /* ARKStateManager.m in Sources */,
-				8379C4AD172161D2005F457C /* ARKiOSStateManager.m in Sources */,
-				8379C4B01721BFE1005F457C /* ARKDevice.m in Sources */,
-				831774741722A21D00F585AC /* ARKiOSDevice.m in Sources */,
-				831774771722A57700F585AC /* ARKViewController.m in Sources */,
-				83F14B301728D0DE0083C11E /* HoleState.m in Sources */,
-				83F14B331728D14C0083C11E /* HoleStateFactory.m in Sources */,
-				83F14B391728D4030083C11E /* StateTitle.m in Sources */,
-				83F14B3C1728D4170083C11E /* StateGame.m in Sources */,
-				83F14B4D17292CD10083C11E /* ARKButton.m in Sources */,
-				83F14B501729430A0083C11E /* ARKButtonContainer.m in Sources */,
-				83F14B531729AA190083C11E /* ARKRectangle.m in Sources */,
-				83F14B561729B2010083C11E /* ARKiOSRectangle.m in Sources */,
-				83F14B96172A40F80083C11E /* ARKScrollingImage.m in Sources */,
+				83F14CDF172BE9AD0083C11E /* ARKAccelerometerInfo.m in Sources */,
+				83F14CE1172BE9AD0083C11E /* ARKTouchInfo.m in Sources */,
+				83F14D05172BEFFC0083C11E /* ARKCroppable.m in Sources */,
+				83F14D07172BEFFC0083C11E /* ARKDrawable.m in Sources */,
+				83F14D09172BEFFC0083C11E /* ARKScrollingImage.m in Sources */,
+				83F14D0F172BF0430083C11E /* ARKButton.m in Sources */,
+				83F14D11172BF0430083C11E /* ARKButtonContainer.m in Sources */,
+				83F14D16172BF04D0083C11E /* ARKGameState.m in Sources */,
+				83F14D24172BF05C0083C11E /* ARKDevice.m in Sources */,
+				83F14D26172BF05C0083C11E /* ARKRecordWriter.m in Sources */,
+				83F14D28172BF05C0083C11E /* ARKSoundManager.m in Sources */,
+				83F14D2A172BF05C0083C11E /* ARKStateManager.m in Sources */,
+				83F14D2D172BF05C0083C11E /* ARKUtilities.m in Sources */,
+				83F14D3B172BF0C00083C11E /* ARKiOSDevice.m in Sources */,
+				83F14D3D172BF0C00083C11E /* ARKiOSRecordWriter.m in Sources */,
+				83F14D3F172BF0C00083C11E /* ARKiOSSoundManager.m in Sources */,
+				83F14D41172BF0C00083C11E /* ARKiOSStateManager.m in Sources */,
+				83F14D43172BF0C00083C11E /* ARKiOSUtilities.m in Sources */,
+				83F14D45172BF0C00083C11E /* ARKViewController.m in Sources */,
+				83F14D53172BF0E30083C11E /* ARKBitmapFont.m in Sources */,
+				83F14D55172BF0E30083C11E /* ARKImage.m in Sources */,
+				83F14D57172BF0E30083C11E /* ARKLabel.m in Sources */,
+				83F14D59172BF0E30083C11E /* ARKRectangle.m in Sources */,
+				83F14D5B172BF0E30083C11E /* ARKSprite.m in Sources */,
+				83F14D5D172BF0E30083C11E /* ARKTexture.m in Sources */,
+				83F14D6D172BF1790083C11E /* ARKBitmapChar.m in Sources */,
+				83F14D6F172BF1790083C11E /* ARKiOSBitmapFont.m in Sources */,
+				83F14D71172BF1790083C11E /* ARKiOSImage.m in Sources */,
+				83F14D73172BF1790083C11E /* ARKiOSLabel.m in Sources */,
+				83F14D75172BF1790083C11E /* ARKiOSRectangle.m in Sources */,
+				83F14D77172BF1790083C11E /* ARKiOSSprite.m in Sources */,
+				83F14D79172BF1790083C11E /* ARKiOSTexture.m in Sources */,
+				83F14D81172BF1DB0083C11E /* ARKLoadable.m in Sources */,
+				83F14D83172BF1DB0083C11E /* ARKLoadableTexture.m in Sources */,
+				83F14D85172BF1DB0083C11E /* ARKResourceManager.m in Sources */,
+				83F14D89172BF1FA0083C11E /* ARKiOSResourceManager.m in Sources */,
+				83F14D92172BFBD60083C11E /* ARKGameDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		83A88846170F6AD100A61787 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				83A88847170F6AD100A61787 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
+/* Begin PBXTargetDependency section */
+		83F14CE8172BEAEA0083C11E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83F14CC0172BE7380083C11E /* ARK Framework */;
+			targetProxy = 83F14CE7172BEAEA0083C11E /* PBXContainerItemProxy */;
 		};
-		83A8885C170F6AD100A61787 /* ViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				83A8885D170F6AD100A61787 /* en */,
-			);
-			name = ViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		83A8885F170F6AD100A61787 /* ViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				83A88860170F6AD100A61787 /* en */,
-			);
-			name = ViewController_iPad.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		83A88862170F6AD100A61787 /* Debug */ = {
+		83F14CCD172BE7380083C11E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -621,8 +652,6 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Raka Mahesa (6V8K52S2EN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -637,13 +666,12 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = asdasd;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		83A88863170F6AD100A61787 /* Release */ = {
+		83F14CCE172BE7380083C11E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -655,70 +683,95 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Raka Mahesa (6V8K52S2EN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = asdasd;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		83A88865170F6AD100A61787 /* Debug */ = {
+		83F14CD0172BE7380083C11E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Raka Mahesa (6V8K52S2EN)";
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/iOS.dst;
+				EXECUTABLE_PREFIX = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Ark Framework-Prefix.pch";
-				INFOPLIST_FILE = "Ark Framework-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				WRAPPER_EXTENSION = app;
+				GCC_PREFIX_HEADER = "ARK Framework-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = ARKFramework;
+				PUBLIC_HEADERS_FOLDER_PATH = Headers;
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
 			};
 			name = Debug;
 		};
-		83A88866170F6AD100A61787 /* Release */ = {
+		83F14CD1172BE7380083C11E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Raka Mahesa (6V8K52S2EN)";
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/iOS.dst;
+				EXECUTABLE_PREFIX = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Ark Framework-Prefix.pch";
-				INFOPLIST_FILE = "Ark Framework-Info.plist";
+				GCC_PREFIX_HEADER = "ARK Framework-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = ARKFramework;
+				PUBLIC_HEADERS_FOLDER_PATH = Headers;
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Release;
+		};
+		83F14CE5172BEAE10083C11E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		83F14CE6172BEAE10083C11E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		83A88831170F6AD100A61787 /* Build configuration list for PBXProject "Ark Framework" */ = {
+		83F14CBC172BE7380083C11E /* Build configuration list for PBXProject "ARK Framework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				83A88862170F6AD100A61787 /* Debug */,
-				83A88863170F6AD100A61787 /* Release */,
+				83F14CCD172BE7380083C11E /* Debug */,
+				83F14CCE172BE7380083C11E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83A88864170F6AD100A61787 /* Build configuration list for PBXNativeTarget "Ark Framework" */ = {
+		83F14CCF172BE7380083C11E /* Build configuration list for PBXNativeTarget "ARK Framework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				83A88865170F6AD100A61787 /* Debug */,
-				83A88866170F6AD100A61787 /* Release */,
+				83F14CD0172BE7380083C11E /* Debug */,
+				83F14CD1172BE7380083C11E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+		};
+		83F14CE4172BEAE10083C11E /* Build configuration list for PBXAggregateTarget "Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83F14CE5172BEAE10083C11E /* Debug */,
+				83F14CE6172BEAE10083C11E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 83A8882E170F6AD100A61787 /* Project object */;
+	rootObject = 83F14CB9172BE7380083C11E /* Project object */;
 }
