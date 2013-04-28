@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8358F7A5172C0964006B8AC3 /* HoleState.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F79E172C0964006B8AC3 /* HoleState.m */; };
+		8358F7A6172C0964006B8AC3 /* HoleStateFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7A0172C0964006B8AC3 /* HoleStateFactory.m */; };
+		8358F7A7172C0964006B8AC3 /* StateGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7A2172C0964006B8AC3 /* StateGame.m */; };
+		8358F7A8172C0964006B8AC3 /* StateTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7A4172C0964006B8AC3 /* StateTitle.m */; };
+		8358F7AB172C0A6C006B8AC3 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 8358F7A9172C0A6C006B8AC3 /* audio */; };
+		8358F7AC172C0A6C006B8AC3 /* textures in Resources */ = {isa = PBXBuildFile; fileRef = 8358F7AA172C0A6C006B8AC3 /* textures */; };
+		8358F7B6172C0B38006B8AC3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8358F7B5172C0B38006B8AC3 /* AVFoundation.framework */; };
+		8358F7BB172CCC25006B8AC3 /* HoleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7BA172CCC25006B8AC3 /* HoleUtilities.m */; };
+		8358F7BE172CD0D2006B8AC3 /* RecordLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7BD172CD0D2006B8AC3 /* RecordLoader.m */; };
+		8358F7C1172CD182006B8AC3 /* LoaderLatest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7C0172CD182006B8AC3 /* LoaderLatest.m */; };
+		8358F7C4172CD46F006B8AC3 /* RecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7C3172CD46F006B8AC3 /* RecordManager.m */; };
+		8358F7C7172CDB71006B8AC3 /* data in Resources */ = {isa = PBXBuildFile; fileRef = 8358F7C5172CDB71006B8AC3 /* data */; };
+		8358F7C8172CDB71006B8AC3 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 8358F7C6172CDB71006B8AC3 /* images */; };
 		83F14C5C172BD8C00083C11E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14C5B172BD8C00083C11E /* UIKit.framework */; };
 		83F14C5E172BD8C00083C11E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14C5D172BD8C00083C11E /* Foundation.framework */; };
 		83F14C60172BD8C00083C11E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14C5F172BD8C00083C11E /* CoreGraphics.framework */; };
@@ -18,12 +31,33 @@
 		83F14C72172BD8C00083C11E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F14C71172BD8C00083C11E /* Default.png */; };
 		83F14C74172BD8C00083C11E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F14C73172BD8C00083C11E /* Default@2x.png */; };
 		83F14C76172BD8C00083C11E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F14C75172BD8C00083C11E /* Default-568h@2x.png */; };
-		83F14C7D172BD8C00083C11E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14C7C172BD8C00083C11E /* ViewController.m */; };
 		83F14C80172BD8C00083C11E /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F14C7E172BD8C00083C11E /* ViewController_iPhone.xib */; };
 		83F14C83172BD8C00083C11E /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F14C81172BD8C00083C11E /* ViewController_iPad.xib */; };
+		83F14D96172C041F0083C11E /* ARKFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14D95172C041F0083C11E /* ARKFramework.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8358F79D172C0964006B8AC3 /* HoleState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoleState.h; sourceTree = "<group>"; };
+		8358F79E172C0964006B8AC3 /* HoleState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoleState.m; sourceTree = "<group>"; };
+		8358F79F172C0964006B8AC3 /* HoleStateFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoleStateFactory.h; sourceTree = "<group>"; };
+		8358F7A0172C0964006B8AC3 /* HoleStateFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoleStateFactory.m; sourceTree = "<group>"; };
+		8358F7A1172C0964006B8AC3 /* StateGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateGame.h; sourceTree = "<group>"; };
+		8358F7A2172C0964006B8AC3 /* StateGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateGame.m; sourceTree = "<group>"; };
+		8358F7A3172C0964006B8AC3 /* StateTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateTitle.h; sourceTree = "<group>"; };
+		8358F7A4172C0964006B8AC3 /* StateTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateTitle.m; sourceTree = "<group>"; };
+		8358F7A9172C0A6C006B8AC3 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
+		8358F7AA172C0A6C006B8AC3 /* textures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = textures; sourceTree = "<group>"; };
+		8358F7B5172C0B38006B8AC3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8358F7B9172CCC25006B8AC3 /* HoleUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoleUtilities.h; sourceTree = "<group>"; };
+		8358F7BA172CCC25006B8AC3 /* HoleUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoleUtilities.m; sourceTree = "<group>"; };
+		8358F7BC172CCEAA006B8AC3 /* RecordLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordLoader.h; sourceTree = "<group>"; };
+		8358F7BD172CD0D2006B8AC3 /* RecordLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordLoader.m; sourceTree = "<group>"; };
+		8358F7BF172CD182006B8AC3 /* LoaderLatest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoaderLatest.h; sourceTree = "<group>"; };
+		8358F7C0172CD182006B8AC3 /* LoaderLatest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoaderLatest.m; sourceTree = "<group>"; };
+		8358F7C2172CD46F006B8AC3 /* RecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordManager.h; sourceTree = "<group>"; };
+		8358F7C3172CD46F006B8AC3 /* RecordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordManager.m; sourceTree = "<group>"; };
+		8358F7C5172CDB71006B8AC3 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
+		8358F7C6172CDB71006B8AC3 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		83F14C58172BD8C00083C11E /* Black Holes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Black Holes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F14C5B172BD8C00083C11E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		83F14C5D172BD8C00083C11E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -39,10 +73,9 @@
 		83F14C71172BD8C00083C11E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		83F14C73172BD8C00083C11E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		83F14C75172BD8C00083C11E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		83F14C7B172BD8C00083C11E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		83F14C7C172BD8C00083C11E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		83F14C7F172BD8C00083C11E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		83F14C82172BD8C00083C11E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		83F14D95172C041F0083C11E /* ARKFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKFramework.framework; path = lib/ARKFramework.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,11 +83,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8358F7B6172C0B38006B8AC3 /* AVFoundation.framework in Frameworks */,
 				83F14C5C172BD8C00083C11E /* UIKit.framework in Frameworks */,
 				83F14C5E172BD8C00083C11E /* Foundation.framework in Frameworks */,
 				83F14C60172BD8C00083C11E /* CoreGraphics.framework in Frameworks */,
 				83F14C62172BD8C00083C11E /* GLKit.framework in Frameworks */,
 				83F14C64172BD8C00083C11E /* OpenGLES.framework in Frameworks */,
+				83F14D96172C041F0083C11E /* ARKFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,11 +119,13 @@
 		83F14C5A172BD8C00083C11E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				83F14C5B172BD8C00083C11E /* UIKit.framework */,
 				83F14C5D172BD8C00083C11E /* Foundation.framework */,
+				8358F7B5172C0B38006B8AC3 /* AVFoundation.framework */,
+				83F14D95172C041F0083C11E /* ARKFramework.framework */,
 				83F14C5F172BD8C00083C11E /* CoreGraphics.framework */,
-				83F14C61172BD8C00083C11E /* GLKit.framework */,
 				83F14C63172BD8C00083C11E /* OpenGLES.framework */,
+				83F14C61172BD8C00083C11E /* GLKit.framework */,
+				83F14C5B172BD8C00083C11E /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -111,8 +148,9 @@
 				83F14C6B172BD8C00083C11E /* main.m */,
 				83F14C6E172BD8C00083C11E /* AppDelegate.h */,
 				83F14C6F172BD8C00083C11E /* AppDelegate.m */,
-				83F14C7B172BD8C00083C11E /* ViewController.h */,
-				83F14C7C172BD8C00083C11E /* ViewController.m */,
+				83F14D97172C064A0083C11E /* Game */,
+				83F14D99172C06730083C11E /* States */,
+				83F14D98172C066A0083C11E /* System */,
 			);
 			name = Sources;
 			path = src;
@@ -121,9 +159,14 @@
 		83F14C8A172BD9E50083C11E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				8358F7A9172C0A6C006B8AC3 /* audio */,
+				8358F7C5172CDB71006B8AC3 /* data */,
+				8358F7C6172CDB71006B8AC3 /* images */,
+				8358F7AA172C0A6C006B8AC3 /* textures */,
 			);
 			name = Assets;
-			sourceTree = "<group>";
+			path = assets;
+			sourceTree = SOURCE_ROOT;
 		};
 		83F14C8B172BD9EA0083C11E /* Resources */ = {
 			isa = PBXGroup;
@@ -135,6 +178,55 @@
 			name = Resources;
 			path = res;
 			sourceTree = SOURCE_ROOT;
+		};
+		83F14D97172C064A0083C11E /* Game */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Game;
+			path = game;
+			sourceTree = "<group>";
+		};
+		83F14D98172C066A0083C11E /* System */ = {
+			isa = PBXGroup;
+			children = (
+				8358F7B9172CCC25006B8AC3 /* HoleUtilities.h */,
+				8358F7BA172CCC25006B8AC3 /* HoleUtilities.m */,
+				83F14D9A172C06780083C11E /* Records */,
+			);
+			name = System;
+			path = system;
+			sourceTree = "<group>";
+		};
+		83F14D99172C06730083C11E /* States */ = {
+			isa = PBXGroup;
+			children = (
+				8358F79D172C0964006B8AC3 /* HoleState.h */,
+				8358F79E172C0964006B8AC3 /* HoleState.m */,
+				8358F79F172C0964006B8AC3 /* HoleStateFactory.h */,
+				8358F7A0172C0964006B8AC3 /* HoleStateFactory.m */,
+				8358F7A1172C0964006B8AC3 /* StateGame.h */,
+				8358F7A2172C0964006B8AC3 /* StateGame.m */,
+				8358F7A3172C0964006B8AC3 /* StateTitle.h */,
+				8358F7A4172C0964006B8AC3 /* StateTitle.m */,
+			);
+			name = States;
+			path = states;
+			sourceTree = "<group>";
+		};
+		83F14D9A172C06780083C11E /* Records */ = {
+			isa = PBXGroup;
+			children = (
+				8358F7BC172CCEAA006B8AC3 /* RecordLoader.h */,
+				8358F7BD172CD0D2006B8AC3 /* RecordLoader.m */,
+				8358F7BF172CD182006B8AC3 /* LoaderLatest.h */,
+				8358F7C0172CD182006B8AC3 /* LoaderLatest.m */,
+				8358F7C2172CD46F006B8AC3 /* RecordManager.h */,
+				8358F7C3172CD46F006B8AC3 /* RecordManager.m */,
+			);
+			name = Records;
+			path = records;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -163,7 +255,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0460;
-				ORGANIZATIONNAME = LegACy;
+				ORGANIZATIONNAME = "Raka Mahesa";
 			};
 			buildConfigurationList = 83F14C53172BD8C00083C11E /* Build configuration list for PBXProject "ARK Framework Example" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -193,6 +285,10 @@
 				83F14C76172BD8C00083C11E /* Default-568h@2x.png in Resources */,
 				83F14C80172BD8C00083C11E /* ViewController_iPhone.xib in Resources */,
 				83F14C83172BD8C00083C11E /* ViewController_iPad.xib in Resources */,
+				8358F7AB172C0A6C006B8AC3 /* audio in Resources */,
+				8358F7AC172C0A6C006B8AC3 /* textures in Resources */,
+				8358F7C7172CDB71006B8AC3 /* data in Resources */,
+				8358F7C8172CDB71006B8AC3 /* images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +301,14 @@
 			files = (
 				83F14C6C172BD8C00083C11E /* main.m in Sources */,
 				83F14C70172BD8C00083C11E /* AppDelegate.m in Sources */,
-				83F14C7D172BD8C00083C11E /* ViewController.m in Sources */,
+				8358F7A5172C0964006B8AC3 /* HoleState.m in Sources */,
+				8358F7A6172C0964006B8AC3 /* HoleStateFactory.m in Sources */,
+				8358F7A7172C0964006B8AC3 /* StateGame.m in Sources */,
+				8358F7A8172C0964006B8AC3 /* StateTitle.m in Sources */,
+				8358F7BB172CCC25006B8AC3 /* HoleUtilities.m in Sources */,
+				8358F7BE172CD0D2006B8AC3 /* RecordLoader.m in Sources */,
+				8358F7C1172CD182006B8AC3 /* LoaderLatest.m in Sources */,
+				8358F7C4172CD46F006B8AC3 /* RecordManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +407,10 @@
 		83F14C87172BD8C00083C11E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/lib\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ARK Framework Example-Prefix.pch";
 				INFOPLIST_FILE = "ARK Framework Example-Info.plist";
@@ -315,6 +422,10 @@
 		83F14C88172BD8C00083C11E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/lib\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ARK Framework Example-Prefix.pch";
 				INFOPLIST_FILE = "ARK Framework Example-Info.plist";
@@ -342,6 +453,7 @@
 				83F14C88172BD8C00083C11E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

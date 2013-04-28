@@ -6,14 +6,8 @@
 //  Copyright (c) 2013 LegACy. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <ARKFramework/Framework.h>
 
-@class ViewController;
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) ViewController *viewController;
+@interface AppDelegate : ARKGameDelegate<ARKSystem>
 
 @end
