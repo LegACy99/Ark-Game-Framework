@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 LegACy. All rights reserved.
 //
 
-
 //Header files
 #import <ARKFramework/ARKDrawable.h>
 #import <ARKFramework/ARKCroppable.h>

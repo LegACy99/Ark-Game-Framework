@@ -151,7 +151,7 @@ const NSString* RESOURCEMANAGER_KEY_SHEET_GAP		= @"Gap";
 				//Get data
 				NSArray* Offset	= SheetOffset;
 				OffsetX			= [(NSNumber*)[Offset objectAtIndex:0] intValue];
-				OffsetY			= [(NSNumber*)[Offset objectAtIndex:2] intValue];
+				OffsetY			= [(NSNumber*)[Offset objectAtIndex:1] intValue];
 			}
 			
 			//If gap exist

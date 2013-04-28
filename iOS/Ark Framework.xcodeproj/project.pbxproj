@@ -23,7 +23,7 @@
 
 /* Begin PBXBuildFile section */
 		83F14CC5172BE7380083C11E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14CC4172BE7380083C11E /* Foundation.framework */; };
-		83F14CD9172BE8DD0083C11E /* Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14CC9172BE7380083C11E /* Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F14CD9172BE8DD0083C11E /* ARKFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14CC9172BE7380083C11E /* ARKFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83F14CDE172BE9AD0083C11E /* ARKAccelerometerInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14CDA172BE9AD0083C11E /* ARKAccelerometerInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83F14CDF172BE9AD0083C11E /* ARKAccelerometerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14CDB172BE9AD0083C11E /* ARKAccelerometerInfo.m */; };
 		83F14CE0172BE9AD0083C11E /* ARKTouchInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14CDC172BE9AD0083C11E /* ARKTouchInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -133,7 +133,7 @@
 		83F14CC1172BE7380083C11E /* ARKFramework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = ARKFramework.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F14CC4172BE7380083C11E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		83F14CC8172BE7380083C11E /* ARK Framework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ARK Framework-Prefix.pch"; sourceTree = "<group>"; };
-		83F14CC9172BE7380083C11E /* Framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Framework.h; sourceTree = "<group>"; };
+		83F14CC9172BE7380083C11E /* ARKFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARKFramework.h; sourceTree = "<group>"; };
 		83F14CDA172BE9AD0083C11E /* ARKAccelerometerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKAccelerometerInfo.h; sourceTree = "<group>"; };
 		83F14CDB172BE9AD0083C11E /* ARKAccelerometerInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKAccelerometerInfo.m; sourceTree = "<group>"; };
 		83F14CDC172BE9AD0083C11E /* ARKTouchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKTouchInfo.h; sourceTree = "<group>"; };
@@ -276,7 +276,7 @@
 		83F14CD6172BE84D0083C11E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				83F14CC9172BE7380083C11E /* Framework.h */,
+				83F14CC9172BE7380083C11E /* ARKFramework.h */,
 				83F14CF6172BEF990083C11E /* Components */,
 				83F14CF7172BEFA00083C11E /* States */,
 				83F14CD7172BE8510083C11E /* System */,
@@ -461,7 +461,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83F14CD9172BE8DD0083C11E /* Framework.h in Headers */,
+				83F14CD9172BE8DD0083C11E /* ARKFramework.h in Headers */,
 				83F14CDE172BE9AD0083C11E /* ARKAccelerometerInfo.h in Headers */,
 				83F14CE0172BE9AD0083C11E /* ARKTouchInfo.h in Headers */,
 				83F14D04172BEFFC0083C11E /* ARKCroppable.h in Headers */,
@@ -762,6 +762,7 @@
 				83F14CD1172BE7380083C11E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83F14CE4172BEAE10083C11E /* Build configuration list for PBXAggregateTarget "Framework" */ = {
 			isa = XCConfigurationList;
@@ -770,6 +771,7 @@
 				83F14CE6172BEAE10083C11E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
