@@ -102,7 +102,7 @@
 		83F14D85172BF1DB0083C11E /* ARKResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D7F172BF1DB0083C11E /* ARKResourceManager.m */; };
 		83F14D88172BF1FA0083C11E /* ARKiOSResourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D86172BF1FA0083C11E /* ARKiOSResourceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83F14D89172BF1FA0083C11E /* ARKiOSResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D87172BF1FA0083C11E /* ARKiOSResourceManager.m */; };
-		83F14D91172BFBD60083C11E /* ARKGameDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D8F172BFBD60083C11E /* ARKGameDelegate.h */; };
+		83F14D91172BFBD60083C11E /* ARKGameDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14D8F172BFBD60083C11E /* ARKGameDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83F14D92172BFBD60083C11E /* ARKGameDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14D90172BFBD60083C11E /* ARKGameDelegate.m */; };
 		83F14D94172BFD000083C11E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14D93172BFCFD0083C11E /* UIKit.framework */; };
 /* End PBXBuildFile section */

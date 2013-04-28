@@ -26,7 +26,10 @@
 #import <ARKFramework/ARKiOSSoundManager.h>
 #import <ARKFramework/ARKiOSRecordWriter.h>
 #import <ARKFramework/ARKiOSUtilities.h>
+#import <ARKFramework/ARKTouchInfo.h>
+#import <ARKFramework/ARKAccelerometerInfo.h>
 #import <ARKFramework/ARKViewController.h>
+#import <ARKFramework/ARKGameDelegate.h>
 #import <ARKFramework/ARKImage.h>
 #import <ARKFramework/ARKSprite.h>
 #import <ARKFramework/ARKLabel.h>
@@ -40,8 +43,6 @@
 #import <ARKFramework/ARKiOSRectangle.h>
 #import <ARKFramework/ARKiOSTexture.h>
 #import <ARKFramework/ARKiOSBitmapFont.h>
-#import <ARKFramework/ARKTouchInfo.h>
-#import <ARKFramework/ARKAccelerometerInfo.h>
 #import <ARKFramework/ARKResourceManager.h>
 #import <ARKFramework/ARKLoadable.h>
 #import <ARKFramework/ARKLoadableTexture.h>
