@@ -49,7 +49,7 @@
 	//Super
 	[super updateWithDelta:time withKeys:keys withTouches:touches withAccelerometer:accel];
 	
-	//Managee timer
+	//Manage timer
 	m_Timer -= time;
 	if (m_Timer < 0) m_Timer += 1000;
 	

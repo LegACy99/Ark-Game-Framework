@@ -31,11 +31,21 @@
 	int		m_Evaded;
 	
 	//Game
-	ARKImage*		m_Sky;
-	ARKImage*		m_Ship;
-	NSMutableArray*	m_Holes;
-	NSMutableArray*	m_Labels;
-	NSMutableArray*	m_Bullets;
+	ARKImage*			m_Ship;
+	NSMutableArray*		m_Holes;
+	NSMutableArray*		m_Labels;
+	NSMutableArray*		m_Bullets;
+	ARKScrollingImage*	m_Sky;
+	
+	//Interface
+	ARKButtonContainer*	m_Buttons;
+	ARKRectangle*		m_HealthBar;
+	ARKLabel*			m_ScoreCounter;
+	ARKLabel*			m_Tutorial1;
+	ARKLabel*			m_Tutorial2;
+	ARKLabel*			m_Tutorial3;
+	ARKImage* 			m_Target;
+	ARKImage* 			m_Frame;
 }
 
 //Functions

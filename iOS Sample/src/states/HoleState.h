@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 LegACy. All rights reserved.
 //
 
-#import <ARKFramework/Framework.h>
+#import <ARKFramework/ARKFramework.h>
 
 @interface HoleState : ARKGameState
 

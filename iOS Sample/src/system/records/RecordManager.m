@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Raka Mahesa. All rights reserved.
 //
 
-#import <ARKFramework/Framework.h>
+#import <ARKFramework/ARKFramework.h>
 #import "RecordManager.h"
 #import "LoaderLatest.h"
 

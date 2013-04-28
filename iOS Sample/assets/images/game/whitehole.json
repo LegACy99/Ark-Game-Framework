@@ -1,0 +1,9 @@
+{
+	"Texture":"texture.png",
+	"Rect": {
+		"Top":148,
+		"Left":641,
+		"Right":697,
+		"Bottom":204
+	}
+}

@@ -24,7 +24,7 @@
 //Properties
 @property (readonly, getter = getVersion)		int version;
 @property (readonly, getter = getHighscore)		int highscore;
-@property (readonly, getter = hasShwonTutorial)	BOOL tutorial;
+@property (readonly, getter = hasShownTutorial)	BOOL tutorial;
 
 //Singleton
 + (RecordManager*)instance;

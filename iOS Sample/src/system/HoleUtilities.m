@@ -7,7 +7,7 @@
 //
 
 #import "HoleUtilities.h"
-#import <ARKFramework/Framework.h>
+#import <ARKFramework/ARKFramework.h>
 
 //Folders
 const NSString* UTIL_GAME_IMAGES		= @"images/game/";

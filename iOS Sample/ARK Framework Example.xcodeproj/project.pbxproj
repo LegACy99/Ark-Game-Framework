@@ -20,6 +20,9 @@
 		8358F7C4172CD46F006B8AC3 /* RecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7C3172CD46F006B8AC3 /* RecordManager.m */; };
 		8358F7C7172CDB71006B8AC3 /* data in Resources */ = {isa = PBXBuildFile; fileRef = 8358F7C5172CDB71006B8AC3 /* data */; };
 		8358F7C8172CDB71006B8AC3 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 8358F7C6172CDB71006B8AC3 /* images */; };
+		8358F7CB172CFC61006B8AC3 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7CA172CFC61006B8AC3 /* Bullet.m */; };
+		8358F7CE172D0834006B8AC3 /* Wormhole.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7CD172D0834006B8AC3 /* Wormhole.m */; };
+		8358F7D2172D7C45006B8AC3 /* FloatingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7D1172D7C45006B8AC3 /* FloatingLabel.m */; };
 		83F14C5C172BD8C00083C11E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14C5B172BD8C00083C11E /* UIKit.framework */; };
 		83F14C5E172BD8C00083C11E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14C5D172BD8C00083C11E /* Foundation.framework */; };
 		83F14C60172BD8C00083C11E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14C5F172BD8C00083C11E /* CoreGraphics.framework */; };
@@ -58,6 +61,12 @@
 		8358F7C3172CD46F006B8AC3 /* RecordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordManager.m; sourceTree = "<group>"; };
 		8358F7C5172CDB71006B8AC3 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		8358F7C6172CDB71006B8AC3 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		8358F7C9172CFC61006B8AC3 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
+		8358F7CA172CFC61006B8AC3 /* Bullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bullet.m; sourceTree = "<group>"; };
+		8358F7CC172D0834006B8AC3 /* Wormhole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wormhole.h; sourceTree = "<group>"; };
+		8358F7CD172D0834006B8AC3 /* Wormhole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wormhole.m; sourceTree = "<group>"; };
+		8358F7D0172D7C45006B8AC3 /* FloatingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingLabel.h; sourceTree = "<group>"; };
+		8358F7D1172D7C45006B8AC3 /* FloatingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingLabel.m; sourceTree = "<group>"; };
 		83F14C58172BD8C00083C11E /* Black Holes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Black Holes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F14C5B172BD8C00083C11E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		83F14C5D172BD8C00083C11E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -96,6 +105,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8358F7CF172D7BF7006B8AC3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8358F7D0172D7C45006B8AC3 /* FloatingLabel.h */,
+				8358F7D1172D7C45006B8AC3 /* FloatingLabel.m */,
+			);
+			name = Components;
+			path = components;
+			sourceTree = "<group>";
+		};
 		83F14C4F172BD8C00083C11E = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +167,7 @@
 				83F14C6B172BD8C00083C11E /* main.m */,
 				83F14C6E172BD8C00083C11E /* AppDelegate.h */,
 				83F14C6F172BD8C00083C11E /* AppDelegate.m */,
+				8358F7CF172D7BF7006B8AC3 /* Components */,
 				83F14D97172C064A0083C11E /* Game */,
 				83F14D99172C06730083C11E /* States */,
 				83F14D98172C066A0083C11E /* System */,
@@ -182,6 +202,10 @@
 		83F14D97172C064A0083C11E /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				8358F7C9172CFC61006B8AC3 /* Bullet.h */,
+				8358F7CA172CFC61006B8AC3 /* Bullet.m */,
+				8358F7CC172D0834006B8AC3 /* Wormhole.h */,
+				8358F7CD172D0834006B8AC3 /* Wormhole.m */,
 			);
 			name = Game;
 			path = game;
@@ -309,6 +333,9 @@
 				8358F7BE172CD0D2006B8AC3 /* RecordLoader.m in Sources */,
 				8358F7C1172CD182006B8AC3 /* LoaderLatest.m in Sources */,
 				8358F7C4172CD46F006B8AC3 /* RecordManager.m in Sources */,
+				8358F7CB172CFC61006B8AC3 /* Bullet.m in Sources */,
+				8358F7CE172D0834006B8AC3 /* Wormhole.m in Sources */,
+				8358F7D2172D7C45006B8AC3 /* FloatingLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

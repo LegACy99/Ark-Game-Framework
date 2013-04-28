@@ -1,0 +1,8 @@
+{
+	"Texture":"texture.png",
+	"Sheet": {
+		"Offset":[0, 442],
+		"Grid":[2, 1],
+		"Cell":[56, 56]
+	}
+}
