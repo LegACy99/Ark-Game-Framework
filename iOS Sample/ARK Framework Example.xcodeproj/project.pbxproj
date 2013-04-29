@@ -25,6 +25,13 @@
 		8358F7D2172D7C45006B8AC3 /* FloatingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7D1172D7C45006B8AC3 /* FloatingLabel.m */; };
 		8358F7D5172E5084006B8AC3 /* StatePause.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7D4172E5084006B8AC3 /* StatePause.m */; };
 		8358F7D8172E5843006B8AC3 /* StateResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7D7172E5843006B8AC3 /* StateResult.m */; };
+		8358F7EC172EEE3D006B8AC3 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8358F7EB172EEE3D006B8AC3 /* icon.png */; };
+		8358F7EE172EEE47006B8AC3 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8358F7ED172EEE46006B8AC3 /* icon@2x.png */; };
+		8358F7F0172EEE56006B8AC3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8358F7EF172EEE56006B8AC3 /* Default.png */; };
+		8358F7F2172EEE5D006B8AC3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8358F7F1172EEE5D006B8AC3 /* Default@2x.png */; };
+		8358F7F4172EEE68006B8AC3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8358F7F3172EEE68006B8AC3 /* Default-568h@2x.png */; };
+		8358F7F7172EF021006B8AC3 /* icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 8358F7F5172EF021006B8AC3 /* icon-Small.png */; };
+		8358F7F8172EF021006B8AC3 /* icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8358F7F6172EF021006B8AC3 /* icon-Small@2x.png */; };
 		83F14C5C172BD8C00083C11E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14C5B172BD8C00083C11E /* UIKit.framework */; };
 		83F14C5E172BD8C00083C11E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14C5D172BD8C00083C11E /* Foundation.framework */; };
 		83F14C60172BD8C00083C11E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14C5F172BD8C00083C11E /* CoreGraphics.framework */; };
@@ -33,9 +40,6 @@
 		83F14C6A172BD8C00083C11E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F14C68172BD8C00083C11E /* InfoPlist.strings */; };
 		83F14C6C172BD8C00083C11E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14C6B172BD8C00083C11E /* main.m */; };
 		83F14C70172BD8C00083C11E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F14C6F172BD8C00083C11E /* AppDelegate.m */; };
-		83F14C72172BD8C00083C11E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F14C71172BD8C00083C11E /* Default.png */; };
-		83F14C74172BD8C00083C11E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F14C73172BD8C00083C11E /* Default@2x.png */; };
-		83F14C76172BD8C00083C11E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F14C75172BD8C00083C11E /* Default-568h@2x.png */; };
 		83F14C80172BD8C00083C11E /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F14C7E172BD8C00083C11E /* ViewController_iPhone.xib */; };
 		83F14C83172BD8C00083C11E /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F14C81172BD8C00083C11E /* ViewController_iPad.xib */; };
 		83F14D96172C041F0083C11E /* ARKFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14D95172C041F0083C11E /* ARKFramework.framework */; };
@@ -73,6 +77,13 @@
 		8358F7D4172E5084006B8AC3 /* StatePause.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatePause.m; sourceTree = "<group>"; };
 		8358F7D6172E5843006B8AC3 /* StateResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateResult.h; sourceTree = "<group>"; };
 		8358F7D7172E5843006B8AC3 /* StateResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateResult.m; sourceTree = "<group>"; };
+		8358F7EB172EEE3D006B8AC3 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		8358F7ED172EEE46006B8AC3 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		8358F7EF172EEE56006B8AC3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		8358F7F1172EEE5D006B8AC3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		8358F7F3172EEE68006B8AC3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		8358F7F5172EF021006B8AC3 /* icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-Small.png"; sourceTree = "<group>"; };
+		8358F7F6172EF021006B8AC3 /* icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-Small@2x.png"; sourceTree = "<group>"; };
 		83F14C58172BD8C00083C11E /* Black Holes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Black Holes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F14C5B172BD8C00083C11E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		83F14C5D172BD8C00083C11E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -85,9 +96,6 @@
 		83F14C6D172BD8C00083C11E /* ARK Framework Example-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ARK Framework Example-Prefix.pch"; sourceTree = "<group>"; };
 		83F14C6E172BD8C00083C11E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		83F14C6F172BD8C00083C11E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		83F14C71172BD8C00083C11E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		83F14C73172BD8C00083C11E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		83F14C75172BD8C00083C11E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		83F14C7F172BD8C00083C11E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		83F14C82172BD8C00083C11E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		83F14D95172C041F0083C11E /* ARKFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKFramework.framework; path = lib/ARKFramework.framework; sourceTree = SOURCE_ROOT; };
@@ -197,9 +205,13 @@
 		83F14C8B172BD9EA0083C11E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				83F14C71172BD8C00083C11E /* Default.png */,
-				83F14C73172BD8C00083C11E /* Default@2x.png */,
-				83F14C75172BD8C00083C11E /* Default-568h@2x.png */,
+				8358F7EB172EEE3D006B8AC3 /* icon.png */,
+				8358F7ED172EEE46006B8AC3 /* icon@2x.png */,
+				8358F7F5172EF021006B8AC3 /* icon-Small.png */,
+				8358F7F6172EF021006B8AC3 /* icon-Small@2x.png */,
+				8358F7F3172EEE68006B8AC3 /* Default-568h@2x.png */,
+				8358F7F1172EEE5D006B8AC3 /* Default@2x.png */,
+				8358F7EF172EEE56006B8AC3 /* Default.png */,
 			);
 			name = Resources;
 			path = res;
@@ -314,15 +326,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F14C6A172BD8C00083C11E /* InfoPlist.strings in Resources */,
-				83F14C72172BD8C00083C11E /* Default.png in Resources */,
-				83F14C74172BD8C00083C11E /* Default@2x.png in Resources */,
-				83F14C76172BD8C00083C11E /* Default-568h@2x.png in Resources */,
 				83F14C80172BD8C00083C11E /* ViewController_iPhone.xib in Resources */,
 				83F14C83172BD8C00083C11E /* ViewController_iPad.xib in Resources */,
 				8358F7AB172C0A6C006B8AC3 /* audio in Resources */,
 				8358F7AC172C0A6C006B8AC3 /* textures in Resources */,
 				8358F7C7172CDB71006B8AC3 /* data in Resources */,
 				8358F7C8172CDB71006B8AC3 /* images in Resources */,
+				8358F7EC172EEE3D006B8AC3 /* icon.png in Resources */,
+				8358F7EE172EEE47006B8AC3 /* icon@2x.png in Resources */,
+				8358F7F0172EEE56006B8AC3 /* Default.png in Resources */,
+				8358F7F2172EEE5D006B8AC3 /* Default@2x.png in Resources */,
+				8358F7F4172EEE68006B8AC3 /* Default-568h@2x.png in Resources */,
+				8358F7F7172EF021006B8AC3 /* icon-Small.png in Resources */,
+				8358F7F8172EF021006B8AC3 /* icon-Small@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +470,7 @@
 				GCC_PREFIX_HEADER = "ARK Framework Example-Prefix.pch";
 				INFOPLIST_FILE = "ARK Framework Example-Info.plist";
 				PRODUCT_NAME = "Black Holes";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -469,6 +486,7 @@
 				GCC_PREFIX_HEADER = "ARK Framework Example-Prefix.pch";
 				INFOPLIST_FILE = "ARK Framework Example-Info.plist";
 				PRODUCT_NAME = "Black Holes";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
