@@ -7,6 +7,8 @@
 //
 
 #import "HoleStateFactory.h"
+#import "StateResult.h"
+#import "StatePause.h"
 #import "StateTitle.h"
 #import "StateGame.h"
 
@@ -29,6 +31,26 @@
 		//Check
 		if (parameters && [parameters count] >= 1 && [[parameters objectAtIndex:0] isKindOfClass:[StateGame class]])
 			NewState = [[StateTitle alloc] initWithGame:[parameters objectAtIndex:0]];
+	} else if (ID == STATE_PAUSE ) {
+		//Check
+		if (parameters && [parameters count] >= 1 && [[parameters objectAtIndex:0] isKindOfClass:[StateGame class]])
+			NewState = [[StatePause alloc] initWithGame:[parameters objectAtIndex:0]];
+	} else if (ID == STATE_RESULT) {
+		//Check
+		if (parameters && [parameters count] >= 6 &&
+			[[parameters objectAtIndex:0] isKindOfClass:[StateGame class]] &&
+			[[parameters objectAtIndex:1] isKindOfClass:[NSNumber class]] &&
+			[[parameters objectAtIndex:2] isKindOfClass:[NSNumber class]] &&
+			[[parameters objectAtIndex:3] isKindOfClass:[NSNumber class]] &&
+			[[parameters objectAtIndex:4] isKindOfClass:[NSNumber class]] &&
+			[[parameters objectAtIndex:5] isKindOfClass:[NSNumber class]])
+			NewState = [[StateResult alloc] initWithGame:[parameters objectAtIndex:0]
+											   withScore:[[parameters objectAtIndex:1] intValue]
+											  withEvaded:[[parameters objectAtIndex:2] intValue]
+										   withDestroyed:[[parameters objectAtIndex:3] intValue]
+											withNearMiss:[[parameters objectAtIndex:4] intValue]
+											withDuration:[[parameters objectAtIndex:5] intValue]
+						];
 	}
 	
 	//Return

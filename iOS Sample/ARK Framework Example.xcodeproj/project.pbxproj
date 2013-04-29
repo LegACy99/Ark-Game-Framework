@@ -23,6 +23,8 @@
 		8358F7CB172CFC61006B8AC3 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7CA172CFC61006B8AC3 /* Bullet.m */; };
 		8358F7CE172D0834006B8AC3 /* Wormhole.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7CD172D0834006B8AC3 /* Wormhole.m */; };
 		8358F7D2172D7C45006B8AC3 /* FloatingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7D1172D7C45006B8AC3 /* FloatingLabel.m */; };
+		8358F7D5172E5084006B8AC3 /* StatePause.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7D4172E5084006B8AC3 /* StatePause.m */; };
+		8358F7D8172E5843006B8AC3 /* StateResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 8358F7D7172E5843006B8AC3 /* StateResult.m */; };
 		83F14C5C172BD8C00083C11E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14C5B172BD8C00083C11E /* UIKit.framework */; };
 		83F14C5E172BD8C00083C11E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14C5D172BD8C00083C11E /* Foundation.framework */; };
 		83F14C60172BD8C00083C11E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14C5F172BD8C00083C11E /* CoreGraphics.framework */; };
@@ -67,6 +69,10 @@
 		8358F7CD172D0834006B8AC3 /* Wormhole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wormhole.m; sourceTree = "<group>"; };
 		8358F7D0172D7C45006B8AC3 /* FloatingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingLabel.h; sourceTree = "<group>"; };
 		8358F7D1172D7C45006B8AC3 /* FloatingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingLabel.m; sourceTree = "<group>"; };
+		8358F7D3172E5083006B8AC3 /* StatePause.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatePause.h; sourceTree = "<group>"; };
+		8358F7D4172E5084006B8AC3 /* StatePause.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatePause.m; sourceTree = "<group>"; };
+		8358F7D6172E5843006B8AC3 /* StateResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateResult.h; sourceTree = "<group>"; };
+		8358F7D7172E5843006B8AC3 /* StateResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateResult.m; sourceTree = "<group>"; };
 		83F14C58172BD8C00083C11E /* Black Holes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Black Holes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F14C5B172BD8C00083C11E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		83F14C5D172BD8C00083C11E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -233,6 +239,10 @@
 				8358F7A2172C0964006B8AC3 /* StateGame.m */,
 				8358F7A3172C0964006B8AC3 /* StateTitle.h */,
 				8358F7A4172C0964006B8AC3 /* StateTitle.m */,
+				8358F7D3172E5083006B8AC3 /* StatePause.h */,
+				8358F7D4172E5084006B8AC3 /* StatePause.m */,
+				8358F7D6172E5843006B8AC3 /* StateResult.h */,
+				8358F7D7172E5843006B8AC3 /* StateResult.m */,
 			);
 			name = States;
 			path = states;
@@ -336,6 +346,8 @@
 				8358F7CB172CFC61006B8AC3 /* Bullet.m in Sources */,
 				8358F7CE172D0834006B8AC3 /* Wormhole.m in Sources */,
 				8358F7D2172D7C45006B8AC3 /* FloatingLabel.m in Sources */,
+				8358F7D5172E5084006B8AC3 /* StatePause.m in Sources */,
+				8358F7D8172E5843006B8AC3 /* StateResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

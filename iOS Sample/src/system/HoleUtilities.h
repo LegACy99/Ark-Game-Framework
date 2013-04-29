@@ -11,7 +11,6 @@
 @interface HoleUtilities : NSObject
 
 //Font
-+ (NSString*)FONT_COIN;
 + (NSString*)FONT_SCORE;
 + (NSString*)FONT_PIXEL;
 + (NSString*)FONT_PIXEL_BOLD;
@@ -19,7 +18,6 @@
 + (NSString*)FONT_CAPS_SMALL;
 
 //Font textures
-+ (NSString*)FONT_COIN_TEXTURE;
 + (NSString*)FONT_SCORE_TEXTURE;
 + (NSString*)FONT_PIXEL_TEXTURE;
 + (NSString*)FONT_PIXEL_BOLD_TEXTURE;

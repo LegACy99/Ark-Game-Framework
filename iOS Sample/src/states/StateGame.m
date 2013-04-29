@@ -43,8 +43,20 @@ const float GAME_SHIP_SPEED		= 80;
 	if (self) {
 		//Load stuff
 		[[RecordManager instance] load];
+		[[ARKResourceManager instance] addFontFromFile:[HoleUtilities FONT_SCORE]];
+		[[ARKResourceManager instance] addFontFromFile:[HoleUtilities FONT_PIXEL]];
 		[[ARKResourceManager instance] addFontFromFile:[HoleUtilities FONT_PIXEL_SMALL]];
+		[[ARKResourceManager instance] addFontFromFile:[HoleUtilities FONT_CAPS_SMALL]];
+		[[ARKResourceManager instance] addTextureFromFile:[HoleUtilities FONT_SCORE_TEXTURE] withAntiAlias:NO];
+		[[ARKResourceManager instance] addTextureFromFile:[HoleUtilities FONT_PIXEL_TEXTURE] withAntiAlias:NO];
 		[[ARKResourceManager instance] addTextureFromFile:[HoleUtilities FONT_PIXEL_SMALL_TEXTURE] withAntiAlias:NO];
+		[[ARKResourceManager instance] addTextureFromFile:[HoleUtilities FONT_CAPS_SMALL_TEXTURE] withAntiAlias:NO];
+		[[ARKResourceManager instance] addBGMFromFile:[UTILITIES_BGM_FOLDER stringByAppendingString:@"intro.mp3"]];
+		[[ARKResourceManager instance] addSFXFromFile:[UTILITIES_SFX_FOLDER stringByAppendingString:@"warp.aiff"]];
+		[[ARKResourceManager instance] addSFXFromFile:[UTILITIES_SFX_FOLDER stringByAppendingString:@"bonus.aiff"]];
+		[[ARKResourceManager instance] addSFXFromFile:[UTILITIES_SFX_FOLDER stringByAppendingString:@"cancel.aiff"]];
+		[[ARKResourceManager instance] addSFXFromFile:[UTILITIES_SFX_FOLDER stringByAppendingString:@"cursor.aiff"]];
+		[[ARKResourceManager instance] addSFXFromFile:[UTILITIES_SFX_FOLDER stringByAppendingString:@"explode.aiff"]];
 		[[ARKResourceManager instance] addTextureFromFile:[UTILITIES_TEXTURE_FOLDER stringByAppendingString:@"texture.png"] withAntiAlias:NO];
 		[[ARKResourceManager instance] addImageFromFile:[UTIL_INTERFACE_IMAGES stringByAppendingString:@"button-attract.json"]];
 		[[ARKResourceManager instance] addImageFromFile:[UTIL_INTERFACE_IMAGES stringByAppendingString:@"button-retract.json"]];
@@ -60,7 +72,6 @@ const float GAME_SHIP_SPEED		= 80;
 		[[ARKResourceManager instance] addImageFromFile:[UTIL_GAME_IMAGES stringByAppendingString:@"trail.json"]];
 		[[ARKResourceManager instance] addImageFromFile:[UTIL_GAME_IMAGES stringByAppendingString:@"ship.json"]];
 		[[ARKResourceManager instance] addImageFromFile:[UTIL_GAME_IMAGES stringByAppendingString:@"sky.json"]];
-		[[ARKResourceManager instance] addBGMFromFile:[UTILITIES_BGM_FOLDER stringByAppendingString:@"intro.mp3"]];
 		
 		//Load
 		[[ARKResourceManager instance] start];
@@ -285,7 +296,7 @@ const float GAME_SHIP_SPEED		= 80;
 					[m_Holes addObject:Hole];
 					
 					//SFX
-					//[[ARKSoundManager instance] playSFXWithName:[UTILITIES_SFX_FOLDER stringByAppendingString:@"warp.ogg"]];
+					[[ARKSoundManager instance] playSFXWithName:[UTILITIES_SFX_FOLDER stringByAppendingString:@"warp.aiff"]];
 					
 					//Reset cooldown
 					m_Cooldown = 600;
@@ -352,7 +363,8 @@ const float GAME_SHIP_SPEED		= 80;
 		else if (Angle <= 45 || Angle >= 315)	OriginX = [[ARKUtilities instance] getWidth];
 		else {
 			//Calculate
-			float Cos = cosf(Angle / 180.0 * M_PI);			OriginX = ([[ARKUtilities instance] getWidth] / 2) * (1 + Cos);
+			float Cos = cosf([[ARKUtilities instance] getRadianFromDegree:Angle]);
+			OriginX = ([[ARKUtilities instance] getWidth] / 2) * (1 + Cos);
 		}
 		
 		//Calculate Y
@@ -361,7 +373,7 @@ const float GAME_SHIP_SPEED		= 80;
 		else if (Angle >= 225 && Angle <= 315) 	OriginY = [[ARKUtilities instance] getHeight];
 		else {
 			//Calculate
-			float Sin 	= sinf(Angle / 180.0 * M_PI);
+			float Sin 	= sinf([[ARKUtilities instance] getRadianFromDegree:Angle]);
 			OriginY 	= ([[ARKUtilities instance] getHeight] / 2) * (1 - Sin);
 		}
 		
@@ -406,7 +418,7 @@ const float GAME_SHIP_SPEED		= 80;
 			m_Evaded++;
 			
 			//SFX
-			//[[ARKSoundManager instance] playSFXWithName:[UTILITIES_SFX_FOLDER stringByAppendingString:@"bonus.aiff"]];
+			[[ARKSoundManager instance] playSFXWithName:[UTILITIES_SFX_FOLDER stringByAppendingString:@"bonus.aiff"]];
 		} else {
 			//Check if collide
 			if ([[m_Bullets objectAtIndex:i] doesCollideWithRectFromX:[m_Ship getX] + WidthFraction fromY:[m_Ship getY] withWidth:WidthFraction * 8 withHeight:[m_Ship getHeight]]) {
@@ -415,7 +427,7 @@ const float GAME_SHIP_SPEED		= 80;
 				[Deads addObject:[m_Bullets objectAtIndex:i]];
 				
 				//SFX
-				//[[ARKSoundManager instance] playSFXWithName:[UTILITIES_SFX_FOLDER stringByAppendingString:@"explode.aiff"]];
+				[[ARKSoundManager instance] playSFXWithName:[UTILITIES_SFX_FOLDER stringByAppendingString:@"explode.aiff"]];
 			} else {
 				//Check if near miss
 				if ([[m_Bullets objectAtIndex:i]isNearMiss]) {
@@ -432,7 +444,7 @@ const float GAME_SHIP_SPEED		= 80;
 					m_Nearmiss++;
 					
 					//SFX
-					//[[ARKSoundManager instance] playSFXWithName:[UTILITIES_SFX_FOLDER stringByAppendingString:@"bonus.aiff"]];
+					[[ARKSoundManager instance] playSFXWithName:[UTILITIES_SFX_FOLDER stringByAppendingString:@"bonus.aiff"]];
 				}
 			}
 		}
@@ -471,7 +483,7 @@ const float GAME_SHIP_SPEED		= 80;
 	if (m_Health == 0) {
 		//Go to gameover
 		NSArray* Parameters = [NSArray arrayWithObjects:self,
-							   [[m_ScoreCounter getText] integerValue],
+							   [NSNumber numberWithInt:[[m_ScoreCounter getText] integerValue]],
 							   [NSNumber numberWithInteger:m_Evaded],
 							   [NSNumber numberWithInteger:m_Destroyed],
 							   [NSNumber numberWithInteger:m_Nearmiss],
@@ -490,7 +502,7 @@ const float GAME_SHIP_SPEED		= 80;
 	m_Score += change;
 	
 	//Calculate and update score
-	m_ScoreCounter = [ARKLabel createWithText:[NSString stringWithFormat:@"%d", m_Score]];// withFont:[HoleUtilities FONT_SCORE]];
+	m_ScoreCounter = [ARKLabel createWithText:[NSString stringWithFormat:@"%d", m_Score] withFont:[HoleUtilities FONT_SCORE]];
 	[m_ScoreCounter setPositionAtX:[[ARKUtilities instance] getWidth] - 8 atY:2 horizontallyAlignedTo:DRAWABLE_ANCHOR_RIGHT];
 }
 

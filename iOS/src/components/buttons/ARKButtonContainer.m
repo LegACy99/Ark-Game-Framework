@@ -147,7 +147,7 @@ const int CONTAINER_NO_BUTTON = -1;
 
 - (void)drawWithGL:(GLKBaseEffect *)gl {
 	//Draw all buttons
-	for (int i = 0; i < [m_Buttons count]; i++) [[m_Buttons objectAtIndex:0] drawWithGL:gl];
+	for (int i = 0; i < [m_Buttons count]; i++) [[m_Buttons objectAtIndex:i] drawWithGL:gl];
 }
 
 @end

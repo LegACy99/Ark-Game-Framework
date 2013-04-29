@@ -9,7 +9,6 @@
 #import "Bullet.h"
 #import "HoleUtilities.h"
 #import "Wormhole.h"
-#import <math.h>
 
 //Constants
 const int BULLET_TRAIL_MAX 	= 10;
@@ -69,7 +68,7 @@ const long BULLET_TRAIL_GAP = 100;
 
 - (void)calculateAngle {
 	//Calculate
-	float Angle = atan2(m_VelocityY, m_VelocityX) * 180.0 / M_PI;
+	float Angle = [[ARKUtilities instance] getDegreeFromRadian:atan2f(m_VelocityY, m_VelocityX)];
 	[m_Image setRotationWithAngle:Angle];
 }
 
@@ -159,7 +158,7 @@ const long BULLET_TRAIL_GAP = 100;
 	float OldY	= m_Y / [[ARKUtilities instance] getScale];
 	float X 	= OldX + (m_VelocityX * (float)time / 1000);
 	float Y 	= OldY + ((m_VelocityY) * (float)time / 1000);
-	[self calculateLabelPositionFromOldX:OldX fromOldY:OldX fromX:X fromY:Y];
+	[self calculateLabelPositionFromOldX:OldX fromOldY:OldY fromX:X fromY:Y];
 	[self setPositionAtX:X atY:Y];
 	
 	//Check timer
