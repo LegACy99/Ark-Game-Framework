@@ -118,7 +118,6 @@ const int SOUND_INITIAL_SFX = 3;
 
 - (void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags {
 	//Start player
-	NSLog(@"Interruption ended");
 	if (player) [player play];
 }
 

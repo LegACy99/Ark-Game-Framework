@@ -33,7 +33,18 @@
 - (float)getWidth	{ return [[ARKDevice instance] getWidth] / [[ARKDevice instance] getScale];		}
 - (float)getHeight	{ return [[ARKDevice instance] getHeight] / [[ARKDevice instance] getScale];	}
 
+- (float)getRadianFromDegree:(float)angle {
+	//Calculate
+	return angle * M_PI / 180.0;
+}
+
+- (float)getDegreeFromRadian:(float)angle {
+	//Calculate
+	return angle * 180.0 / M_PI;
+}
+
 - (int)getARandomNumberBetween:(int)from to:(int)to {
+	//If range not valid
 	if (from + 1 >= to) return from;
 	else				return arc4random_uniform(to - from) + from;
 }

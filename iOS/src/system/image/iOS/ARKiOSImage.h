@@ -17,8 +17,10 @@
 	//Variables
 	float		m_Top;
 	float		m_Left;
-	ARKTexture*	m_Texture;
+	float		m_FlipRadian;
+	float		m_RotationRadian;
 	GLfloat		m_Attributes[32];
+	ARKTexture*	m_Texture;
 }
 
 //Constructors

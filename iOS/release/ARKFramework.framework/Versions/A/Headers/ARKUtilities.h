@@ -54,6 +54,8 @@
 - (float)getHeight;
 
 //Utilities
+- (float)getDegreeFromRadian:(float)angle;
+- (float)getRadianFromDegree:(float)angle;
 - (int)getARandomNumberBetween:(int)from to:(int)to;
 - (NSString*)writeFloat:(float)number withDecimalDigit:(int)decimal;
 - (NSString*)writeVersion:(NSArray*)version limitedIn:(NSArray*)digits;

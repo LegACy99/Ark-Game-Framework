@@ -285,8 +285,7 @@ const NSString* RESOURCEMANAGER_KEY_SHEET_GAP		= @"Gap";
 	if ([self isLoading]) {
 		//Check if going ot be loaded
 		BOOL Loaded = NO;
-		//TODO
-		//for (int i = 0; i < [m_Loadables count] && !Loaded; i++) if (m_Loadables.get(i).getName().equals(resource)) Loaded = true;
+		for (int i = 0; i < [m_Loadables count] && !Loaded; i++) if ([[[m_Loadables objectAtIndex:i] getName] isEqualToString:name]) Loaded = YES;
 		
 		//If isn't going to be loaded, add
 		if (!Loaded) [m_Destroys addObject:name];

@@ -11,6 +11,8 @@
 
 @interface ARKiOSRectangle : ARKRectangle {
 	//Data
+	float	m_FlipRadian;
+	float	m_RotationRadian;
 	GLfloat m_Attributes[24];
 }
 

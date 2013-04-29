@@ -52,10 +52,12 @@ const int IMAGE_COORDINATES_BOTHMIRROR[8]	=  { IMAGE_EDGE_LEFT, IMAGE_EDGE_BOTTO
 	self = [super init];
 	if (self) {
 		//Initialize
-		m_Top		= 0;
-		m_Left		= 0;
-		m_Texture	= nil;
+		m_Top				= 0;
+		m_Left				= 0;
+		m_FlipRadian		= 0;
+		m_RotationRadian	= 0;
 		for (int i = 0; i < sizeof(m_Attributes) / sizeof(m_Attributes[0]); i++) m_Attributes[i] = 0;
+		m_Texture			= nil;
 	}
 	
 	//Return
@@ -136,6 +138,22 @@ const int IMAGE_COORDINATES_BOTHMIRROR[8]	=  { IMAGE_EDGE_LEFT, IMAGE_EDGE_BOTTO
 	
 	//Return
 	return self;
+}
+
+- (void)setRotationWithAngle:(float)angle increasedBy:(float)increase pivotAtX:(float)x pivotAtY:(float)y {
+	//Super
+	[super setRotationWithAngle:angle increasedBy:increase pivotAtX:x pivotAtY:y];
+	
+	//Calculate radian
+	m_RotationRadian = [[ARKUtilities instance] getRadianFromDegree:m_Rotation];
+}
+
+- (void)setFlipWithAngle:(float)angle increasedBy:(float)increase {
+	//Super
+	[super setFlipWithAngle:angle increasedBy:increase];
+	
+	//Calculate radian
+	m_FlipRadian = [[ARKUtilities instance] getRadianFromDegree:m_Flip];
 }
 
 - (void)setTintWithRedF:(float)red withGreenF:(float)green withBlueF:(float)blue withAlphaF:(float)alpha {
@@ -255,9 +273,9 @@ const int IMAGE_COORDINATES_BOTHMIRROR[8]	=  { IMAGE_EDGE_LEFT, IMAGE_EDGE_BOTTO
 	//Create matrix
     GLKMatrix4 ViewMatrix	= [[ARKiOSDevice instance] getViewMatrix];
 	ViewMatrix				= GLKMatrix4Translate(ViewMatrix, TranslationX, TranslationY, 0);
-	ViewMatrix				= GLKMatrix4Rotate(ViewMatrix, m_Rotation, 0, 0, -1);
+	ViewMatrix				= GLKMatrix4Rotate(ViewMatrix, m_RotationRadian, 0, 0, -1);
 	ViewMatrix				= GLKMatrix4Translate(ViewMatrix, PivotX, PivotY, 0);
-	ViewMatrix				= GLKMatrix4Rotate(ViewMatrix, m_Flip, -1, 0, 0);
+	ViewMatrix				= GLKMatrix4Rotate(ViewMatrix, m_FlipRadian, -1, 0, 0);
     gl.transform.modelviewMatrix = ViewMatrix;
 
 	//Render

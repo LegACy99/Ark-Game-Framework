@@ -91,7 +91,9 @@ const NSString* UTILITIES_SFX_FOLDER		= @"audio/sfx/";
 - (float)getScale;														{ return 1;		}
 - (float)getWidth;														{ return 1;		}
 - (float)getHeight;														{ return 1;		}
-- (int)getARandomNumberBetween:(int)from to:(int)to						{ return 1;		}
+- (float)getDegreeFromRadian:(float)angle								{ return 0;		}
+- (float)getRadianFromDegree:(float)angle								{ return 0;		}
+- (int)getARandomNumberBetween:(int)from to:(int)to						{ return 0;		}
 - (NSString*)writeFloat:(float)number withDecimalDigit:(int)decimal;	{ return nil;	}
 - (NSString*)writeVersion:(NSArray*)version limitedIn:(NSArray*)digits;	{ return nil;	}
 - (NSString*)writeVersion:(NSArray*)version;							{ return nil;	}

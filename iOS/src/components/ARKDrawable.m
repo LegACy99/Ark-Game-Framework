@@ -6,8 +6,9 @@
 //  Copyright (c) 2013 LegACy. All rights reserved.
 //
 
-#import "ARKDrawable.h"
 #import <GLKit/GLKit.h>
+#import "ARKDrawable.h"
+#import "ARKDevice.h"
 
 //Anchor Constants
 const int DRAWABLE_ANCHOR_LEFT		= 0;
@@ -63,8 +64,8 @@ const int DRAWABLE_MIRROR_BOTH			= 3;
 
 - (void)setPositionAtX:(float)x atY:(float)y horizontallyAlignedTo:(int)horizontal verticallyAlignedTo:(int)vertical {
 	//Initialize
-	m_X = x;// * Device.instance().getScale();
-	m_Y = y;// * Device.instance().getScale();
+	m_X = x * [[ARKDevice instance] getScale];
+	m_Y = y * [[ARKDevice instance] getScale];
 	
 	//Set X
 	if (horizontal == DRAWABLE_ANCHOR_RIGHT)		m_X -= m_Width;

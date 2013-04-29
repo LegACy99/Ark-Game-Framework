@@ -22,6 +22,8 @@ const int RECTANGLE_DATA_SIZE		= RECTANGLE_COLOR_SIZE + RECTANGLE_VERTEX_SIZE;
 	self = [super init];
 	if (self) {
 		//Initialize
+		m_FlipRadian		= 0;
+		m_RotationRadian	= 0;
 		for (int i = 0; i < sizeof(m_Attributes) / sizeof(m_Attributes[0]); i++) m_Attributes[i] = 0;
 	}
 	
@@ -105,8 +107,8 @@ const int RECTANGLE_DATA_SIZE		= RECTANGLE_COLOR_SIZE + RECTANGLE_VERTEX_SIZE;
 	//Create matrix
     GLKMatrix4 ViewMatrix			= [[ARKiOSDevice instance] getViewMatrix];
 	ViewMatrix						= GLKMatrix4Translate(ViewMatrix, TranslationX, TranslationY, 0);
-	ViewMatrix						= GLKMatrix4Rotate(ViewMatrix, m_Rotation, 0, 0, -1);
-	ViewMatrix						= GLKMatrix4Rotate(ViewMatrix, m_Flip, -1, 0, 0);
+	ViewMatrix						= GLKMatrix4Rotate(ViewMatrix, m_RotationRadian, 0, 0, -1);
+	ViewMatrix						= GLKMatrix4Rotate(ViewMatrix, m_FlipRadian, -1, 0, 0);
     gl.transform.modelviewMatrix	= ViewMatrix;
 	
 	//Render
