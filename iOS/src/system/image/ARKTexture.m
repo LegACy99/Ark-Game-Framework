@@ -12,9 +12,10 @@
 @implementation ARKTexture
 
 //Synthesize properties
-@synthesize ID		= m_ID;
-@synthesize width	= m_Width;
-@synthesize height	= m_Height;
+@synthesize ID			= m_ID;
+@synthesize width		= m_Width;
+@synthesize height		= m_Height;
+@synthesize antialias	= m_AntiAlias;
 
 - (id)init {
 	//Super

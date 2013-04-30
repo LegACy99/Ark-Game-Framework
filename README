@@ -1,7 +1,10 @@
 Hello!
 
-Ark Game Framework is a 2D game framework for Android and J2ME platform.
+Ark Game Framework is a 2D game framework for Android, iOS, and J2ME platform.
 The framework is designed to be used in mobile device of all kind of form factor, so the framework is able to adapt to any resolution and also able to receive touch, key button, as well as accelerometer input.
 
+Ark framework for iOS is currently on version 0.8.9 BETA
 Ark framework for Android is currently on version 0.9.1
 Ark framework for J2ME is currently on version 0.8
+
+The iOS version is still missing a lot of features found on the latest version of Android like Accelerometer or Item List, but a functional iOS game can already built using it, as shown by the example.

@@ -261,14 +261,26 @@ const int IMAGE_COORDINATES_BOTHMIRROR[8]	=  { IMAGE_EDGE_LEFT, IMAGE_EDGE_BOTTO
 	glVertexAttribPointer(GLKVertexAttribColor, IMAGE_COLOR_SIZE, GL_FLOAT, GL_FALSE, Size, &(m_Attributes[IMAGE_VERTEX_SIZE + IMAGE_COORDINATE_SIZE]));
 	glVertexAttribPointer(GLKVertexAttribTexCoord0, IMAGE_COORDINATE_SIZE, GL_FLOAT, GL_FALSE, Size, &(m_Attributes[IMAGE_VERTEX_SIZE]));
 	
-    //Set texture
-	if (m_Texture) gl.texture2d0.name = [m_Texture getID];
+    //If texture exist
+	float X	= m_X;
+	float Y = m_Y;
+	if (m_Texture) {
+		//Set texture
+		gl.texture2d0.name = [m_Texture getID];
+		
+		//If no anti alias
+		if (![m_Texture isAntiAliased]) {
+			//No half pixel
+			X = (int)m_X;
+			Y = (int)m_Y;
+		}
+	}
 	
 	//Calculate stuff
 	float PivotX		= (m_Width / 2) - m_PivotX;
 	float PivotY		= m_PivotY - (m_Height / 2);
-	float TranslationX	= ((m_Width - [[ARKDevice instance] getWidth]) / 2) + m_X - PivotX;
-	float TranslationY	= (([[ARKDevice instance] getHeight] - m_Height) / 2) - m_Y - PivotY;
+	float TranslationX	= ((m_Width - [[ARKDevice instance] getWidth]) / 2) + X - PivotX;
+	float TranslationY	= (([[ARKDevice instance] getHeight] - m_Height) / 2) - Y - PivotY;
 	
 	//Create matrix
     GLKMatrix4 ViewMatrix	= [[ARKiOSDevice instance] getViewMatrix];

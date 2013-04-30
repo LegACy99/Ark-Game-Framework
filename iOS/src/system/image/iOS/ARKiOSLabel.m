@@ -327,12 +327,24 @@ const int LABEL_QUAD_INDICES		= 6;
 	glVertexAttribPointer(GLKVertexAttribColor, LABEL_COLOR_SIZE, GL_FLOAT, GL_FALSE, Size, &(m_Buffer[LABEL_VERTEX_SIZE + LABEL_COORDINATE_SIZE]));
 	glVertexAttribPointer(GLKVertexAttribTexCoord0, LABEL_COORDINATE_SIZE, GL_FLOAT, GL_FALSE, Size, &(m_Buffer[LABEL_VERTEX_SIZE]));
 	
-    //Set texture
-	gl.texture2d0.name = [m_Texture getID];
+    //If texture exist
+	float X	= m_X;
+	float Y = m_Y;
+	if (m_Texture) {
+		//Set texture
+		gl.texture2d0.name = [m_Texture getID];
+		
+		//If no anti alias
+		if (![m_Texture isAntiAliased]) {
+			//No half pixel
+			X = (int)m_X;
+			Y = (int)m_Y;
+		}
+	}
 	
 	//Create matrix
-	float TranslationX				= m_X - ([[ARKDevice instance] getWidth] / 2);
-	float TranslationY				= ([[ARKDevice instance] getHeight] / 2) - m_Y;
+	float TranslationX				= X - ([[ARKDevice instance] getWidth] / 2);
+	float TranslationY				= ([[ARKDevice instance] getHeight] / 2) - Y;
 	gl.transform.modelviewMatrix	= GLKMatrix4Translate([[ARKiOSDevice instance] getViewMatrix], TranslationX,  TranslationY, 0);
 	
 	//Render

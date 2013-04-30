@@ -21,7 +21,7 @@ const int TOUCH_SWIPE_SOUTHWEST = 6;
 const int TOUCH_SWIPE_WEST 		= 7;
 const int TOUCH_SWIPE_NORTHWEST = 8;
 const float TOUCH_MIN_DISTANCE	= 200;
-const double TOUCH_TAN_22		= 0.4142135623731; //tan(22.5)
+const double TOUCH_TAN_22		= 0.4142135623731;
 
 @implementation ARKTouchInfo
 

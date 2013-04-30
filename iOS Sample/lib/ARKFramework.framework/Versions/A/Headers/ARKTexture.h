@@ -18,9 +18,10 @@
 }
 
 //Properties
-@property (readonly, getter = getID)		GLuint ID;
-@property (readonly, getter = getWidth)		float width;
-@property (readonly, getter = getHeight)	float height;
+@property (readonly, getter = getID)			GLuint ID;
+@property (readonly, getter = getWidth)			float width;
+@property (readonly, getter = getHeight)		float height;
+@property (readonly, getter = isAntiAliased)	BOOL antialias;
 
 //Static functions
 + (ARKTexture*)createFromFile:(NSString*)file;

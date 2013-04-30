@@ -96,7 +96,7 @@ const int CONTAINER_NO_BUTTON = -1;
 		if ([m_Buttons count] <= m_Pressed) m_Pressed = -1;
 		
 		//If pressed
-		id Touch = [touches objectAtIndex:0];
+		ARKTouchInfo* Touch = [touches objectAtIndex:0];
 		if (Touch && [Touch isPressed]) {
 			//If no button is pressed
 			if (m_Pressed < 0) {

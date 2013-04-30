@@ -25,6 +25,7 @@
 - (void)swipeWest;
 - (void)swipeNorth;
 - (void)swipeSouth;
+- (void)configureRecognizer:(UISwipeGestureRecognizer*)recognizer withDirection:(UISwipeGestureRecognizerDirection)direction;
 
 @end
 
@@ -73,16 +74,12 @@
 	UISwipeGestureRecognizer* RecognizerDown	= [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeSouth)];
 	UISwipeGestureRecognizer* RecognizerLeft	= [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeWest)];
 	UISwipeGestureRecognizer* RecognizerRight	= [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeEast)];
-	[RecognizerRight setDirection:UISwipeGestureRecognizerDirectionRight];
-	[RecognizerLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
-	[RecognizerDown setDirection:UISwipeGestureRecognizerDirectionDown];
-	[RecognizerUp setDirection:UISwipeGestureRecognizerDirectionUp];
 	
-	//Add gesture detectors
-	[self.view addGestureRecognizer:RecognizerUp];
-	[self.view addGestureRecognizer:RecognizerDown];
-	[self.view addGestureRecognizer:RecognizerLeft];
-	[self.view addGestureRecognizer:RecognizerRight];
+	//Configure
+	[self configureRecognizer:RecognizerUp withDirection:UISwipeGestureRecognizerDirectionUp];
+	[self configureRecognizer:RecognizerDown withDirection:UISwipeGestureRecognizerDirectionDown];
+	[self configureRecognizer:RecognizerLeft withDirection:UISwipeGestureRecognizerDirectionLeft];
+	[self configureRecognizer:RecognizerRight withDirection:UISwipeGestureRecognizerDirectionRight];
 	
 	//Create context
 	m_Context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
@@ -152,8 +149,8 @@
 	//If size not saved yet
 	if (!m_Size) {
 		//Get view size
-		float Width		= self.view.bounds.size.width;
-		float Height	= self.view.bounds.size.height;
+		float Width		= self.view.bounds.size.width * [[UIScreen mainScreen] scale];
+		float Height	= self.view.bounds.size.height * [[UIScreen mainScreen] scale];
 		
 		//Save size
 		m_Size = YES;
@@ -229,7 +226,7 @@
 				if (Info) {
 					//Press
 					CGPoint Location = [Touch locationInView:[self view]];
-					[Info pressedAtX:Location.x atY:Location.y];
+					[Info pressedAtX:Location.x * [[ARKDevice instance] getScale] atY:Location.y * [[ARKDevice instance] getScale]];
 				}
 			}
 		}
@@ -250,7 +247,7 @@
 				if (Info) {
 					//Move
 					CGPoint Location = [Touch locationInView:[self view]];
-					[Info draggedToX:Location.x toY:Location.y];
+					[Info draggedToX:Location.x * [[ARKDevice instance] getScale] toY:Location.y * [[ARKDevice instance] getScale]];
 				}
 			}
 		}
@@ -271,7 +268,7 @@
 				if (Info) {
 					//Move
 					CGPoint Location = [Touch locationInView:[self view]];
-					[Info releasedAtX:Location.x atY:Location.y];
+					[Info releasedAtX:Location.x * [[ARKDevice instance] getScale] atY:Location.y * [[ARKDevice instance] getScale]];
 					
 					//Remove touch
 					NSValue* TouchPointer = [NSValue valueWithPointer:(__bridge const void *)Touch];
@@ -285,6 +282,20 @@
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
 	//End
 	[self touchesEnded:touches withEvent:event];
+}
+
+- (void)configureRecognizer:(UISwipeGestureRecognizer *)recognizer withDirection:(UISwipeGestureRecognizerDirection)direction {
+	//Skip if no recognizer
+	if (!recognizer) return;
+	
+	//Configure
+	[recognizer setDirection:direction];
+	[recognizer setDelaysTouchesBegan:NO];
+	[recognizer setDelaysTouchesEnded:NO];
+	[recognizer setCancelsTouchesInView:NO];
+	
+	//Add
+	if (self.view) [self.view addGestureRecognizer:recognizer];
 }
 
 - (void)swipeEast {
