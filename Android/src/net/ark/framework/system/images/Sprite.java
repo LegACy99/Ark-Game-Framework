@@ -21,18 +21,15 @@ public abstract class Sprite extends Croppable {
 		//Default
 		this();
 		
-		//Save
+		//Set
 		m_X	= x;
 		m_Y	= y;
-
-		//Set delay
-		m_Delay = delay;
-		if (m_Delay > 0) m_Animating = true;
+		setDelay(delay);
 	}
 
 	//Create sprites
-	public static Sprite create(String resource, long delay) 				{	return Sprite.create(resource, 0, 0, delay);	}
-	public static Sprite create(String resource, int x, int y) 				{	return Sprite.create(resource, x, y, 0);		}
+	public static Sprite create(String resource, long delay) 				{	return Sprite.create(resource, 0, 0, delay);		}
+	public static Sprite create(String resource, int x, int y) 				{	return Sprite.create(resource, x, y, 0);			}
 	public static Sprite create(String resource, int x, int y, long delay) 	{	return new AndroidSprite(resource, x, y, delay);	}
 	
 	//Accessors
@@ -91,6 +88,11 @@ public abstract class Sprite extends Croppable {
 		if (m_Frame < 0)		m_Frame = 0;
 	}
 	
+	public void setDelay(long delay) {
+		//Set
+		m_Delay 	= delay;
+		m_Animating	= delay > 0;
+	}
 
 	public void update(long time) {
 		//If animating

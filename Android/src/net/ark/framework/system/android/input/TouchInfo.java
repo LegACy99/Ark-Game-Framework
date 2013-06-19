@@ -157,7 +157,7 @@ public class TouchInfo {
 	public static final int SWIPE_SOUTHWEST 	= 6;
 	public static final int SWIPE_WEST 			= 7;
 	public static final int SWIPE_NORTHWEST 	= 8;
-	protected static final float MIN_DISTANCE	= 200;
+	protected static final float MIN_DISTANCE	= 80;
 	protected static final double TAN_22		= Math.tan(22.5);
 	
 	//properties

@@ -1,18 +1,18 @@
 package net.ark.framework.system.images.android;
 
-import java.util.HashMap;
+import net.ark.framework.system.images.BitmapFont;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import net.ark.framework.system.images.BitmapFont;
+import android.util.SparseArray;
 
 public class AndroidBitmapFont extends BitmapFont {	
 	public AndroidBitmapFont(JSONObject json) {
 		//Super
 		super(json);
-		m_Characters = new HashMap<Integer, BitmapChar>();
+		m_Characters = new SparseArray<BitmapChar>();
 		
 		try {
 			//Read json
@@ -24,7 +24,7 @@ public class AndroidBitmapFont extends BitmapFont {
 			float Width			= JSONData.getInt(KEY_WIDTH);
 			
 			//Create kerning map
-			HashMap<Integer, HashMap<Integer, Long>> Kernings = new HashMap<Integer, HashMap<Integer,Long>>();
+			SparseArray<SparseArray<Long>> Kernings = new SparseArray<SparseArray<Long>>();
 			if (JSONFont.has(KEY_KERNINGS)) {
 				//Get kerning data
 				JSONObject JSONKernings = JSONFont.getJSONObject(KEY_KERNINGS);
@@ -34,13 +34,17 @@ public class AndroidBitmapFont extends BitmapFont {
 				for (int i = 0; i < KerningsArray.length(); i++) {
 					//Get data
 					JSONObject JSONKerning 	= KerningsArray.getJSONObject(i);
-					Integer SecondChar		= new Integer(JSONKerning.getInt(KEY_KERNING_FIRST));
-					Integer FirstChar		= new Integer(JSONKerning.getInt(KEY_KERNING_SECOND));
-					Long Offset				= new Long(JSONKerning.getLong(KEY_KERNING_OFFSET));			
+					int SecondChar			= JSONKerning.getInt(KEY_KERNING_FIRST);
+					int FirstChar			= JSONKerning.getInt(KEY_KERNING_SECOND);
+					Long Offset				= Long.valueOf(JSONKerning.getLong(KEY_KERNING_OFFSET));			
 					
-					//Get map
-					HashMap<Integer, Long> Kerning = Kernings.get(FirstChar);
-					if (Kerning == null) Kerning = new HashMap<Integer, Long>();
+					//Get map if exist
+					SparseArray<Long> Kerning = Kernings.get(FirstChar);
+					if (Kerning == null) {
+						//Create and add
+						Kerning = new SparseArray<Long>();
+						Kernings.put(FirstChar, Kerning);
+					}
 					
 					//Add to map
 					Kerning.put(SecondChar, Offset);
@@ -55,7 +59,7 @@ public class AndroidBitmapFont extends BitmapFont {
 			for (int i = 0; i < CharactersArray.length(); i++) {
 				//Get index
 				JSONObject JSONChar = CharactersArray.getJSONObject(i);
-				Integer Index 		= new Integer(JSONChar.getInt(KEY_CHAR_INDEX)); 
+				Integer Index 		= Integer.valueOf(JSONChar.getInt(KEY_CHAR_INDEX)); 
 				
 				//Create character
 				BitmapChar Char = new BitmapChar(JSONChar, Kernings.get(Index), Width, Height);
@@ -66,8 +70,10 @@ public class AndroidBitmapFont extends BitmapFont {
 	
 	//Accessor
 	@Override
-	public BitmapChar getChar(char character)	{	return m_Characters.get(new Integer(character));	}
+	public BitmapChar getChar(char character) {
+		return m_Characters.get(character);
+	}
 	
 	//Data
-	protected HashMap<Integer, BitmapChar>	m_Characters;
+	protected SparseArray<BitmapChar> m_Characters;
 }

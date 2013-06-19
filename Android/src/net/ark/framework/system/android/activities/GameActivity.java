@@ -6,6 +6,7 @@ import net.ark.framework.system.Device;
 import net.ark.framework.system.SoundManager;
 import net.ark.framework.system.StateManager;
 import net.ark.framework.system.android.AndroidDevice;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
@@ -26,7 +27,8 @@ import android.widget.RelativeLayout;
 @TargetApi(11)
 public abstract class GameActivity extends Activity {
 	 /** Called when the activity is first created. */
-    @Override
+    @SuppressLint("InlinedApi")
+	@Override
     public void onCreate(Bundle savedInstanceState) {
     	//Super
         super.onCreate(savedInstanceState);

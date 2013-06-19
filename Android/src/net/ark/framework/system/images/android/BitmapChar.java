@@ -1,11 +1,11 @@
 package net.ark.framework.system.images.android;
 
-import java.util.HashMap;
+import net.ark.framework.system.Utilities;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import net.ark.framework.system.Utilities;
+import android.util.SparseArray;
 
 public class BitmapChar {
 	protected BitmapChar() {
@@ -13,10 +13,10 @@ public class BitmapChar {
 		m_Advance		= 0;
 		m_Vertices		= null;
 		m_Coordinates	= null;
-		m_Kerning		= new HashMap<Integer, Long>();
+		m_Kerning		= new SparseArray<Long>();
 	}
 	
-	public BitmapChar(JSONObject json, HashMap<Integer, Long> kernings, float width, float height) {
+	public BitmapChar(JSONObject json, SparseArray<Long> kernings, float width, float height) {
 		//Initialize
 		this();
 		
@@ -70,7 +70,7 @@ public class BitmapChar {
 	public float getAdvance(char character) {
 		//Get advance
 		float Advance 	= getAdvance();
-		Long Kerning	= m_Kerning.get(new Integer(character));
+		Long Kerning	= m_Kerning.get(character);
 		
 		//if not null
 		if (Kerning != null) Advance += Kerning.floatValue();
@@ -89,8 +89,8 @@ public class BitmapChar {
 	public final static String KEY_ADVANCE	= "xadvance";
 	
 	//Data
-	protected float 					m_Advance;
-	protected float[] 					m_Vertices;
-	protected float[] 					m_Coordinates;
-	protected HashMap<Integer, Long> 	m_Kerning;
+	protected float 			m_Advance;
+	protected float[] 			m_Vertices;
+	protected float[] 			m_Coordinates;
+	protected SparseArray<Long>	m_Kerning;
 }
