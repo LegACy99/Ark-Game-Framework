@@ -63,15 +63,15 @@ public class AndroidLabel extends Label {
 			if (Char != null) {					
 				//Next if more
 				if (i + 1 < m_Text.length()) 	Cursor += Char.getAdvance(m_Text.charAt(i + 1));
-				else							Cursor += Char.getAdvance();
+				else							Cursor += Char.getWidth();
 			}
 		}
 		
 		//Set size
-		m_Width 			= Cursor;
+		m_OriginalWidth		= Cursor;
 		m_OriginalHeight	= m_Font.getHeight();
-		m_OriginalWidth		= m_Width / Utilities.instance().getScale();
 		m_Height			= m_OriginalHeight * Utilities.instance().getScale();
+		m_Width				= m_OriginalWidth * Utilities.instance().getScale();
 	}
 	
 	@Override
@@ -140,8 +140,7 @@ public class AndroidLabel extends Label {
 				
 				//Move cursor
 				if (i + 1 < m_Text.length()) 	Cursor += Chars[i].getAdvance(m_Text.charAt(i + 1));
-				else							Cursor += Chars[i].getAdvance();
-				
+				else							Cursor += Chars[i].getAdvance();				
 			}
 		}
 		

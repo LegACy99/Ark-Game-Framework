@@ -64,6 +64,10 @@ public class AndroidBitmapFont extends BitmapFont {
 				//Create character
 				BitmapChar Char = new BitmapChar(JSONChar, Kernings.get(Index), Width, Height);
 				m_Characters.put(Index, Char);
+				
+				//Check height
+				float CharHeight = Char.getHeight() + Char.getOffsetY();
+				if (CharHeight > m_Height) m_Height = CharHeight;
 			}
 		} catch (JSONException e) {}
 	}
