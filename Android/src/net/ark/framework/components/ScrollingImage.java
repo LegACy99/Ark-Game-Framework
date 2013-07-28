@@ -2,11 +2,11 @@ package net.ark.framework.components;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import org.json.JSONObject;
-
 import net.ark.framework.system.Utilities;
 import net.ark.framework.system.images.Image;
 import net.ark.framework.system.resource.ResourceManager;
+
+import org.json.JSONObject;
 
 public class ScrollingImage extends Drawable {
 	protected ScrollingImage() {
@@ -66,6 +66,14 @@ public class ScrollingImage extends Drawable {
 		//Set position then scrol
 		super.setPosition(x, y, horizontal, vertical);
 		scroll(0, 0);
+	}
+
+	public void setTint(int red, int green, int blue) { setTint(red, green, blue, 255); }
+	public void setTint(float red, float green, float blue) { setTint(red, green, blue, 1f); }
+	public void setTint(int red, int green, int blue, int alpha) { setTint((float)red / 255f, (float)green / 255f, (float)blue / 255f); }
+	public void setTint(float red, float green, float blue, float alpha) {
+		//Set all images tint
+		for (int i = 0; i < m_Images.length; i++) m_Images[i].setTint(red, green, blue, alpha);
 	}
 	
 	public void scroll(float x, float y) {
