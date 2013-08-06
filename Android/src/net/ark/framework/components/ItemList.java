@@ -103,7 +103,7 @@ public class ItemList extends Croppable {
 		}
 		
 		//Update items
-		createDrawList();
+		adjustItems();
 		updateItems();
 
 		//Return the item
@@ -138,7 +138,7 @@ public class ItemList extends Croppable {
 		super.setRegion(x, y, width, height);
 		
 		//Refresh
-		createDrawList();
+		adjustItems();
 		updateItems();
 	}
 	
@@ -207,7 +207,7 @@ public class ItemList extends Croppable {
 			if (m_Scroll < 0) 					m_Scroll = 0;
 			
 			//Update items
-			createDrawList();
+			adjustItems();
 			updateItems();
 		}
 	}
@@ -223,7 +223,7 @@ public class ItemList extends Croppable {
 		return true;
 	}
 	
-	protected void createDrawList() {
+	public void adjustItems() {
 		//Initialize
 		float Y			= 0;
 		m_DrawnFirst	= 0;
@@ -281,8 +281,10 @@ public class ItemList extends Croppable {
 					if (RegionY > 0) RegionHeight -= RegionY;
 					
 					//Crop if needed
-					if (RegionY >= 0 || RegionHeight <= Item.getHeight())
-						Item.setRegion(m_OriginalRegionX, RegionY / Utilities.instance().getScale(), m_OriginalRegionWidth, RegionHeight / Utilities.instance().getScale());
+					//if (RegionY >= 0 || RegionHeight <= Item.getHeight() || RegionHeight != Item.getOriginalRegionHeight())
+					
+					//Crop
+					Item.setRegion(m_OriginalRegionX, RegionY / Utilities.instance().getScale(), m_OriginalRegionWidth, RegionHeight / Utilities.instance().getScale());
 				}
 			}
 			
@@ -302,6 +304,10 @@ public class ItemList extends Croppable {
 		
 		//If growing, save as window
 		if (m_Grow) m_Window = m_Total;
+		
+		//Correct scroll
+		if (m_Scroll + m_Window > m_Total) 	m_Scroll = m_Total - m_Window;
+		if (m_Scroll < 0) 					m_Scroll = 0;
 	}
 
 	@Override
