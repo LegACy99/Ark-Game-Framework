@@ -5,7 +5,7 @@ import javax.microedition.khronos.opengles.GL10;
 import net.ark.framework.system.Utilities;
 import net.ark.framework.system.android.input.TouchInfo;
 
-public class ItemList extends Drawable {
+public class ItemList extends Croppable {
 	protected ItemList() {
 		//Super
 		super();
@@ -21,6 +21,7 @@ public class ItemList extends Drawable {
 		m_DrawnFirst	= 0;
 		m_Scrolling		= false;
 		m_Pressed		= false;
+		m_Grow			= false;
 		m_Items			= new Croppable[0];
 	}
 
@@ -45,8 +46,18 @@ public class ItemList extends Drawable {
 		m_Height			= m_Window * Utilities.instance().getScale();
 		m_OriginalHeight	= m_Window; 
 		
+		//Check window
+		if (m_Window <= 0) {
+			//Growing
+			m_Grow				= true;
+			m_OriginalHeight	= 0;
+			m_Window 			= 0;
+			m_Height			= 0;
+		}
+		
 		//Set position
 		setPosition(x, y);
+		setRegion(0, 0, m_OriginalWidth, m_OriginalHeight);
 	}
 
 	public Croppable addItem(Croppable item) {
@@ -65,13 +76,30 @@ public class ItemList extends Drawable {
 		//Calculate vertical size
 		float Old	 = m_Total;
 		m_Total 	+= item.getOriginalHeight() + (m_Items.length > 1 ? m_Gap : 0);
-		if (m_Total > m_Window) item.setRegion(0, 0, item.getOriginalWidth(), m_Window - Old - (m_Items.length > 1 ? m_Gap : 0));
+		
+		//If taller than window
+		if (m_Total > m_Window) {
+			//If don't grow, crop
+			if (!m_Grow) item.setRegion(0, 0, item.getOriginalWidth(), m_Window - Old - (m_Items.length > 1 ? m_Gap : 0));
+			else {
+				//Calculate new size
+				m_Window 			= m_Total;
+				m_Height			= m_Window * Utilities.instance().getScale();
+				m_OriginalHeight	= m_Window;
+				
+				//Set region
+				setRegion(m_OriginalRegionX, m_OriginalRegionY, m_OriginalRegionWidth, m_OriginalHeight);
+			}
+		}
 		
 		//if width is more than current
 		if (item.getOriginalWidth() > m_OriginalWidth) {
 			//Save width
 			m_Width			= item.getWidth();
 			m_OriginalWidth = item.getOriginalWidth();
+			
+			//Set region
+			setRegion(m_OriginalRegionX, m_OriginalRegionY, m_OriginalWidth, m_OriginalRegionHeight);
 		}
 		
 		//Update items
@@ -104,7 +132,17 @@ public class ItemList extends Drawable {
 		updateItems();
 	}
 	
-	public void update(int[] keys, TouchInfo[] touches, long time) {		
+	@Override
+	public void setRegion(float x, float y, float width, float height) {
+		//SUper
+		super.setRegion(x, y, width, height);
+		
+		//Refresh
+		createDrawList();
+		updateItems();
+	}
+	
+	public void update(int[] keys, TouchInfo[] touches, long time) {
 		//If touched
 		if (touches[0].isPressed()) {
 			//If was pressed
@@ -124,7 +162,7 @@ public class ItemList extends Drawable {
 						//Start scrolling
 						m_Scrolling = true;
 						touches[0].getOffsetY();
-					}					
+					}
 				}
 			} else {
 				//If inside
@@ -199,14 +237,15 @@ public class ItemList extends Drawable {
 			//If not started yet
 			if (m_DrawnSize <= 0) {
 				//Check if inside
-				if (Y + Height > m_Scroll) {
+				if (Y + Height > m_Scroll + m_OriginalRegionY) {
 					//Start
 					m_DrawnFirst 	= i;
 					m_DrawnSize		= 1;
 				}
 			} else {
 				//Add if inside
-				if (Y < m_Scroll + m_Window) m_DrawnSize++;
+				float Bottom = m_Scroll + Math.min(m_Window, m_OriginalRegionY + m_OriginalRegionHeight);
+				if (Y < Bottom) m_DrawnSize++;
 			}
 			
 			//Next
@@ -232,16 +271,18 @@ public class ItemList extends Drawable {
 				//If not first or last
 				if (i > m_DrawnFirst && i < m_DrawnFirst + m_DrawnSize - 1) {
 					//Ensure that it's drawn fully
-					if (Item.getOriginalRegionHeight() < Item.getOriginalHeight() || Item.getOriginalRegionY() > 0) Item.setRegion(Item.getOriginalWidth(), Item.getOriginalHeight());
+					if (Item.getOriginalRegionHeight() < Item.getOriginalHeight() || Item.getOriginalRegionY() > 0) {
+						Item.setRegion(m_OriginalRegionX, 0, m_OriginalRegionWidth, Item.getOriginalHeight());
+					}
 				} else {
 					//Calculate
-					float RegionY 		= m_Y - Item.getY();
-					float RegionHeight 	= m_Y + ((m_Window - Y) * Utilities.instance().getScale());
+					float RegionY 		= m_Y + m_RegionY - Item.getY();
+					float RegionHeight 	= m_Y + m_RegionY + ((Math.min(m_Window, m_OriginalRegionHeight) - Y) * Utilities.instance().getScale());
 					if (RegionY > 0) RegionHeight -= RegionY;
 					
 					//Crop if needed
 					if (RegionY >= 0 || RegionHeight <= Item.getHeight())
-						Item.setRegion(0, RegionY / Utilities.instance().getScale(), Item.getOriginalWidth(), RegionHeight / Utilities.instance().getScale());		
+						Item.setRegion(m_OriginalRegionX, RegionY / Utilities.instance().getScale(), m_OriginalRegionWidth, RegionHeight / Utilities.instance().getScale());
 				}
 			}
 			
@@ -258,6 +299,9 @@ public class ItemList extends Drawable {
 			m_Total += m_Items[i].getOriginalHeight();
 			if (i < m_Items.length - 1) m_Total += m_Gap;
 		}
+		
+		//If growing, save as window
+		if (m_Grow) m_Window = m_Total;
 	}
 
 	@Override
@@ -269,11 +313,12 @@ public class ItemList extends Drawable {
 	//Constants
 	protected final static float SCROLL_OFFSET = 20;
 	
-	//data
+	//Data
 	protected float		m_Speed;
 	protected float		m_Slowing;
 	protected boolean	m_Pressed;
 	protected boolean	m_Scrolling;
+	protected boolean	m_Grow;
 	
 	//Items
 	protected float			m_Gap;
