@@ -84,8 +84,8 @@ public class ItemList extends Croppable {
 			else {
 				//Calculate new size
 				m_Window 			= m_Total;
-				m_Height			= m_Window * Utilities.instance().getScale();
 				m_OriginalHeight	= m_Window;
+				m_Height			= m_Window * Utilities.instance().getScale();
 				
 				//Set region
 				setRegion(m_OriginalRegionX, m_OriginalRegionY, m_OriginalRegionWidth, m_OriginalHeight);
@@ -264,10 +264,7 @@ public class ItemList extends Croppable {
 			Croppable Item = m_Items[i];
 			
 			//If drawn
-			if (i >= m_DrawnFirst && i < m_DrawnFirst + m_DrawnSize) {
-				//Set position
-				Item.setPosition(X, Y);
-				
+			if (i >= m_DrawnFirst && i < m_DrawnFirst + m_DrawnSize) {				
 				//If not first or last
 				if (i > m_DrawnFirst && i < m_DrawnFirst + m_DrawnSize - 1) {
 					//Ensure that it's drawn fully
@@ -276,7 +273,7 @@ public class ItemList extends Croppable {
 					}
 				} else {
 					//Calculate
-					float RegionY 		= m_Y + m_RegionY - Item.getY();
+					float RegionY 		= m_Y + m_RegionY - (Y * Utilities.instance().getScale());
 					float RegionHeight 	= m_Y + m_RegionY + ((Math.min(m_Window, m_OriginalRegionHeight) - Y) * Utilities.instance().getScale());
 					if (RegionY > 0) RegionHeight -= RegionY;
 					
@@ -286,28 +283,47 @@ public class ItemList extends Croppable {
 					//Crop
 					Item.setRegion(m_OriginalRegionX, RegionY / Utilities.instance().getScale(), m_OriginalRegionWidth, RegionHeight / Utilities.instance().getScale());
 				}
+				
+				//Set position
+				Item.setPosition(X, Y);
 			}
 			
 			//Next Y
 			Y += Item.getOriginalHeight() + m_Gap;
 		}
 	}
-	
-	public void calculateSize() {
+
+	public void calculateSize() { calculateSize(-1); }
+	public void calculateSize(int changed) {
+		//Save old
+		float NewScroll = -1;
+		
 		//For all items
 		m_Total = 0;
 		for (int i = 0; i < m_Items.length; i++) {
+			//Check if changed after or before
+			if (i == changed && m_Total < m_Scroll) NewScroll = m_Total;
+				
 			//Add height
 			m_Total += m_Items[i].getOriginalHeight();
 			if (i < m_Items.length - 1) m_Total += m_Gap;
 		}
 		
-		//If growing, save as window
-		if (m_Grow) m_Window = m_Total;
+		//If growing
+		if (m_Grow) {
+			//Save as window
+			m_Window 			= m_Total;
+			m_OriginalHeight	= m_Window;
+			m_Height			= m_Window * Utilities.instance().getScale();
+		}
 		
-		//Correct scroll
+		//Correct scrolling
+		if (NewScroll >= 0) 				m_Scroll = NewScroll;
 		if (m_Scroll + m_Window > m_Total) 	m_Scroll = m_Total - m_Window;
 		if (m_Scroll < 0) 					m_Scroll = 0;
+		
+		//Not scrolling
+		m_Scrolling = false;
 	}
 
 	@Override
