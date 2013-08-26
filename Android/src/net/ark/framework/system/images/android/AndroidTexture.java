@@ -1,5 +1,7 @@
 package net.ark.framework.system.images.android;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.microedition.khronos.opengles.GL10;
@@ -17,12 +19,13 @@ public class AndroidTexture extends Texture {
 		super();
 	}
 	
-	public AndroidTexture(String name, boolean antialias) {
+	public AndroidTexture(String name, boolean antialias, boolean external) {
 		//Initialize
 		this();
 		
 		//Save
 		m_Name 		= name;
+		m_External	= external;
 		m_AntiAlias	= antialias;
 		
 		//Load
@@ -33,7 +36,13 @@ public class AndroidTexture extends Texture {
 	public void load() {		
 		try {
 			//Load image
-			Bitmap Loaded = BitmapFactory.decodeStream(((AndroidDevice)Device.instance()).getAssets().open(m_Name));
+			Bitmap Loaded = null;
+			if (!m_External) 	Loaded = BitmapFactory.decodeStream(((AndroidDevice)Device.instance()).getAssets().open(m_Name));
+			else {
+				//Load
+				FileInputStream Stream	= new FileInputStream(new File(m_Name));
+				Loaded 					= BitmapFactory.decodeStream(Stream);
+			}
 			
 			//Get data
 			m_Width 	= Loaded.getWidth();

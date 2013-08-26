@@ -3,7 +3,6 @@ package net.ark.framework.system.resource;
 import net.ark.framework.system.SoundManager;
 import net.ark.framework.system.StringManager;
 import net.ark.framework.system.images.BitmapFont;
-import net.ark.framework.system.images.Texture;
 
 public class Loadable {
 	protected static class Resource {
@@ -30,14 +29,16 @@ public class Loadable {
 		m_Resource	= resource;
 	}
 
-	public static Loadable createBGM(String file)							{	return new Loadable(file, Resource.BGM);					}
-	public static Loadable createSFX(String file)							{	return new Loadable(file, Resource.SFX);					}
-	public static Loadable createJSON(String file)							{	return new Loadable(file, Resource.JSON);					}
-	public static Loadable createFont(String file)							{	return new Loadable(file, Resource.FONT);					}
-	public static Loadable createNumber(int font)							{	return new Loadable(String.valueOf(font), Resource.NUMBER);	}
-	public static Loadable createLanguage(int lang) 						{	return new Loadable(String.valueOf(lang), Resource.STRING);	}
-	public static Loadable createTexture(String file, boolean antialias)	{	return new LoadableTexture(file, antialias);				}
-	public static Loadable createTexture(String file)						{	return new LoadableTexture(file);							}
+	public static Loadable createBGM(String file)											{	return new Loadable(file, Resource.BGM);					}
+	public static Loadable createSFX(String file)											{	return new Loadable(file, Resource.SFX);					}
+	public static Loadable createFont(String file)											{	return new Loadable(file, Resource.FONT);					}
+	public static Loadable createJSON(String file)											{	return new LoadableJSON(file, false);						}
+	public static Loadable createJSON(String file, boolean external)						{	return new LoadableJSON(file, external);					}
+	public static Loadable createTexture(String file, boolean antialias, boolean external)	{	return new LoadableTexture(file, antialias, external);		}
+	public static Loadable createTexture(String file, boolean antialias)					{	return new LoadableTexture(file, antialias, false);			}
+	public static Loadable createTexture(String file)										{	return new LoadableTexture(file, true, false);				}
+	public static Loadable createLanguage(int lang) 										{	return new Loadable(String.valueOf(lang), Resource.STRING);	}
+	public static Loadable createNumber(int font)											{	return new Loadable(String.valueOf(font), Resource.NUMBER);	}
     
     public String getName() {
         return m_Name;
@@ -48,13 +49,7 @@ public class Loadable {
 		Object Result = null;
 
 		//Check resource type
-		if (m_Resource == Resource.TEXTURE) {
-			//Create texture
-			Result = Texture.create(m_Name);
-		} else if (m_Resource == Resource.JSON) {
-			//Store json object
-			Result = ResourceManager.instance().readJSON(m_Name);
-		} else if (m_Resource == Resource.FONT) {
+		if (m_Resource == Resource.FONT) {
 			//Load font
 			Result = BitmapFont.create(ResourceManager.instance().readJSON(m_Name));
 		} else if (m_Resource == Resource.SFX) {

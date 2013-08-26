@@ -9,13 +9,13 @@ public abstract class Texture {
 		m_IDs 		= new int[] { -1 };
 		m_Name		= null;
 		m_AntiAlias	= true;
+		m_External	= false;
 		m_Height	= 0f;
 		m_Width		= 0f;
 	}
 	
 	//Creator
-	public static Texture create(String name) 						{ return create(name, true);					}
-	public static Texture create(String name, boolean antialias) 	{ return new AndroidTexture(name, antialias);	}
+	public static Texture create(String name, boolean antialias, boolean external) 	{ return new AndroidTexture(name, antialias, external);	}
 	
 	//Abstract functions
 	public abstract void load();
@@ -31,5 +31,6 @@ public abstract class Texture {
 	protected float 	m_Width;
 	protected float 	m_Height;
 	protected boolean	m_AntiAlias;
+	protected boolean	m_External;
 	protected String	m_Name;
 }

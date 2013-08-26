@@ -23,12 +23,14 @@ public abstract class ResourceManager {
 	public abstract void addNumber(int font);
 	public abstract void addBGM(String file);
 	public abstract void addSFX(String file);
-	public abstract void addJSON(String file);
 	public abstract void addFont(String file);
 	public abstract void addImage(String file);
 	public abstract void addLanguage(int lang);
 	public abstract void addTexture(String file);
 	public abstract void addTexture(String file, boolean antialias);
+	public abstract void addTexture(String file, boolean antialias, boolean external);
+	public abstract void addJSON(String file, boolean external);
+	public abstract void addJSON(String file);
 	
 	//Progress
 	public boolean isFinished() { 	return m_Finished;					}
@@ -39,6 +41,7 @@ public abstract class ResourceManager {
 	public abstract Object 		getTexture(String file);
 	public abstract Object[] 	getImages(String file);
 	public abstract Object[] 	getTextures(String file);
+	public abstract JSONObject	readJSON(String file, boolean external);
 	public abstract JSONObject	readJSON(String file);
 	public abstract JSONObject	getJSON(String file);
 	public abstract BitmapFont 	getFont(String file);

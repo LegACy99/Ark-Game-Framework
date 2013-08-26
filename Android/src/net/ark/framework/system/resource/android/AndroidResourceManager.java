@@ -1,5 +1,9 @@
 package net.ark.framework.system.resource.android;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -44,15 +48,17 @@ public class AndroidResourceManager extends ResourceManager {
 	}
 
 	//Resource loader
-	@Override public void addBGM(String file) 							{	if (!isLoading()) m_Loadables.add(Loadable.createBGM(file));     		  	}
-	@Override public void addSFX(String file) 							{	if (!isLoading()) m_Loadables.add(Loadable.createSFX(file));      			}
-	@Override public void addJSON(String file) 							{	if (!isLoading()) m_Loadables.add(Loadable.createJSON(file));    			}
-	@Override public void addImage(String file) 						{	if (!isLoading()) m_Loadables.add(Loadable.createJSON(file));				}
-	@Override public void addFont(String file)							{	if (!isLoading()) m_Loadables.add(Loadable.createFont(file));				}
-	@Override public void addNumber(int font)							{	if (!isLoading()) m_Loadables.add(Loadable.createNumber(font));				}
-	@Override public void addLanguage(int lang)							{	if (!isLoading()) m_Loadables.add(Loadable.createLanguage(lang));			}
-	@Override public void addTexture(String file, boolean antialias) 	{	if (!isLoading()) m_Loadables.add(Loadable.createTexture(file, antialias));	}
-	@Override public void addTexture(String file) 						{	if (!isLoading()) m_Loadables.add(Loadable.createTexture(file));			}
+	@Override public void addBGM(String file) 											{	if (!isLoading()) m_Loadables.add(Loadable.createBGM(file));     		  				}
+	@Override public void addSFX(String file) 											{	if (!isLoading()) m_Loadables.add(Loadable.createSFX(file));      						}
+	@Override public void addImage(String file) 										{	if (!isLoading()) m_Loadables.add(Loadable.createJSON(file));							}
+	@Override public void addFont(String file)											{	if (!isLoading()) m_Loadables.add(Loadable.createFont(file));							}
+	@Override public void addNumber(int font)											{	if (!isLoading()) m_Loadables.add(Loadable.createNumber(font));							}
+	@Override public void addLanguage(int lang)											{	if (!isLoading()) m_Loadables.add(Loadable.createLanguage(lang));						}
+	@Override public void addJSON(String file) 											{	if (!isLoading()) m_Loadables.add(Loadable.createJSON(file));    						}
+	@Override public void addJSON(String file, boolean external) 						{	if (!isLoading()) m_Loadables.add(Loadable.createJSON(file, external));    				}
+	@Override public void addTexture(String file, boolean antialias, boolean external) 	{	if (!isLoading()) m_Loadables.add(Loadable.createTexture(file, antialias, external));	}
+	@Override public void addTexture(String file, boolean antialias) 					{	if (!isLoading()) m_Loadables.add(Loadable.createTexture(file, antialias));				}
+	@Override public void addTexture(String file) 										{	if (!isLoading()) m_Loadables.add(Loadable.createTexture(file));						}
 	
 	
 	//Resources
@@ -179,31 +185,65 @@ public class AndroidResourceManager extends ResourceManager {
 		return Result;
 	}
 	
-	@Override
-	public JSONObject readJSON(String file) {
+	@Override public JSONObject readJSON(String file) { return readJSON(file, false); }
+	@Override public JSONObject readJSON(String file, boolean external) {
 		//Initialize
-		JSONObject Result = new JSONObject();
+		JSONObject Result 		= new JSONObject();
+		StringBuilder Builder 	= new StringBuilder();
+		
+		//If not external
+		if (!external) {
+			//Initialize
+			InputStream Input = null;
+			
+			try {
+				//Open JSON file		
+				Input 		= ((AndroidDevice)Device.instance()).getAssets().open(file);
+				int Char 	= Input.read();
+				
+				//While not finished
+				while (Char != -1) {
+					//Add to buffer
+					Builder.append((char)Char);
+					Char = Input.read();
+				}
+			} catch (IOException e) {
+			} finally {
+				try {
+					//Close input
+					if (Input != null) Input.close();
+				} catch (IOException e) {}				
+			}					
+		} else {
+			//Initialize
+			BufferedReader Reader = null;
+			
+			try {
+				//Open file
+				File Source	= new File(file);
+				Reader 		= new BufferedReader(new FileReader(Source));
+				int Char 	= Reader.read();
+				
+				//While not finished
+				while (Char != -1) {
+					//Add to buffer
+					Builder.append((char)Char);
+					Char = Reader.read();
+				}
+			} catch (FileNotFoundException e) {
+			} catch (IOException e) {
+			} finally {
+				try {
+					//Close
+					if (Reader != null) Reader.close();
+				} catch (IOException e) {}
+			}
+		}
 		
 		try {
-			//Open JSON file		
-			InputStream	Input	= ((AndroidDevice)Device.instance()).getAssets().open(file);
-			StringBuffer Buffer	= new StringBuffer();
-			
-			//Read a byte
-			int Char = Input.read();
-			while (Char != -1) {
-				//Add to buffer
-				Buffer.append((char)Char);
-				Char = Input.read();
-			}
-			
 			//Create JSON
-			Result = new JSONObject(Buffer.toString());
-			
-			//Close input
-			Input.close();
-		} catch (JSONException e) {					
-		} catch (IOException e) {}
+			Result = new JSONObject(Builder.toString());
+		} catch (JSONException e) {}
 		
 		//Return
 		return Result;

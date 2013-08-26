@@ -42,8 +42,9 @@ public class AndroidImage extends Image {
 		
 		try {
 			//Get texture
-			String TextureName 	= Utilities.TEXTURE_FOLDER + json.getString(KEY_TEXTURE);
-			m_Texture			= (Texture) ResourceManager.instance().getTexture(TextureName);
+			String TextureName 	= json.getString(KEY_TEXTURE);
+			m_Texture			= (Texture) ResourceManager.instance().getTexture(Utilities.TEXTURE_FOLDER + TextureName);
+			if (m_Texture == null) m_Texture = (Texture) ResourceManager.instance().getTexture(TextureName);
 			
 			//Get rect
 			JSONObject RectJSON = json.getJSONObject(KEY_RECT);
@@ -75,7 +76,7 @@ public class AndroidImage extends Image {
 				else {
 					//Get height
 					m_OriginalHeight	= RectJSON.getLong(KEY_RECT_HEIGHT);
-					m_Top		= RectJSON.getLong(KEY_RECT_BOTTOM) - m_OriginalHeight;
+					m_Top				= RectJSON.getLong(KEY_RECT_BOTTOM) - m_OriginalHeight;
 				}
 			}
 			
