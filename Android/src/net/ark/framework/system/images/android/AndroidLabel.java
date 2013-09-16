@@ -68,10 +68,10 @@ public class AndroidLabel extends Label {
 		}
 		
 		//Set size
-		m_OriginalWidth		= Cursor;
+		m_Width				= Cursor;
 		m_OriginalHeight	= m_Font.getHeight();
+		m_OriginalWidth		= m_Width / Utilities.instance().getScale();
 		m_Height			= m_OriginalHeight * Utilities.instance().getScale();
-		m_Width				= m_OriginalWidth * Utilities.instance().getScale();
 	}
 	
 	@Override
