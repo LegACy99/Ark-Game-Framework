@@ -32,6 +32,7 @@ public class AndroidSprite extends Sprite {
 		m_Height			= m_Images[0].getHeight();
 		m_OriginalWidth		= m_Images[0].getOriginalWidth();
 		m_OriginalHeight	= m_Images[0].getOriginalHeight();
+		setStraightAnimation();
 	}
 	
 	@Override

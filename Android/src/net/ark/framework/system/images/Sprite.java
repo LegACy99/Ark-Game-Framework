@@ -14,6 +14,7 @@ public abstract class Sprite extends Croppable {
 		m_Delay		= 0;
 		m_Timer		= 0;
 		m_Mirror	= MIRROR_NONE;
+		m_Sequence	= new int[0];
 		m_Animating	= false;
 	}
 	
@@ -33,10 +34,11 @@ public abstract class Sprite extends Croppable {
 	public static Sprite create(String resource, int x, int y, long delay) 	{	return new AndroidSprite(resource, x, y, delay);	}
 	
 	//Accessors
-	public int getFrame() 		{	return m_Frame;		}
-	public int getMaxFrame() 	{	return m_Total;		}
-	public float getHeight() 	{	return m_Height;	}
-	public float getWidth() 	{	return m_Width;		}
+	public int getFrame() 				{	return m_Frame;		}
+	public int getMaxFrame() 			{	return m_Total;		}
+	public int getSequencePosition()	{	return m_Current;	}
+	public float getHeight()		 	{	return m_Height;	}
+	public float getWidth() 			{	return m_Width;		}
 	
 	public void setRotation(float angle) 					{ setRotation(angle, getOriginalWidth() / 2f, getOriginalHeight() / 2f); 			}
 	public void setRotation(float angle, float addition) 	{ setRotation(angle, addition, getOriginalWidth() / 2f, getOriginalHeight() / 2f); 	}
@@ -74,9 +76,35 @@ public abstract class Sprite extends Croppable {
 	}
 
 	public void nextFrame() {
-		//Increase
-		m_Frame++;
-		if (m_Frame >= m_Total) m_Frame = 0;
+		//Skip if no sequence
+		if (m_Sequence.length <= 0) return;
+		
+		//While frame not valid
+		boolean Valid = false;
+		while (!Valid) {
+			//Increase position
+			m_Current++;
+			if (m_Current >= m_Sequence.length) m_Current = 0;
+			
+			//Validate
+			if (m_Sequence[m_Current] >= 0 && m_Sequence[m_Current] < m_Total) Valid = true;
+		}
+		
+		//Save frame
+		m_Frame = m_Sequence[m_Current];
+	}
+	
+	public void setSequencePosition(int position) {
+		//Set position
+		m_Current = position;
+
+		//Correct frame
+		if (m_Current >= m_Sequence.length)	m_Current = m_Sequence.length - 1;
+		if (m_Current < 0)					m_Current = 0;
+		
+		//Reset
+		m_Frame = m_Sequence.length > 0 ? m_Sequence[m_Current] : 0;
+		m_Timer = 0;
 	}
 	
 	public void setFrame(int frame) {
@@ -86,12 +114,56 @@ public abstract class Sprite extends Croppable {
 		//Correct frame
 		if (m_Frame >= m_Total)	m_Frame = m_Total - 1;
 		if (m_Frame < 0)		m_Frame = 0;
+		
+		//Reset timer
+		m_Timer = 0;
 	}
 	
 	public void setDelay(long delay) {
 		//Set
 		m_Delay 	= delay;
 		m_Animating	= delay > 0;
+	}
+	
+	public void setStraightAnimation() {
+		//Create sequence
+		int[] Sequence = new int[m_Total];
+		for (int i = 0; i < m_Total; i++) Sequence[i] = i;
+		
+		//Save
+		setAnimationSequence(Sequence);
+	}
+	
+	public void setReversedAnimation() {
+		//Create sequence
+		int[] Sequence = new int[m_Total];
+		for (int i = 0; i < m_Total; i++) Sequence[i] = m_Total - 1 - i;
+		
+		//Save
+		setAnimationSequence(Sequence);
+	}
+	
+	public void setPingPongAnimation() {
+		//Create sequence
+		int[] Sequence = new int[(m_Total * 2) - 1];
+		for (int i = 0; i < m_Total; i++) {
+			//Set
+			Sequence[i] 					= i;
+			Sequence[(m_Total * 2) - 2 - i] = i;
+		}
+		
+		//Save
+		setAnimationSequence(Sequence);
+	}
+	
+	public void setAnimationSequence(int[] sequence) {
+		//Get sequence
+		int[] Sequence = sequence;
+		if (Sequence == null) Sequence = new int[0];
+		
+		//Save and reset
+		m_Sequence = Sequence;
+		setSequencePosition(0);
 	}
 
 	public void update(long time) {
@@ -115,7 +187,9 @@ public abstract class Sprite extends Croppable {
 	protected int		m_Frame;
 	protected int 		m_Total;
 	protected int		m_Mirror;
+	protected int		m_Current;
 	protected boolean	m_Animating;
+	protected int[]		m_Sequence;
 	protected long		m_Delay;
 	protected long		m_Timer;
 }
