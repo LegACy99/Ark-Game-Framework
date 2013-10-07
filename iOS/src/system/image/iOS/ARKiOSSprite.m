@@ -20,7 +20,7 @@
 		NSArray* Data			= [[ARKResourceManager instance] getTexturesWithName:path];
 		if (Data) {
 			NSMutableArray* Images	= [NSMutableArray array];
-			for (int i = 0; i < [Images count]; i++) [Images addObject:[ARKImage createFromJSON:[Data objectAtIndex:i] atX:x atY:y]];
+			for (int i = 0; i < [Data count]; i++) [Images addObject:[ARKImage createFromJSON:[Data objectAtIndex:i] atX:x atY:y]];
 			m_Images = Images;
 			
 			//Get all frame
