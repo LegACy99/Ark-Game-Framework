@@ -15,6 +15,7 @@
 	//Data
 	BOOL					m_Size;
 	long					m_Time;
+	float					m_Scale;
 	NSArray*				m_Touches;
 	EAGLContext*			m_Context;
 	NSMutableDictionary*	m_UITouches;

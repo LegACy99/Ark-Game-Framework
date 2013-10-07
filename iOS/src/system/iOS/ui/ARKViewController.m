@@ -43,6 +43,7 @@
     if (self) {
 		//Initialize
 		m_Size			= NO;
+		m_Scale			= 1.0f;
 		m_OpenGL		= nil;
 		m_Context		= nil;
 		m_UITouches		= [NSMutableDictionary dictionary];
@@ -68,6 +69,11 @@
 - (void)viewDidLoad {
 	//Super
     [super viewDidLoad];
+	
+	//Get scale
+	if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] && ([UIScreen mainScreen].scale != 1.0)) {
+		m_Scale = [UIScreen mainScreen].scale;
+	}
 	
 	//Create gesture detectors
 	UISwipeGestureRecognizer* RecognizerUp		= [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeNorth)];
@@ -226,7 +232,7 @@
 				if (Info) {
 					//Press
 					CGPoint Location = [Touch locationInView:[self view]];
-					[Info pressedAtX:Location.x * [[ARKDevice instance] getScale] atY:Location.y * [[ARKDevice instance] getScale]];
+					[Info pressedAtX:Location.x * m_Scale atY:Location.y * m_Scale];
 				}
 			}
 		}
@@ -247,7 +253,7 @@
 				if (Info) {
 					//Move
 					CGPoint Location = [Touch locationInView:[self view]];
-					[Info draggedToX:Location.x * [[ARKDevice instance] getScale] toY:Location.y * [[ARKDevice instance] getScale]];
+					[Info draggedToX:Location.x * m_Scale toY:Location.y * m_Scale];
 				}
 			}
 		}
@@ -268,7 +274,7 @@
 				if (Info) {
 					//Move
 					CGPoint Location = [Touch locationInView:[self view]];
-					[Info releasedAtX:Location.x * [[ARKDevice instance] getScale] atY:Location.y * [[ARKDevice instance] getScale]];
+					[Info releasedAtX:Location.x * m_Scale atY:Location.y * m_Scale];
 					
 					//Remove touch
 					NSValue* TouchPointer = [NSValue valueWithPointer:(__bridge const void *)Touch];
