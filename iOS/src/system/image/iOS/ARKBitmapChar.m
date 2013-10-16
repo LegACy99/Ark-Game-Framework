@@ -103,6 +103,7 @@ const NSString* CHAR_KEY_ADVANCE	= @"xadvance";
 
 //Getters
 - (float)getBottom	{ return [[m_Vertices objectAtIndex:3] floatValue];												}
+- (float)getOffsetY	{ return -[[m_Vertices objectAtIndex:1] floatValue];											}
 - (float)getHeight	{ return [[m_Vertices objectAtIndex:1] floatValue] - [[m_Vertices objectAtIndex:3] floatValue];	}
 - (float)getWidth	{ return [[m_Vertices objectAtIndex:4] floatValue] - [[m_Vertices objectAtIndex:0] floatValue];	}
 - (float)getTop		{ return [[m_Vertices objectAtIndex:1] floatValue];												}

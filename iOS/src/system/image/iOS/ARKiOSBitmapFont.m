@@ -75,6 +75,10 @@
 						//Create character
 						ARKBitmapChar* Char = [[ARKBitmapChar alloc] initWithJSON:JSONChar withKernings:[Kernings objectForKey:Index] withWidth:Width withHeight:Height];
 						[Characters setObject:Char forKey:Index];
+						
+						//Check height
+						float CharHeight = [Char getHeight] + [Char getOffsetY];
+						if (CharHeight > m_Height) m_Height = CharHeight;
 					}
 				}
 			}

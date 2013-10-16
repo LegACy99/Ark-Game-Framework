@@ -25,6 +25,7 @@
 - (id)initWithJSON:(NSDictionary*)json withKernings:(NSDictionary*)kernings withWidth:(float)width withHeight:(float)height;
 
 //Getter
+- (float)getOffsetY;
 - (float)getBottom;
 - (float)getHeight;
 - (float)getWidth;

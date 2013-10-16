@@ -92,7 +92,7 @@ const int LABEL_QUAD_INDICES		= 6;
 		if (Char) {
 			//Next if more
 			if (i + 1 < [m_Text length]) 	Cursor += [Char getAdvanceForChar:[m_Text characterAtIndex:(i + 1)]];
-			else							Cursor += [Char getAdvance];
+			else							Cursor += [Char getWidth];
 		}
 	}
 	
