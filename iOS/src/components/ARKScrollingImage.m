@@ -85,6 +85,14 @@ const int SCROLLING_DIAGONAL_IMAGE		= 3;
 	[self scrollByX:0 byY:0];
 }
 
+- (void)setTintWithRed:(int)red withGreen:(int)green withBlue:(int)blue							{ [self setTintWithRed:red withGreen:green withBlue:blue withAlpha:255];																		}
+- (void)setTintWithRedF:(float)red withGreenF:(float)green withBlueF:(float)blue				{ [self setTintWithRedF:red withGreenF:green withBlueF:blue withAlphaF:1.0f];																	}
+- (void)setTintWithRed:(int)red withGreen:(int)green withBlue:(int)blue withAlpha:(int)alpha	{ [self setTintWithRedF:(float)red / 255.0f withGreenF:(float)green / 255.0f withBlueF:(float)blue / 255.0f withAlphaF:(float)alpha / 255.0f];	}
+- (void)setTintWithRedF:(float)red withGreenF:(float)green withBlueF:(float)blue withAlphaF:(float)alpha {
+	//Set all images tint
+	for (int i = 0; i < sizeof(m_Images) / sizeof(m_Images[0]); i++) [m_Images[i] setTintWithRedF:red withGreenF:green withBlueF:blue withAlphaF:alpha];
+}
+
 - (int)signumOf:(int)number { return (number < 0) ? -1 : (number > 0) ? +1 : 0; }
 
 - (void)scrollByX:(float)x byY:(float)y {
