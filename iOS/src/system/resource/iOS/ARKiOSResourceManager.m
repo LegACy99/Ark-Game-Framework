@@ -211,7 +211,7 @@ const NSString* RESOURCEMANAGER_KEY_SHEET_GAP		= @"Gap";
 					[Rect setObject:[NSNumber numberWithInt:CellWidth] forKey:IMAGE_KEY_RECT_WIDTH];
 					[Rect setObject:[NSNumber numberWithInt:CellHeight] forKey:IMAGE_KEY_RECT_HEIGHT];
 					[Rect setObject:[NSNumber numberWithInt:(OffsetX + ((CellWidth + GapX) * x))] forKey:IMAGE_KEY_RECT_LEFT];
-					[Rect setObject:[NSNumber numberWithInt:(OffsetY + ((CellWidth + GapY) * y))] forKey:IMAGE_KEY_RECT_TOP];
+					[Rect setObject:[NSNumber numberWithInt:(OffsetY + ((CellHeight + GapY) * y))] forKey:IMAGE_KEY_RECT_TOP];
 				
 					//Add rect data
 					[Data setObject:Rect forKey:IMAGE_KEY_RECT];
