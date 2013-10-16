@@ -51,7 +51,7 @@
 						if (!Kerning) {
 							//Add to map
 							Kerning	= [NSMutableDictionary dictionary];
-							[Kerning setObject:Kerning forKey:FirstChar];
+							[Kernings setObject:Kerning forKey:FirstChar];
 						}
 						
 						//Add to map
@@ -81,7 +81,7 @@
 		}
 		
 		//Save dictionary
-		m_Characters = [NSDictionary dictionaryWithDictionary:Characters];
+		m_Characters = Characters;
 	}
 	
 	//Return

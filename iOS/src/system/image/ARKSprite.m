@@ -35,13 +35,11 @@
 	//Default
 	self = [self init];
 	if (self) {
-		//Save
+		
+		//Set
 		m_X	= x;
 		m_Y	= y;
-		
-		//Set delay
-		m_Delay = delay;
-		if (m_Delay > 0) m_Animating = true;
+		[self setDelay:delay];
 	}
 	
 	//Return
@@ -128,6 +126,12 @@
 	//Correct
 	if (m_Frame >= m_Total) m_Frame = m_Total - 1;
 	else if (m_Frame < 0)	m_Frame = 0;
+}
+
+- (void)setDelay:(long)delay {
+	//Set
+	m_Delay 	= delay;
+	m_Animating	= delay > 0;
 }
 
 - (void)updateAfter:(long)time {

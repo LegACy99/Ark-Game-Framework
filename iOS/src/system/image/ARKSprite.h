@@ -46,6 +46,7 @@
 
 //Animation setters
 - (void)setAnimating:(BOOL)animating;
+- (void)setDelay:(long)delay;
 - (void)setFrame:(int)frame;
 - (void)nextFrame;
 
