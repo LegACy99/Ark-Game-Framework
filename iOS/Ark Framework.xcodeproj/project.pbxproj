@@ -22,6 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		830E9453180E75C600B092B2 /* ARKLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 830E9451180E75C600B092B2 /* ARKLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		830E9454180E75C600B092B2 /* ARKLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 830E9452180E75C600B092B2 /* ARKLine.m */; };
 		83F14CC5172BE7380083C11E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F14CC4172BE7380083C11E /* Foundation.framework */; };
 		83F14CD9172BE8DD0083C11E /* ARKFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14CC9172BE7380083C11E /* ARKFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83F14CDE172BE9AD0083C11E /* ARKAccelerometerInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F14CDA172BE9AD0083C11E /* ARKAccelerometerInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -130,6 +132,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		830E9451180E75C600B092B2 /* ARKLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKLine.h; sourceTree = "<group>"; };
+		830E9452180E75C600B092B2 /* ARKLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKLine.m; sourceTree = "<group>"; };
 		83F14CC1172BE7380083C11E /* ARKFramework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = ARKFramework.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F14CC4172BE7380083C11E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		83F14CC8172BE7380083C11E /* ARK Framework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ARK Framework-Prefix.pch"; sourceTree = "<group>"; };
@@ -322,10 +326,12 @@
 		83F14CF6172BEF990083C11E /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				83F14CFE172BEFFC0083C11E /* ARKCroppable.h */,
-				83F14CFF172BEFFC0083C11E /* ARKCroppable.m */,
 				83F14D00172BEFFC0083C11E /* ARKDrawable.h */,
 				83F14D01172BEFFC0083C11E /* ARKDrawable.m */,
+				83F14CFE172BEFFC0083C11E /* ARKCroppable.h */,
+				83F14CFF172BEFFC0083C11E /* ARKCroppable.m */,
+				830E9451180E75C600B092B2 /* ARKLine.h */,
+				830E9452180E75C600B092B2 /* ARKLine.m */,
 				83F14D02172BEFFC0083C11E /* ARKScrollingImage.h */,
 				83F14D03172BEFFC0083C11E /* ARKScrollingImage.m */,
 				83F14CFD172BEFE30083C11E /* Buttons */,
@@ -462,6 +468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F14CD9172BE8DD0083C11E /* ARKFramework.h in Headers */,
+				830E9453180E75C600B092B2 /* ARKLine.h in Headers */,
 				83F14CDE172BE9AD0083C11E /* ARKAccelerometerInfo.h in Headers */,
 				83F14CE0172BE9AD0083C11E /* ARKTouchInfo.h in Headers */,
 				83F14D04172BEFFC0083C11E /* ARKCroppable.h in Headers */,
@@ -611,6 +618,7 @@
 				83F14D53172BF0E30083C11E /* ARKBitmapFont.m in Sources */,
 				83F14D55172BF0E30083C11E /* ARKImage.m in Sources */,
 				83F14D57172BF0E30083C11E /* ARKLabel.m in Sources */,
+				830E9454180E75C600B092B2 /* ARKLine.m in Sources */,
 				83F14D59172BF0E30083C11E /* ARKRectangle.m in Sources */,
 				83F14D5B172BF0E30083C11E /* ARKSprite.m in Sources */,
 				83F14D5D172BF0E30083C11E /* ARKTexture.m in Sources */,
