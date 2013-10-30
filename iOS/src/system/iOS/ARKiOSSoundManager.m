@@ -105,7 +105,8 @@ const int SOUND_INITIAL_SFX = 3;
 	if (m_BGMPlayer) [m_BGMPlayer pause];
 	
 	//For all keys
-	NSArray* Keys = [m_SFXPlayers allKeys];
+	//Do nothing for SFX
+	/*NSArray* Keys = [m_SFXPlayers allKeys];
 	for (int i = 0; i < [Keys count]; i++) {
 		//Get array
 		id Players = [m_SFXPlayers objectForKey:[Keys objectAtIndex:i]];
@@ -113,7 +114,7 @@ const int SOUND_INITIAL_SFX = 3;
 			//Pause all
 			for (int j = 0; j < [Players count]; j++) [[Players objectAtIndex:j] pause];
 		}
-	}
+	}*/
 }
 
 - (void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags {
@@ -215,7 +216,7 @@ const int SOUND_INITIAL_SFX = 3;
 		}
 		
 		//If last
-		if (Index == [Players count] - 1) {
+		if ([Players count] > 0 && Index == [Players count] - 1) {
 			//Add
 			AVAudioPlayer* NewPlayer = [self createPlayerForSFX:sfx];
 			if (NewPlayer) [Players addObject:NewPlayer];
@@ -262,6 +263,7 @@ const int SOUND_INITIAL_SFX = 3;
 					//Pause
 					[[Players objectAtIndex:i] pause];
 					[[Players objectAtIndex:i] setCurrentTime:0];
+					[[LoopingPlayers objectAtIndex:i] setNumberOfLoops:0];
 				}
 			}
 		} else {
@@ -270,6 +272,7 @@ const int SOUND_INITIAL_SFX = 3;
 				//Stop
 				[[LoopingPlayers objectAtIndex:i] pause];
 				[[LoopingPlayers objectAtIndex:i] setCurrentTime:0];
+				[[LoopingPlayers objectAtIndex:i] setNumberOfLoops:0];
 			}
 		}
 	}
