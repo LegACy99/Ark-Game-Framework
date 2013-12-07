@@ -12,8 +12,9 @@
 @implementation ARKSprite
 
 //Synthesize properties
-@synthesize frame = m_Frame;
-@synthesize total = m_Total;
+@synthesize frame	= m_Frame;
+@synthesize total	= m_Total;
+@synthesize current	= m_Current;
 
 - (id)init {
 	//Super
@@ -24,6 +25,8 @@
 		m_Total		= 0;
 		m_Delay		= 0;
 		m_Timer		= 0;
+		m_Current	= 0;
+		m_Sequence	= [NSArray array];
 		m_Animating	= false;
 	}
 	
@@ -114,9 +117,36 @@
 }
 
 - (void)nextFrame {
-	//Increase
-	m_Frame++;
-	if (m_Frame >= m_Total) m_Frame = 0;
+	//Skip if no sequence
+	if (!m_Sequence || [m_Sequence count] <= 0) return;
+	
+	//While frame not valid
+	BOOL Valid = NO;
+	while (!Valid) {
+		//Increase position
+		m_Current++;
+		if (m_Current >= [m_Sequence count]) m_Current = 0;
+		
+		//Validate
+		id Current = [m_Sequence objectAtIndex:m_Current];
+		if (Current && [Current intValue] >= 0 && [Current intValue] < m_Total) Valid = YES;
+	}
+	
+	//Save frame
+	m_Frame = [[m_Sequence objectAtIndex:m_Current] intValue];
+}
+
+- (void)setSequencePositionAt:(int)position {
+	//Set position
+	m_Current = position;
+	
+	//Correct frame
+	if (m_Current >= [m_Sequence count])	m_Current = [m_Sequence count] - 1;
+	if (m_Current < 0)						m_Current = 0;
+	
+	//Reset
+	m_Frame = [m_Sequence count] > 0 ? [[m_Sequence objectAtIndex:m_Current] intValue] : 0;
+	m_Timer = 0;
 }
 
 - (void)setFrame:(int)frame {
@@ -126,12 +156,53 @@
 	//Correct
 	if (m_Frame >= m_Total) m_Frame = m_Total - 1;
 	else if (m_Frame < 0)	m_Frame = 0;
+
+	//Reset timer
+	m_Timer = 0;
 }
 
 - (void)setDelay:(long)delay {
 	//Set
 	m_Delay 	= delay;
 	m_Animating	= delay > 0;
+}
+
+- (void)setStraightAnimation {
+	//Create sequence
+	NSMutableArray* Sequence = [NSMutableArray array];
+	for (int i = 0; i < m_Total; i++) [Sequence addObject:[NSNumber numberWithInt:i]];
+	
+	//Save
+	[self setAnimationSequence:Sequence];
+}
+
+- (void)setReversedAnimation {
+	//Create sequence
+	NSMutableArray* Sequence = [NSMutableArray array];
+	for (int i = 0; i < m_Total; i++) [Sequence addObject:[NSNumber numberWithInt:m_Total - 1 - i]];
+	
+	//Save
+	[self setAnimationSequence:Sequence];
+}
+
+- (void)setPingPongAnimation {
+	//Create sequence
+	NSMutableArray* Sequence = [NSMutableArray array];
+	for (int i = 0; i < m_Total; i++)		[Sequence addObject:[NSNumber numberWithInt:i]];
+	for (int i = m_Total - 2; i >= 0; i++)	[Sequence addObject:[NSNumber numberWithInt:i]];
+	
+	//Save
+	[self setAnimationSequence:Sequence];
+}
+
+- (void)setAnimationSequence:(NSArray*)sequence {
+	//Get sequence
+	NSArray* Sequence = sequence;
+	if (!Sequence) Sequence = [NSArray array];
+	
+	//Save and reset
+	m_Sequence = Sequence;
+	[self setSequencePositionAt:0];
 }
 
 - (void)updateAfter:(long)time {

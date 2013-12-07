@@ -10,16 +10,19 @@
 
 @interface ARKSprite : ARKCroppable {
 	//Data
-	int		m_Frame;
-	int		m_Total;
-	BOOL	m_Animating;
-	long	m_Delay;
-	long	m_Timer;
+	int			m_Frame;
+	int			m_Total;
+	int			m_Current;
+	BOOL		m_Animating;
+	NSArray*	m_Sequence;
+	long		m_Delay;
+	long		m_Timer;
 }
 
 //Properties
-@property (readonly, getter = getFrame)		int frame;
-@property (readonly, getter = getMaxFrame)	int total;
+@property (readonly, getter = getFrame)				int frame;
+@property (readonly, getter = getMaxFrame)			int total;
+@property (readonly, getter = getSequencePosition)	int current;
 
 //Constructor
 - (id)initAtX:(float)x atY:(float)y withDelay:(long)delay;
@@ -46,6 +49,11 @@
 
 //Animation setters
 - (void)setAnimating:(BOOL)animating;
+- (void)setSequencePositionAt:(int)position;
+- (void)setAnimationSequence:(NSArray*)sequence;
+- (void)setStraightAnimation;
+- (void)setReversedAnimation;
+- (void)setPingPongAnimation;
 - (void)setDelay:(long)delay;
 - (void)setFrame:(int)frame;
 - (void)nextFrame;

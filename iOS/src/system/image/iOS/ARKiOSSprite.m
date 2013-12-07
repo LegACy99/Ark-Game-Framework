@@ -31,6 +31,7 @@
 				m_Height			= [[m_Images objectAtIndex:0] getHeight];
 				m_OriginalWidth		= [[m_Images objectAtIndex:0] getOriginalWidth];
 				m_OriginalHeight	= [[m_Images objectAtIndex:0] getOriginalHeight];
+				[self setStraightAnimation];
 			}
 		}
 	}
