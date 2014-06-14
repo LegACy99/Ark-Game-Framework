@@ -166,25 +166,33 @@ public class AndroidDevice extends Device implements Renderer, OnTouchListener, 
 			Thread.sleep(20);
 		} catch (InterruptedException e) {}
 		
-		//Get count
-		int Count = 1;
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) Count = event.getPointerCount();
-		
-		//For each pointer
-		for (int i = 0; i < Count; i++) {			
-			//Get pointer ID
-			int Index 	= MotionEventCompat.getActionIndex(event);
-			int ID		= MotionEventCompat.getPointerId(event, Index);
+		//Check action type
+		int Action = MotionEventCompat.getActionMasked(event);
+		if (Action == MotionEvent.ACTION_MOVE)	{
+			//Get count
+			int Count = 1;
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) Count = event.getPointerCount();
 			
+			//For each pointer
+			for (int i = 0; i < Count; i++) {
+				//Get coordinate
+				int ID	= MotionEventCompat.getPointerId(event, i);
+				float X = MotionEventCompat.getX(event, i);
+				float Y = MotionEventCompat.getY(event, i);
+				
+				//Save
+				m_Touches[ID].dragged(X, Y);
+			}
+		} else {
 			//Get coordinate
-			float X = MotionEventCompat.getX(event, Index);
-			float Y = MotionEventCompat.getY(event, Index);
+			int Index 	= MotionEventCompat.getActionIndex(event);
+			float X 	= MotionEventCompat.getX(event, Index);
+			float Y 	= MotionEventCompat.getY(event, Index);
 			
-			//Check action type
-			int Action = event.getAction() & MotionEvent.ACTION_MASK;
+			//Manage action
+			int ID = MotionEventCompat.getPointerId(event, Index);
 			if (Action == MotionEvent.ACTION_DOWN || Action == MotionEvent.ACTION_POINTER_DOWN) 										m_Touches[ID].pressed(X, Y);
 			else if (Action == MotionEvent.ACTION_UP || Action == MotionEvent.ACTION_POINTER_UP || Action == MotionEvent.ACTION_CANCEL)	m_Touches[ID].released(X, Y);
-			else if (Action == MotionEvent.ACTION_MOVE)																					m_Touches[ID].dragged(X, Y);
 		}
 		
 		//Detect gesture
